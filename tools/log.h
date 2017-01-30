@@ -6,14 +6,19 @@
 
 class Log {
 public:
-    Log(); //Default constructor
+    Log(std::string p); //Default constructor
     ~Log(); //destructor
 
     //overload handler operator
     Log& operator<<(const std::string str);
 
+    void open();
+    void close();
+    void flush();
+
 private:
 
+    std::string filepath;
     //The file handler
     std::ofstream fh;
 };
