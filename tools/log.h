@@ -24,9 +24,10 @@ public:
     /* Query the file handler's state */
     bool isOpen();
 private:
-
+    /* Path of file */
     std::string filepath;
-    //The file handler
+
+    /* File handler */
     std::ofstream fh;
 };
 
