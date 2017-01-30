@@ -10,3 +10,6 @@ SOURCES += main.cpp \
 HEADERS += \
     log.h \
     config.h
+
+DISTFILES += \
+    test.txt

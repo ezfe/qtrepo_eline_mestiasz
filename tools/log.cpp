@@ -35,7 +35,7 @@ bool Log::isOpen() {
 //The overload operator will process the incoming string, then return
 //itself as a reference. This allows chaining of multiple filehandler
 //operations.
-Log& Log::operator <<(std::string str) {
+Log& Log::operator << (std::string str) {
     fh << str;
     return *this;
 }
