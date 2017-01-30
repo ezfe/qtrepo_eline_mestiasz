@@ -12,14 +12,22 @@ public:
     //overload handler operator
     Log& operator<<(const std::string str);
 
+    /* Open the file handler */
     void open();
+
+    /* Close the file handler */
     void close();
+
+    /* Flush the file handler */
     void flush();
 
+    /* Query the file handler's state */
+    bool isOpen();
 private:
-
+    /* Path of file */
     std::string filepath;
-    //The file handler
+
+    /* File handler */
     std::ofstream fh;
 };
 
