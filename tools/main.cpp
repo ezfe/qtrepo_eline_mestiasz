@@ -13,5 +13,7 @@ int main(int argc, char *argv[])
     //returning err_log, so the next err_log << can be evalulated.
     err_log << "test" << "test" << "test" << "test";
 
+    cout << "Hi" << endl;
+
     return 0;
 }

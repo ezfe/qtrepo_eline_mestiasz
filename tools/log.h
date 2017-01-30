@@ -16,6 +16,6 @@ private:
 
     //The file handler
     std::ofstream fh;
-}
+};
 
 #endif // LOG_H

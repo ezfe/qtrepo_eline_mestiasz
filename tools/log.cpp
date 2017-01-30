@@ -1,12 +1,15 @@
 #include "log.h"
+#include <iostream>
 
 //In the default constructor the file handler is opened
 Log::Log() {
-    fh.open("exampleLogFile.txt", std::ofstream::out | std::ofstream::app);
+    std::cout << "Constructor called" << std::endl;
+    fh.open("/Users/ezekielelin/Desktop/test.txt", std::ofstream::out | std::ofstream::app);
 }
 
 //In the destructor the file handler is closed
 Log::~Log() {
+    std::cout << "Destructor called" << std::endl;
     fh.close();
 }
 
