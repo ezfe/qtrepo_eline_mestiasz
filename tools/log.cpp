@@ -26,6 +26,10 @@ void Log::flush() {
     fh.flush();
 }
 
+bool Log::isOpen() {
+    return fh.is_open();
+}
+
 //The overload operator will process the incoming string, then return
 //itself as a reference. This allows chaining of multiple filehandler
 //operations.

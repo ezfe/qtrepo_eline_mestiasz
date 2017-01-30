@@ -19,7 +19,11 @@ int main(int argc, char *argv[])
 
     err_log.close();
 
+    cout << err_log.isOpen() << endl;
+
     err_log.open();
+
+    cout << err_log.isOpen() << endl;
 
     err_log << "yay";
 
