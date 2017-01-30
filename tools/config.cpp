@@ -1,18 +1,36 @@
 #include "config.h"
 
+#include <string>
 #include <iostream>
 #include <map>
-#include <string>
+#include <vector>
 
-Config::Config(){
+Config::Config()
+{
+    std::cout << "Created new instance" << std::endl;
+}
 
+Config::~Config(){
+    std::cout << "Activated destructor" << std::endl;
 }
 
 std::string Config::generateMap(){
-    std::map<std::string, int> brands;
+    std::string s{"Here we go"};
 
-    std::string s = "Hello";
-    std::cout<<s;
+    std::map<std::string, std::string> brands;
+    std::vector<std::string> brand_names;
+    brand_names.push_back("apple");
+    brand_names.push_back("microsoft");
+
+    for(std::string name : brand_names){
+        brands[name] = name;
+    }
+
+    typedef std::map<std::string, std::string>::const_iterator Iter;
+    for(Iter p = brands.begin(); p != brands.end(); ++p){
+        std::cout<<p->first<<" : "<<p->second<<std::endl;
+    }
+
 
     return s;
 }
