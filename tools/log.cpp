@@ -21,26 +21,34 @@ void Log::close() {
 
 /* Open file handler using filepath */
 void Log::open() {
-    if (isOpen()) {
-        close();
+    try {
+        fh.open(filepath, std::ofstream::out | std::ofstream::app);
+    } catch (std::exception &e) {
+        cout << "An error occurred opening the file: " << e << endl;
     }
-    fh.open(filepath, std::ofstream::out | std::ofstream::app);
+
     isOpenState = isOpen();
     fh << std::endl;
 }
 
 /* Open the file as an empty one */
 void Log::openAsEmpty() {
-    if (isOpen()) {
-        close();
+    try {
+        fh.open(filepath, std::ofstream::out | std::ofstream::trunc);
+    } catch (std::exception &e) {
+        cout << "An error occurred opening the file: " << e << endl;
     }
-    fh.open(filepath, std::ofstream::out | std::ofstream::trunc);
+
     isOpenState = isOpen();
 }
 
 /* Flush file handler */
 void Log::flush() {
-    fh.flush();
+    try {
+        fh.flush();
+    } catch (std::exception &e) {
+        cout << "An error occurred opening the file: " << e << endl;
+    }
 }
 
 /* Query the file handler's state */
