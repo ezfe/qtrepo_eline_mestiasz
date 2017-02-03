@@ -36,6 +36,9 @@ private:
 
     /* File handler */
     std::ofstream fh;
+
+    /* Whether the file handler is opened */
+    bool isOpenState;
 };
 
 #endif // LOG_H

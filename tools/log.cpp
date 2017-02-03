@@ -4,6 +4,7 @@
 /* Set file path and open() file handler */
 Log::Log(std::string p, bool empty) {
     filepath = p;
+    isOpenState = isOpen();
     empty ? openAsEmpty() : open();
 }
 
@@ -15,6 +16,7 @@ Log::~Log() {
 /* Close file handler */
 void Log::close() {
     fh.close();
+    isOpenState = isOpen();
 }
 
 /* Open file handler using filepath */
@@ -23,6 +25,7 @@ void Log::open() {
         close();
     }
     fh.open(filepath, std::ofstream::out | std::ofstream::app);
+    isOpenState = isOpen();
     fh << std::endl;
 }
 
@@ -32,6 +35,7 @@ void Log::openAsEmpty() {
         close();
     }
     fh.open(filepath, std::ofstream::out | std::ofstream::trunc);
+    isOpenState = isOpen();
 }
 
 /* Flush file handler */
