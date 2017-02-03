@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <string>
+#include <vector>
 
 class Log {
 public:
@@ -14,6 +15,7 @@ public:
     Log& operator << (const int num);
     Log& operator << (const double d);
     Log& operator << (const char c);
+    Log& operator << (const std::vector<int> v);
 //    Log& operator << (const bool b);
 
     /* Open the file handler */
