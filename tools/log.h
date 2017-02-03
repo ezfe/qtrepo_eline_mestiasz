@@ -16,7 +16,6 @@ public:
     Log& operator << (const double d);
     Log& operator << (const char c);
     Log& operator << (const std::vector<int> v);
-//    Log& operator << (const bool b);
 
     /* Open the file handler */
     void open();

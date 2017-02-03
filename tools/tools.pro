@@ -13,3 +13,4 @@ HEADERS += \
 
 DISTFILES += \
     test.txt
+    random.txt

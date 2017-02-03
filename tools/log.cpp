@@ -91,7 +91,3 @@ Log& Log::operator << (std::vector<int> v){
     return *this;
 }
 
-//Log& Log::operator << (bool b){
-//    fh << b;
-//    return *this;
-//}
