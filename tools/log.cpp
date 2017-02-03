@@ -15,7 +15,11 @@ Log::~Log() {
 
 /* Close file handler */
 void Log::close() {
-    fh.close();
+    try {
+        fh.close();
+    } catch (std::exception &e) {
+        std::cout << "An error occurred closing the file" << std::endl;
+    }
     isOpenState = isOpen();
 }
 
@@ -24,7 +28,7 @@ void Log::open() {
     try {
         fh.open(filepath, std::ofstream::out | std::ofstream::app);
     } catch (std::exception &e) {
-        cout << "An error occurred opening the file: " << e << endl;
+        std::cout << "An error occurred opening the file" << std::endl;
     }
 
     isOpenState = isOpen();
@@ -36,7 +40,7 @@ void Log::openAsEmpty() {
     try {
         fh.open(filepath, std::ofstream::out | std::ofstream::trunc);
     } catch (std::exception &e) {
-        cout << "An error occurred opening the file: " << e << endl;
+        std::cout << "An error occurred opening the file" << std::endl;
     }
 
     isOpenState = isOpen();
@@ -47,7 +51,7 @@ void Log::flush() {
     try {
         fh.flush();
     } catch (std::exception &e) {
-        cout << "An error occurred opening the file: " << e << endl;
+        std::cout << "An error occurred flushing the file" << std::endl;
     }
 }
 
