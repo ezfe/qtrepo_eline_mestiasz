@@ -14,10 +14,16 @@ Config::~Config(){
     std::cout << "Activated destructor" << std::endl;
 }
 
-std::string Config::generateMap(){
-    std::string s{"Here we go"};
+std::string Config::getValue(std::string key){
+    return state[key];
+}
 
-    std::map<std::string, std::string> state;
+void Config::setValue(std::string key, std::string value){
+    state[key] = value;
+}
+
+void Config::generateMap(){
+
     std::vector<std::string> brand_names;
     brand_names.push_back("apple");
     brand_names.push_back("microsoft");
@@ -26,23 +32,18 @@ std::string Config::generateMap(){
         state[name] = name;
     }
 
-    typedef std::map<std::string, std::string>::const_iterator Iter;
-    for(Iter p = state.begin(); p != state.end(); ++p){
-        std::cout<<p->first<<" : "<<p->second<<std::endl;
-    }
-
-
-    return s;
 }
 
-void Config::save(std::string path) {
-    std::cout << "foo";
+void Config::saveState(std::string path) {
     std::ofstream fh;
     fh.open(path, std::ofstream::out | std::ofstream::trunc);
+
     typedef std::map<std::string, std::string>::const_iterator Iter;
     for(Iter i = state.begin(); i != state.end(); ++i){
-        fh << i->first << " " << i->second << std::endl;
+        fh << i->first << " | " << i->second << std::endl;
     }
+
     fh.flush();
     fh.close();
 }
+

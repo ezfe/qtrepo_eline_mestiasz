@@ -12,5 +12,5 @@ HEADERS += \
     config.h
 
 DISTFILES += \
-    test.txt
+    test.txt \
     random.txt

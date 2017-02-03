@@ -10,9 +10,12 @@ public:
     Config();
     ~Config(); // Destructor
 
-    std::string generateMap();
+    void generateMap();
+    void saveState(std::string path);
+    void loadState(std::string path);
+    void setValue(std::string key, std::string value);
 
-    void save(std::string path);
+    std::string getValue(std::string key);
 
 private:
     std::map<std::string, std::string> state;

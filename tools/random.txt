@@ -1,0 +1,3 @@
+apple | apple
+facebook | facebook
+microsoft | microsoft
