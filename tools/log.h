@@ -10,10 +10,17 @@ public:
     ~Log(); //destructor
 
     //overload handler operator
-    Log& operator<<(const std::string str);
+    Log& operator << (const std::string str);
+    Log& operator << (const int num);
+    Log& operator << (const double d);
+    Log& operator << (const char c);
+//    Log& operator << (const bool b);
 
     /* Open the file handler */
     void open();
+
+    /* Open as an empty file */
+    void openAsEmpty();
 
     /* Close the file handler */
     void close();

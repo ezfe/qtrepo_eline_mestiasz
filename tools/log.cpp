@@ -4,7 +4,6 @@
 /* Set file path and open() file handler */
 Log::Log(std::string p) {
     filepath = p;
-    open();
 }
 
 /* close() file handler */
@@ -20,6 +19,12 @@ void Log::close() {
 /* Open file handler using filepath */
 void Log::open() {
     fh.open(filepath, std::ofstream::out | std::ofstream::app);
+    fh << std::endl;
+}
+
+/* Open the file as an empty one */
+void Log::openAsEmpty() {
+    fh.open(filepath, std::ofstream::out | std::ofstream::trunc);
 }
 
 /* Flush file handler */
@@ -39,3 +44,23 @@ Log& Log::operator << (std::string str) {
     fh << str;
     return *this;
 }
+
+Log& Log::operator << (int num) {
+    fh << num;
+    return *this;
+}
+
+Log& Log::operator << (double d){
+    fh << d;
+    return *this;
+}
+
+Log& Log::operator << (char c){
+    fh << c;
+    return *this;
+}
+
+//Log& Log::operator << (bool b){
+//    fh << b;
+//    return *this;
+//}
