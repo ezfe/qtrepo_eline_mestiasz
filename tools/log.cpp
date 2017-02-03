@@ -2,8 +2,9 @@
 #include <iostream>
 
 /* Set file path and open() file handler */
-Log::Log(std::string p) {
+Log::Log(std::string p, bool empty) {
     filepath = p;
+    empty ? openAsEmpty() : open();
 }
 
 /* close() file handler */
@@ -18,12 +19,18 @@ void Log::close() {
 
 /* Open file handler using filepath */
 void Log::open() {
+    if (isOpen()) {
+        close();
+    }
     fh.open(filepath, std::ofstream::out | std::ofstream::app);
     fh << std::endl;
 }
 
 /* Open the file as an empty one */
 void Log::openAsEmpty() {
+    if (isOpen()) {
+        close();
+    }
     fh.open(filepath, std::ofstream::out | std::ofstream::trunc);
 }
 

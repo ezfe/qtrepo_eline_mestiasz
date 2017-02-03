@@ -6,7 +6,7 @@
 
 class Log {
 public:
-    Log(std::string p); //Default constructor
+    Log(std::string p, bool empty); //Default constructor
     ~Log(); //destructor
 
     //overload handler operator

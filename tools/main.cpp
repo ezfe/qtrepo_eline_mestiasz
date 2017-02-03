@@ -5,7 +5,7 @@
 using namespace std;
 
 //Object of type Log instantiated globally
-Log err_log("./test_01.txt");
+Log err_log("./test.txt", true);
 Config config;
 
 int main(int argc, char *argv[])
@@ -13,7 +13,6 @@ int main(int argc, char *argv[])
 
     //Here the first err_log << string will be evaled,
     //returning err_log, so the next err_log << can be evalulated.
-    err_log.openAsEmpty();
     err_log << "test " << " test " << " test " << " test " << 1 << " " << 0.11 << 'm';
 
     err_log.flush();
