@@ -34,3 +34,11 @@ std::string Config::generateMap(){
 
     return s;
 }
+
+void Config::save(std::string path) {
+    std::ofstream fh;
+    fh.open(path, std::ofstream::out | std::ofstream::trunc);
+    fh << "stuff" << std::endl;
+    fh.flush();
+    fh.close();
+}

@@ -31,5 +31,7 @@ int main(int argc, char *argv[])
 
     config.generateMap();
 
+    config.save("./random.txt");
+
     return 0;
 }
