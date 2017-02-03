@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "log.h"
 #include "config.h"
 
@@ -13,7 +14,8 @@ int main(int argc, char *argv[])
 
     //Here the first err_log << string will be evaled,
     //returning err_log, so the next err_log << can be evalulated.
-    err_log << "test " << " test " << " test " << " test " << 1 << " " << 0.11 << 'm';
+    std::vector<int> v(10, 1);
+    err_log << "test " << " test " << " test " << " test " << 1 << " " << 0.11 << 'm' << v;
 
     err_log.flush();
 

@@ -1,5 +1,6 @@
 #include "log.h"
 #include <iostream>
+#include <vector>
 
 /* Set file path and open() file handler */
 Log::Log(std::string p, bool empty) {
@@ -80,6 +81,13 @@ Log& Log::operator << (double d){
 
 Log& Log::operator << (char c){
     fh << c;
+    return *this;
+}
+
+Log& Log::operator << (std::vector<int> v){
+    for(int i : v){
+        fh << i;
+    }
     return *this;
 }
 
