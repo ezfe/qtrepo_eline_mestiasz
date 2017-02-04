@@ -7,41 +7,67 @@
 
 class Config {
 public:
-    // Constructor
     Config();
-    // Destructor
     ~Config();
 
-    // Populate the map with test data
+    /*!
+     * \brief Populate the current map with test data
+     */
     void generateMap();
 
-    //Print the current map
+    /*!
+     * \brief Print the current map
+     */
     void printState();
 
-    /*
-     * File System
-     */
+    /***************
+     * File System *
+     ***************/
 
-    // Save the current map to the file
+    /*!
+     * \brief Save the current state to file
+     */
     void saveState();
-    // Load the current map from the file
+
+    /*!
+     * \brief Load the current map from the file
+     */
     void reloadState();
-    // Set the path (not including the filename)
+
+    /*!
+     * \brief Set the path (not including the filename)
+     */
     void setPath(std::string path);
-    // Set the filename
+
+    /*!
+     * \brief Set the filename
+     */
     void setFileName(std::string file_name);
-    // Set the complete path
+
+    /*!
+     * \brief Set the complete path
+     *
+     * Seperated by last occurence of /
+     */
     void setCompletePath(std::string complete_path);
 
-    /*
-     * Manipulation
-     */
+    /****************
+     * Manipulation *
+     ****************/
 
-    // Get a value (from a key)
+    /*!
+     * \brief Get a value (from a key)
+     */
     std::string getValue(std::string key);
-    // Set a value (key, value)
+
+    /*!
+     * \brief Set a value (key, value)
+     */
     void setValue(std::string key, std::string value);
-    // Clear the current map
+
+    /*!
+     * \brief Clear the current map
+     */
     void clearState();
 
 private:

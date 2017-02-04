@@ -5,19 +5,19 @@
 #include <map>
 #include <vector>
 
-// Constructor
 Config::Config()
 {
     std::cout << "Created new instance" << std::endl;
     setCompletePath("./random.txt");
 }
 
-// Destructor
 Config::~Config(){
     std::cout << "Activated destructor" << std::endl;
 }
 
-// Populate the map with test data
+/*!
+ * \brief Populate the current map with test data
+ */
 void Config::generateMap(){
     std::vector<std::string> brand_names;
     brand_names.push_back("apple");
@@ -30,7 +30,9 @@ void Config::generateMap(){
     }
 }
 
-//Print the current map
+/*!
+ * \brief Print the current map
+ */
 void Config::printState(){
     std::cout << "Current State:" << std::endl;
     typedef std::map<std::string, std::string>::const_iterator Iter;
@@ -40,11 +42,13 @@ void Config::printState(){
     std::cout << "End of state." << std::endl;
 }
 
-/*
- * File System
- */
+/***************
+ * File System *
+ ***************/
 
-// Save the current map to the file
+/*!
+ * \brief Save the current state to file
+ */
 void Config::saveState() {
     std::cout << "Saved to " << path << file_name << std::endl;
     std::ofstream fh;
@@ -59,7 +63,9 @@ void Config::saveState() {
     fh.close();
 }
 
-// Load the current map from the file
+/*!
+ * \brief Load the current map from the file
+ */
 void Config::reloadState(){
     std::cout << "Loaded from " << path << file_name << std::endl;
     std::ifstream fh;
@@ -77,38 +83,52 @@ void Config::reloadState(){
     fh.close();
 }
 
-// Set the path (not including the filename)
+/*!
+ * \brief Set the path (not including the filename)
+ */
 void Config::setPath(std::string path){
     this -> path = path;
 }
 
-// Set the filename
+/*!
+ * \brief Set the filename
+ */
 void Config::setFileName(std::string file_name){
     this -> file_name = file_name;
 }
 
-// Set the complete path (will be seperated around last / found)
+/*!
+ * \brief Set the complete path
+ *
+ * Seperated by last occurence of /
+ */
 void Config::setCompletePath(std::string complete_path) {
     int splitPosition = complete_path.find_last_of("/");
     setPath(complete_path.substr(0, splitPosition + 1));
     setFileName(complete_path.substr(splitPosition + 1));
 }
 
-/*
- * Manipulation
- */
+/****************
+ * Manipulation *
+ ****************/
 
-// Get a value (from a key)
+/*!
+ * \brief Get a value (from a key)
+ */
 std::string Config::getValue(std::string key){
     return state[key];
 }
 
-// Set a value (key, value)
+/*!
+ * \brief Set a value (key, value)
+ */
 void Config::setValue(std::string key, std::string value){
     state[key] = value;
 }
 
-// Clear the current map
+/*!
+ * \brief Clear the current map
+ */
 void Config::clearState(){
     state.clear();
     std::cout << " Cleared " << std::endl;
