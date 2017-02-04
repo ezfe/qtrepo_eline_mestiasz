@@ -17,6 +17,7 @@ public:
     void printState();
     void setPath(std::string path);
     void setFileName(std::string file_name);
+    void clearState();
 
     std::string getValue(std::string key);
 

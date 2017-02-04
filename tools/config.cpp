@@ -72,6 +72,12 @@ void Config::printState(){
     }
 }
 
+void Config::clearState(){
+    state.clear();
+    std::cout << " Cleared " << std::endl;
+    printState();
+}
+
 void Config::setPath(std::string path){
     this -> path = path;
 }
