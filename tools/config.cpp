@@ -8,6 +8,8 @@
 Config::Config()
 {
     std::cout << "Created new instance" << std::endl;
+    setPath("./");
+    setFileName("random.txt");
 }
 
 Config::~Config(){
@@ -34,9 +36,9 @@ void Config::generateMap(){
 
 }
 
-void Config::saveState(std::string path) {
+void Config::saveState() {
     std::ofstream fh;
-    fh.open(path, std::ofstream::out | std::ofstream::trunc);
+    fh.open(path + file_name, std::ofstream::out | std::ofstream::trunc);
 
     typedef std::map<std::string, std::string>::const_iterator Iter;
     for(Iter i = state.begin(); i != state.end(); ++i){
@@ -47,10 +49,10 @@ void Config::saveState(std::string path) {
     fh.close();
 }
 
-void Config::reloadState(std::string path){
+void Config::reloadState(){
     std::ifstream fh;
     std::string line;
-    fh.open(path, std::ifstream::in);
+    fh.open(path + file_name, std::ifstream::in);
 
     std::string delimiter = " | ";
     while(std::getline (fh, line)){
@@ -68,4 +70,12 @@ void Config::printState(){
     for(Iter i = state.begin(); i != state.end(); ++i){
         std::cout << i->first << " | " << i->second << std::endl;
     }
+}
+
+void Config::setPath(std::string path){
+    this -> path = path;
+}
+
+void Config::setFileName(std::string file_name){
+    this -> file_name = file_name;
 }
