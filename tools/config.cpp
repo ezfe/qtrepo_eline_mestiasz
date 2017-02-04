@@ -9,8 +9,7 @@
 Config::Config()
 {
     std::cout << "Created new instance" << std::endl;
-    setPath("./");
-    setFileName("random.txt");
+    setCompletePath("./random.txt");
 }
 
 // Destructor
@@ -86,6 +85,13 @@ void Config::setPath(std::string path){
 // Set the filename
 void Config::setFileName(std::string file_name){
     this -> file_name = file_name;
+}
+
+// Set the complete path (will be seperated around last / found)
+void Config::setCompletePath(std::string complete_path) {
+    int splitPosition = complete_path.find_last_of("/");
+    setPath(complete_path.substr(0, splitPosition + 1));
+    setFileName(complete_path.substr(splitPosition + 1));
 }
 
 /*

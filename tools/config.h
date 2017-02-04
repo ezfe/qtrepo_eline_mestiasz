@@ -30,6 +30,8 @@ public:
     void setPath(std::string path);
     // Set the filename
     void setFileName(std::string file_name);
+    // Set the complete path
+    void setCompletePath(std::string complete_path);
 
     /*
      * Manipulation
