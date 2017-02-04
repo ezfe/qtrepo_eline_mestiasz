@@ -5,6 +5,7 @@
 #include <map>
 #include <vector>
 
+// Constructor
 Config::Config()
 {
     std::cout << "Created new instance" << std::endl;
@@ -12,31 +13,41 @@ Config::Config()
     setFileName("random.txt");
 }
 
+// Destructor
 Config::~Config(){
     std::cout << "Activated destructor" << std::endl;
 }
 
-std::string Config::getValue(std::string key){
-    return state[key];
-}
-
-void Config::setValue(std::string key, std::string value){
-    state[key] = value;
-}
-
+// Populate the map with test data
 void Config::generateMap(){
-
     std::vector<std::string> brand_names;
     brand_names.push_back("apple");
     brand_names.push_back("microsoft");
+    brand_names.push_back("sony");
+    brand_names.push_back("google");
 
     for(std::string name : brand_names){
-        state[name] = name;
+        state[name] = name + "value";
     }
-
 }
 
+//Print the current map
+void Config::printState(){
+    std::cout << "Current State:" << std::endl;
+    typedef std::map<std::string, std::string>::const_iterator Iter;
+    for(Iter i = state.begin(); i != state.end(); ++i){
+        std::cout << i->first << " | " << i->second << std::endl;
+    }
+    std::cout << "End of state." << std::endl;
+}
+
+/*
+ * File System
+ */
+
+// Save the current map to the file
 void Config::saveState() {
+    std::cout << "Saved to " << path << file_name << std::endl;
     std::ofstream fh;
     fh.open(path + file_name, std::ofstream::out | std::ofstream::trunc);
 
@@ -49,7 +60,9 @@ void Config::saveState() {
     fh.close();
 }
 
+// Load the current map from the file
 void Config::reloadState(){
+    std::cout << "Loaded from " << path << file_name << std::endl;
     std::ifstream fh;
     std::string line;
     fh.open(path + file_name, std::ifstream::in);
@@ -65,23 +78,33 @@ void Config::reloadState(){
     fh.close();
 }
 
-void Config::printState(){
-    typedef std::map<std::string, std::string>::const_iterator Iter;
-    for(Iter i = state.begin(); i != state.end(); ++i){
-        std::cout << i->first << " | " << i->second << std::endl;
-    }
-}
-
-void Config::clearState(){
-    state.clear();
-    std::cout << " Cleared " << std::endl;
-    printState();
-}
-
+// Set the path (not including the filename)
 void Config::setPath(std::string path){
     this -> path = path;
 }
 
+// Set the filename
 void Config::setFileName(std::string file_name){
     this -> file_name = file_name;
+}
+
+/*
+ * Manipulation
+ */
+
+// Get a value (from a key)
+std::string Config::getValue(std::string key){
+    return state[key];
+}
+
+// Set a value (key, value)
+void Config::setValue(std::string key, std::string value){
+    state[key] = value;
+}
+
+// Clear the current map
+void Config::clearState(){
+    state.clear();
+    std::cout << " Cleared " << std::endl;
+    printState();
 }

@@ -7,19 +7,40 @@
 
 class Config {
 public:
+    // Constructor
     Config();
-    ~Config(); // Destructor
+    // Destructor
+    ~Config();
 
+    // Populate the map with test data
     void generateMap();
-    void saveState();
-    void reloadState();
-    void setValue(std::string key, std::string value);
-    void printState();
-    void setPath(std::string path);
-    void setFileName(std::string file_name);
-    void clearState();
 
+    //Print the current map
+    void printState();
+
+    /*
+     * File System
+     */
+
+    // Save the current map to the file
+    void saveState();
+    // Load the current map from the file
+    void reloadState();
+    // Set the path (not including the filename)
+    void setPath(std::string path);
+    // Set the filename
+    void setFileName(std::string file_name);
+
+    /*
+     * Manipulation
+     */
+
+    // Get a value (from a key)
     std::string getValue(std::string key);
+    // Set a value (key, value)
+    void setValue(std::string key, std::string value);
+    // Clear the current map
+    void clearState();
 
 private:
     std::map<std::string, std::string> state;
