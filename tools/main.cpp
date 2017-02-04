@@ -27,10 +27,10 @@ int main(int argc, char *argv[])
 
 
     config.generateMap();
-    std::cout << config.getValue("apple") << std::endl;
+    config.reloadState("./random.txt");
     config.setValue("facebook", "facebook");
-    std::cout << config.getValue("facebook") << std::endl;
     config.saveState("./random.txt");
+    config.printState();
 
     return 0;
 }

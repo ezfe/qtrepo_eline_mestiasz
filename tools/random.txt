@@ -1,3 +1,7 @@
+android | android
 apple | apple
 facebook | facebook
+linux | linux
 microsoft | microsoft
+twitter | twitter
+uber | uber

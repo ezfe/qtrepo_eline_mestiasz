@@ -47,3 +47,25 @@ void Config::saveState(std::string path) {
     fh.close();
 }
 
+void Config::reloadState(std::string path){
+    std::ifstream fh;
+    std::string line;
+    fh.open(path, std::ifstream::in);
+
+    std::string delimiter = " | ";
+    while(std::getline (fh, line)){
+        int splitPosition = line.find(delimiter);
+        std::string key = line.substr(0, splitPosition);
+        std::string value = line.substr(splitPosition + delimiter.length());
+        state[key] = value;
+    }
+
+    fh.close();
+}
+
+void Config::printState(){
+    typedef std::map<std::string, std::string>::const_iterator Iter;
+    for(Iter i = state.begin(); i != state.end(); ++i){
+        std::cout << i->first << " | " << i->second << std::endl;
+    }
+}

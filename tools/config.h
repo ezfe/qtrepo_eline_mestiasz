@@ -12,8 +12,9 @@ public:
 
     void generateMap();
     void saveState(std::string path);
-    void loadState(std::string path);
+    void reloadState(std::string path);
     void setValue(std::string key, std::string value);
+    void printState();
 
     std::string getValue(std::string key);
 
