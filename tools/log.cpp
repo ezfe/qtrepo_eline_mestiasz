@@ -14,7 +14,9 @@ Log::~Log() {
     fh.close();
 }
 
-/* Close file handler */
+/*!
+ * \brief Close file handler
+ */
 void Log::close() {
     try {
         fh.close();
@@ -24,7 +26,9 @@ void Log::close() {
     isOpenState = isOpen();
 }
 
-/* Open file handler using filepath */
+/*!
+ * \brief Open file handler using filepath
+ */
 void Log::open() {
     try {
         fh.open(filepath, std::ofstream::out | std::ofstream::app);
@@ -36,7 +40,9 @@ void Log::open() {
     fh << std::endl;
 }
 
-/* Open the file as an empty one */
+/*!
+ * \brief Open the file as an empty one
+ */
 void Log::openAsEmpty() {
     try {
         fh.open(filepath, std::ofstream::out | std::ofstream::trunc);
@@ -47,7 +53,9 @@ void Log::openAsEmpty() {
     isOpenState = isOpen();
 }
 
-/* Flush file handler */
+/*!
+ * \brief Flush file handler
+ */
 void Log::flush() {
     try {
         fh.flush();
@@ -56,14 +64,17 @@ void Log::flush() {
     }
 }
 
-/* Query the file handler's state */
+/*!
+ * \brief Query the file handler's state
+ */
 bool Log::isOpen() {
     return fh.is_open();
 }
 
-//The overload operator will process the incoming string, then return
-//itself as a reference. This allows chaining of multiple filehandler
-//operations.
+// The overload operator will process the incoming strings, integers, doubles, chars and
+// integer vectors, then return itself as a reference.
+// This allows chaining of multiple filehandler operations.
+
 Log& Log::operator << (std::string str) {
     fh << str;
     return *this;

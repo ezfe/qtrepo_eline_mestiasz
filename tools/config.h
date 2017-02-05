@@ -8,6 +8,7 @@
 class Config {
 public:
     Config();
+    Config(std::string pathToFile);
     ~Config();
 
     /*!

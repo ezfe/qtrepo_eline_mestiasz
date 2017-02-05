@@ -1,7 +1,9 @@
 android | android
-apple | apple
+apple | applevalue
 facebook | facebook
+google | googlevalue
 linux | linux
-microsoft | microsoft
+microsoft | microsoftvalue
+sony | sonyvalue
 twitter | twitter
 uber | uber

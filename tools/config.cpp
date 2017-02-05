@@ -9,9 +9,17 @@ Config::Config()
 {
     std::cout << "Created new instance" << std::endl;
     setCompletePath("./random.txt");
+    reloadState();
+}
+
+Config::Config(std::string pathToFile){
+    std::cout << "Created new instance" << std::endl;
+    setCompletePath(pathToFile);
+    reloadState();
 }
 
 Config::~Config(){
+    saveState();
     std::cout << "Activated destructor" << std::endl;
 }
 
@@ -52,7 +60,11 @@ void Config::printState(){
 void Config::saveState() {
     std::cout << "Saved to " << path << file_name << std::endl;
     std::ofstream fh;
-    fh.open(path + file_name, std::ofstream::out | std::ofstream::trunc);
+    try{
+        fh.open(path + file_name, std::ofstream::out | std::ofstream::trunc);
+    } catch (std::exception &e) {
+        std::cout << "An error occurred flushing the file" << std::endl;
+    }
 
     typedef std::map<std::string, std::string>::const_iterator Iter;
     for(Iter i = state.begin(); i != state.end(); ++i){
@@ -67,10 +79,16 @@ void Config::saveState() {
  * \brief Load the current map from the file
  */
 void Config::reloadState(){
+    clearState();
     std::cout << "Loaded from " << path << file_name << std::endl;
     std::ifstream fh;
     std::string line;
-    fh.open(path + file_name, std::ifstream::in);
+
+    try{
+        fh.open(path + file_name, std::ifstream::in);
+    } catch (std::exception &e) {
+        std::cout << "An error occurred flushing the file" << std::endl;
+    }
 
     std::string delimiter = " | ";
     while(std::getline (fh, line)){
@@ -80,7 +98,11 @@ void Config::reloadState(){
         state[key] = value;
     }
 
-    fh.close();
+    try{
+        fh.close();
+    } catch (std::exception &e){
+        std::cout << "An error occurred flushing the file" << std::endl;
+    }
 }
 
 /*!

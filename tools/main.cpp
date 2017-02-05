@@ -27,13 +27,10 @@ int main(int argc, char *argv[])
 
 
     config.generateMap();
-    config.reloadState();
     config.setValue("facebook", "facebook");
     config.saveState();
     config.printState();
-    config.clearState();
     config.setFileName("random_01.txt");
-    config.reloadState();
     config.saveState();
     config.printState();
 
