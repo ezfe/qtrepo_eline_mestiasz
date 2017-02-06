@@ -2,4 +2,5 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     lab \
-    tools
+    tools \
+    unittest

@@ -144,6 +144,10 @@ void Config::setCompletePath(std::string complete_path) {
  * Manipulation *
  ****************/
 
+std::string Config::get_filename(){
+    return path + file_name;
+}
+
 /*!
  * \brief Get a value (from a key)
  */

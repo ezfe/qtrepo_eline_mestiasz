@@ -80,6 +80,11 @@ public:
      */
     void clearState();
 
+    /*!
+     * \brief Get current filename
+     */
+    std::string get_filename();
+
 private:
     std::map<std::string, std::string> state;
     std::string path;
