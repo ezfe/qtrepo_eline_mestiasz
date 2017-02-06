@@ -14,6 +14,10 @@ class Config : public BaseClass{
 public:
     Config();
     Config(std::string pathToFile);
+    Config(Config &obj);
+
+    void operator=(Config &obj);
+
     ~Config();
 
     /*!

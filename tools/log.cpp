@@ -1,12 +1,29 @@
 #include "log.h"
 
-
+Log::Log() {
+    SHOW_WHERE;
+    filepath = "./log.txt";
+    isOpenState = isOpen();
+    open();
+}
 
 /* Set file path and open() file handler */
 Log::Log(std::string p, bool empty) {
+    SHOW_WHERE;
     filepath = p;
     isOpenState = isOpen();
     empty ? openAsEmpty() : open();
+}
+
+Log::Log(Log &obj) {
+    SHOW_WHERE;
+    filepath = obj.filepath;
+    isOpenState = isOpen();
+}
+
+void Log::operator =(Log &obj) {
+    filepath = obj.filepath;
+    isOpenState = isOpen();
 }
 
 /* close() file handler */

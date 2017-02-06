@@ -11,7 +11,12 @@
 
 class Log : public BaseClass{
 public:
+    Log();
     Log(std::string p, bool empty); //Default constructor
+    Log(Log &obj);
+
+    void operator=(Log &obj);
+
     ~Log(); //destructor
 
     //overload handler operator

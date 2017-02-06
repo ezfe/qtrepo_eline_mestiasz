@@ -12,6 +12,19 @@ Config::Config(std::string pathToFile){
     reloadState();
 }
 
+Config::Config(Config &obj) {
+    SHOW_WHERE;
+    file_name = obj.file_name;
+    path = obj.path;
+    state = obj.state;
+}
+
+void Config::operator =(Config &obj) {
+    file_name = obj.file_name;
+    path = obj.path;
+    state = obj.state;
+}
+
 Config::~Config(){
     SHOW_WHERE;
     saveState();
