@@ -9,7 +9,7 @@
 #include "macro.h"
 #include "baseclass.h"
 
-class Log : public BaseClass{
+class Log : public BaseClass {
 public:
     Log();
     Log(std::string p, bool empty); //Default constructor

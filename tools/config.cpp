@@ -1,12 +1,12 @@
 #include "config.h"
 
-Config::Config(){
+Config::Config() {
     SHOW_WHERE;
     setCompletePath("./random.txt");
     reloadState();
 }
 
-Config::Config(std::string pathToFile){
+Config::Config(std::string pathToFile) {
     SHOW_WHERE;
     setCompletePath(pathToFile);
     reloadState();
@@ -25,7 +25,7 @@ void Config::operator =(Config &obj) {
     state = obj.state;
 }
 
-Config::~Config(){
+Config::~Config() {
     SHOW_WHERE;
     saveState();
 }
@@ -33,7 +33,7 @@ Config::~Config(){
 /*!
  * \brief Populate the current map with test data
  */
-void Config::generateMap(){
+void Config::generateMap() {
     SHOW_WHERE;
     std::vector<std::string> brand_names;
     brand_names.push_back("apple");
@@ -49,7 +49,7 @@ void Config::generateMap(){
 /*!
  * \brief Print the current map
  */
-void Config::printState(){
+void Config::printState() {
     SHOW_WHERE;
     typedef std::map<std::string, std::string>::const_iterator Iter;
     for(Iter i = state.begin(); i != state.end(); ++i){
@@ -69,9 +69,9 @@ void Config::saveState() {
     SHOW_WHERE;
     std::cout << "Path: " << path << file_name << std::endl;
     std::ofstream fh;
-    try{
+    try {
         fh.open(path + file_name, std::ofstream::out | std::ofstream::trunc);
-    } catch (std::exception &e) {
+    } catch(std::exception &e) {
         std::cout << "An error occurred flushing the file" << std::endl;
     }
 
@@ -87,30 +87,30 @@ void Config::saveState() {
 /*!
  * \brief Load the current map from the file
  */
-void Config::reloadState(){
+void Config::reloadState() {
     SHOW_WHERE;
     clearState();
     std::cout << "Path: " << path << file_name << std::endl;
     std::ifstream fh;
     std::string line;
 
-    try{
+    try {
         fh.open(path + file_name, std::ifstream::in);
-    } catch (std::exception &e) {
+    } catch(std::exception &e) {
         std::cout << "An error occurred flushing the file" << std::endl;
     }
 
     std::string delimiter = " | ";
-    while(std::getline (fh, line)){
+    while (std::getline (fh, line)) {
         int splitPosition = line.find(delimiter);
         std::string key = line.substr(0, splitPosition);
         std::string value = line.substr(splitPosition + delimiter.length());
         state[key] = value;
     }
 
-    try{
+    try {
         fh.close();
-    } catch (std::exception &e){
+    } catch(std::exception &e) {
         std::cout << "An error occurred flushing the file" << std::endl;
     }
 }
@@ -118,14 +118,14 @@ void Config::reloadState(){
 /*!
  * \brief Set the path (not including the filename)
  */
-void Config::setPath(std::string path){
+void Config::setPath(std::string path) {
     this -> path = path;
 }
 
 /*!
  * \brief Set the filename
  */
-void Config::setFileName(std::string file_name){
+void Config::setFileName(std::string file_name) {
     this -> file_name = file_name;
 }
 
@@ -147,21 +147,21 @@ void Config::setCompletePath(std::string complete_path) {
 /*!
  * \brief Get a value (from a key)
  */
-std::string Config::getValue(std::string key){
+std::string Config::getValue(std::string key) {
     return state[key];
 }
 
 /*!
  * \brief Set a value (key, value)
  */
-void Config::setValue(std::string key, std::string value){
+void Config::setValue(std::string key, std::string value) {
     state[key] = value;
 }
 
 /*!
  * \brief Clear the current map
  */
-void Config::clearState(){
+void Config::clearState() {
     SHOW_WHERE;
     state.clear();
     std::cout << " Cleared " << std::endl;
