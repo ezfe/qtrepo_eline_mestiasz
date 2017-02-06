@@ -9,7 +9,8 @@ SOURCES += main.cpp \
 
 HEADERS += \
     log.h \
-    config.h
+    config.h \
+    macros.h
 
 DISTFILES += \
     test.txt \

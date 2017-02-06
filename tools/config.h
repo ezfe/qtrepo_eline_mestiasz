@@ -7,6 +7,8 @@
 #include <iostream>
 #include <vector>
 
+#include "macros.h"
+
 class Config {
 public:
     Config();

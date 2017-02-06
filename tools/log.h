@@ -6,6 +6,8 @@
 #include <vector>
 #include <iostream>
 
+#include "macros.h"
+
 class Log {
 public:
     Log(std::string p, bool empty); //Default constructor
