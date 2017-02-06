@@ -5,12 +5,14 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     log.cpp \
-    config.cpp
+    config.cpp \
+    baseclass.cpp
 
 HEADERS += \
     log.h \
     config.h \
-    macro.h
+    macro.h \
+    baseclass.h
 
 DISTFILES += \
     test.txt \

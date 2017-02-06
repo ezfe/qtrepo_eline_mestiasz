@@ -7,8 +7,9 @@
 #include <iostream>
 
 #include "macro.h"
+#include "baseclass.h"
 
-class Log {
+class Log : public BaseClass{
 public:
     Log(std::string p, bool empty); //Default constructor
     ~Log(); //destructor

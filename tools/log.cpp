@@ -1,8 +1,9 @@
 #include "log.h"
 
+
+
 /* Set file path and open() file handler */
 Log::Log(std::string p, bool empty) {
-    SHOW_WHERE;
     filepath = p;
     isOpenState = isOpen();
     empty ? openAsEmpty() : open();

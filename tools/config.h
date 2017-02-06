@@ -8,8 +8,9 @@
 #include <vector>
 
 #include "macro.h"
+#include "baseclass.h"
 
-class Config {
+class Config : public BaseClass{
 public:
     Config();
     Config(std::string pathToFile);
