@@ -2,6 +2,7 @@
 
 /* Set file path and open() file handler */
 Log::Log(std::string p, bool empty) {
+    SHOW_WHERE;
     filepath = p;
     isOpenState = isOpen();
     empty ? openAsEmpty() : open();
@@ -9,6 +10,7 @@ Log::Log(std::string p, bool empty) {
 
 /* close() file handler */
 Log::~Log() {
+    SHOW_WHERE;
     fh.close();
 }
 
@@ -16,6 +18,7 @@ Log::~Log() {
  * \brief Close file handler
  */
 void Log::close() {
+    SHOW_WHERE;
     try {
         fh.close();
     } catch (std::exception &e) {
@@ -28,6 +31,7 @@ void Log::close() {
  * \brief Open file handler using filepath
  */
 void Log::open() {
+    SHOW_WHERE;
     try {
         fh.open(filepath, std::ofstream::out | std::ofstream::app);
     } catch (std::exception &e) {
@@ -42,6 +46,7 @@ void Log::open() {
  * \brief Open the file as an empty one
  */
 void Log::openAsEmpty() {
+    SHOW_WHERE;
     try {
         fh.open(filepath, std::ofstream::out | std::ofstream::trunc);
     } catch (std::exception &e) {
@@ -55,6 +60,7 @@ void Log::openAsEmpty() {
  * \brief Flush file handler
  */
 void Log::flush() {
+    SHOW_WHERE;
     try {
         fh.flush();
     } catch (std::exception &e) {

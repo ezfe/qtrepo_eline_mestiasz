@@ -1,27 +1,27 @@
 #include "config.h"
 
-Config::Config()
-{
-    std::cout << "Created new instance" << std::endl;
+Config::Config(){
+    SHOW_WHERE;
     setCompletePath("./random.txt");
     reloadState();
 }
 
 Config::Config(std::string pathToFile){
-    std::cout << "Created new instance" << std::endl;
+    SHOW_WHERE;
     setCompletePath(pathToFile);
     reloadState();
 }
 
 Config::~Config(){
+    SHOW_WHERE;
     saveState();
-    std::cout << "Activated destructor" << std::endl;
 }
 
 /*!
  * \brief Populate the current map with test data
  */
 void Config::generateMap(){
+    SHOW_WHERE;
     std::vector<std::string> brand_names;
     brand_names.push_back("apple");
     brand_names.push_back("microsoft");
@@ -37,12 +37,12 @@ void Config::generateMap(){
  * \brief Print the current map
  */
 void Config::printState(){
-    std::cout << "Current State:" << std::endl;
+    SHOW_WHERE;
     typedef std::map<std::string, std::string>::const_iterator Iter;
     for(Iter i = state.begin(); i != state.end(); ++i){
         std::cout << i->first << " | " << i->second << std::endl;
     }
-    std::cout << "End of state." << std::endl;
+    std::cout << "------" << std::endl;
 }
 
 /***************
@@ -53,7 +53,8 @@ void Config::printState(){
  * \brief Save the current state to file
  */
 void Config::saveState() {
-    std::cout << "Saved to " << path << file_name << std::endl;
+    SHOW_WHERE;
+    std::cout << "Path: " << path << file_name << std::endl;
     std::ofstream fh;
     try{
         fh.open(path + file_name, std::ofstream::out | std::ofstream::trunc);
@@ -74,8 +75,9 @@ void Config::saveState() {
  * \brief Load the current map from the file
  */
 void Config::reloadState(){
+    SHOW_WHERE;
     clearState();
-    std::cout << "Loaded from " << path << file_name << std::endl;
+    std::cout << "Path: " << path << file_name << std::endl;
     std::ifstream fh;
     std::string line;
 
@@ -147,6 +149,7 @@ void Config::setValue(std::string key, std::string value){
  * \brief Clear the current map
  */
 void Config::clearState(){
+    SHOW_WHERE;
     state.clear();
     std::cout << " Cleared " << std::endl;
     printState();
