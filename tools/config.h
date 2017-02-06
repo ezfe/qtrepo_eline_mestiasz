@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <iostream>
+#include <vector>
 
 class Config {
 public:

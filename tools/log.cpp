@@ -1,6 +1,4 @@
 #include "log.h"
-#include <iostream>
-#include <vector>
 
 /* Set file path and open() file handler */
 Log::Log(std::string p, bool empty) {

@@ -1,10 +1,5 @@
 #include "config.h"
 
-#include <string>
-#include <iostream>
-#include <map>
-#include <vector>
-
 Config::Config()
 {
     std::cout << "Created new instance" << std::endl;
