@@ -6,7 +6,7 @@
 #include <vector>
 #include <iostream>
 
-#include "macros.h"
+#include "macro.h"
 
 class Log {
 public:
