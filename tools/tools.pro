@@ -11,8 +11,8 @@ SOURCES += main.cpp \
 HEADERS += \
     log.h \
     config.h \
-    macro.h \
-    baseclass.h
+    baseclass.h \
+    macros.h
 
 DISTFILES += \
     test.txt \

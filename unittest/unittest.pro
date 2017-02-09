@@ -21,4 +21,4 @@ SOURCES += ../tools/log.cpp
 HEADERS += ../tools/baseclass.h
 SOURCES += ../tools/baseclass.cpp
 
-HEADERS += ../tools/macro.h
+HEADERS += ../tools/macros.h
