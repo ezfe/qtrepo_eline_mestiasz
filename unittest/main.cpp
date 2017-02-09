@@ -33,7 +33,7 @@ protected:
 TEST(general, TESTSIMPLE) {
 
   Config s1;
-  Config s2("test");
+  Config s2("./random.txt");
   ASSERT_EQ(s1.get_filename(), s2.get_filename()) << s1.get_filename()
                                                   << " and "
                                                   << s2.get_filename()
