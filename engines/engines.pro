@@ -4,8 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    robots.cpp
+    robots.cpp \
+    worms.cpp
 
 HEADERS += \
     robots.h \
-    macros.h
+    macros.h \
+    worms.h
