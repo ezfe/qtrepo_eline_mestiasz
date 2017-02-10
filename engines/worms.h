@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <vector>
+#include <deque>
 
 class Worms {
 public:
@@ -26,7 +27,7 @@ private:
      */
     char gameboard[COLS][ROWS];
 
-    std::vector<std::vector<int>> path;
+    std::deque<std::vector<int>> path;
 
     int random(int low, int high);
     int randomGoal();

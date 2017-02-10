@@ -97,8 +97,11 @@ void Worms::move(int dx, int dy) {
         set(hx, hy, 'o');
         set(nx, ny, '@');
 
-        std::vector<int> p {nx, ny};
-
+        std::vector<int> hp {nx, ny};
+        path.push_back(hp);
+        std::vector<int> tp = path[0];
+        path.pop_front();
+        set(tp[0], tp[1], '\0');
     }
     /*else if (get(nx, ny) != '\0') {
         int val = ((int)get(nx, ny)) - 48;
