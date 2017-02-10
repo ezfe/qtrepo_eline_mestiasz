@@ -3,6 +3,7 @@
 
 #include "gtest/gtest.h"
 #include "../engines/robots.h"
+#include "../engines/worms.h"
 
 // The fixture for testing class Foo.
 class RobotsTest : public ::testing::Test {
@@ -27,6 +28,31 @@ protected:
     Robots robots;
 
 };
+
+class WormsTest : public ::testing::Test {
+protected:
+    WormsTest() {
+
+    }
+
+    virtual ~WormsTest() {
+
+    }
+
+    virtual void SetUp() {
+
+    }
+
+    virtual void TearDown() {
+
+    }
+
+    Worms worms;
+};
+
+/****************
+ * Robots Tests *
+ ****************/
 
 TEST_F(RobotsTest, TESTREDRAW) {
     for(int i = 0; i != ROWS; i++){
@@ -73,6 +99,14 @@ TEST_F(RobotsTest, MOVEROBOT){
 
 TEST_F(RobotsTest, KILLROBOT){
 
+}
+
+/****************
+ * Worms Tests *
+ ****************/
+
+TEST_F(WormsTest, TESTA) {
+    EXPECT_EQ(1, 1) << "Equal Ints";
 }
 
 int main(int argc, char **argv) {

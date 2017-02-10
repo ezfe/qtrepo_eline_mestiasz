@@ -97,6 +97,8 @@ void Worms::move(int dx, int dy) {
         set(hx, hy, 'o');
         set(nx, ny, '@');
 
+        std::vector<int> p {nx, ny};
+
     }
     /*else if (get(nx, ny) != '\0') {
         int val = ((int)get(nx, ny)) - 48;
