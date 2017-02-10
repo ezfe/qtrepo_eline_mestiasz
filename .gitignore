@@ -73,3 +73,6 @@ Thumbs.db
 
 tools/tools
 lab/lab
+engine_tests/engine_tests
+engines/engines
+unittest/unittest
