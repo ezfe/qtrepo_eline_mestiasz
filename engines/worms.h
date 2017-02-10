@@ -4,6 +4,7 @@
 #include "macros.h"
 
 #include <iostream>
+#include <vector>
 
 class Worms {
 public:
@@ -11,12 +12,12 @@ public:
     void set(int x, int y, char val);
     char get(int x, int y);
 
-    void placeGoal();
-
     void pressUp();
     void pressDown();
     void pressRight();
     void pressLeft();
+
+    void placeGoal();
 private:
     /*!
      * \brief Gameboard container
@@ -24,6 +25,14 @@ private:
      * Addressed in [x][y] manner
      */
     char gameboard[COLS][ROWS];
+
+    std::vector<std::vector<int>> path;
+
+    int random(int low, int high);
+    int randomGoal();
+    int randomX();
+    int randomY();
+    void move(int dx, int dy);
 };
 
 #endif // WORMS_H
