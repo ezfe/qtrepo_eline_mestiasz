@@ -3,9 +3,18 @@
 
 #include "macros.h"
 
-class worms {
+class Worms {
 public:
-    worms();
+    Worms();
+    char set(int x, int y, char val);
+    char get(int x, int y);
+private:
+    /*!
+     * \brief Gameboard container
+     *
+     * Addressed in [x][y] manner
+     */
+    char gameboard[COLS][ROWS];
 };
 
 #endif // WORMS_H
