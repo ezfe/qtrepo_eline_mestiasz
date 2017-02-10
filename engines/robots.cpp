@@ -21,12 +21,20 @@ std::string Robots::printGameboard(){
     return "foo";
 }
 
-void Robots::moveRobot(){
+std::vector<int> Robots::findEmptyCell(){
+    return std::vector<int>{1};
+}
+
+void Robots::moveRobot(int i0, int j0, int i1, int j1){
 
 }
 
-void Robots::killRobot(){
+void Robots::killRobot(int i, int j){
 
+}
+
+std::vector<int> Robots::findCellToMove(int i, int j){
+    return std::vector<int>{1};
 }
 
 void Robots::move(){

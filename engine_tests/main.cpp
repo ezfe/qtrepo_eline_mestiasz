@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "gtest/gtest.h"
 #include "../engines/robots.h"
@@ -65,14 +66,38 @@ TEST_F(RobotsTest, TESTPRINTGAMEBOARD){
     EXPECT_EQ(expected, str) << "The string representation of the gameboard is wrong!";
 }
 
-
-TEST_F(RobotsTest, MOVEROBOT){
-
+TEST_F(RobotsTest, TESTFINDEMPTYCELL){
+    int counter = 0;
+    while(!robots.findEmptyCell().empty()){
+        counter++;
+    }
+    EXPECT_EQ(ROWS*COLS, counter) << "The number of empty places should equal to total number of cells";
 }
 
 
-TEST_F(RobotsTest, KILLROBOT){
+TEST_F(RobotsTest, TESTMOVEROBOT){
+    robots.setItem(0, 0, '+');
+    robots.moveRobot(0, 0, 2, 2);
+    EXPECT_EQ('+', robots.getItem(2, 2)) << "Robot should have been placed here";
+}
 
+
+TEST_F(RobotsTest, TESTKILLROBOT){
+    robots.setItem(0, 0, '+');
+    robots.killRobot(0, 0);
+    EXPECT_EQ(' ', robots.getItem(0, 0)) << "Robot should have been removed from this cell";
+}
+
+TEST_F(RobotsTest, TESTFINDCELLTOMOVE){
+    robots.setItem(0, 0, '@');
+    robots.setItem(4, 4, '+');
+    robots.setItem(0, 2, '+');
+
+    std::vector<int> position_01 = robots.findCellToMove(4, 4);
+    std::vector<int> position_02 = robots.findCellToMove(1, 2);
+
+    //EXPECT_EQ(std::vector<int>{3, 3} , position_01) << "The cell was not generated correctly";
+    //EXPECT_EQ(std::vector<int>{0, 1}, position_02) << "The cell was not generated correctly";
 }
 
 int main(int argc, char **argv) {
