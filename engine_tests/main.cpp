@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 #include "gtest/gtest.h"
 #include "../engines/robots.h"
@@ -16,7 +17,7 @@ protected:
     }
 
     virtual void SetUp() {
-
+        robots.redraw();
     }
 
     virtual void TearDown() {
@@ -27,9 +28,7 @@ protected:
 
 };
 
-TEST_F(RobotsTest, TESTINITIALIZATION) {
-    robots.redraw();
-
+TEST_F(RobotsTest, TESTREDRAW) {
     for(int i = 0; i != ROWS; i++){
         std::cout << "#" << i << ":   ";
         for(int j =0; j != COLS; j++){
@@ -45,6 +44,26 @@ TEST_F(RobotsTest, TESTINITIALIZATION) {
 
 }
 
+
+TEST_F(RobotsTest, TESTSETITEM){
+    EXPECT_EQ(' ', robots.getItem(0, 0)) << "After redraw gameboard[0][0] should equal to space";
+    robots.setItem(0, 0, '@');
+    EXPECT_EQ(' ', robots.getItem(0,0)) << "The new value for gameboard[0][0] should equal to @";
+}
+
+TEST_F(RobotsTest, TESTGETITEM){
+    EXPECT_EQ(' ', robots.getItem(0, 0)) << "After redraw gameboard[0][0] should equal to space";
+}
+
+TEST_F(RobotsTest, TESTPRINTGAMEBOARD){
+    std::string str = robots.printGameboard();
+    std::string expected = "#0:   0/  | 1/  | 2/  | \n"
+                           "#1:   0/  | 1/  | 2/  | \n"
+                           "#2:   0/  | 1/  | 2/  | \n"
+                           "#3:   0/  | 1/  | 2/  | \n"
+                           "#4:   0/  | 1/  | 2/  | \n";
+    EXPECT_EQ(expected, str) << "The string representation of the gameboard is wrong!";
+}
 
 
 int main(int argc, char **argv) {

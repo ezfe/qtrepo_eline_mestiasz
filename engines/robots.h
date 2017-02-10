@@ -14,10 +14,9 @@ public:
     Robots();
     ~Robots();
 
-    void addItem(char symbol);              //  Add item to gameboard container
-    void setItem(int i, int j, char symbol);   //  Set item to provided value in gameboard container
-    char getItem(int i, int j);             //  Get item from gameboard container
-    std::string printGameboard();           //  Print the gameboard, displaying all the robots and player
+    void setItem(int i, int j, char symbol);    //  Set item to provided value in gameboard container
+    char getItem(int i, int j);                 //  Get item from gameboard container
+    std::string printGameboard();               //  Print the gameboard, displaying all the robots and player
 
     void moveRobot();      //  Change the robots' locations
     void killRobot();       //  Kill the robots
