@@ -96,12 +96,12 @@ TEST_F(RobotsTest, TESTFINDCELLTOMOVE){
     std::vector<int> position_01 = robots.findCellToMove(4, 4);
     std::vector<int> position_02 = robots.findCellToMove(1, 2);
 
-    //EXPECT_EQ(std::vector<int>{3, 3} , position_01) << "The cell was not generated correctly";
-    //EXPECT_EQ(std::vector<int>{0, 1}, position_02) << "The cell was not generated correctly";
+    EXPECT_TRUE(3 == position_01.at(0) && 3 == position_01.at(1)) << "The cell was not generated correctly";
+    EXPECT_TRUE(3 == position_02.at(0) && 3 == position_02.at(2)) << "The cell was not generated correctly";
 }
 
-int main(int argc, char **argv) {
 
+int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
