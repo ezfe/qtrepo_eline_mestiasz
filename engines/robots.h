@@ -15,8 +15,9 @@ public:
     ~Robots();
 
     void addItem(char symbol);              //  Add item to gameboard container
-    void setItem(char symbol, int index);   //  Set item to provided value in gameboard container
-    char getItem(int index);                //  Get item from gameboard container
+    void setItem(int i, int j, char symbol);   //  Set item to provided value in gameboard container
+    char getItem(int i, int j);             //  Get item from gameboard container
+    std::string printGameboard();           //  Print the gameboard, displaying all the robots and player
 
     void moveRobot();      //  Change the robots' locations
     void killRobot();       //  Kill the robots
@@ -26,7 +27,7 @@ public:
     void wait();            //  Make player wait until the end of the game
     void teleport();        //  Teleport the player
     void quit();            //  End the game
-    void redraw();          //  Restart the game
+    void redraw();          //  Restart/Reinitialize the game
     bool checkWinner();     //  Find if anybody lost already
 
     void generateRobotPosition();   //  Generate random positions for Robots
@@ -36,6 +37,11 @@ public:
     void showRanking();     //  Display the score list
     void jump();            //  Jump, do not show intermediate positions
     void playAutoMode();    //  Auto-bot mode
+
+    std::vector<char> getOptions(); // Getter fot options container
+    int getScore();                 // Getter for score counter
+    int getLevel();                 // Getter for level counter
+    bool isAlive();                 // Check if player is alive
 
 
 private:

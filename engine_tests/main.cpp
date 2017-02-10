@@ -4,33 +4,45 @@
 #include "../engines/robots.h"
 
 // The fixture for testing class Foo.
-class FooTest : public ::testing::Test {
+class RobotsTest : public ::testing::Test {
 protected:
 
-    FooTest() {
-      // You can do set-up work for each test here.
+    RobotsTest() {
+
     }
 
-    virtual ~FooTest() {
-      // You can do clean-up work that doesn't throw exceptions here.
+    virtual ~RobotsTest() {
+
     }
 
     virtual void SetUp() {
-        robots_01;
+
     }
 
     virtual void TearDown() {
-      // Code here will be called immediately after each test (right
-      // before the destructor).
+
     }
 
-    Robots robots_01;
+    Robots robots;
 
 };
 
-TEST_F(FooTest, TESTFIXTURE) {
+TEST_F(RobotsTest, TESTINITIALIZATION) {
+    robots.redraw();
 
-    ASSERT_EQ("foo", "foo") << "These should match!";
+    for(int i = 0; i != ROWS; i++){
+        std::cout << "#" << i << ":   ";
+        for(int j =0; j != COLS; j++){
+            EXPECT_EQ(' ', robots.getItem(i, j)) << "Every cell should be initialized to space!";
+            std::cout << j << "/" << robots.getItem(i, j) << " | ";
+        }
+        std::cout << std::endl;
+    }
+
+    EXPECT_EQ(0, robots.getLevel()) << "Level counter should return to its initial value 0!";
+    EXPECT_EQ(true, robots.isAlive()) << "Alive value should return to its initial value - true";
+    EXPECT_EQ(0, robots.getScore()) << "Score value should return to its initial value - 0";
+
 }
 
 
