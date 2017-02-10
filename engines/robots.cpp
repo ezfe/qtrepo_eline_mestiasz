@@ -9,10 +9,6 @@ Robots::~Robots(){
 
 }
 
-void Robots::addItem(char symbol){
-
-}
-
 void Robots::setItem(int i, int j, char symbol){
     gameboard[i][j] = symbol;
 }
