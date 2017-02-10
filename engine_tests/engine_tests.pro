@@ -14,5 +14,8 @@ INCLUDEPATH +=  ../gtest                                    \
 
 HEADERS += ../engines/macros.h
 
-HEADERS += ../engines/robots.h
-SOURCES += ../engines/robots.cpp
+HEADERS +=  ../engines/robots.h \
+            ../engines/worms.h
+
+SOURCES +=  ../engines/robots.cpp \
+            ../engines/worms.cpp

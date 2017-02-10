@@ -4,6 +4,7 @@
 
 #include "gtest/gtest.h"
 #include "../engines/robots.h"
+#include "../engines/worms.h"
 
 // The fixture for testing class Foo.
 class RobotsTest : public ::testing::Test {
@@ -28,6 +29,31 @@ protected:
     Robots robots;
 
 };
+
+class WormsTest : public ::testing::Test {
+protected:
+    WormsTest() {
+
+    }
+
+    virtual ~WormsTest() {
+
+    }
+
+    virtual void SetUp() {
+
+    }
+
+    virtual void TearDown() {
+
+    }
+
+    Worms worms;
+};
+
+/****************
+ * Robots Tests *
+ ****************/
 
 TEST_F(RobotsTest, TESTREDRAW) {
     for(int i = 0; i != ROWS; i++){
@@ -99,7 +125,6 @@ TEST_F(RobotsTest, TESTFINDCELLTOMOVE){
     EXPECT_TRUE(3 == position_01.at(0) && 3 == position_01.at(1)) << "The cell was not generated correctly";
     EXPECT_TRUE(3 == position_02.at(0) && 3 == position_02.at(2)) << "The cell was not generated correctly";
 }
-
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
