@@ -2,6 +2,7 @@
 
 #include "gtest/gtest.h"
 #include "../tools/config.h"
+#include "../tools/log.h"
 
 // The fixture for testing class Foo.
 class FooTest : public ::testing::Test {
@@ -27,14 +28,24 @@ protected:
 
     Config s1;
     Config s2;
+    Log l1;
 
 };
 
 TEST(general, TESTSIMPLE) {
 
-  Config s1;
-  Config s2("./random.txt");
-  ASSERT_EQ(s1.get_filename(), s2.get_filename()) << s1.get_filename()
+    Log l1("./test.txt", true);
+    l1 << "test " << " test " << " test " << " test " << 1 << " " << 0.11 << 'm';
+    std::cout << l1.isOpen() << " huh " << std::endl;
+    l1.flush();
+    l1.close();
+
+    Config s1;
+    Config s2("./random.txt");
+    s2.setValue("Foo", "Bar");
+    s2.saveState();
+    s2.printState();
+    ASSERT_EQ(s1.get_filename(), s2.get_filename()) << s1.get_filename()
                                                   << " and "
                                                   << s2.get_filename()
                                                   << " should match!";
@@ -43,12 +54,13 @@ TEST(general, TESTSIMPLE) {
 
 TEST_F(FooTest, TESTFIXTURE) {
 
-  ASSERT_EQ(s1.get_filename(), s2.get_filename()) << "These should match!";
+    ASSERT_EQ(s1.get_filename(), s2.get_filename()) << "These should match!";
 }
+
 
 
 int main(int argc, char **argv) {
 
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }

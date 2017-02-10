@@ -6,7 +6,6 @@
 #include <vector>
 #include <iostream>
 
-#include "macro.h"
 #include "baseclass.h"
 
 class Log : public BaseClass {

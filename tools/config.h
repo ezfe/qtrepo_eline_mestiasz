@@ -7,7 +7,6 @@
 #include <iostream>
 #include <vector>
 
-#include "macro.h"
 #include "baseclass.h"
 
 class Config : public BaseClass{
@@ -41,9 +40,6 @@ public:
     void setValue(std::string key, std::string value);
     void clearState();
 
-    /*!
-     * \brief Get current filename
-     */
     std::string get_filename();
 
 private:

@@ -8,6 +8,7 @@ using namespace std;
 //Object of type Log instantiated globally
 Log err_log("./test.txt", true);
 Config config;
+Config config_01(config);
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
     cout << err_log.isOpen() << endl;
     err_log << "yay";
     err_log.flush();
+    err_log.close();
 
 
     config.generateMap();

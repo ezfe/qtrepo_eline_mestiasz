@@ -14,12 +14,13 @@ Config::Config(std::string pathToFile) {
 
 Config::Config(Config &obj) {
     SHOW_WHERE;
+    // This part makes a complete copy of the provided argument
     file_name = obj.file_name;
     path = obj.path;
     state = obj.state;
 }
 
-void Config::operator =(Config &obj) {
+void Config::operator=(Config &obj) {
     file_name = obj.file_name;
     path = obj.path;
     state = obj.state;

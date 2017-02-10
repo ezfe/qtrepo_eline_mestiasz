@@ -22,3 +22,7 @@ HEADERS += ../tools/baseclass.h
 SOURCES += ../tools/baseclass.cpp
 
 HEADERS += ../tools/macros.h
+
+DISTFILES += \
+    test.txt \
+    random.txt

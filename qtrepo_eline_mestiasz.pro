@@ -3,4 +3,6 @@ TEMPLATE = subdirs
 SUBDIRS += \
     lab \
     tools \
-    unittest
+    unittest \
+    engines \
+    engine_tests
