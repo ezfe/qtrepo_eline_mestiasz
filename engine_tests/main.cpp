@@ -66,6 +66,15 @@ TEST_F(RobotsTest, TESTPRINTGAMEBOARD){
 }
 
 
+TEST_F(RobotsTest, MOVEROBOT){
+
+}
+
+
+TEST_F(RobotsTest, KILLROBOT){
+
+}
+
 int main(int argc, char **argv) {
 
     ::testing::InitGoogleTest(&argc, argv);
