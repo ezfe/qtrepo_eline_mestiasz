@@ -1,7 +1,7 @@
 #include "worms.h"
 
 Worms::Worms() {
-
+    std::srand(time(NULL));
 }
 
 /*!
@@ -14,6 +14,11 @@ void Worms::set(int x, int y, char val) {
     gameboard[x][y] = val;
 }
 
-void Worms::get(int x, int y) {
+char Worms::get(int x, int y) {
     return gameboard[x][y];
+}
+
+void Worms::placeGoal() {
+    int n = std::rand() % 8 + 1; //1-9
+    std::cout << n << std::endl;
 }

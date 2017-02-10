@@ -3,11 +3,20 @@
 
 #include "macros.h"
 
+#include <iostream>
+
 class Worms {
 public:
     Worms();
-    char set(int x, int y, char val);
+    void set(int x, int y, char val);
     char get(int x, int y);
+
+    void placeGoal();
+
+    void pressUp();
+    void pressDown();
+    void pressRight();
+    void pressLeft();
 private:
     /*!
      * \brief Gameboard container
