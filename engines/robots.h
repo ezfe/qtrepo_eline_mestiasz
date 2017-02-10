@@ -17,9 +17,13 @@ public:
     void setItem(int i, int j, char symbol);    //  Set item to provided value in gameboard container
     char getItem(int i, int j);                 //  Get item from gameboard container
     std::string printGameboard();               //  Print the gameboard, displaying all the robots and player
+    std::vector<int> findEmptyCell();           // Find empty cell, where player or robot can be placed
 
-    void moveRobot();      //  Change the robots' locations
-    void killRobot();       //  Kill the robots
+
+    void moveRobot(int i0, int j0, int i1, int j1);     //  Change the robots' locations
+    void killRobot(int i, int j);                       //  Kill the robots
+    std::vector<int> findCellToMove(int i, int j);      //  Find cell which is closest to the player,
+                                                        //  so robots can catch player sooner
 
     void move();            //  Move the player
     void doNothing();       //  Do not allow player do anything while it's possible
