@@ -90,23 +90,8 @@ void Worms::pressLeft() {
 }
 
 void Worms::move(int dx, int dy) {
-    int hx = -1;
-    int hy = -1;
-    for(int fx = 0; fx < COLS; fx++) {
-        for(int fy = 0; fy < ROWS; fy++) {
-            if (get(fx, fy) == HEAD_CELL) {
-                hx = fx;
-                hy = fy;
-                /* because I can't break out of the outer loop */
-                fx = COLS;
-                fy = ROWS;
-            }
-        }
-    }
-    if (hx == -1 || hy == -1) {
-        std::cout << "The head was NOT found" << std::endl;
-        return;
-    }
+    int hx = path.back()[0];
+    int hy = path.back()[1];
     int nx = hx + dx;
     int ny = hy + dy;
     if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS || get(nx, ny) == 'o') {
@@ -115,30 +100,14 @@ void Worms::move(int dx, int dy) {
         set(hx, hy, BODY_CELL);
         set(nx, ny, HEAD_CELL);
 
-        /* CPP is stupid */
-        // Print the queue
-        std::cout << "Queue" << std::endl;
-        for(int i = 0; i < path.size(); i++) {
-            std::cout << path[i][0] << ", " << path[i][1] << std::endl;
-        }
-
+        /* Push new head */
         std::vector<int> hp {nx, ny};
         path.push_back(hp);
 
-        std::cout << "Push new head" << std::endl;
-        for(int i = 0; i < path.size(); i++) {
-            std::cout << path[i][0] << ", " << path[i][1] << std::endl;
-        }
-
+        /* Pop old tail */
         std::vector<int> tp = path[0];
         path.pop_front();
         set(tp[0], tp[1], 'x');
-
-        /* CPP is stupid */
-        std::cout << "Pop old tail" << std::endl;
-        for(int i = 0; i < path.size(); i++) {
-            std::cout << path[i][0] << ", " << path[i][1] << std::endl;
-        }
     }
     /*else if (get(nx, ny) != '\0') {
         int val = ((int)get(nx, ny)) - 48;
