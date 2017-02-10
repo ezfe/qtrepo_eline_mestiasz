@@ -27,6 +27,10 @@ private:
      */
     char gameboard[COLS][ROWS];
 
+    const char EMPTY_CELL = 'x';
+    const char HEAD_CELL = '@';
+    const char BODY_CELL = 'o';
+
     std::deque<std::vector<int>> path;
 
     int random(int low, int high);

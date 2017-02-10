@@ -2,6 +2,11 @@
 
 Worms::Worms() {
     std::srand(time(NULL));
+    for(int x = 0; x < COLS; x++) {
+        for(int y = 0; y < ROWS; y++) {
+            set(x, y, EMPTY_CELL);
+        }
+    }
 }
 
 /*!
@@ -80,7 +85,7 @@ void Worms::move(int dx, int dy) {
     int hy = 0;
     for(int fx = 0; fx < COLS; fx++) {
         for(int fy = 0; fy < ROWS; fy++) {
-            if (get(fx, fy) == '@') {
+            if (get(fx, fy) == HEAD_CELL) {
                 hx = fx;
                 hy = fy;
                 /* because I can't break out of the outer loop */
@@ -94,14 +99,14 @@ void Worms::move(int dx, int dy) {
     if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS || get(nx, ny) == 'o') {
         /* DIE */
     } else {
-        set(hx, hy, 'o');
-        set(nx, ny, '@');
+        set(hx, hy, BODY_CELL);
+        set(nx, ny, HEAD_CELL);
 
         std::vector<int> hp {nx, ny};
         path.push_back(hp);
         std::vector<int> tp = path[0];
         path.pop_front();
-        set(tp[0], tp[1], '\0');
+        set(tp[0], tp[1], 'x');
     }
     /*else if (get(nx, ny) != '\0') {
         int val = ((int)get(nx, ny)) - 48;
