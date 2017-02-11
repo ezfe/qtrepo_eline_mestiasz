@@ -37,11 +37,11 @@ protected:
 
 TEST_F(RobotsTest, TEST_PRINT_GAMEBOARD){
     std::string str = robots.printGameboard();
-    std::string expected = "#0:   0/  | 1/  | 2/  | \n"
-                           "#1:   0/  | 1/  | 2/  | \n"
-                           "#2:   0/  | 1/  | 2/  | \n"
-                           "#3:   0/  | 1/  | 2/  | \n"
-                           "#4:   0/  | 1/  | 2/  | \n";
+    std::string expected = "#0:      \n"
+                           "#1:      \n"
+                           "#2:      \n"
+                           "#3:      \n"
+                           "#4:      \n";
     EXPECT_EQ(expected, str) << "The string representation of the gameboard is wrong!";
 }
 

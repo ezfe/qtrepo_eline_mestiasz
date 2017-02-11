@@ -19,11 +19,12 @@ public:
     void setupController();
 
     /* Get information about the gameboard and its settlers */
+    void setItem(int i, int j, char symbol);    //  Set item to provided value in gameboard container
+    void setMoved(int i, int j, bool b);        //  Change bool value of the cell, once some object is placed in that cell
+    void addPlayerAndRobots();                  //  Add player and robots to the gameboard at random location
     int getScore();                             // Getter for score counter
     int getLevel();                             // Getter for level counter
     bool isAlive();                             // Check if player is alive
-    void setItem(int i, int j, char symbol);    //  Set item to provided value in gameboard container
-    void setMoved(int i, int j, bool b);        //  Change bool value of the cell, once some object is placed in that cell
     char getItem(int i, int j);                 //  Get item from gameboard container
     bool ifMoved(int i, int j);                 //  Find if someone already moved to that cell
     int checkWinner();                          //  Find if anybody lost already

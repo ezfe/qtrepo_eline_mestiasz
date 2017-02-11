@@ -3,6 +3,7 @@
 Robots::Robots(){
     std::cout << "Gameboard: " << gameboard << " " << std::endl;
     this->redraw();
+    this->addPlayerAndRobots();
 }
 
 Robots::~Robots(){
@@ -10,8 +11,47 @@ Robots::~Robots(){
 }
 
 /* Controller */
-void setupController(){
+void Robots::setupController(){
+    char cmd;
+    std::cout << "Insert a command" << std::endl;
 
+    std::pair<int, int> current_position = this->getCurrentPosition();
+    while(std::cin >> cmd){
+        switch(cmd){
+        case 'q':
+            exit(0);
+            break;
+        case 'y':
+            this->move(current_position.first - 1, current_position.second - 1);
+            break;
+        case 'k':
+            this->move(current_position.first - 1, current_position.second);
+            break;
+        case 'u':
+            this->move(current_position.first - 1, current_position.second + 1);
+            break;
+        case 'h':
+            this->move(current_position.first, current_position.second - 1);
+            break;
+        case 'l':
+            this->move(current_position.first, current_position.second + 1);
+            break;
+        case 'b':
+            this->move(current_position.first + 1, current_position.second - 1);
+            break;
+        case 'j':
+            this->move(current_position.first + 1, current_position.second);
+            break;
+        case 'n':
+            this->move(current_position.first + 1, current_position.second + 1);
+            break;
+        default:
+            std::cout << "Invalid Command!" << std::endl;
+        }
+
+        std::cout << this->printGameboard();
+        std::cout << "Insert a command" << std::endl;
+    }
 }
 
 /* Gameboard */
@@ -60,7 +100,7 @@ std::string Robots::printGameboard(){
     for(int i = 0; i < ROWS; i++){
         ss << "#" << i << ":   ";
         for(int j = 0; j < COLS; j++){
-            ss << j << "/" << this->getItem(i, j) << " | ";
+            ss << this->getItem(i, j);
         }
         ss << std::endl;
     }
@@ -95,6 +135,18 @@ void Robots::setMoved(int i, int j, bool b){
     movedObjects[i][j] = b;
 }
 
+void Robots::addPlayerAndRobots(){
+    std::pair<int, int> empty_cell;
+    for(int i = 0; i < ROBOTS; i++){
+        empty_cell = findEmptyCell();
+        this->setItem(empty_cell.first, empty_cell.second, '+');
+    }
+
+    empty_cell = findEmptyCell();
+    this->setItem(empty_cell.first, empty_cell.second, '@');
+
+}
+
 
 /* Robots */
 
@@ -105,27 +157,27 @@ void Robots::moveRobot(int i0, int j0, int i1, int j1){
     }
 
     switch (this->getItem(i1, j1)){
-        case '@':
-            std::cout << "Kill the player";
-            this->die();
-            break;
-        case '+':
-            this->setItem(i0, j0, ' ');
-            this->killRobot(i1, j1);
-            std::cout << "Kill both robots";
-            break;
-        case '*':
-            this->setItem(i0, j0, ' ');
-            this->killRobot(i1, j1);
-            std::cout << "Kill the robot that moved to that cell";
-            break;
-        case ' ':
-            this->setItem(i0, j0, ' ');
-            this->setItem(i1, j1, '+');
-            this->setMoved(i1, j1, true);
-            break;
-        default:
-            std::cout << "Robot changed position" << std::endl;
+    case '@':
+        std::cout << "Kill the player";
+        this->die();
+        break;
+    case '+':
+        this->setItem(i0, j0, ' ');
+        this->killRobot(i1, j1);
+        std::cout << "Kill both robots";
+        break;
+    case '*':
+        this->setItem(i0, j0, ' ');
+        this->killRobot(i1, j1);
+        std::cout << "Kill the robot that moved to that cell";
+        break;
+    case ' ':
+        this->setItem(i0, j0, ' ');
+        this->setItem(i1, j1, '+');
+        this->setMoved(i1, j1, true);
+        break;
+    default:
+        std::cout << "Robot changed position" << std::endl;
     }
 }
 
