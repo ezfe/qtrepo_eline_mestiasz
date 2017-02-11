@@ -9,6 +9,11 @@ Robots::~Robots(){
 
 }
 
+/* Controller */
+void setupController(){
+
+}
+
 /* Gameboard */
 
 int Robots::getScore(){
@@ -129,7 +134,26 @@ void Robots::killRobot(int i, int j){
 }
 
 std::pair<int, int> Robots::findCellToMove(int i, int j){
-    return std::make_pair(1, 1);
+    std::pair<int, int> current_position = this->getCurrentPosition();
+    int di = i - current_position.first;
+    int dj = j - current_position.second;
+
+    if(di > 0 && dj > 0)
+        return std::make_pair(i - 1, j - 1);
+    else if(di > 0 && dj < 0)
+        return std::make_pair(i - 1, j + 1);
+    else if(di < 0 && dj > 0)
+        return std::make_pair(i + 1, j - 1);
+    else if(di < 0 && dj < 0)
+        return std::make_pair(i + 1, j - 1);
+    else if(di == 0 && dj > 0)
+        return std::make_pair(i, j - 1);
+    else if(di == 0 && dj < 0)
+        return std::make_pair(i, j + 1);
+    else if(di > 0 && dj == 0)
+        return std::make_pair(i - 1, j);
+    else
+        return std::make_pair(i + 1, j);
 }
 
 void Robots::move(int i, int j){

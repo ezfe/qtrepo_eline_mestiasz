@@ -16,6 +16,8 @@ public:
     Robots();
     ~Robots();
 
+    void setupController();
+
     /* Get information about the gameboard and its settlers */
     int getScore();                             // Getter for score counter
     int getLevel();                             // Getter for level counter
