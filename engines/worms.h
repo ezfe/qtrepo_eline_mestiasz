@@ -42,8 +42,14 @@ private:
     const char HEAD_CELL = '@';
     const char BODY_CELL = 'o';
 
+    /*!
+     * \brief Data structure which stores points of the worm
+     */
     std::deque<std::vector<int>> path;
 
+    /*!
+     * \brief Adjustments to worm size needed
+     */
     int wormModify = 0;
 
     int random(int low, int high);
@@ -52,6 +58,9 @@ private:
     int randomY();
     void move(int dx, int dy);
 
+    /*!
+     * \brief Is the game over yet
+     */
     bool gameOver = false;
 };
 

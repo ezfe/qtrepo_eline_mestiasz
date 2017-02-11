@@ -28,6 +28,12 @@ void Worms::set(int x, int y, char val) {
     gameboard[x][y] = val;
 }
 
+/*!
+ * \brief Get the gameboard value
+ * \param x location
+ * \param y location
+ * \return value at location
+ */
 char Worms::get(int x, int y) {
     return gameboard[x][y];
 }
@@ -66,6 +72,9 @@ int Worms::randomY() {
     return random(0, ROWS - 1);
 }
 
+/*!
+ * \brief Place a goal of random value at a random location
+ */
 void Worms::placeGoal() {
     std::cout << "Placing goal..." << std::endl;
     int x = randomX();
@@ -73,30 +82,54 @@ void Worms::placeGoal() {
     gameboard[x][y] = (char)(48 + randomGoal());
 }
 
+/*!
+ * \brief Up arrow press or eq.
+ */
 void Worms::pressUp() {
     move(0, -1);
 }
 
+/*!
+ * \brief Down arrow press or eq.
+ */
 void Worms::pressDown() {
     move(0, 1);
 }
 
+/*!
+ * \brief Right arrow press or eq.
+ */
 void Worms::pressRight() {
     move(1, 0);
 }
 
+/*!
+ * \brief Left arrow press or eq.
+ */
 void Worms::pressLeft() {
     move(-1, 0);
 }
 
+/*!
+ * \brief Move the worm in an x/y direction.
+ * \param dx delta x direction
+ * \param dy delta y direction
+ *
+ * Values above 1 may cause issues and discontinuous worms. The worm
+ * should still move there, however.
+ */
 void Worms::move(int dx, int dy) {
+    /* Find the head x/y */
     int hx = path.back()[0];
     int hy = path.back()[1];
+    /* Find the new location for the head */
     int nx = hx + dx;
     int ny = hy + dy;
+    /* If the new location is out of game board, or part of the worm, exit */
     if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS || get(nx, ny) == 'o') {
         std::cout << "Collision, die" << std::endl;
     } else {
+        /* Check for points */
         if (get(nx, ny) == '1') {
             wormModify += 1;
         } else if (get(nx, ny) == '2') {
@@ -117,17 +150,19 @@ void Worms::move(int dx, int dy) {
             wormModify += 9;
         }
 
+        /* Set the current head to a body */
         set(hx, hy, BODY_CELL);
+        /* Set the new head to a head */
         set(nx, ny, HEAD_CELL);
 
-        /* Push new head */
+        /* Push new head to the data structure */
         std::vector<int> hp {nx, ny};
         path.push_back(hp);
 
         /* trim last tail */
         wormModify--;
 
-        /* Pop old tail */
+        /* Pop old tails */
         while(wormModify < 0) {
             std::vector<int> tp = path[0];
             path.pop_front();
@@ -135,11 +170,6 @@ void Worms::move(int dx, int dy) {
             wormModify++;
         }
     }
-    /*else if (get(nx, ny) != '\0') {
-        int val = ((int)get(nx, ny)) - 48;
-        std::cout << "Grow " + val << std::endl;
-    }*/
-
 }
 
 std::vector<int> Worms::getHead() {
