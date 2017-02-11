@@ -115,3 +115,7 @@ void Worms::move(int dx, int dy) {
     }*/
 
 }
+
+std::vector<int> Worms::getHead() {
+    return path.back();
+}

@@ -19,6 +19,8 @@ public:
     void pressLeft();
 
     void placeGoal();
+
+    std::vector<int> getHead();
 private:
     /*!
      * \brief Gameboard container
