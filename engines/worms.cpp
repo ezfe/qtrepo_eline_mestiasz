@@ -119,6 +119,9 @@ void Worms::pressLeft() {
  * should still move there, however.
  */
 void Worms::move(int dx, int dy) {
+    if (gameOver) {
+        return;
+    }
     /* Find the head x/y */
     int hx = path.back()[0];
     int hy = path.back()[1];
@@ -126,7 +129,12 @@ void Worms::move(int dx, int dy) {
     int nx = hx + dx;
     int ny = hy + dy;
     /* If the new location is out of game board, or part of the worm, exit */
-    if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS || get(nx, ny) == 'o') {
+    if (nx < 0 || ny < 0 || nx >= WIDTH || ny >= HEIGHT || get(nx, ny) == 'o') {
+        gameOver = true;
+        for(int i = 0; i < path.size(); i++) {
+            set(path[i][0], path[i][1], 'x');
+        }
+        path.clear();
         std::cout << "Collision, die" << std::endl;
     } else {
         /* Check for points */
