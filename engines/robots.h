@@ -15,9 +15,11 @@ public:
     ~Robots();
 
     void setItem(int i, int j, char symbol);    //  Set item to provided value in gameboard container
+    void setMoved(int i, int j, bool b);        //  Change bool value of the cell, once some object is placed in that cell
     char getItem(int i, int j);                 //  Get item from gameboard container
+    bool ifMoved(int i, int j);                 //  Find if someone already moved to that cell
     std::string printGameboard();               //  Print the gameboard, displaying all the robots and player
-    std::vector<int> findEmptyCell();           // Find empty cell, where player or robot can be placed
+    std::vector<int> findEmptyCell();           //  Find empty cell, where player or robot can be placed
 
 
     void moveRobot(int i0, int j0, int i1, int j1);     //  Change the robots' locations
@@ -33,8 +35,8 @@ public:
     void redraw();          //  Restart/Reinitialize the game
     bool checkWinner();     //  Find if anybody lost already
 
-    void generateRobotPosition();   //  Generate random positions for Robots
-    void generatePlayerPosition();  //  Generate random position for Player
+    std::vector<int> generateRobotPosition();   //  Generate random positions for Robots
+    std::vector<int> generatePlayerPosition();  //  Generate random position for Player
 
     void checkOptions();    //  Check which options were provided
     void showRanking();     //  Display the score list
@@ -49,10 +51,13 @@ public:
 
 private:
     char gameboard [ROWS][COLS];    //  Gameboard container
+    bool movedObjects [ROWS][COLS]; //  Displaying whether the object placed in that cell
+                                    //  already changed the position or not
     std::vector<char> options;      //  List of options
     int score;                      //  Score counter
-    int level;                      // Level counter
-    bool alive;
+    int level;                      //  Level counter
+    bool alive;                     //  Find if player is alive
+
 };
 
 #endif // ROBOTS_H
