@@ -104,10 +104,16 @@ void Worms::move(int dx, int dy) {
         std::vector<int> hp {nx, ny};
         path.push_back(hp);
 
+        /* trim last tail */
+        wormModify--;
+
         /* Pop old tail */
-        std::vector<int> tp = path[0];
-        path.pop_front();
-        set(tp[0], tp[1], 'x');
+        while(wormModify < 0) {
+            std::vector<int> tp = path[0];
+            path.pop_front();
+            set(tp[0], tp[1], 'x');
+            wormModify++;
+        }
     }
     /*else if (get(nx, ny) != '\0') {
         int val = ((int)get(nx, ny)) - 48;
@@ -118,4 +124,30 @@ void Worms::move(int dx, int dy) {
 
 std::vector<int> Worms::getHead() {
     return path.back();
+}
+
+std::vector<int> Worms::getTail() {
+    return path.front();
+}
+
+std::vector<int> Worms::queryWorm(int i) {
+    return path[i];
+}
+
+void Worms::extendWorm() {
+    /* extension doesn't happen until next motion */
+    wormModify++;
+}
+
+void Worms::trimWorm() {
+    /* trim doesn't happen until next motion */
+    wormModify--;
+}
+
+int Worms::wormDataLength() {
+    return path.size();
+}
+
+int Worms::wormLength() {
+    return wormDataLength() + wormModify;
 }

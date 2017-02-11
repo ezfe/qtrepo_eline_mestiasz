@@ -21,6 +21,12 @@ public:
     void placeGoal();
 
     std::vector<int> getHead();
+    std::vector<int> getTail();
+    void extendWorm();
+    void trimWorm();
+    int wormLength();
+    int wormDataLength();
+    std::vector<int> queryWorm(int i);
 private:
     /*!
      * \brief Gameboard container
@@ -34,6 +40,8 @@ private:
     const char BODY_CELL = 'o';
 
     std::deque<std::vector<int>> path;
+
+    int wormModify = 0;
 
     int random(int low, int high);
     int randomGoal();
