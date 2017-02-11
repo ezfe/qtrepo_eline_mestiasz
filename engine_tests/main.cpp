@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <utility>
 
 #include "gtest/gtest.h"
 #include "../engines/robots.h"
@@ -30,27 +31,6 @@ protected:
 
 };
 
-class WormsTest : public ::testing::Test {
-protected:
-    WormsTest() {
-
-    }
-
-    virtual ~WormsTest() {
-
-    }
-
-    virtual void SetUp() {
-
-    }
-
-    virtual void TearDown() {
-
-    }
-
-    Worms worms;
-};
-
 /****************
  * Robots Tests *
  ****************/
@@ -67,9 +47,14 @@ TEST_F(RobotsTest, TEST_PRINT_GAMEBOARD){
 
 TEST_F(RobotsTest, TEST_FIND_EMPTY_CELL){
     int counter = 0;
-    while(!robots.findEmptyCell().empty()){
+    std::pair<int, int> cell = robots.findEmptyCell();
+
+    while(cell.first != -1 && cell.second != -1){
+        robots.setItem(cell.first, cell.second, '+');
+        cell = robots.findEmptyCell();
         counter++;
     }
+
     EXPECT_EQ(ROWS * COLS, counter) << "The number of empty places should equal to total number of cells";
 }
 
@@ -87,7 +72,7 @@ TEST_F(RobotsTest, TEST_MOVE_ROBOT){
 TEST_F(RobotsTest, TEST_KILL_ROBOT){
     robots.setItem(0, 0, '+');
     robots.killRobot(0, 0);
-    EXPECT_EQ(' ', robots.getItem(0, 0)) << "Robot should have been removed from this cell";
+    EXPECT_EQ('*', robots.getItem(0, 0)) << "Robot should have been removed from this cell";
 }
 
 TEST_F(RobotsTest, TEST_FIND_CELL_TO_MOVE){
@@ -175,16 +160,6 @@ TEST_F(RobotsTest, TEST_CHECK_WINNER){
 
     robots.setItem(2, 2, ' ');
     EXPECT_EQ(2, robots.checkWinner()) << "The robots win, as there is no player left";
-}
-
-
-
-/****************
- * Worms Tests *
- ****************/
-
-TEST_F(WormsTest, TESTA) {
-    EXPECT_EQ(1, 1) << "Equal Ints";
 }
 
 int main(int argc, char **argv) {

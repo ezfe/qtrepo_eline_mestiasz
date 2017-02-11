@@ -5,6 +5,7 @@
 #include <ctime>
 #include <string>
 #include <vector>
+#include <sstream>
 #include <utility>
 
 #include "macros.h"
@@ -26,7 +27,7 @@ public:
     std::vector<char> getOptions();             // Getter fot options container
     std::pair<int, int> getCurrentPosition();    // Getter for player's current position
     std::string printGameboard();               //  Print the gameboard, displaying all the robots and player
-    std::vector<int> findEmptyCell();           //  Find empty cell, where player or robot can be placed
+    std::pair<int, int> findEmptyCell();           //  Find empty cell, where player or robot can be placed
 
     /* Methods describing robot's behavior */
     void moveRobot(int i0, int j0, int i1, int j1);     //  Change the robots' locations
