@@ -1,7 +1,6 @@
 #include "robots.h"
 
 Robots::Robots(){
-    std::srand((unsigned)time( NULL ));
     std::cout << "Gameboard: " << gameboard << " " << std::endl;
 }
 
@@ -13,8 +12,16 @@ void Robots::setItem(int i, int j, char symbol){
     gameboard[i][j] = symbol;
 }
 
+void Robots::setMoved(int i, int j, bool b){
+    movedObjects[i][j] = b;
+}
+
 char Robots::getItem(int i, int j){
     return gameboard[i][j];
+}
+
+bool Robots::ifMoved(int i, int j){
+    return this->movedObjects[i][j];
 }
 
 std::string Robots::printGameboard(){
@@ -37,7 +44,7 @@ std::vector<int> Robots::findCellToMove(int i, int j){
     return std::vector<int>{1};
 }
 
-void Robots::move(){
+void Robots::move(int i, int j){
 
 }
 
@@ -61,24 +68,28 @@ void Robots::redraw(){
     this->score = 0;
     this->level = 0;
     this->alive = true;
+    this->currentPosition = std::make_pair(0, 0);   //z/ we should fix this
+
+    std::srand((unsigned)time( NULL ));
 
     for(int i = 0; i != ROWS; i++){
         for(int j =0; j != COLS; j++){
             this->setItem(i, j, ' ');
+            this->setMoved(i, j, false);
         }
     }
 }
 
-bool Robots::checkWinner(){
-    return true;
+int Robots::checkWinner(){
+    return 0;
 }
 
-void Robots::generateRobotPosition(){
-
+std::vector<int> Robots::generateRobotPosition(){
+    return std::vector<int>{1, 1};
 }
 
-void Robots::generatePlayerPosition(){
-
+std::vector<int> Robots::generatePlayerPosition(){
+    return std::vector<int>{1, 1};
 }
 
 void Robots::checkOptions(){
@@ -113,3 +124,6 @@ bool Robots::isAlive(){
     return this->alive;
 }
 
+std::pair<int, int> Robots::getCurrentPosition(){
+    return this->currentPosition;
+}
