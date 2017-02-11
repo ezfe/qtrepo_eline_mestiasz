@@ -66,6 +66,10 @@ TEST_F(RobotsTest, TEST_MOVE_ROBOT){
     EXPECT_EQ(false, robots.ifMoved(0, 0)) << "The robot left this position, so it should become false";
     EXPECT_EQ('+', robots.getItem(2, 2)) << "Robot should have been placed here";
     EXPECT_EQ(true, robots.ifMoved(2, 2)) << "The robot moved to this position, so it should become true";
+
+    robots.moveRobot(2, 2, 5, 3);
+    EXPECT_EQ('+', robots.getItem(2, 2)) << "Robot cannot leave the grid";
+    EXPECT_EQ(true, robots.ifMoved(2, 2)) << "This value should stay true";
 }
 
 
@@ -80,33 +84,12 @@ TEST_F(RobotsTest, TEST_FIND_CELL_TO_MOVE){
     robots.setItem(2, 2, '+');
     robots.setItem(0, 2, '+');
 
-    std::vector<int> position_01 = robots.findCellToMove(2, 2);
-    std::vector<int> position_02 = robots.findCellToMove(1, 2);
+    std::pair<int, int> position_01 = robots.findCellToMove(2, 2);
+    std::pair<int, int> position_02 = robots.findCellToMove(1, 2);
 
-    EXPECT_TRUE(1 == position_01.at(0) && 1 == position_01.at(1)) << "The cell was not generated correctly";
-    EXPECT_TRUE(0 == position_02.at(0) && 1 == position_02.at(2)) << "The cell was not generated correctly";
+    EXPECT_TRUE(1 == position_01.first && 1 == position_01.second) << "The cell was not generated correctly";
+    EXPECT_TRUE(0 == position_02.first && 1 == position_02.second) << "The cell was not generated correctly";
 }
-
-TEST_F(RobotsTest, TEST_GENERATE_ROBOT_POSITION){
-    for(int i = 0; i < ROWS * COLS; i++){
-        std::vector<int> tmp = robots.generateRobotPosition();
-        EXPECT_TRUE(!tmp.empty()) << "The returned vector should not be null as there is enough space";
-    }
-
-    std::vector<int> tmp = robots.generateRobotPosition();
-    EXPECT_TRUE(tmp.empty()) << "The returned vector should be empty as there is no empty cell left";
-}
-
-TEST_F(RobotsTest, TEST_GENERATE_PLAYER_POSITION){
-    for(int i = 0; i < ROWS * COLS; i++){
-        std::vector<int> tmp = robots.generatePlayerPosition();
-        EXPECT_TRUE(!tmp.empty()) << "The returned vector should not be null as there is enough space";
-    }
-
-    std::vector<int> tmp = robots.generatePlayerPosition();
-    EXPECT_TRUE(tmp.empty()) << "The returned vector should be empty as there is no empty cell left";
-}
-
 
 TEST_F(RobotsTest, TEST_MOVE){
     robots.setItem(2, 2, '@');
@@ -131,7 +114,6 @@ TEST_F(RobotsTest, TEST_TELEPORT){
     robots.setItem(2, 2, '+');
     robots.teleport();
     EXPECT_TRUE(robots.getCurrentPosition().first == 1 && robots.getCurrentPosition().second == 1) << "Player should not have teleported correctly";
-
 }
 
 TEST_F(RobotsTest, TEST_REDRAW) {
@@ -159,6 +141,7 @@ TEST_F(RobotsTest, TEST_CHECK_WINNER){
     EXPECT_EQ(0, robots.checkWinner()) << "The game has not finished yet as there is one robot left, and player alive";
 
     robots.setItem(2, 2, ' ');
+    robots.die();
     EXPECT_EQ(2, robots.checkWinner()) << "The robots win, as there is no player left";
 }
 

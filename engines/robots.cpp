@@ -31,12 +31,23 @@ bool Robots::ifMoved(int i, int j){
     return this->movedObjects[i][j];
 }
 
-std::vector<char> Robots::getOptions(){
-    return this->options;
+int Robots::checkWinner(){
+    int counter_of_robots = 0;
+    for(int i = 0; i < ROWS; i++){
+        for(int j = 0; j < COLS; j++){
+            if(this->getItem(i, j) == '+')
+                counter_of_robots++;
+        }
+    }
+
+    if(isAlive() && counter_of_robots != 0) return 0;
+    if(isAlive() && counter_of_robots == 0) return 1;
+
+    return 2;
 }
 
-std::pair<int, int> Robots::getCurrentPosition(){
-    return this->currentPosition;
+std::vector<char> Robots::getOptions(){
+    return this->options;
 }
 
 std::string Robots::printGameboard(){
@@ -72,6 +83,7 @@ std::pair<int, int> Robots::findEmptyCell(){
 
 void Robots::setItem(int i, int j, char symbol){
     gameboard[i][j] = symbol;
+    if(symbol == '@') this->setCurrentPosition(i, j);
 }
 
 void Robots::setMoved(int i, int j, bool b){
@@ -82,14 +94,24 @@ void Robots::setMoved(int i, int j, bool b){
 /* Robots */
 
 void Robots::moveRobot(int i0, int j0, int i1, int j1){
+    if(i1 < 0 || i1 >= ROWS || j1 < 0 || j1 >= COLS){
+        std::cout << "Robot cannot leave the grid" << std::endl;
+        return;
+    }
+
     switch (this->getItem(i1, j1)){
         case '@':
             std::cout << "Kill the player";
+            this->die();
             break;
         case '+':
+            this->setItem(i0, j0, ' ');
+            this->killRobot(i1, j1);
             std::cout << "Kill both robots";
-        break;
+            break;
         case '*':
+            this->setItem(i0, j0, ' ');
+            this->killRobot(i1, j1);
             std::cout << "Kill the robot that moved to that cell";
             break;
         case ' ':
@@ -106,12 +128,24 @@ void Robots::killRobot(int i, int j){
     this->setItem(i, j, '*');
 }
 
-std::vector<int> Robots::findCellToMove(int i, int j){
-    return std::vector<int>{1};
+std::pair<int, int> Robots::findCellToMove(int i, int j){
+    return std::make_pair(1, 1);
 }
 
 void Robots::move(int i, int j){
-
+    if(i < 0 || i >= ROWS || j < 0 || j >= COLS){
+        std::cout << "Player cannot leave the grid" << std::endl;
+    }else{
+        std::pair<int, int> current_position = this->getCurrentPosition();
+        this->setItem(current_position.first, current_position.second, ' ');
+        if(this->getItem(i, j) == ' '){
+            this->setItem(current_position.first, current_position.second, ' ');
+            this->setItem(i, j, '@');
+            this->setCurrentPosition(i, j);
+        }else{
+            this->die();
+        }
+    }
 }
 
 void Robots::doNothing(){
@@ -123,7 +157,21 @@ void Robots::wait(){
 }
 
 void Robots::teleport(){
+    std::pair<int, int> new_position = this->findEmptyCell();
+    this->move(new_position.first, new_position.second);
+}
 
+void Robots::die(){
+    this->alive = false;
+    std::cout << "Player just passed away" << std::endl;
+}
+
+void Robots::setCurrentPosition(int i, int j){
+    this->currentPosition = std::make_pair(i, j);
+}
+
+std::pair<int, int> Robots::getCurrentPosition(){
+    return this->currentPosition;
 }
 
 void Robots::quit(){
@@ -143,18 +191,6 @@ void Robots::redraw(){
             this->setMoved(i, j, false);
         }
     }
-}
-
-int Robots::checkWinner(){
-    return 0;
-}
-
-std::vector<int> Robots::generateRobotPosition(){
-    return std::vector<int>{1, 1};
-}
-
-std::vector<int> Robots::generatePlayerPosition(){
-    return std::vector<int>{1, 1};
 }
 
 void Robots::checkOptions(){
