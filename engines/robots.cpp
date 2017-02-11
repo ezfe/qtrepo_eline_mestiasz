@@ -23,10 +23,6 @@ bool Robots::isAlive(){
     return this->alive;
 }
 
-void Robots::setMoved(int i, int j, bool b){
-    movedObjects[i][j] = b;
-}
-
 char Robots::getItem(int i, int j){
     return gameboard[i][j];
 }

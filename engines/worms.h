@@ -25,11 +25,7 @@ private:
      *
      * Addressed in [x][y] manner
      */
-    char gameboard[WIDTH][HEIGHT];
-
-    const char EMPTY_CELL = 'x';
-    const char HEAD_CELL = '@';
-    const char BODY_CELL = 'o';
+    char gameboard[COLS][ROWS];
 
     std::deque<std::vector<int>> path;
 

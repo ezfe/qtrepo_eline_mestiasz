@@ -54,6 +54,7 @@ TEST_F(RobotsTest, TEST_FIND_EMPTY_CELL){
         cell = robots.findEmptyCell();
         counter++;
     }
+
     EXPECT_EQ(ROWS * COLS, counter) << "The number of empty places should equal to total number of cells";
 }
 
@@ -142,34 +143,6 @@ TEST_F(RobotsTest, TEST_CHECK_WINNER){
     robots.setItem(2, 2, ' ');
     robots.die();
     EXPECT_EQ(2, robots.checkWinner()) << "The robots win, as there is no player left";
-}
-
-TEST_F(RobotsTest, TEST_GENERATE_ROBOT_POSITION){
-    for(int i = 0; i < ROWS * COLS; i++){
-        std::vector<int> tmp = robots.generateRobotPosition();
-        EXPECT_TRUE(!tmp.empty()) << "The returned vector should not be null as there is enough space";
-    }
-
-    std::vector<int> tmp = robots.generateRobotPosition();
-    EXPECT_TRUE(tmp.empty()) << "The returned vector should be empty as there is no empty cell left";
-}
-
-TEST_F(RobotsTest, TEST_GENERATE_PLAYER_POSITION){
-    for(int i = 0; i < ROWS * COLS; i++){
-        std::vector<int> tmp = robots.generatePlayerPosition();
-        EXPECT_TRUE(!tmp.empty()) << "The returned vector should not be null as there is enough space";
-    }
-
-    std::vector<int> tmp = robots.generatePlayerPosition();
-    EXPECT_TRUE(tmp.empty()) << "The returned vector should be empty as there is no empty cell left";
-}
-
-/****************
- * Worms Tests *
- ****************/
-
-TEST_F(WormsTest, TESTA) {
-    EXPECT_EQ(1, 1) << "Equal Ints";
 }
 
 int main(int argc, char **argv) {
