@@ -27,6 +27,9 @@ public:
     int wormLength();
     int wormDataLength();
     std::vector<int> queryWorm(int i);
+
+    bool isLost();
+    int score();
 private:
     /*!
      * \brief Gameboard container
@@ -48,6 +51,8 @@ private:
     int randomX();
     int randomY();
     void move(int dx, int dy);
+
+    bool gameOver = false;
 };
 
 #endif // WORMS_H

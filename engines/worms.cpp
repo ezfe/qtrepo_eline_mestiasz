@@ -97,6 +97,26 @@ void Worms::move(int dx, int dy) {
     if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS || get(nx, ny) == 'o') {
         std::cout << "Collision, die" << std::endl;
     } else {
+        if (get(nx, ny) == '1') {
+            wormModify += 1;
+        } else if (get(nx, ny) == '2') {
+            wormModify += 2;
+        } else if (get(nx, ny) == '3') {
+            wormModify += 3;
+        } else if (get(nx, ny) == '4') {
+            wormModify += 4;
+        } else if (get(nx, ny) == '5') {
+            wormModify += 5;
+        } else if (get(nx, ny) == '6') {
+            wormModify += 6;
+        } else if (get(nx, ny) == '7') {
+            wormModify += 7;
+        } else if (get(nx, ny) == '8') {
+            wormModify += 8;
+        } else if (get(nx, ny) == '9') {
+            wormModify += 9;
+        }
+
         set(hx, hy, BODY_CELL);
         set(nx, ny, HEAD_CELL);
 
@@ -150,4 +170,12 @@ int Worms::wormDataLength() {
 
 int Worms::wormLength() {
     return wormDataLength() + wormModify;
+}
+
+bool Worms::isLost() {
+    return gameOver;
+}
+
+int Worms::score() {
+    return wormLength();
 }
