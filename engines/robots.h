@@ -26,8 +26,6 @@ public:
     bool ifMoved(int i, int j);                 //  Find if someone already moved to that cell
     int checkWinner();                          //  Find if anybody lost already
     std::vector<char> getOptions();             // Getter fot options container
-    std::string printGameboard();               //  Print the gameboard, displaying all the robots and player
-    std::pair<int, int> findEmptyCell();        //  Find empty cell, where player or robot can be placed
 
     /* Methods describing robot's behavior */
     void moveRobot(int i0, int j0, int i1, int j1);     //  Change the robots' locations

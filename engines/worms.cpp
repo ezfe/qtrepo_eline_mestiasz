@@ -2,6 +2,20 @@
 
 Worms::Worms() {
     std::srand(time(NULL));
+
+    for(int x = 0; x < WIDTH; x++) {
+        for(int y = 0; y < HEIGHT; y++) {
+            set(x, y, EMPTY_CELL);
+        }
+    }
+
+    std::vector<int> pa {1, 1};
+    std::vector<int> pb {2, 1};
+    path.push_back(pa);
+    path.push_back(pb);
+
+    set(pa[0], pa[1], BODY_CELL);
+    set(pb[0], pb[1], HEAD_CELL);
 }
 
 /*!
@@ -76,32 +90,24 @@ void Worms::pressLeft() {
 }
 
 void Worms::move(int dx, int dy) {
-    int hx = 0;
-    int hy = 0;
-    for(int fx = 0; fx < COLS; fx++) {
-        for(int fy = 0; fy < ROWS; fy++) {
-            if (get(fx, fy) == '@') {
-                hx = fx;
-                hy = fy;
-                /* because I can't break out of the outer loop */
-                fx = COLS;
-                fy = ROWS;
-            }
-        }
-    }
+    int hx = path.back()[0];
+    int hy = path.back()[1];
     int nx = hx + dx;
     int ny = hy + dy;
     if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS || get(nx, ny) == 'o') {
-        /* DIE */
+        std::cout << "Collision, die" << std::endl;
     } else {
-        set(hx, hy, 'o');
-        set(nx, ny, '@');
+        set(hx, hy, BODY_CELL);
+        set(nx, ny, HEAD_CELL);
 
+        /* Push new head */
         std::vector<int> hp {nx, ny};
         path.push_back(hp);
+
+        /* Pop old tail */
         std::vector<int> tp = path[0];
         path.pop_front();
-        set(tp[0], tp[1], '\0');
+        set(tp[0], tp[1], 'x');
     }
     /*else if (get(nx, ny) != '\0') {
         int val = ((int)get(nx, ny)) - 48;
