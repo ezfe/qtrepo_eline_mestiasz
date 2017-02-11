@@ -119,6 +119,7 @@ TEST_F(RobotsTest, TEST_FIND_CELL_TO_MOVE){
     EXPECT_TRUE(3 == position_02.at(0) && 3 == position_02.at(2)) << "The cell was not generated correctly";
 }
 
+<<<<<<< HEAD
 TEST_F(RobotsTest, TEST_GENERATE_ROBOT_POSITION){
     for(int i = 0; i < ROWS * COLS; i++){
         std::vector<int> tmp = robots.generateRobotPosition();
@@ -147,6 +148,8 @@ TEST_F(WormsTest, TESTA) {
     EXPECT_EQ(1, 1) << "Equal Ints";
 }
 
+=======
+>>>>>>> master
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
