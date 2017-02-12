@@ -36,7 +36,7 @@ private:
      *
      * Addressed in [x][y] manner
      */
-    char gameboard[WIDTH][HEIGHT];
+    char gameboard[COLS][ROWS];
 
     const char EMPTY_CELL = 'x';
     const char HEAD_CELL = '@';

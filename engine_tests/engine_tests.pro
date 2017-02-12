@@ -4,6 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+    main.cpp \
     worms.cpp
 
 SOURCES += ../gtest/googletest/src/gtest-all.cc
