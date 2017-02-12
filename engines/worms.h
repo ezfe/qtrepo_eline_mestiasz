@@ -19,6 +19,17 @@ public:
     void pressLeft();
 
     void placeGoal();
+
+    std::vector<int> getHead();
+    std::vector<int> getTail();
+    void extendWorm();
+    void trimWorm();
+    int wormLength();
+    int wormDataLength();
+    std::vector<int> queryWorm(int i);
+
+    bool isLost();
+    int score();
 private:
     /*!
      * \brief Gameboard container
@@ -27,13 +38,27 @@ private:
      */
     char gameboard[COLS][ROWS];
 
+    /*!
+     * \brief Data structure which stores points of the worm
+     */
     std::deque<std::vector<int>> path;
+
+    /*!
+     * \brief Adjustments to worm size needed
+     */
+    int wormModify = 0;
+    int scorePermanence = -1;
 
     int random(int low, int high);
     int randomGoal();
     int randomX();
     int randomY();
     void move(int dx, int dy);
+
+    /*!
+     * \brief Is the game over yet
+     */
+    bool gameOver = false;
 };
 
 #endif // WORMS_H
