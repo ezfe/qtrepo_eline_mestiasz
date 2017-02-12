@@ -75,6 +75,35 @@ TEST_F(WormsTest, TESTLEFT) {
     EXPECT_EQ(true, worms.isLost()) << "Game should be lost";
 }
 
+TEST_F(WormsTest, TESTEGG) {
+    EXPECT_EQ(3, worms.score()) << "Score should be 3"; //SCORE
+    worms.set(4, 1, '2');
+    worms.pressRight();
+    EXPECT_EQ(5, worms.score()) << "Score should be 5"; //SCORE
+    worms.set(4, 2, 'x');
+    worms.pressDown();
+    worms.set(3, 2, 'x');
+    worms.pressLeft();
+
+    EXPECT_EQ('o', worms.get(2, 1)) << "Tail should not move"; //NEW TAIL
+    EXPECT_EQ('o', worms.get(3, 1)) << "Middle should be here"; //NEW TAIL
+    EXPECT_EQ('o', worms.get(4, 1)) << "Middle should be here"; //NEW MIDDLE
+    EXPECT_EQ('o', worms.get(4, 2)) << "Middle should be here"; //NEW MIDDLE
+    EXPECT_EQ('@', worms.get(3, 2)) << "Head should be here"; //NEW MIDDLE
+
+    EXPECT_EQ(5, worms.score()) << "Score should be 5 (still)"; //SCORE
+}
+
+TEST_F(WormsTest, TESTGETHEAD) {
+    std::vector<int> head = worms.getHead();
+    EXPECT_EQ(worms.get(head[0], head[1]), '@') << "GetHead should return the tile with @";
+}
+
+TEST_F(WormsTest, TESTGETTAIL) {
+    std::vector<int> head = worms.getTail();
+    EXPECT_EQ(worms.get(head[0], head[1]), 'o') << "GetTail should return a tile with o";
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
