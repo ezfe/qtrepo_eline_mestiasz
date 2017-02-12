@@ -3,8 +3,8 @@
 Worms::Worms() {
     std::srand(time(NULL));
 
-    for(int x = 0; x < WIDTH; x++) {
-        for(int y = 0; y < HEIGHT; y++) {
+    for(int x = 0; x < COLS; x++) {
+        for(int y = 0; y < ROWS; y++) {
             set(x, y, EMPTY_CELL);
         }
     }
@@ -139,7 +139,7 @@ void Worms::move(int dx, int dy) {
     int nx = hx + dx;
     int ny = hy + dy;
     /* If the new location is out of game board, or part of the worm, exit */
-    if (nx < 0 || ny < 0 || nx >= WIDTH || ny >= HEIGHT || get(nx, ny) == 'o') {
+    if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS || get(nx, ny) == 'o') {
         gameOver = true;
         scorePermanence = score();
         for(int i = 0; i < path.size(); i++) {
