@@ -77,9 +77,14 @@ int Worms::randomY() {
  */
 void Worms::placeGoal() {
     std::cout << "Placing goal..." << std::endl;
-    int x = randomX();
-    int y = randomY();
-    gameboard[x][y] = (char)(48 + randomGoal());
+    while (true) {
+        int x = randomX();
+        int y = randomY();
+        if (get(x, y) == 'x') {
+            gameboard[x][y] = (char)(48 + randomGoal());
+            break;
+        }
+    }
 }
 
 /*!
@@ -162,6 +167,8 @@ void Worms::move(int dx, int dy) {
         set(hx, hy, BODY_CELL);
         /* Set the new head to a head */
         set(nx, ny, HEAD_CELL);
+
+        placeGoal();
 
         /* Push new head to the data structure */
         std::vector<int> hp {nx, ny};
