@@ -1,35 +1,21 @@
 #include "robotstest.h"
-#include "../engines/robots.h"
-#include "gtest/gtest.h"
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <utility>
+RobotsTest::RobotsTest() {
 
-// The fixture for testing class Robots.
-class RobotsTest : public ::testing::Test {
-protected:
+}
 
-    RobotsTest() {
+RobotsTest::~RobotsTest() {
 
-    }
+}
 
-    virtual ~RobotsTest() {
+void RobotsTest::SetUp() {
+    robots.redraw();
+}
 
-    }
+void RobotsTest::TearDown() {
 
-    virtual void SetUp() {
-        robots.redraw();
-    }
+}
 
-    virtual void TearDown() {
-
-    }
-
-    Robots robots;
-
-};
 
 /****************
  * Robots Tests *

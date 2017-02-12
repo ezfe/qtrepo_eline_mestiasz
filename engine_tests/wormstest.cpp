@@ -1,32 +1,21 @@
 #include "wormstest.h"
-#include "../engines/worms.h"
-#include "gtest/gtest.h"
 
-#include <iostream>
-#include <string>
-#include <vector>
 
-// The fixture for testing class Worms.
-class WormsTest : public ::testing::Test {
-protected:
-    WormsTest() {
+WormsTest::WormsTest() {
 
-    }
+}
 
-    virtual ~WormsTest() {
+WormsTest::~WormsTest() {
 
-    }
+}
 
-    virtual void SetUp() {
+void WormsTest::SetUp() {
 
-    }
+}
 
-    virtual void TearDown() {
+void WormsTest::TearDown() {
 
-    }
-
-    Worms worms;
-};
+}
 
 
 /****************
