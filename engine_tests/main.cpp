@@ -37,11 +37,16 @@ protected:
 
 TEST_F(RobotsTest, TEST_PRINT_GAMEBOARD){
     std::string str = robots.printGameboard();
-    std::string expected = "#0:      \n"
-                           "#1:      \n"
-                           "#2:      \n"
-                           "#3:      \n"
-                           "#4:      \n";
+    std::string expected = "#0:             \n"
+                           "#1:             \n"
+                           "#2:             \n"
+                           "#3:             \n"
+                           "#4:             \n"
+                           "#5:             \n"
+                           "#6:             \n"
+                           "#7:             \n"
+                           "#8:             \n"
+                           "#9:             \n";
     EXPECT_EQ(expected, str) << "The string representation of the gameboard is wrong!";
 }
 
@@ -67,7 +72,7 @@ TEST_F(RobotsTest, TEST_MOVE_ROBOT){
     EXPECT_EQ('+', robots.getItem(2, 2)) << "Robot should have been placed here";
     EXPECT_EQ(true, robots.ifMoved(2, 2)) << "The robot moved to this position, so it should become true";
 
-    robots.moveRobot(2, 2, 5, 3);
+    robots.moveRobot(2, 2, 11, 3);
     EXPECT_EQ('+', robots.getItem(2, 2)) << "Robot cannot leave the grid";
     EXPECT_EQ(true, robots.ifMoved(2, 2)) << "This value should stay true";
 }

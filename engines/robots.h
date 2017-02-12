@@ -26,10 +26,10 @@ public:
     void setScore(int score);                   //  Change score
     int getScore();                             //  Getter for score counter
     int getLevel();                             //  Getter for level counter
+    int checkWinner();                          //  Find if anybody lost already
+    bool ifMoved(int i, int j);                 //  Find if someone already moved to that cell
     bool isAlive();                             //  Check if player is alive
     char getItem(int i, int j);                 //  Get item from gameboard container
-    bool ifMoved(int i, int j);                 //  Find if someone already moved to that cell
-    int checkWinner();                          //  Find if anybody lost already
     std::vector<char> getOptions();             //  Getter fot options container
     std::string printGameboard();               //  Print the gameboard, displaying all the robots and player
     std::pair<int, int> findEmptyCell();        //  Find empty cell, where player or robot can be placed
@@ -50,6 +50,7 @@ public:
     void setCurrentPosition(int i, int j);      //  Update player's position
     std::pair<int, int> getCurrentPosition();   //  Getter for player's current position
 
+    /* Methods that should be implemented in future */
     void checkOptions();                        //  Check which options were provided
     void showRanking();                         //  Display the score list
     void jump();                                //  Jump, do not show intermediate positions
@@ -60,11 +61,11 @@ private:
     char gameboard [ROWS][COLS];            //  Gameboard container
     bool movedObjects [ROWS][COLS];         //  Displaying whether the object placed in that cell
                                             //  already changed the position or not
-    std::vector<char> options;              //  List of options
-    std::pair<int, int> currentPosition;    //  Position of the player for the current time
+    bool alive;                             //  Find if player is alive
     int score;                              //  Score counter
     int level;                              //  Level counter
-    bool alive;                             //  Find if player is alive
+    std::vector<char> options;              //  List of options
+    std::pair<int, int> currentPosition;    //  Position of the player for the current time
 
 };
 
