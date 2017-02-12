@@ -15,41 +15,69 @@ void Robots::setupController(){
     char cmd;
     std::cout << "Insert a command" << std::endl;
 
-    std::pair<int, int> current_position = this->getCurrentPosition();
+    std::pair<int, int> current_position;
     while(std::cin >> cmd){
+        current_position = this->getCurrentPosition();
         switch(cmd){
         case 'q':
             exit(0);
             break;
+        case 'w':
+            while(this->checkWinner() == 0){
+                this->moveEachRobot();
+                std::cout << printGameboard() << std::endl;
+            }
+            break;
+        case 't':
+            this->teleport();
+            break;
+        case 'r':
+            this->redraw();
+            this->addPlayerAndRobots();
+            break;
         case 'y':
             this->move(current_position.first - 1, current_position.second - 1);
+            this->moveEachRobot();
             break;
         case 'k':
             this->move(current_position.first - 1, current_position.second);
+            this->moveEachRobot();
             break;
         case 'u':
             this->move(current_position.first - 1, current_position.second + 1);
+            this->moveEachRobot();
             break;
         case 'h':
             this->move(current_position.first, current_position.second - 1);
+            this->moveEachRobot();
             break;
         case 'l':
             this->move(current_position.first, current_position.second + 1);
+            this->moveEachRobot();
             break;
         case 'b':
             this->move(current_position.first + 1, current_position.second - 1);
+            this->moveEachRobot();
             break;
         case 'j':
             this->move(current_position.first + 1, current_position.second);
+            this->moveEachRobot();
             break;
         case 'n':
             this->move(current_position.first + 1, current_position.second + 1);
+            this->moveEachRobot();
             break;
         default:
             std::cout << "Invalid Command!" << std::endl;
         }
 
         std::cout << this->printGameboard();
+        if(this->checkWinner() != 0){
+            std::cout << "Score: " << this->getScore() << std::endl << std::endl << std::endl;
+            this->redraw();
+            this->addPlayerAndRobots();
+            std::cout << this->printGameboard();
+        }
         std::cout << "Insert a command" << std::endl;
     }
 }
@@ -135,6 +163,10 @@ void Robots::setMoved(int i, int j, bool b){
     movedObjects[i][j] = b;
 }
 
+void Robots::setScore(int score){
+    this->score = score;
+}
+
 void Robots::addPlayerAndRobots(){
     std::pair<int, int> empty_cell;
     for(int i = 0; i < ROBOTS; i++){
@@ -147,29 +179,33 @@ void Robots::addPlayerAndRobots(){
 
 }
 
+void Robots::initMovedObjects(){
+    for(int i = 0; i < ROWS; i++){
+        for(int j = 0; j < COLS; j++){
+            this->setMoved(i, j, false);
+        }
+    }
+}
+
 
 /* Robots */
 
 void Robots::moveRobot(int i0, int j0, int i1, int j1){
     if(i1 < 0 || i1 >= ROWS || j1 < 0 || j1 >= COLS){
-        std::cout << "Robot cannot leave the grid" << std::endl;
         return;
     }
 
     switch (this->getItem(i1, j1)){
     case '@':
-        std::cout << "Kill the player";
         this->die();
         break;
     case '+':
         this->setItem(i0, j0, ' ');
         this->killRobot(i1, j1);
-        std::cout << "Kill both robots";
         break;
     case '*':
         this->setItem(i0, j0, ' ');
         this->killRobot(i1, j1);
-        std::cout << "Kill the robot that moved to that cell";
         break;
     case ' ':
         this->setItem(i0, j0, ' ');
@@ -181,7 +217,21 @@ void Robots::moveRobot(int i0, int j0, int i1, int j1){
     }
 }
 
+void Robots::moveEachRobot(){
+    this->initMovedObjects();
+
+    for(int i = 0; i < ROWS; i++){
+        for(int j = 0; j < COLS; j++){
+            if(this->getItem(i, j) == '+' && this->ifMoved(i, j) == false){
+                std::pair<int, int> new_position = this->findCellToMove(i, j);
+                this->moveRobot(i, j, new_position.first, new_position.second);
+            }
+        }
+    }
+}
+
 void Robots::killRobot(int i, int j){
+    this->setScore(this->getScore() + 10);
     this->setItem(i, j, '*');
 }
 
@@ -210,7 +260,7 @@ std::pair<int, int> Robots::findCellToMove(int i, int j){
 
 void Robots::move(int i, int j){
     if(i < 0 || i >= ROWS || j < 0 || j >= COLS){
-        std::cout << "Player cannot leave the grid" << std::endl;
+        std::cout << "Player cannot leave the grid " << std::endl;
     }else{
         std::pair<int, int> current_position = this->getCurrentPosition();
         this->setItem(current_position.first, current_position.second, ' ');
@@ -239,7 +289,8 @@ void Robots::teleport(){
 
 void Robots::die(){
     this->alive = false;
-    std::cout << "Player just passed away" << std::endl;
+    std::pair<int, int> current_position = this->getCurrentPosition();
+    this->setItem(current_position.first, current_position.second, 'X');
 }
 
 void Robots::setCurrentPosition(int i, int j){
@@ -248,10 +299,6 @@ void Robots::setCurrentPosition(int i, int j){
 
 std::pair<int, int> Robots::getCurrentPosition(){
     return this->currentPosition;
-}
-
-void Robots::quit(){
-
 }
 
 void Robots::redraw(){
