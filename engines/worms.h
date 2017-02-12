@@ -30,8 +30,6 @@ public:
 
     bool isLost();
     int score();
-
-    void boardString();
 private:
     /*!
      * \brief Gameboard container

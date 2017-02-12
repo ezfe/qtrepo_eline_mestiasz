@@ -193,52 +193,78 @@ void Worms::move(int dx, int dy) {
     }
 }
 
+/*!
+ * \brief Get head location
+ * \return vector of location
+ */
 std::vector<int> Worms::getHead() {
     return path.back();
 }
 
+/*!
+ * \brief Get tail location
+ * \return vector of location
+ */
 std::vector<int> Worms::getTail() {
     return path.front();
 }
 
+/*!
+ * \brief Get location i
+ * \param i index of worm
+ * \return vector of location
+ */
 std::vector<int> Worms::queryWorm(int i) {
     return path[i];
 }
 
+/*!
+ * \brief Make the worm longer
+ */
 void Worms::extendWorm() {
     /* extension doesn't happen until next motion */
     wormModify++;
 }
 
+/*!
+ * \brief Make the worm shorter
+ */
 void Worms::trimWorm() {
     /* trim doesn't happen until next motion */
     wormModify--;
 }
 
+/*!
+ * \brief Get the actual worm length
+ * \return worm length
+ */
 int Worms::wormDataLength() {
     return path.size();
 }
 
+/*!
+ * \brief Get the expected worm length
+ * \return worm length
+ */
 int Worms::wormLength() {
     return wormDataLength() + wormModify;
 }
 
+/*!
+ * \brief Check if the game is over
+ * \return game over
+ */
 bool Worms::isLost() {
     return gameOver;
 }
 
+/*!
+ * \brief Query the score
+ * \return score
+ */
 int Worms::score() {
     if (scorePermanence != -1) {
         return scorePermanence;
     }
     return wormLength();
-}
-
-void Worms::boardString() {
-    for(int y = 0; y < HEIGHT; y++) {
-        for(int x = 0; x < WIDTH; x++) {
-            std::cout << get(x, y);
-        }
-        std::cout << std::endl;
-    }
 }
