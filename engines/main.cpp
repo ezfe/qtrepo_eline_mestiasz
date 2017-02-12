@@ -7,9 +7,5 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    Robots robots;
-
-    robots.setupController();
-
     return 0;
 }
