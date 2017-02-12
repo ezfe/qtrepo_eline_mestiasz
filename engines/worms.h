@@ -30,6 +30,8 @@ public:
 
     bool isLost();
     int score();
+
+    void boardString();
 private:
     /*!
      * \brief Gameboard container
@@ -51,6 +53,7 @@ private:
      * \brief Adjustments to worm size needed
      */
     int wormModify = 0;
+    int scorePermanence = -1;
 
     int random(int low, int high);
     int randomGoal();

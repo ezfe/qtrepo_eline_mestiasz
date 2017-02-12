@@ -11,11 +11,16 @@ Worms::Worms() {
 
     std::vector<int> pa {1, 1};
     std::vector<int> pb {2, 1};
+    std::vector<int> pc {3, 1};
     path.push_back(pa);
     path.push_back(pb);
+    path.push_back(pc);
 
     set(pa[0], pa[1], BODY_CELL);
-    set(pb[0], pb[1], HEAD_CELL);
+    set(pb[0], pb[1], BODY_CELL);
+    set(pc[0], pc[1], HEAD_CELL);
+
+    placeGoal();
 }
 
 /*!
@@ -136,6 +141,7 @@ void Worms::move(int dx, int dy) {
     /* If the new location is out of game board, or part of the worm, exit */
     if (nx < 0 || ny < 0 || nx >= WIDTH || ny >= HEIGHT || get(nx, ny) == 'o') {
         gameOver = true;
+        scorePermanence = score();
         for(int i = 0; i < path.size(); i++) {
             set(path[i][0], path[i][1], 'x');
         }
@@ -222,5 +228,17 @@ bool Worms::isLost() {
 }
 
 int Worms::score() {
+    if (scorePermanence != -1) {
+        return scorePermanence;
+    }
     return wormLength();
+}
+
+void Worms::boardString() {
+    for(int y = 0; y < HEIGHT; y++) {
+        for(int x = 0; x < WIDTH; x++) {
+            std::cout << get(x, y);
+        }
+        std::cout << std::endl;
+    }
 }
