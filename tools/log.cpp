@@ -93,6 +93,13 @@ bool Log::isOpen() {
     return fh.is_open();
 }
 
+/*!
+ * \brief Get filepath
+ */
+std::string Log::get_filepath() {
+    return filepath;
+}
+
 // The overload operator will process the incoming strings, integers, doubles, chars and
 // integer vectors, then return itself as a reference.
 // This allows chaining of multiple filehandler operations.
@@ -124,6 +131,3 @@ Log& Log::operator << (std::vector<int> v){
     return *this;
 }
 
-std::string Log::get_filepath() {
-    return filepath;
-}

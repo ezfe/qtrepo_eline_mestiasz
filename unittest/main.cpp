@@ -62,6 +62,11 @@ TEST_F(FooTest, TEST_FILE_NAMES) {
     EXPECT_EQ(c1.get_filepath(), c2.get_filepath());
 }
 
+TEST_F(FooTest, TEST_LOG_INIT) {
+    Log l1("./filename_special.txt", false);
+    EXPECT_EQ("./filename_special.txt", l1.get_filepath());
+}
+
 
 int main(int argc, char **argv) {
 
