@@ -36,7 +36,6 @@ TEST(general, TESTSIMPLE) {
 
     Log l1("./test.txt", true);
     l1 << "test " << " test " << " test " << " test " << 1 << " " << 0.11 << 'm';
-    std::cout << l1.isOpen() << " huh " << std::endl;
     l1.flush();
     l1.close();
 
@@ -45,10 +44,7 @@ TEST(general, TESTSIMPLE) {
     s2.setValue("Foo", "Bar");
     s2.saveState();
     s2.printState();
-    ASSERT_EQ(s1.get_filename(), s2.get_filename()) << s1.get_filename()
-                                                  << " and "
-                                                  << s2.get_filename()
-                                                  << " should match!";
+    ASSERT_EQ(s1.get_filename(), s2.get_filename()) << s1.get_filename() << " and " << s2.get_filename() << " should match!";
 }
 
 
@@ -57,7 +53,7 @@ TEST_F(FooTest, TESTFIXTURE) {
     ASSERT_EQ(s1.get_filename(), s2.get_filename()) << "These should match!";
 }
 
-TEST_F(FooTest, TESTFILENAMES) {
+TEST_F(FooTest, TEST_FILE_NAMES) {
     Config c1("./foo/bar/random.txt");
     Config c2;
     c2.setFileName("random.txt");
@@ -66,6 +62,32 @@ TEST_F(FooTest, TESTFILENAMES) {
     EXPECT_EQ(c1.get_filepath(), c2.get_filepath());
 }
 
+TEST_F(FooTest, TEST_FILE_NAMES) {
+    Config c1("./foo/bar/random.txt");
+    Config c2;
+    c2.setFileName("random.txt");
+    c2.setPath("./foo/bar/");
+    EXPECT_EQ(c1.get_filename(), c2.get_filename());
+    EXPECT_EQ(c1.get_filepath(), c2.get_filepath());
+}
+
+TEST_F(FooTest, TEST_FILE_NAMES) {
+    Config c1("./foo/bar/random.txt");
+    Config c2;
+    c2.setFileName("random.txt");
+    c2.setPath("./foo/bar/");
+    EXPECT_EQ(c1.get_filename(), c2.get_filename());
+    EXPECT_EQ(c1.get_filepath(), c2.get_filepath());
+}
+
+TEST_F(FooTest, TEST_FILE_NAMES) {
+    Config c1("./foo/bar/random.txt");
+    Config c2;
+    c2.setFileName("random.txt");
+    c2.setPath("./foo/bar/");
+    EXPECT_EQ(c1.get_filename(), c2.get_filename());
+    EXPECT_EQ(c1.get_filepath(), c2.get_filepath());
+}
 
 int main(int argc, char **argv) {
 
