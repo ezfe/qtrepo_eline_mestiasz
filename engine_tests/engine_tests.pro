@@ -20,7 +20,9 @@ HEADERS += ../engines/macros.h \
     wormstest.h
 
 HEADERS +=  ../engines/robots.h \
-            ../engines/worms.h
+            ../engines/worms.h \
+            ../engines/engine.h
 
 SOURCES +=  ../engines/robots.cpp \
-            ../engines/worms.cpp
+            ../engines/worms.cpp \
+            ../engines/engine.cpp
