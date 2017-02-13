@@ -53,6 +53,20 @@ TEST_F(FooTest, TESTFIXTURE) {
     ASSERT_EQ(s1.get_filename(), s2.get_filename()) << "These should match!";
 }
 
+<<<<<<< HEAD
+TEST_F(FooTest, TEST_FILE_NAMES) {
+=======
+TEST_F(FooTest, TESTCONFIGFILENAMES) {
+>>>>>>> origin/master
+    Config c1("./foo/bar/random.txt");
+    Config c2;
+    c2.setFileName("random.txt");
+    c2.setPath("./foo/bar/");
+    EXPECT_EQ(c1.get_filename(), c2.get_filename());
+    EXPECT_EQ(c1.get_filepath(), c2.get_filepath());
+}
+
+<<<<<<< HEAD
 TEST_F(FooTest, TEST_FILE_NAMES) {
     Config c1("./foo/bar/random.txt");
     Config c2;
@@ -78,15 +92,11 @@ TEST_F(FooTest, TEST_FILE_NAMES) {
     c2.setPath("./foo/bar/");
     EXPECT_EQ(c1.get_filename(), c2.get_filename());
     EXPECT_EQ(c1.get_filepath(), c2.get_filepath());
-}
-
-TEST_F(FooTest, TEST_FILE_NAMES) {
-    Config c1("./foo/bar/random.txt");
-    Config c2;
-    c2.setFileName("random.txt");
-    c2.setPath("./foo/bar/");
-    EXPECT_EQ(c1.get_filename(), c2.get_filename());
-    EXPECT_EQ(c1.get_filepath(), c2.get_filepath());
+=======
+TEST_F(FooTest, TESTLOGINIT) {
+    Log l1("./filename_special.txt", false);
+    EXPECT_EQ("./filename_special.txt", l1.get_filepath());
+>>>>>>> origin/master
 }
 
 int main(int argc, char **argv) {

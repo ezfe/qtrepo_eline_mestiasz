@@ -39,6 +39,8 @@ public:
 
     /* Query the file handler's state */
     bool isOpen();
+
+    std::string get_filepath();
 private:
     /* Path of file */
     std::string filepath;
