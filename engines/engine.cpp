@@ -1,6 +1,9 @@
 #include "engine.h"
 
-Engine::Engine() {
+Engine::Engine(int rows, int cols) {
+    ROWS = rows;
+    COLS = cols;
+
     gameboard = new char*[ROWS];
     for(int i = 0; i < ROWS; i++) {
         gameboard[i] = new char[COLS];

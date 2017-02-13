@@ -5,12 +5,12 @@
 
 class Engine {
 public:
-    Engine();
+    Engine(int rows, int cols);
     ~Engine();
 
 protected:
-    const int ROWS = 4;
-    const int COLS = 4;
+    int ROWS = 4;
+    int COLS = 4;
 
     char** gameboard;
 };

@@ -16,7 +16,7 @@ protected:
     virtual void SetUp();
     virtual void TearDown();
 
-    Worms worms;
+    Worms worms(10, 10);
 };
 
 #endif // WORMSTEST_H

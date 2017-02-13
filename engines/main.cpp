@@ -8,7 +8,7 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    Engine();
+    Worms(10, 10);
 
     return 0;
 

@@ -1,6 +1,7 @@
 #include "worms.h"
 
-Worms::Worms() {
+Worms::Worms(int rows, int cols): Engine(rows, cols) {
+
     std::srand(time(NULL));
 
     for(int x = 0; x < COLS; x++) {

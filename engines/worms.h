@@ -1,15 +1,15 @@
 #ifndef WORMS_H
 #define WORMS_H
 
-#include "macros.h"
+#include "engine.h"
 
 #include <iostream>
 #include <vector>
 #include <deque>
 
-class Worms {
+class Worms: public Engine {
 public:
-    Worms();
+    Worms(int rows, int cols);
     void set(int x, int y, char val);
     char get(int x, int y);
 
@@ -31,13 +31,6 @@ public:
     bool isLost();
     int score();
 private:
-    /*!
-     * \brief Gameboard container
-     *
-     * Addressed in [x][y] manner
-     */
-    char gameboard[COLS][ROWS];
-
     const char EMPTY_CELL = 'x';
     const char HEAD_CELL = '@';
     const char BODY_CELL = 'o';
