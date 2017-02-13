@@ -8,12 +8,11 @@
 #include <sstream>
 #include <utility>
 
-#include "macros.h"
+#include "engine.h"
 
-
-class Robots {
+class Robots: public Engine {
 public:
-    Robots();
+    Robots(int rows, int cols, int robots);
     ~Robots();
 
     void setupController();
@@ -56,8 +55,7 @@ public:
 
 
 private:
-    char gameboard [ROWS][COLS];            //  Gameboard container
-    bool movedObjects [ROWS][COLS];         //  Displaying whether the object placed in that cell
+    bool** movedObjects;          //  Displaying whether the object placed in that cell
                                             //  already changed the position or not
     bool alive;                             //  Find if player is alive
     int score;                              //  Score counter
@@ -65,6 +63,7 @@ private:
     std::vector<char> options;              //  List of options
     std::pair<int, int> currentPosition;    //  Position of the player for the current time
 
+    char ROBOTS;
 };
 
 #endif // ROBOTS_H

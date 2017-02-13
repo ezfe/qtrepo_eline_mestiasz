@@ -10,6 +10,5 @@ SOURCES += main.cpp \
 
 HEADERS += \
     robots.h \
-    macros.h \
     worms.h \
     engine.h

@@ -15,10 +15,6 @@ INCLUDEPATH +=  ../gtest                                    \
                 ../gtest/googletest/include                 \
                 ../gtest/googletest/include/gtest
 
-HEADERS += ../engines/macros.h \
-    robotstest.h \
-    wormstest.h
-
 HEADERS +=  ../engines/robots.h \
             ../engines/worms.h \
             ../engines/engine.h

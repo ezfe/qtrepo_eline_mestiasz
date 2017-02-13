@@ -4,9 +4,9 @@ Worms::Worms(int rows, int cols): Engine(rows, cols) {
 
     std::srand(time(NULL));
 
-    for(int x = 0; x < COLS; x++) {
-        for(int y = 0; y < ROWS; y++) {
-            set(x, y, EMPTY_CELL);
+    for(int i = 0; i < ROWS; i++) {
+        for(int j = 0; j < COLS; j++) {
+            set(i, j, EMPTY_CELL);
         }
     }
 
@@ -17,9 +17,9 @@ Worms::Worms(int rows, int cols): Engine(rows, cols) {
     path.push_back(pb);
     path.push_back(pc);
 
-    set(pa[0], pa[1], BODY_CELL);
-    set(pb[0], pb[1], BODY_CELL);
-    set(pc[0], pc[1], HEAD_CELL);
+    set(pa[1], pa[0], BODY_CELL);
+    set(pb[1], pb[0], BODY_CELL);
+    set(pc[1], pc[0], HEAD_CELL);
 
     placeGoal();
 }
@@ -66,8 +66,8 @@ void Worms::placeGoal() {
     while (true) {
         int x = randomX();
         int y = randomY();
-        if (get(x, y) == 'x') {
-            gameboard[x][y] = (char)(48 + randomGoal());
+        if (get(y, x) == 'x') {
+            set(y, x, (char)(48 + randomGoal()));
             break;
         }
     }
@@ -120,40 +120,40 @@ void Worms::move(int dx, int dy) {
     int nx = hx + dx;
     int ny = hy + dy;
     /* If the new location is out of game board, or part of the worm, exit */
-    if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS || get(nx, ny) == 'o') {
+    if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS || get(ny, nx) == 'o') {
         gameOver = true;
         scorePermanence = score();
         for(int i = 0; i < path.size(); i++) {
-            set(path[i][0], path[i][1], 'x');
+            set(path[i][1], path[i][0], 'x');
         }
         path.clear();
         std::cout << "Collision, die" << std::endl;
     } else {
         /* Check for points */
-        if (get(nx, ny) == '1') {
+        if (get(ny, nx) == '1') {
             wormModify += 1;
-        } else if (get(nx, ny) == '2') {
+        } else if (get(ny, nx) == '2') {
             wormModify += 2;
-        } else if (get(nx, ny) == '3') {
+        } else if (get(ny, nx) == '3') {
             wormModify += 3;
-        } else if (get(nx, ny) == '4') {
+        } else if (get(ny, nx) == '4') {
             wormModify += 4;
-        } else if (get(nx, ny) == '5') {
+        } else if (get(ny, nx) == '5') {
             wormModify += 5;
-        } else if (get(nx, ny) == '6') {
+        } else if (get(ny, nx) == '6') {
             wormModify += 6;
-        } else if (get(nx, ny) == '7') {
+        } else if (get(ny, nx) == '7') {
             wormModify += 7;
-        } else if (get(nx, ny) == '8') {
+        } else if (get(ny, nx) == '8') {
             wormModify += 8;
-        } else if (get(nx, ny) == '9') {
+        } else if (get(ny, nx) == '9') {
             wormModify += 9;
         }
 
         /* Set the current head to a body */
-        set(hx, hy, BODY_CELL);
+        set(hy, hx, BODY_CELL);
         /* Set the new head to a head */
-        set(nx, ny, HEAD_CELL);
+        set(ny, nx, HEAD_CELL);
 
         placeGoal();
 
@@ -168,7 +168,7 @@ void Worms::move(int dx, int dy) {
         while(wormModify < 0) {
             std::vector<int> tp = path[0];
             path.pop_front();
-            set(tp[0], tp[1], 'x');
+            set(tp[1], tp[0], 'x');
             wormModify++;
         }
     }

@@ -26,8 +26,8 @@ Engine::~Engine() {
  * \param y location
  * \param val value to set
  */
-void Engine::set(int x, int y, char val) {
-    gameboard[x][y] = val;
+void Engine::set(int i, int j, char val) {
+    gameboard[i][j] = val;
 }
 
 /*!
@@ -36,6 +36,14 @@ void Engine::set(int x, int y, char val) {
  * \param y location
  * \return value at location
  */
-char Engine::get(int x, int y) {
-    return gameboard[x][y];
+char Engine::get(int i, int j) {
+    return gameboard[i][j];
+}
+
+int Engine::getWidth() {
+    return COLS;
+}
+
+int Engine::getHeight() {
+    return ROWS;
 }

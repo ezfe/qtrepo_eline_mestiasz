@@ -1,9 +1,21 @@
 #include "robots.h"
 
-Robots::Robots(){
+Robots::Robots(int rows, int cols, int robots): Engine(rows, cols) {
     std::cout << "Gameboard: " << gameboard << " " << std::endl;
     this->redraw();
     this->addPlayerAndRobots();
+    this->ROBOTS = robots;
+
+    movedObjects = new bool*[rows];
+    for(int i = 0; i < rows; i++) {
+        movedObjects[i] = new bool[cols];
+    }
+
+    for(int j = 0; j < rows; j++) {
+        for(int i = 0; i < cols; i++) {
+            movedObjects[i][j] = false;
+        }
+    }
 }
 
 Robots::~Robots(){
@@ -123,7 +135,7 @@ bool Robots::isAlive(){
  * \return The symbolt from gameboard - char
  */
 char Robots::getItem(int i, int j){
-    return gameboard[i][j];
+    return get(i, j);
 }
 
 /*!
@@ -213,7 +225,7 @@ std::pair<int, int> Robots::findEmptyCell(){
  * \param symbol - value that we want to set
  */
 void Robots::setItem(int i, int j, char symbol){
-    gameboard[i][j] = symbol;
+    set(i, j, symbol);
     if(symbol == '@') this->setCurrentPosition(i, j);
 }
 
