@@ -1,6 +1,6 @@
 #include "worms.h"
 #include "robots.h"
-#include "macros.h"
+#include "engine.h"
 
 #include <iostream>
 
@@ -8,8 +8,7 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    Robots robots;
-    robots.setupController();
+    Engine();
 
     return 0;
 

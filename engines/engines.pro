@@ -5,9 +5,11 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     robots.cpp \
-    worms.cpp
+    worms.cpp \
+    engine.cpp
 
 HEADERS += \
     robots.h \
     macros.h \
-    worms.h
+    worms.h \
+    engine.h
