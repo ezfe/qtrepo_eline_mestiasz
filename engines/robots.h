@@ -63,7 +63,7 @@ private:
     std::vector<char> options;              //  List of options
     std::pair<int, int> currentPosition;    //  Position of the player for the current time
 
-    char ROBOTS;
+    int ROBOTS;
 };
 
 #endif // ROBOTS_H
