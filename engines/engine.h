@@ -8,8 +8,10 @@ public:
     Engine(int rows, int cols);
     ~Engine();
 
-    void set(int x, int y, char val);
-    char get(int x, int y);
+    void set(int i, int j, char val);
+    char get(int i, int j);
+    void setXY(int x, int y, char val);
+    char getXY(int x, int y);
 
     int getWidth();
     int getHeight();

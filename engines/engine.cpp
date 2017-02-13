@@ -22,12 +22,32 @@ Engine::~Engine() {
 
 /*!
  * \brief Set gameboard value
- * \param x location
  * \param y location
+ * \param x location
  * \param val value to set
  */
 void Engine::set(int i, int j, char val) {
     gameboard[i][j] = val;
+}
+
+/*!
+ * \brief Set gameboard value
+ * \param x location
+ * \param y location
+ * \param val value to set
+ */
+void Engine::setXY(int x, int y, char val) {
+    gameboard[y][x] = val;
+}
+
+/*!
+ * \brief Get the gameboard value
+ * \param y location
+ * \param x location
+ * \return
+ */
+char Engine::get(int i, int j) {
+    return gameboard[i][j];
 }
 
 /*!
@@ -36,8 +56,8 @@ void Engine::set(int i, int j, char val) {
  * \param y location
  * \return value at location
  */
-char Engine::get(int i, int j) {
-    return gameboard[i][j];
+char Engine::getXY(int x, int y) {
+    return gameboard[y][x];
 }
 
 int Engine::getWidth() {
