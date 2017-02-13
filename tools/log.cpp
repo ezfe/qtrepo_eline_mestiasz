@@ -124,3 +124,6 @@ Log& Log::operator << (std::vector<int> v){
     return *this;
 }
 
+std::string Log::get_filepath() {
+    return filepath;
+}

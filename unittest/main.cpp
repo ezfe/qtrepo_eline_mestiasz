@@ -57,7 +57,7 @@ TEST_F(FooTest, TESTFIXTURE) {
     ASSERT_EQ(s1.get_filename(), s2.get_filename()) << "These should match!";
 }
 
-TEST_F(FooTest, TESTFILENAMES) {
+TEST_F(FooTest, TESTCONFIGFILENAMES) {
     Config c1("./foo/bar/random.txt");
     Config c2;
     c2.setFileName("random.txt");
@@ -66,6 +66,10 @@ TEST_F(FooTest, TESTFILENAMES) {
     EXPECT_EQ(c1.get_filepath(), c2.get_filepath());
 }
 
+TEST_F(FooTest, TESTLOGINIT) {
+    Log l1("./filename_special.txt", false);
+    EXPECT_EQ("./filename_special.txt", l1.get_filepath());
+}
 
 int main(int argc, char **argv) {
 
