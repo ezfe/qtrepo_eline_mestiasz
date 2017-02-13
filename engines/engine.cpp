@@ -19,3 +19,23 @@ Engine::Engine(int rows, int cols) {
 Engine::~Engine() {
     // What to do here?
 }
+
+/*!
+ * \brief Set gameboard value
+ * \param x location
+ * \param y location
+ * \param val value to set
+ */
+void Engine::set(int x, int y, char val) {
+    gameboard[x][y] = val;
+}
+
+/*!
+ * \brief Get the gameboard value
+ * \param x location
+ * \param y location
+ * \return value at location
+ */
+char Engine::get(int x, int y) {
+    return gameboard[x][y];
+}

@@ -8,6 +8,8 @@ public:
     Engine(int rows, int cols);
     ~Engine();
 
+    void set(int x, int y, char val);
+    char get(int x, int y);
 protected:
     int ROWS = 4;
     int COLS = 4;

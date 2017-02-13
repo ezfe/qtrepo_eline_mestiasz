@@ -25,26 +25,6 @@ Worms::Worms(int rows, int cols): Engine(rows, cols) {
 }
 
 /*!
- * \brief Set gameboard value
- * \param x location
- * \param y location
- * \param val value to set
- */
-void Worms::set(int x, int y, char val) {
-    gameboard[x][y] = val;
-}
-
-/*!
- * \brief Get the gameboard value
- * \param x location
- * \param y location
- * \return value at location
- */
-char Worms::get(int x, int y) {
-    return gameboard[x][y];
-}
-
-/*!
  * \brief Generate random number
  * \param low value (inclusive)
  * \param high value (inclusive)

@@ -10,8 +10,6 @@
 class Worms: public Engine {
 public:
     Worms(int rows, int cols);
-    void set(int x, int y, char val);
-    char get(int x, int y);
 
     void pressUp();
     void pressDown();
