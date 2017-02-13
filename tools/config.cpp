@@ -146,7 +146,11 @@ void Config::setCompletePath(std::string complete_path) {
  ****************/
 
 std::string Config::get_filename(){
-    return path + file_name;
+    return file_name;
+}
+
+std::string Config::get_filepath(){
+    return path;
 }
 
 /*!

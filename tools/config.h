@@ -41,7 +41,7 @@ public:
     void clearState();
 
     std::string get_filename();
-
+    std::string get_filepath();
 private:
     std::map<std::string, std::string> state;
     std::string path;
