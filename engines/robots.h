@@ -42,8 +42,6 @@ public:
                                                         //  so robots can catch player sooner
     /* Methods describing player's behavior */
     void move(int i0, int j0);                  //  Move the player
-    void doNothing();                           //  Do not allow player do anything while it's possible
-    void wait();                                //  Make player wait until the end of the game
     void teleport();                            //  Teleport the player
     void redraw();                              //  Restart/Reinitialize the game
     void die();                                 //  Set alive value to false
