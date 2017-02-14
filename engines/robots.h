@@ -55,7 +55,7 @@ public:
 
 
 private:
-    bool** movedObjects;          //  Displaying whether the object placed in that cell
+    bool** movedObjects;                    //  Displaying whether the object placed in that cell
                                             //  already changed the position or not
     bool alive;                             //  Find if player is alive
     int score;                              //  Score counter

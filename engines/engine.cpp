@@ -11,7 +11,7 @@ Engine::Engine(int rows, int cols) {
 
     for(int j = 0; j < ROWS; j++) {
         for(int i = 0; i < COLS; i++) {
-            gameboard[i][j] = '_';
+            gameboard[i][j] = ' ';
         }
     }
 }

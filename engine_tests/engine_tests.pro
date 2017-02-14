@@ -8,6 +8,9 @@ SOURCES += \
     robotstest.cpp \
     wormstest.cpp
 
+HEADERS +=  robotstest.h \
+            wormstest.h
+
 SOURCES += ../gtest/googletest/src/gtest-all.cc
 
 INCLUDEPATH +=  ../gtest                                    \

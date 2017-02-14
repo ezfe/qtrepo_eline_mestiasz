@@ -46,7 +46,7 @@ TEST_F(RobotsTest, TEST_FIND_EMPTY_CELL){
         counter++;
     }
 
-    EXPECT_EQ(robots->getWidth()*robots->getHeight(), counter) << "The number of empty places should equal to total number of cells";
+    EXPECT_EQ(robots->getWidth() * robots->getHeight(), counter) << "The number of empty places should equal to total number of cells";
 }
 
 

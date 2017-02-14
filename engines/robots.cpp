@@ -2,9 +2,6 @@
 
 Robots::Robots(int rows, int cols, int robots): Engine(rows, cols) {
     std::cout << "Gameboard: " << gameboard << " " << std::endl;
-    this->redraw();
-    this->addPlayerAndRobots();
-    this->ROBOTS = robots;
 
     movedObjects = new bool*[rows];
     for(int i = 0; i < rows; i++) {
@@ -16,6 +13,10 @@ Robots::Robots(int rows, int cols, int robots): Engine(rows, cols) {
             movedObjects[i][j] = false;
         }
     }
+
+    this->redraw();
+    this->addPlayerAndRobots();
+    this->ROBOTS = robots;
 }
 
 Robots::~Robots(){
@@ -433,7 +434,7 @@ void Robots::redraw(){
     std::srand((unsigned)time( NULL ));
     // Reset gameboard containers
     for(int i = 0; i != ROWS; i++){
-        for(int j =0; j != COLS; j++){
+        for(int j = 0; j != COLS; j++){
             this->setItem(i, j, ' ');
             this->setMoved(i, j, false);
         }

@@ -20,14 +20,13 @@ void Screen::init(std::function<void(char)> controller){
         int cmd = getch();
 
         controller(cmd);
-        draw_screen(v);
+        drawScreen();
 
     } while(continue_looping);
 
     endwin();
 
     std::cout << "exiting main\n";
-    return 0;
 }
 
 void Screen::drawScreen(){

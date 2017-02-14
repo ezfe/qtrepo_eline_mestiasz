@@ -9,7 +9,7 @@ class Screen {
 public:
     Screen();
 
-    void init();
+    void init(std::function<void(char)> controller);
     void drawScreen();
 
     bool continue_looping;
