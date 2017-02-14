@@ -253,7 +253,7 @@ void Robots::setScore(int score){
  */
 void Robots::addPlayerAndRobots(){
     std::pair<int, int> empty_cell;
-    for(int i = 0; i < ROBOTS; i++){
+    for(int i = 0; i < ROWS; i++){
         empty_cell = findEmptyCell();
         this->setItem(empty_cell.first, empty_cell.second, '+');
     }
