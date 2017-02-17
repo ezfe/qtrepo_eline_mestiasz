@@ -18,6 +18,8 @@ public:
     int getWidth();
     int getHeight();
 
+    virtual std::string controller(char cmd) = 0;
+
     std::string printGameboard();
 protected:
     int ROWS = 4;
