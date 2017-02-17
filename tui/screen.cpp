@@ -4,7 +4,7 @@ Screen::Screen(){
 
 }
 
-void Screen::init(std::function<void(char)> controller){
+void Screen::init(Robots& robots){
     initscr();
     curs_set(0);
 
@@ -13,14 +13,14 @@ void Screen::init(std::function<void(char)> controller){
     keypad(stdscr, TRUE);
 
     continue_looping = true;
-    drawScreen();
+    drawScreen(robots.controller('p'));
 
     do {
         refresh();
         int cmd = getch();
-
-        controller(cmd);
-        drawScreen();
+        if(cmd == 'q') break;
+        std::string str = robots.controller(cmd);
+        drawScreen(str);
 
     } while(continue_looping);
 
@@ -29,18 +29,10 @@ void Screen::init(std::function<void(char)> controller){
     std::cout << "exiting main\n";
 }
 
-void Screen::drawScreen(){
+void Screen::drawScreen(std::string str){
 
     std::string display;
     clear();
 
-    mvprintw(2, 4, "Current Value : ");
-    display = "11";
-    mvprintw(2, 21, display.c_str());
-
-    // print the instructions for manipulating the Value object
-    mvprintw(5, 4, "Up Arrow    : increments value");
-    mvprintw(6, 4, "Down Arrow  : decrements value");
-    mvprintw(7, 4, "Left Arrow  : resets value to zero");
-    mvprintw(8, 4, "Right Arrow : exits program");
+    mvprintw(0, 0, str.c_str());
 }

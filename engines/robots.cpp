@@ -104,6 +104,73 @@ void Robots::setupController(){
     }
 }
 
+
+std::string Robots::controller(char cmd){
+    std::pair<int, int> current_position = this->getCurrentPosition();
+    switch(cmd){
+    case 'w':
+        while(this->checkWinner() == 0){
+            this->moveEachRobot();
+            std::cout << printGameboard() << std::endl;
+        }
+        break;
+    case 't':
+        this->teleport();
+        break;
+    case 'r':
+        this->redraw();
+        this->addPlayerAndRobots();
+        break;
+    case 'y':
+        this->move(current_position.first - 1, current_position.second - 1);
+        this->moveEachRobot();
+        break;
+    case 'k':
+        this->move(current_position.first - 1, current_position.second);
+        this->moveEachRobot();
+        break;
+    case 'u':
+        this->move(current_position.first - 1, current_position.second + 1);
+        this->moveEachRobot();
+        break;
+    case 'h':
+        this->move(current_position.first, current_position.second - 1);
+        this->moveEachRobot();
+        break;
+    case 'l':
+        this->move(current_position.first, current_position.second + 1);
+        this->moveEachRobot();
+        break;
+    case 'b':
+        this->move(current_position.first + 1, current_position.second - 1);
+        this->moveEachRobot();
+        break;
+    case 'j':
+        this->move(current_position.first + 1, current_position.second);
+        this->moveEachRobot();
+        break;
+    case 'n':
+        this->move(current_position.first + 1, current_position.second + 1);
+        this->moveEachRobot();
+        break;
+    default:
+        std::cout << "Invalid Command!" << std::endl;
+    }
+
+    // Check if there is winner, if so start new game and display the final score
+    if(this->checkWinner() != 0){
+        std::stringstream game_over;
+        game_over << "Score: " << this->getScore() << std::endl << std::endl << std::endl;
+        this->redraw();
+        this->addPlayerAndRobots();
+        game_over << "------- New Game -------" << std::endl << this->printGameboard();
+        return game_over.str();
+    }
+
+    return this->printGameboard();
+
+}
+
 /* Gameboard */
 /*!
  * \brief Get the score

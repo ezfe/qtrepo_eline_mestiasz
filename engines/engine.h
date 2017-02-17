@@ -2,6 +2,8 @@
 #define ENGINE_H
 
 #include <iostream>
+#include <string>
+
 
 class Engine {
 public:

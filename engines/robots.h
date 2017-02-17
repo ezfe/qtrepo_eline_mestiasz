@@ -16,6 +16,7 @@ public:
     ~Robots();
 
     void setupController();
+    std::string controller(char cmd);
 
     /* Get information about the gameboard and its settlers */
     void addPlayerAndRobots();                  //  Add player and robots to the gameboard at random location

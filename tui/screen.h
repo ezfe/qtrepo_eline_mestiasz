@@ -5,12 +5,14 @@
 #include <string>
 #include <curses.h>
 
+#include "../engines/robots.h"
+
 class Screen {
 public:
     Screen();
 
-    void init(std::function<void(char)> controller);
-    void drawScreen();
+    void init(Robots& robots);
+    void drawScreen(std::string str);
 
     bool continue_looping;
 };

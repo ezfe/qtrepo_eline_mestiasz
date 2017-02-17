@@ -67,3 +67,8 @@ int Engine::getWidth() {
 int Engine::getHeight() {
     return ROWS;
 }
+
+//void Engine::initScreen(){
+//    Screen screen;
+//    screen.init(this->controller);
+//}

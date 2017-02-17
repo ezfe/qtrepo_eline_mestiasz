@@ -4,9 +4,14 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    screen.cpp
-
-HEADERS += \
-    screen.h
+    screen.cpp \
+    ../engines/engine.cpp \
+    ../engines/robots.cpp
 
 LIBS += -lncurses
+
+HEADERS += screen.h \
+    ../engines/engine.h \
+    ../engines/robots.h
+
+
