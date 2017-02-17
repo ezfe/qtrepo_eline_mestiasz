@@ -5,7 +5,6 @@
 #include <ctime>
 #include <string>
 #include <vector>
-#include <sstream>
 #include <utility>
 
 #include "engine.h"
@@ -31,7 +30,6 @@ public:
     bool isAlive();                             //  Check if player is alive
     char getItem(int i, int j);                 //  Get item from gameboard container
     std::vector<char> getOptions();             //  Getter fot options container
-    std::string printGameboard();               //  Print the gameboard, displaying all the robots and player
     std::pair<int, int> findEmptyCell();        //  Find empty cell, where player or robot can be placed
 
     /* Methods describing robot's behavior */

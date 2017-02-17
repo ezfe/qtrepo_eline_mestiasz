@@ -246,23 +246,6 @@ std::vector<char> Robots::getOptions(){
 }
 
 /*!
- * \brief Display the gameboard
- * \return Gameboard - std::string
- */
-std::string Robots::printGameboard(){
-    std::stringstream ss;
-    for(int i = 0; i < ROWS; i++){
-        ss << "#" << i << ":   ";
-        for(int j = 0; j < COLS; j++){
-            ss << this->getItem(i, j);
-        }
-        ss << std::endl;
-    }
-
-    return ss.str();
-}
-
-/*!
  * \brief Find empty cell where player or robot can be
  * positioned in the begining of the game
  * \return Position - std::pair<int, int>

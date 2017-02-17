@@ -74,6 +74,33 @@ void Worms::placeGoal() {
 }
 
 /*!
+ * \brief Send char inputs
+ * \param cmd character pressed
+ * \return gameboard state
+ */
+std::string Worms::controller(char cmd){
+    switch(cmd){
+    case 'w':
+        this->pressUp();
+        break;
+    case 'a':
+        this->pressLeft();
+        break;
+    case 'd':
+        this->pressRight();
+        break;
+    case 's':
+        this->pressDown();
+        break;
+    default:
+        std::cout << "Invalid Command!" << std::endl;
+    }
+
+    return /*this->printGameboard()*/"...";
+
+}
+
+/*!
  * \brief Up arrow press or eq.
  */
 void Worms::pressUp() {

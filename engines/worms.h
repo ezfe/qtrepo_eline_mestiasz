@@ -11,6 +11,8 @@ class Worms: public Engine {
 public:
     Worms(int rows, int cols);
 
+    std::string controller(char cmd);
+
     void pressUp();
     void pressDown();
     void pressRight();

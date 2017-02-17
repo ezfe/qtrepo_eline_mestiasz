@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-
+#include <sstream>
 
 class Engine {
 public:
@@ -17,6 +17,8 @@ public:
 
     int getWidth();
     int getHeight();
+
+    std::string printGameboard();
 protected:
     int ROWS = 4;
     int COLS = 4;
