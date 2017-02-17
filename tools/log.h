@@ -29,7 +29,7 @@ public:
     void open();
 
     /* Open as an empty file */
-    void openAsEmpty();
+    void open_as_empty();
 
     /* Close the file handler */
     void close();
@@ -38,7 +38,7 @@ public:
     void flush();
 
     /* Query the file handler's state */
-    bool isOpen();
+    bool is_open();
 
     std::string get_filepath();
 private:

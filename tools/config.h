@@ -19,26 +19,26 @@ public:
 
     ~Config();
 
-    void generateMap();
-    void printState();
+    void generate_map();
+    void print_state();
 
     /***************
      * File System *
      ***************/
 
-    void saveState();
-    void reloadState();
-    void setPath(std::string path);
-    void setFileName(std::string file_name);
-    void setCompletePath(std::string complete_path);
+    void save_state();
+    void reload_state();
+    void set_path(std::string path);
+    void set_file_name(std::string file_name);
+    void set_complete_path(std::string complete_path);
 
     /****************
      * Manipulation *
      ****************/
 
-    std::string getValue(std::string key);
-    void setValue(std::string key, std::string value);
-    void clearState();
+    std::string get_value(std::string key);
+    void set_value(std::string key, std::string value);
+    void clear_state();
 
     std::string get_filename();
     std::string get_filepath();

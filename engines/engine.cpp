@@ -36,7 +36,7 @@ void Engine::set(int i, int j, char val) {
  * \param y location
  * \param val value to set
  */
-void Engine::setXY(int x, int y, char val) {
+void Engine::set_xy(int x, int y, char val) {
     gameboard[y][x] = val;
 }
 
@@ -56,15 +56,15 @@ char Engine::get(int i, int j) {
  * \param y location
  * \return value at location
  */
-char Engine::getXY(int x, int y) {
+char Engine::get_xy(int x, int y) {
     return gameboard[y][x];
 }
 
-int Engine::getWidth() {
+int Engine::get_width() {
     return COLS;
 }
 
-int Engine::getHeight() {
+int Engine::get_height() {
     return ROWS;
 }
 
@@ -72,7 +72,7 @@ int Engine::getHeight() {
  * \brief Display the gameboard
  * \return Gameboard - std::string
  */
-std::string Engine::printGameboard(){
+std::string Engine::print_gameboard(){
     std::stringstream ss;
     for(int i = 0; i < ROWS; i++){
         ss << "#" << i << ":   ";

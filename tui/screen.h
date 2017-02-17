@@ -13,7 +13,7 @@ public:
     ~Screen();
 
     void init();
-    virtual void drawScreen(std::string str);
+    virtual void draw_screen(std::string str);
 
     bool continue_looping;
 

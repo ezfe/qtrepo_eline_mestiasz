@@ -20,21 +20,21 @@ int main(int argc, char *argv[])
 
     err_log.flush();
     err_log.close();
-    cout << err_log.isOpen() << endl;
+    cout << err_log.is_open() << endl;
     err_log.open();
-    cout << err_log.isOpen() << endl;
+    cout << err_log.is_open() << endl;
     err_log << "yay";
     err_log.flush();
     err_log.close();
 
 
-    config.generateMap();
-    config.setValue("facebook", "facebook");
-    config.saveState();
-    config.printState();
-    config.setFileName("random_01.txt");
-    config.saveState();
-    config.printState();
+    config.generate_map();
+    config.set_value("facebook", "facebook");
+    config.save_state();
+    config.print_state();
+    config.set_file_name("random_01.txt");
+    config.save_state();
+    config.print_state();
 
 
     return 0;

@@ -2,14 +2,14 @@
 
 Config::Config() {
     SHOW_WHERE;
-    setCompletePath("./random.txt");
-    reloadState();
+    set_complete_path("./random.txt");
+    reload_state();
 }
 
 Config::Config(std::string pathToFile) {
     SHOW_WHERE;
-    setCompletePath(pathToFile);
-    reloadState();
+    set_complete_path(pathToFile);
+    reload_state();
 }
 
 Config::Config(Config &obj) {
@@ -28,13 +28,13 @@ void Config::operator=(Config &obj) {
 
 Config::~Config() {
     SHOW_WHERE;
-    saveState();
+    save_state();
 }
 
 /*!
  * \brief Populate the current map with test data
  */
-void Config::generateMap() {
+void Config::generate_map() {
     SHOW_WHERE;
     std::vector<std::string> brand_names;
     brand_names.push_back("apple");
@@ -50,7 +50,7 @@ void Config::generateMap() {
 /*!
  * \brief Print the current map
  */
-void Config::printState() {
+void Config::print_state() {
     SHOW_WHERE;
     typedef std::map<std::string, std::string>::const_iterator Iter;
     for(Iter i = state.begin(); i != state.end(); ++i){
@@ -66,7 +66,7 @@ void Config::printState() {
 /*!
  * \brief Save the current state to file
  */
-void Config::saveState() {
+void Config::save_state() {
     SHOW_WHERE;
     std::cout << "Path: " << path << file_name << std::endl;
     std::ofstream fh;
@@ -88,9 +88,9 @@ void Config::saveState() {
 /*!
  * \brief Load the current map from the file
  */
-void Config::reloadState() {
+void Config::reload_state() {
     SHOW_WHERE;
-    clearState();
+    clear_state();
     std::cout << "Path: " << path << file_name << std::endl;
     std::ifstream fh;
     std::string line;
@@ -119,14 +119,14 @@ void Config::reloadState() {
 /*!
  * \brief Set the path (not including the filename)
  */
-void Config::setPath(std::string path) {
+void Config::set_path(std::string path) {
     this -> path = path;
 }
 
 /*!
  * \brief Set the filename
  */
-void Config::setFileName(std::string file_name) {
+void Config::set_file_name(std::string file_name) {
     this -> file_name = file_name;
 }
 
@@ -135,10 +135,10 @@ void Config::setFileName(std::string file_name) {
  *
  * Seperated by last occurence of /
  */
-void Config::setCompletePath(std::string complete_path) {
+void Config::set_complete_path(std::string complete_path) {
     int splitPosition = complete_path.find_last_of("/");
-    setPath(complete_path.substr(0, splitPosition + 1));
-    setFileName(complete_path.substr(splitPosition + 1));
+    set_path(complete_path.substr(0, splitPosition + 1));
+    set_file_name(complete_path.substr(splitPosition + 1));
 }
 
 /****************
@@ -156,23 +156,23 @@ std::string Config::get_filepath(){
 /*!
  * \brief Get a value (from a key)
  */
-std::string Config::getValue(std::string key) {
+std::string Config::get_value(std::string key) {
     return state[key];
 }
 
 /*!
  * \brief Set a value (key, value)
  */
-void Config::setValue(std::string key, std::string value) {
+void Config::set_value(std::string key, std::string value) {
     state[key] = value;
 }
 
 /*!
  * \brief Clear the current map
  */
-void Config::clearState() {
+void Config::clear_state() {
     SHOW_WHERE;
     state.clear();
     std::cout << " Cleared " << std::endl;
-    printState();
+    print_state();
 }

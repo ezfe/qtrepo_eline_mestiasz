@@ -3,7 +3,7 @@
 Log::Log() {
     SHOW_WHERE;
     filepath = "./log.txt";
-    isOpenState = isOpen();
+    isOpenState = is_open();
     open();
 }
 
@@ -11,19 +11,19 @@ Log::Log() {
 Log::Log(std::string p, bool empty) {
     SHOW_WHERE;
     filepath = p;
-    isOpenState = isOpen();
-    empty ? openAsEmpty() : open();
+    isOpenState = is_open();
+    empty ? open_as_empty() : open();
 }
 
 Log::Log(Log &obj) {
     SHOW_WHERE;
     filepath = obj.filepath;
-    isOpenState = isOpen();
+    isOpenState = is_open();
 }
 
 void Log::operator =(Log &obj) {
     filepath = obj.filepath;
-    isOpenState = isOpen();
+    isOpenState = is_open();
 }
 
 /* close() file handler */
@@ -42,7 +42,7 @@ void Log::close() {
     } catch (std::exception &e) {
         std::cout << "An error occurred closing the file" << std::endl;
     }
-    isOpenState = isOpen();
+    isOpenState = is_open();
 }
 
 /*!
@@ -56,14 +56,14 @@ void Log::open() {
         std::cout << "An error occurred opening the file" << std::endl;
     }
 
-    isOpenState = isOpen();
+    isOpenState = is_open();
     fh << std::endl;
 }
 
 /*!
  * \brief Open the file as an empty one
  */
-void Log::openAsEmpty() {
+void Log::open_as_empty() {
     SHOW_WHERE;
     try {
         fh.open(filepath, std::ofstream::out | std::ofstream::trunc);
@@ -71,7 +71,7 @@ void Log::openAsEmpty() {
         std::cout << "An error occurred opening the file" << std::endl;
     }
 
-    isOpenState = isOpen();
+    isOpenState = is_open();
 }
 
 /*!
@@ -89,7 +89,7 @@ void Log::flush() {
 /*!
  * \brief Query the file handler's state
  */
-bool Log::isOpen() {
+bool Log::is_open() {
     return fh.is_open();
 }
 

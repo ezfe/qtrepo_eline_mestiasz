@@ -13,25 +13,25 @@ public:
 
     std::string controller(char cmd);
 
-    void pressUp();
-    void pressDown();
-    void pressRight();
-    void pressLeft();
+    void press_up();
+    void press_down();
+    void press_right();
+    void press_left();
 
-    void placeGoal();
+    void place_goal();
 
-    std::vector<int> getHead();
-    std::vector<int> getTail();
-    void extendWorm();
-    void trimWorm();
-    int wormLength();
-    int wormDataLength();
-    std::vector<int> queryWorm(int i);
+    std::vector<int> get_head();
+    std::vector<int> get_tail();
+    void extend_worm();
+    void trim_worm();
+    int worm_length();
+    int worm_data_length();
+    std::vector<int> query_worm(int i);
 
-    bool isLost();
+    bool is_lost();
     int score();
 
-    bool isGameFinished();
+    bool is_game_finished();
 private:
     const char EMPTY_CELL = ' ';
     const char HEAD_CELL = '@';
@@ -49,9 +49,9 @@ private:
     int scorePermanence = -1;
 
     int random(int low, int high);
-    int randomGoal();
-    int randomX();
-    int randomY();
+    int random_goal();
+    int random_x();
+    int random_y();
     void move(int dx, int dy);
 
     /*!

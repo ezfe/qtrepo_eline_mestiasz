@@ -12,16 +12,16 @@ public:
 
     void set(int i, int j, char val);
     char get(int i, int j);
-    void setXY(int x, int y, char val);
-    char getXY(int x, int y);
+    void set_xy(int x, int y, char val);
+    char get_xy(int x, int y);
 
-    int getWidth();
-    int getHeight();
+    int get_width();
+    int get_height();
 
     virtual std::string controller(char cmd) = 0;
-    virtual std::string printGameboard();
+    virtual std::string print_gameboard();
 
-    virtual bool isGameFinished() = 0;
+    virtual bool is_game_finished() = 0;
 protected:
     int ROWS = 4;
     int COLS = 4;

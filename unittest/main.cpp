@@ -41,9 +41,9 @@ TEST(general, TESTSIMPLE) {
 
     Config s1;
     Config s2("./random.txt");
-    s2.setValue("Foo", "Bar");
-    s2.saveState();
-    s2.printState();
+    s2.set_value("Foo", "Bar");
+    s2.save_state();
+    s2.print_state();
     ASSERT_EQ(s1.get_filename(), s2.get_filename()) << s1.get_filename() << " and " << s2.get_filename() << " should match!";
 }
 
@@ -56,27 +56,27 @@ TEST_F(FooTest, TESTFIXTURE) {
 TEST_F(FooTest, TEST_FILE_NAMES) {
     Config c1("./foo/bar/random.txt");
     Config c2;
-    c2.setFileName("random.txt");
-    c2.setPath("./foo/bar/");
+    c2.set_file_name("random.txt");
+    c2.set_path("./foo/bar/");
     EXPECT_EQ(c1.get_filename(), c2.get_filename());
     EXPECT_EQ(c1.get_filepath(), c2.get_filepath());
 }
 
 TEST_F(FooTest, TEST_GENERATE_MAP) {
     Config c1("./foo/bar/random.txt");
-    c1.generateMap();
-    EXPECT_EQ("applevalue", c1.getValue("apple"));
-    EXPECT_EQ("microsoftvalue", c1.getValue("microsoft"));
-    EXPECT_EQ("sonyvalue", c1.getValue("sony"));
+    c1.generate_map();
+    EXPECT_EQ("applevalue", c1.get_value("apple"));
+    EXPECT_EQ("microsoftvalue", c1.get_value("microsoft"));
+    EXPECT_EQ("sonyvalue", c1.get_value("sony"));
 }
 
 TEST_F(FooTest, TEST_CLEAR_STATE) {
     Config c1("./foo/bar/random.txt");
-    c1.generateMap();
-    c1.clearState();
-    EXPECT_EQ("", c1.getValue("apple"));
-    EXPECT_EQ("", c1.getValue("microsoft"));
-    EXPECT_EQ("", c1.getValue("sony"));
+    c1.generate_map();
+    c1.clear_state();
+    EXPECT_EQ("", c1.get_value("apple"));
+    EXPECT_EQ("", c1.get_value("microsoft"));
+    EXPECT_EQ("", c1.get_value("sony"));
 }
 
 TEST_F(FooTest, TEST_LOG_INIT) {
@@ -86,13 +86,13 @@ TEST_F(FooTest, TEST_LOG_INIT) {
 
 TEST_F(FooTest, TEST_LOG_OPEN) {
     Log l1("./filename_special.txt", true);
-    EXPECT_EQ(l1.isOpen(), true);
+    EXPECT_EQ(l1.is_open(), true);
 }
 
 TEST_F(FooTest, TEST_LOG_CLOSE) {
     Log l1("./filename_special.txt", true);
     l1.close();
-    EXPECT_EQ(l1.isOpen(), false);
+    EXPECT_EQ(l1.is_open(), false);
 }
 
 

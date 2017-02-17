@@ -17,7 +17,7 @@ void Screen::init(){
     keypad(stdscr, TRUE);
 
     continue_looping = true;
-    drawScreen(this->engine->printGameboard());
+    draw_screen(this->engine->print_gameboard());
 
     do {
         refresh();
@@ -26,7 +26,7 @@ void Screen::init(){
         if(cmd == 'q') break;
 
         std::string str = this->engine->controller(cmd);
-        drawScreen(str);
+        draw_screen(str);
 
     } while(continue_looping);
 
@@ -35,7 +35,7 @@ void Screen::init(){
     std::cout << "exiting main\n";
 }
 
-void Screen::drawScreen(std::string str){
+void Screen::draw_screen(std::string str){
     clear();
     mvprintw(0, 0, "Welcome to the game! \n Enjoy your time :)");
 }
