@@ -7,7 +7,7 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    WormsScreen screen;
+    RobotsScreen screen;
     screen.init();
 
     return 0;

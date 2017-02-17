@@ -10,6 +10,7 @@
 class Screen {
 public:
     Screen();
+    ~Screen();
 
     void init();
     virtual void drawScreen(std::string str);

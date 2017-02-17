@@ -68,11 +68,6 @@ int Engine::getHeight() {
     return ROWS;
 }
 
-//void Engine::initScreen(){
-//    Screen screen;
-//    screen.init(this->controller);
-//}
-
 /*!
  * \brief Display the gameboard
  * \return Gameboard - std::string

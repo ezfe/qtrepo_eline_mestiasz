@@ -4,6 +4,10 @@ Screen::Screen(){
 
 }
 
+Screen::~Screen(){
+    delete engine;
+}
+
 void Screen::init(){
     initscr();
     curs_set(0);
