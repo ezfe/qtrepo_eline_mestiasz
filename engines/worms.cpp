@@ -66,7 +66,7 @@ void Worms::placeGoal() {
     while (true) {
         int x = randomX();
         int y = randomY();
-        if (getXY(x, y) == 'x') {
+        if (getXY(x, y) == EMPTY_CELL) {
             setXY(x, y, (char)(48 + randomGoal()));
             break;
         }
@@ -96,8 +96,7 @@ std::string Worms::controller(char cmd){
         std::cout << "Invalid Command!" << std::endl;
     }
 
-    return /*this->printGameboard()*/"...";
-
+    return this->printGameboard();
 }
 
 /*!
@@ -151,7 +150,7 @@ void Worms::move(int dx, int dy) {
         gameOver = true;
         scorePermanence = score();
         for(int i = 0; i < path.size(); i++) {
-            setXY(path[i][0], path[i][1], 'x');
+            setXY(path[i][0], path[i][1], EMPTY_CELL);
         }
         path.clear();
         std::cout << "Collision, die" << std::endl;
@@ -159,30 +158,37 @@ void Worms::move(int dx, int dy) {
         /* Check for points */
         if (getXY(nx, ny) == '1') {
             wormModify += 1;
+            placeGoal();
         } else if (getXY(nx, ny) == '2') {
             wormModify += 2;
+            placeGoal();
         } else if (getXY(nx, ny) == '3') {
             wormModify += 3;
+            placeGoal();
         } else if (getXY(nx, ny) == '4') {
             wormModify += 4;
+            placeGoal();
         } else if (getXY(nx, ny) == '5') {
             wormModify += 5;
+            placeGoal();
         } else if (getXY(nx, ny) == '6') {
             wormModify += 6;
+            placeGoal();
         } else if (getXY(nx, ny) == '7') {
             wormModify += 7;
+            placeGoal();
         } else if (getXY(nx, ny) == '8') {
             wormModify += 8;
+            placeGoal();
         } else if (getXY(nx, ny) == '9') {
             wormModify += 9;
+            placeGoal();
         }
 
         /* Set the current head to a body */
         setXY(hx, hy, BODY_CELL);
         /* Set the new head to a head */
         setXY(nx, ny, HEAD_CELL);
-
-        placeGoal();
 
         /* Push new head to the data structure */
         std::vector<int> hp {nx, ny};
@@ -195,7 +201,7 @@ void Worms::move(int dx, int dy) {
         while(wormModify < 0) {
             std::vector<int> tp = path[0];
             path.pop_front();
-            setXY(tp[0], tp[1], 'x');
+            setXY(tp[0], tp[1], EMPTY_CELL);
             wormModify++;
         }
     }

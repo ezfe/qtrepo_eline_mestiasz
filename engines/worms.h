@@ -31,7 +31,7 @@ public:
     bool isLost();
     int score();
 private:
-    const char EMPTY_CELL = 'x';
+    const char EMPTY_CELL = ' ';
     const char HEAD_CELL = '@';
     const char BODY_CELL = 'o';
 
