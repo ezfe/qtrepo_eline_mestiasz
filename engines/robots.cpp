@@ -490,3 +490,11 @@ void Robots::redraw(){
         }
     }
 }
+
+/*!
+ * \brief Check if the game is over
+ * \return game over
+ */
+bool Robots::isGameFinished() {
+    return checkWinner() != 0;
+}

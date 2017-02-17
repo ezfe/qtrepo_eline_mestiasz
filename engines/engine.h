@@ -21,6 +21,8 @@ public:
     virtual std::string controller(char cmd) = 0;
 
     std::string printGameboard();
+
+    virtual bool isGameFinished() = 0;
 protected:
     int ROWS = 4;
     int COLS = 4;

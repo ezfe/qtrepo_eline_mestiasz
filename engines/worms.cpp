@@ -282,3 +282,11 @@ int Worms::score() {
     }
     return wormLength();
 }
+
+/*!
+ * \brief Check if the game is over
+ * \return game over
+ */
+bool Worms::isGameFinished() {
+    return isLost();
+}

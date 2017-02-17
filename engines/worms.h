@@ -30,6 +30,8 @@ public:
 
     bool isLost();
     int score();
+
+    bool isGameFinished();
 private:
     const char EMPTY_CELL = ' ';
     const char HEAD_CELL = '@';

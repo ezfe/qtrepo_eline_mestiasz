@@ -52,7 +52,7 @@ public:
     void jump();                                //  Jump, do not show intermediate positions
     void playAutoMode();                        //  Auto-bot mode
 
-
+    bool isGameFinished();
 private:
     bool** movedObjects;                    //  Displaying whether the object placed in that cell
                                             //  already changed the position or not
