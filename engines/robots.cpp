@@ -1,7 +1,6 @@
 #include "robots.h"
 
 Robots::Robots(int rows, int cols, int robots): Engine(rows, cols) {
-    std::cout << "Gameboard: " << gameboard << " " << std::endl;
 
     movedObjects = new bool*[rows];
     for(int i = 0; i < rows; i++) {
@@ -111,7 +110,6 @@ std::string Robots::controller(char cmd){
     case 'w':
         while(this->checkWinner() == 0){
             this->moveEachRobot();
-            std::cout << printGameboard() << std::endl;
         }
         break;
     case 't':
@@ -153,8 +151,6 @@ std::string Robots::controller(char cmd){
         this->move(current_position.first + 1, current_position.second + 1);
         this->moveEachRobot();
         break;
-    default:
-        std::cout << "Invalid Command!" << std::endl;
     }
 
     // Check if there is winner, if so start new game and display the final score
@@ -356,8 +352,6 @@ void Robots::moveRobot(int i0, int j0, int i1, int j1){
         this->setItem(i1, j1, '+');
         this->setMoved(i1, j1, true);
         break;
-    default:
-        std::cout << "Robot changed position" << std::endl;
     }
 }
 
@@ -424,7 +418,7 @@ std::pair<int, int> Robots::findCellToMove(int i, int j){
  */
 void Robots::move(int i, int j){
     if(i < 0 || i >= ROWS || j < 0 || j >= COLS){
-        std::cout << "Player cannot leave the grid " << std::endl;
+        // Player cannot leave the grid
     }else{
         std::pair<int, int> current_position = this->getCurrentPosition();
         this->setItem(current_position.first, current_position.second, ' ');

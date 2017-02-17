@@ -19,8 +19,7 @@ public:
     int getHeight();
 
     virtual std::string controller(char cmd) = 0;
-
-    std::string printGameboard();
+    virtual std::string printGameboard();
 
     virtual bool isGameFinished() = 0;
 protected:
