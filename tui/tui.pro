@@ -3,15 +3,20 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += main.cpp \
+SOURCES += \
     screen.cpp \
     ../engines/engine.cpp \
-    ../engines/robots.cpp
+    ../engines/robots.cpp \
+    robotsscreen.cpp \
+    wormsscreen.cpp \
+    main.cpp
 
 LIBS += -lncurses
 
 HEADERS += screen.h \
     ../engines/engine.h \
-    ../engines/robots.h
+    ../engines/robots.h \
+    robotsscreen.h \
+    wormsscreen.h
 
 
