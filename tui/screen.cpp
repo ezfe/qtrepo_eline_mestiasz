@@ -18,10 +18,11 @@ void Screen::init(){
 
     continue_looping = true;
     drawScreen(this->engine->printGameboard());
+
     do {
         refresh();
         int cmd = getch();
-        drawScreen(std::to_string(cmd));
+
         if(cmd == 'q') break;
 
         std::string str = this->engine->controller(cmd);
