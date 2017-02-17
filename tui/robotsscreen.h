@@ -1,13 +1,17 @@
 #ifndef ROBOTSSCREEN_H
 #define ROBOTSSCREEN_H
 
-#include "engine.h"
+#include <iostream>
+#include <string>
 
-class RobotsScreen : public Engine{
+#include "../engines/robots.h"
+#include "screen.h"
+
+class RobotsScreen : public Screen{
 public:
     RobotsScreen();
 
-
+    void drawScreen(std::string str);
 
 };
 

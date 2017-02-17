@@ -11,10 +11,13 @@ class Screen {
 public:
     Screen();
 
-    void init(Engine& engine);
+    void init();
     virtual void drawScreen(std::string str);
 
     bool continue_looping;
+
+protected:
+    Engine * engine;
 };
 
 #endif // SCREEN_H

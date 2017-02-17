@@ -4,7 +4,7 @@ Screen::Screen(){
 
 }
 
-void Screen::init(Engine& engine){
+void Screen::init(){
     initscr();
     curs_set(0);
 
@@ -13,7 +13,7 @@ void Screen::init(Engine& engine){
     keypad(stdscr, TRUE);
 
     continue_looping = true;
-    drawScreen(engine.controller('p'));
+    drawScreen(this->engine->controller('p'));
 
     do {
         refresh();
@@ -21,7 +21,7 @@ void Screen::init(Engine& engine){
 
         if(cmd == 'q') break;
 
-        std::string str = engine.controller(cmd);
+        std::string str = this->engine->controller(cmd);
         drawScreen(str);
 
     } while(continue_looping);

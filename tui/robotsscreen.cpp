@@ -1,10 +1,10 @@
 #include "robotsscreen.h"
 
-RobotsScreen::RobotsScreen(){
-
+RobotsScreen::RobotsScreen(): Screen(){
+    this->engine = new Robots(50, 50, 10);
 }
 
-RobotsScreen::drawScreen(std::string str){
+void RobotsScreen::drawScreen(std::string str){
     clear();
-    mvprintw(0, 0, "Welcome to the game! \n DON'T Enjoy your time :)");
+    mvprintw(0, 0, str.c_str());
 }
