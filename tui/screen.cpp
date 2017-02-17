@@ -4,7 +4,7 @@ Screen::Screen(){
 
 }
 
-void Screen::init(Robots& robots){
+void Screen::init(Engine& engine){
     initscr();
     curs_set(0);
 
@@ -13,13 +13,15 @@ void Screen::init(Robots& robots){
     keypad(stdscr, TRUE);
 
     continue_looping = true;
-    drawScreen(robots.controller('p'));
+    drawScreen(engine.controller('p'));
 
     do {
         refresh();
         int cmd = getch();
+
         if(cmd == 'q') break;
-        std::string str = robots.controller(cmd);
+
+        std::string str = engine.controller(cmd);
         drawScreen(str);
 
     } while(continue_looping);
@@ -30,9 +32,6 @@ void Screen::init(Robots& robots){
 }
 
 void Screen::drawScreen(std::string str){
-
-    std::string display;
     clear();
-
-    mvprintw(0, 0, str.c_str());
+    mvprintw(0, 0, "Welcome to the game! \n Enjoy your time :)");
 }
