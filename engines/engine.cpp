@@ -72,3 +72,20 @@ int Engine::getHeight() {
 //    Screen screen;
 //    screen.init(this->controller);
 //}
+
+/*!
+ * \brief Display the gameboard
+ * \return Gameboard - std::string
+ */
+std::string Engine::printGameboard(){
+    std::stringstream ss;
+    for(int i = 0; i < ROWS; i++){
+        ss << "#" << i << ":   ";
+        for(int j = 0; j < COLS; j++){
+            ss << this->get(i, j);
+        }
+        ss << std::endl;
+    }
+
+    return ss.str();
+}
