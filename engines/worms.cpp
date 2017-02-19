@@ -62,7 +62,6 @@ int Worms::random_y() {
  * \brief Place a goal of random value at a random location
  */
 void Worms::place_goal() {
-    std::cout << "Placing goal..." << std::endl;
     while (true) {
         int x = random_x();
         int y = random_y();
