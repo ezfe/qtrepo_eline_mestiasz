@@ -11,7 +11,7 @@ class WormsScreen : public Screen{
 public:
     WormsScreen();
 
-    void drawScreen(std::string str);
+    void draw_screen(std::string str);
 
 };
 

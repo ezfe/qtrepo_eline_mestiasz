@@ -11,7 +11,7 @@ class RobotsScreen : public Screen{
 public:
     RobotsScreen();
 
-    void drawScreen(std::string str);
+    void draw_screen(std::string str);
 
 };
 
