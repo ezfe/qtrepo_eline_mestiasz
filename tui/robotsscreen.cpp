@@ -1,7 +1,7 @@
 #include "robotsscreen.h"
 
 RobotsScreen::RobotsScreen(): Screen(){
-    this->engine = new Robots(27, 30, 10);
+    this->engine = new Robots(20, 50, 10);
 }
 
 void RobotsScreen::draw_screen(std::string str){
