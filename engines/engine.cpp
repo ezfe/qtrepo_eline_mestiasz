@@ -84,13 +84,24 @@ int Engine::get_height() {
  */
 std::string Engine::print_gameboard(){
     std::stringstream ss;
+
+    for(int i = 0; i <= COLS + 1; i++){
+        ss << "#";
+    }
+    ss << std::endl;
+
     for(int i = 0; i < ROWS; i++){
-        ss << "#" << i << ":   ";
+        ss << "#";
         for(int j = 0; j < COLS; j++){
             ss << this->get(i, j);
         }
-        ss << std::endl;
+        ss << "#" << std::endl;
     }
+
+    for(int i = 0; i <= COLS + 1; i++){
+        ss << "#";
+    }
+    ss << std::endl;
 
     return ss.str();
 }

@@ -23,16 +23,18 @@ void RobotsTest::TearDown() {
 
 TEST_F(RobotsTest, TEST_PRINT_GAMEBOARD){
     std::string str = robots->print_gameboard();
-    std::string expected = "#0:             \n"
-                           "#1:             \n"
-                           "#2:             \n"
-                           "#3:             \n"
-                           "#4:             \n"
-                           "#5:             \n"
-                           "#6:             \n"
-                           "#7:             \n"
-                           "#8:             \n"
-                           "#9:             \n";
+    std::string expected = "############\n"
+                           "#          #\n"
+                           "#          #\n"
+                           "#          #\n"
+                           "#          #\n"
+                           "#          #\n"
+                           "#          #\n"
+                           "#          #\n"
+                           "#          #\n"
+                           "#          #\n"
+                           "#          #\n"
+                           "############\n";
     EXPECT_EQ(expected, str) << "The string representation of the gameboard is wrong!";
 }
 
@@ -104,7 +106,7 @@ TEST_F(RobotsTest, TEST_TELEPORT){
     EXPECT_TRUE(robots->get_current_position().first == 1 && robots->get_current_position().second == 1) << "Player did not teleport correctly";
     robots->set_item(2, 2, '+');
     robots->teleport();
-    EXPECT_TRUE(robots->get_current_position().first == 1 && robots->get_current_position().second == 1) << "Player should not have teleported correctly";
+    EXPECT_TRUE(robots->get_current_position().first == 1 && robots->get_current_position().second == 1) << "Player did not have teleport correctly";
 }
 
 TEST_F(RobotsTest, TEST_REDRAW) {
