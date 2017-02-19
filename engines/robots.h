@@ -47,16 +47,17 @@ public:
     std::pair<int, int> get_current_position();   //  Getter for player's current position
 
     /* Methods that should be implemented in future */
-    void check_options();                        //  Check which options were provided
-    void show_ranking();                         //  Display the score list
+    void check_options();                       //  Check which options were provided
+    void show_ranking();                        //  Display the score list
     void jump();                                //  Jump, do not show intermediate positions
-    void play_auto_mode();                        //  Auto-bot mode
+    void play_auto_mode();                      //  Auto-bot mode
 
     bool is_game_finished();
 private:
     bool** movedObjects;                    //  Displaying whether the object placed in that cell
                                             //  already changed the position or not
     bool alive;                             //  Find if player is alive
+    bool moved;                             //  Find if player moved
     int score;                              //  Score counter
     int level;                              //  Level counter
     std::vector<char> options;              //  List of options
