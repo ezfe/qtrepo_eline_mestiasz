@@ -26,73 +26,69 @@ Robots::~Robots(){
 
 std::string Robots::controller(char cmd){
     std::pair<int, int> current_position = this->get_current_position();
-    std::stringstream game_over;
+    std::stringstream board;
 
     // Disable commands once the player loses or wins the game
     // stays disabled until he/she presses 'r' or 'q' to get to
     // main menu
     if (this->check_winner() != 0 && cmd != 'r'){
-        game_over << this->print_gameboard() << "Score: "
-        << this->get_score() << std::endl << std::endl << std::endl;
-        return game_over.str();
-    }
+        // don't execute commands
+    }else{
 
-    switch(cmd){
-    case 'w':
-        while(this->check_winner() == 0){
-            this->move_each_robot();
+        switch(cmd){
+        case 'w':
+            while(this->check_winner() == 0){
+                this->move_each_robot();
+            }
+            break;
+        case 't':
+            this->teleport();
+            break;
+        case 'r':
+            this->redraw();
+            this->add_player_and_robots();
+            break;
+        case 'y':
+            this->move(current_position.first - 1, current_position.second - 1);
+            if (this->moved) this->move_each_robot();
+            break;
+        case 'k':
+            this->move(current_position.first - 1, current_position.second);
+            if (this->moved) this->move_each_robot();
+            break;
+        case 'u':
+            this->move(current_position.first - 1, current_position.second + 1);
+            if (this->moved) this->move_each_robot();
+            break;
+        case 'h':
+            this->move(current_position.first, current_position.second - 1);
+            if (this->moved) this->move_each_robot();
+            break;
+        case 'l':
+            this->move(current_position.first, current_position.second + 1);
+            if (this->moved) this->move_each_robot();
+            break;
+        case 'b':
+            this->move(current_position.first + 1, current_position.second - 1);
+            if (this->moved) this->move_each_robot();
+            break;
+        case 'j':
+            this->move(current_position.first + 1, current_position.second);
+            if (this->moved) this->move_each_robot();
+            break;
+        case 'n':
+            this->move(current_position.first + 1, current_position.second + 1);
+            if (this->moved) this->move_each_robot();
+            break;
         }
-        break;
-    case 't':
-        this->teleport();
-        break;
-    case 'r':
-        this->redraw();
-        this->add_player_and_robots();
-        break;
-    case 'y':
-        this->move(current_position.first - 1, current_position.second - 1);
-        if (this->moved) this->move_each_robot();
-        break;
-    case 'k':
-        this->move(current_position.first - 1, current_position.second);
-        if (this->moved) this->move_each_robot();
-        break;
-    case 'u':
-        this->move(current_position.first - 1, current_position.second + 1);
-        if (this->moved) this->move_each_robot();
-        break;
-    case 'h':
-        this->move(current_position.first, current_position.second - 1);
-        if (this->moved) this->move_each_robot();
-        break;
-    case 'l':
-        this->move(current_position.first, current_position.second + 1);
-        if (this->moved) this->move_each_robot();
-        break;
-    case 'b':
-        this->move(current_position.first + 1, current_position.second - 1);
-        if (this->moved) this->move_each_robot();
-        break;
-    case 'j':
-        this->move(current_position.first + 1, current_position.second);
-        if (this->moved) this->move_each_robot();
-        break;
-    case 'n':
-        this->move(current_position.first + 1, current_position.second + 1);
-        if (this->moved) this->move_each_robot();
-        break;
     }
 
-    // Check if there is winner, if so start new game and display the final score
-    if(this->check_winner() != 0){
-        game_over << this->print_gameboard();
-        game_over << "Score: " << this->get_score()
-                  << std::endl << std::endl << std::endl;
-        return game_over.str();
-    }
+    // Display score and the gameboard
 
-    return this->print_gameboard();
+    board << this->print_gameboard()
+          << "Score: " << this->get_score()
+          << std::endl << std::endl << std::endl;
+    return board.str();
 
 }
 
@@ -372,9 +368,11 @@ void Robots::move(int i, int j){
     }else{
         std::pair<int, int> current_position = this->get_current_position();
 
-        // if the cell is empty move there and continue playing, otherwise player dies
+        // if the cell is empty move there and continue playing,
+        // otherwise player dies
         if(this->get_item(i, j) == ' ' && this->check_cell(i, j)){
-            this->set_item(current_position.first, current_position.second, ' ');
+            this->set_item(current_position.first,
+                           current_position.second, ' ');
             this->set_item(i, j, '@');
             this->set_current_position(i, j);
             this->moved = true;

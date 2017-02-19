@@ -24,8 +24,11 @@ int main(int argc, char *argv[]) {
         case '2':
             screen_02.init();
             break;
+        case 'q':
+            exit(0);
+            break;
         default:
-            std::cout << "Type the number of the game you want to play" << std::endl;
+            std::cout << "Type the number of the game you want to play or q to exit" << std::endl;
         }
 
         std::cout << "Choose your game:" << std::endl;
