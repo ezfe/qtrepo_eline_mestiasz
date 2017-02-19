@@ -9,8 +9,8 @@ Engine::Engine(int rows, int cols) {
         gameboard[i] = new char[COLS];
     }
 
-    for(int j = 0; j < ROWS; j++) {
-        for(int i = 0; i < COLS; i++) {
+    for(int i = 0; i < ROWS; i++) {
+        for(int j = 0; j < COLS; j++) {
             gameboard[i][j] = ' ';
         }
     }
