@@ -79,6 +79,8 @@ void Worms::place_goal() {
  * \return gameboard state
  */
 std::string Worms::controller(char cmd){
+    interruptQueuedPresses = false;
+
     switch(cmd){
     case 'w':
         this->press_up();
@@ -91,6 +93,52 @@ std::string Worms::controller(char cmd){
         break;
     case 's':
         this->press_down();
+        break;
+
+    case 'j':
+        this->press_up();
+        break;
+    case 'h':
+        this->press_left();
+        break;
+    case 'l':
+        this->press_right();
+        break;
+    case 'k':
+        this->press_down();
+        break;
+
+    case 'J':
+        for(int i = 0; i < 5; i++) {
+            if (interruptQueuedPresses) {
+                break;
+            }
+            this->press_up();
+        }
+        break;
+    case 'H':
+        for(int i = 0; i < 9; i++) {
+            if (interruptQueuedPresses) {
+                break;
+            }
+            this->press_left();
+        }
+        break;
+    case 'L':
+        for(int i = 0; i < 9; i++) {
+            if (interruptQueuedPresses) {
+                break;
+            }
+            this->press_right();
+        }
+        break;
+    case 'K':
+        for(int i = 0; i < 5; i++) {
+            if (interruptQueuedPresses) {
+                break;
+            }
+            this->press_down();
+        }
         break;
     default:
         std::cout << "Invalid Command!" << std::endl;
@@ -159,30 +207,39 @@ void Worms::move(int dx, int dy) {
         if (get_xy(nx, ny) == '1') {
             wormModify += 1;
             place_goal();
+            interruptQueuedPresses = true;
         } else if (get_xy(nx, ny) == '2') {
             wormModify += 2;
             place_goal();
+            interruptQueuedPresses = true;
         } else if (get_xy(nx, ny) == '3') {
             wormModify += 3;
             place_goal();
+            interruptQueuedPresses = true;
         } else if (get_xy(nx, ny) == '4') {
             wormModify += 4;
             place_goal();
+            interruptQueuedPresses = true;
         } else if (get_xy(nx, ny) == '5') {
             wormModify += 5;
             place_goal();
+            interruptQueuedPresses = true;
         } else if (get_xy(nx, ny) == '6') {
             wormModify += 6;
             place_goal();
+            interruptQueuedPresses = true;
         } else if (get_xy(nx, ny) == '7') {
             wormModify += 7;
             place_goal();
+            interruptQueuedPresses = true;
         } else if (get_xy(nx, ny) == '8') {
             wormModify += 8;
             place_goal();
+            interruptQueuedPresses = true;
         } else if (get_xy(nx, ny) == '9') {
             wormModify += 9;
             place_goal();
+            interruptQueuedPresses = true;
         }
 
         /* Set the current head to a body */

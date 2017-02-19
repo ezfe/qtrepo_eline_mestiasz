@@ -41,11 +41,7 @@ void Engine::set(int i, int j, char val) {
  * \param val value to set
  */
 void Engine::set_xy(int x, int y, char val) {
-    if (gameboard && gameboard[y]) {
-        gameboard[y][x] = val;
-    } else {
-        std::cout << "No gameboard found..." << std::endl;
-    }
+    return set(y, x, val);
 }
 
 /*!
@@ -71,13 +67,7 @@ char Engine::get(int i, int j) {
  * \return value at location
  */
 char Engine::get_xy(int x, int y) {
-    if (gameboard && gameboard[y]) {
-        return gameboard[y][x];
-    } else {
-        /* hmm */
-        std::cout << "No gameboard found..." << std::endl;
-        return ' ';
-    }
+    return get(y, x);
 }
 
 int Engine::get_width() {
