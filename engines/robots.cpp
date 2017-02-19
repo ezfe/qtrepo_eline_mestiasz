@@ -19,7 +19,7 @@ Robots::Robots(int rows, int cols, int robots): Engine(rows, cols) {
 }
 
 Robots::~Robots(){
-
+    std::cout << "Robots destructed" << std::endl;
 }
 
 /* Controller */
