@@ -58,6 +58,11 @@ private:
      * \brief Is the game over yet
      */
     bool gameOver = false;
+
+    /*!
+     * \brief If an event happens, stop queued presses and return to regular gameplay
+     */
+    bool interruptQueuedPresses = false;
 };
 
 #endif // WORMS_H
