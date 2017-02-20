@@ -22,7 +22,7 @@ public:
     virtual std::string print_gameboard();
 
     virtual bool is_game_finished() = 0;
-    virtual void reset_game();
+    virtual void reset_game() = 0;
 protected:
     int ROWS = 4;
     int COLS = 4;

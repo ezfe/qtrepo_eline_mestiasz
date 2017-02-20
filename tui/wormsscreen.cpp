@@ -16,11 +16,11 @@ void WormsScreen::draw_screen(std::string str){
         mvprintw(1, starting_point, "Press q to exit");
     } else {
         mvprintw(0, starting_point, "Directions:" );
-        mvprintw(2, starting_point, "  k  ");
+        mvprintw(2, starting_point, "  j");
         mvprintw(3, starting_point, "  |");
         mvprintw(4, starting_point, "h- -l");
         mvprintw(5, starting_point, "  |");
-        mvprintw(6, starting_point, "  j");
+        mvprintw(6, starting_point, "  k");
         mvprintw(8, starting_point, "Hold shift to go further");
         mvprintw(10, starting_point, "Commands:");
         mvprintw(11, starting_point, "q: quit");

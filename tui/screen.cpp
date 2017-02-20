@@ -23,7 +23,10 @@ void Screen::init(){
         refresh();
         int cmd = getch();
 
-        if(cmd == 'q') break;
+        if(cmd == 'q') {
+            this->engine->reset_game();
+            break;
+        }
 
         std::string str = this->engine->controller(cmd);
         draw_screen(str);

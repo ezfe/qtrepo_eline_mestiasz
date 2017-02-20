@@ -34,8 +34,7 @@ std::string Robots::controller(char cmd){
     // main menu
     if (this->check_winner() != 0 && cmd != 'r'){
         // don't execute commands
-    }else{
-
+    } else {
         switch(cmd){
         case 'w':
             while(this->check_winner() == 0){
@@ -461,4 +460,5 @@ bool Robots::is_game_finished() {
  */
 void Robots::reset_game() {
     this->redraw();
+    this->add_player_and_robots();
 }
