@@ -25,6 +25,8 @@ private slots:
 
     void on_leftButton_clicked();
 
+    void on_resetGameboard_clicked();
+
 private:
     Ui::EngineWindow *ui;
 

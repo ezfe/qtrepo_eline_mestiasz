@@ -46,3 +46,8 @@ void EngineWindow::on_leftButton_clicked() {
     engine->controller('h');
     refresh_gameboard();
 }
+
+void EngineWindow::on_resetGameboard_clicked() {
+    engine->reset_game();
+    refresh_gameboard();
+}
