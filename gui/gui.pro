@@ -24,8 +24,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        enginewindow.cpp
+        enginewindow.cpp \
+        ../engines/engine.cpp \
+        ../engines/robots.cpp \
+        ../engines/worms.cpp
 
-HEADERS  += enginewindow.h
+HEADERS  += enginewindow.h \
+        ../engines/engine.h \
+        ../engines/robots.h \
+        ../engines/worms.h
 
 FORMS    += enginewindow.ui
