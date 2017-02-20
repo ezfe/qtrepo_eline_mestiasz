@@ -1,27 +1,7 @@
 #include "worms.h"
 
 Worms::Worms(int rows, int cols): Engine(rows, cols) {
-
-    std::srand(time(NULL));
-
-    for(int x = 0; x < COLS; x++) {
-        for(int y = 0; y < ROWS; y++) {
-            set_xy(x, y, EMPTY_CELL);
-        }
-    }
-
-    std::vector<int> pa {1, 1};
-    std::vector<int> pb {2, 1};
-    std::vector<int> pc {3, 1};
-    path.push_back(pa);
-    path.push_back(pb);
-    path.push_back(pc);
-
-    set_xy(pa[0], pa[1], BODY_CELL);
-    set_xy(pb[0], pb[1], BODY_CELL);
-    set_xy(pc[0], pc[1], HEAD_CELL);
-
-    place_goal();
+    this->reset_game();
 }
 
 /*!
@@ -351,5 +331,30 @@ bool Worms::is_game_finished() {
  * \brief Reset this game
  */
 void Worms::reset_game() {
+    this->wormModify = 0;
+    this->scorePermanence= -1;
+    this->gameOver = false;
+    this->interruptQueuedPresses = false;
+    path.clear();
 
+    std::srand(time(NULL));
+
+    for(int x = 0; x < COLS; x++) {
+        for(int y = 0; y < ROWS; y++) {
+            set_xy(x, y, EMPTY_CELL);
+        }
+    }
+
+    std::vector<int> pa {1, 1};
+    std::vector<int> pb {2, 1};
+    std::vector<int> pc {3, 1};
+    path.push_back(pa);
+    path.push_back(pb);
+    path.push_back(pc);
+
+    set_xy(pa[0], pa[1], BODY_CELL);
+    set_xy(pb[0], pb[1], BODY_CELL);
+    set_xy(pc[0], pc[1], HEAD_CELL);
+
+    place_goal();
 }
