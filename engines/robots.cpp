@@ -452,3 +452,10 @@ void Robots::redraw(){
 bool Robots::is_game_finished() {
     return check_winner() != 0;
 }
+
+/*!
+ * \brief Reset this game
+ */
+void Robots::reset_game() {
+    this->redraw();
+}

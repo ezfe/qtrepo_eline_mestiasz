@@ -346,3 +346,10 @@ int Worms::score() {
 bool Worms::is_game_finished() {
     return is_lost();
 }
+
+/*!
+ * \brief Reset this game
+ */
+void Worms::reset_game() {
+
+}

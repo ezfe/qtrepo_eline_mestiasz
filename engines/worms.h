@@ -32,6 +32,7 @@ public:
     int score();
 
     bool is_game_finished();
+    void reset_game();
 private:
     const char EMPTY_CELL = ' ';
     const char HEAD_CELL = '@';

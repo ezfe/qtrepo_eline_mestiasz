@@ -53,6 +53,7 @@ public:
     void play_auto_mode();
 
     bool is_game_finished();
+    void reset_game();
 private:
     //  Displaying whether the object placed in that cell
     //  already changed the position or not
