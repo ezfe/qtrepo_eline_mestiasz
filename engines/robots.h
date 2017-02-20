@@ -29,6 +29,7 @@ public:
     bool if_moved(int i, int j);
     bool is_alive();
     bool check_cell(int i, int j);
+    bool is_game_finished();
     char get_item(int i, int j);
     std::pair<int, int> find_empty_cell();
 
@@ -46,13 +47,6 @@ public:
     void set_current_position(int i, int j);
     std::pair<int, int> get_current_position();
 
-    /* Methods that should be implemented in future */
-    void check_options();
-    void show_ranking();
-    void jump();
-    void play_auto_mode();
-
-    bool is_game_finished();
 private:
     //  Displaying whether the object placed in that cell
     //  already changed the position or not

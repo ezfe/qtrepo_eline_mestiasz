@@ -17,7 +17,7 @@ Engine::Engine(int rows, int cols) {
 }
 
 Engine::~Engine() {
-    // What to do here?
+    delete this->gameboard;
 }
 
 /*!
