@@ -94,3 +94,8 @@ TEST_F(WormsTest, TESTget_tail) {
     EXPECT_EQ(worms->get_xy(head[0], head[1]), 'o') << "get_tail should return a tile with o";
 }
 
+TEST_F(WormsTest, TEST_queued_interuption){
+    worms->set_xy(5, 1, '9');
+    worms->controller('L');
+    EXPECT_EQ('@', worms->get_xy(5, 1));
+}
