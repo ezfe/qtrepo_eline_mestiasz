@@ -101,12 +101,8 @@ TEST_F(RobotsTest, TEST_TELEPORT){
     }
 
     robots->set_item(2, 2, '@');
-    robots->set_item(1, 1, ' ');
     robots->teleport();
-    EXPECT_TRUE(robots->get_current_position().first == 1 && robots->get_current_position().second == 1) << "Player did not teleport correctly";
-    robots->set_item(2, 2, '+');
-    robots->teleport();
-    EXPECT_TRUE(robots->get_current_position().first == 1 && robots->get_current_position().second == 1) << "Player did not have teleport correctly";
+    EXPECT_FALSE(robots->is_alive()) << "Player did not teleport correctly";
 }
 
 TEST_F(RobotsTest, TEST_REDRAW) {
@@ -136,4 +132,113 @@ TEST_F(RobotsTest, TEST_CHECK_WINNER){
     robots->set_item(2, 2, ' ');
     robots->die();
     EXPECT_EQ(2, robots->check_winner()) << "The robots win, as there is no player left";
+}
+
+TEST_F(RobotsTest, TEST_CHECK_CELL){
+    robots->set_item(2, 2, '@');
+    robots->set_item(0, 0, '+');
+    robots->set_item(0, 1, '+');
+    robots->set_item(0, 2, '+');
+
+    robots->move(1, 2);
+    EXPECT_TRUE(robots->get_current_position().first == 2 && robots->get_current_position().second == 2) << "The cell checker did not work correctly";
+
+}
+
+TEST_F(RobotsTest, TEST_CONTROLLER_CMD_W){
+    robots->set_item(2, 2, '@');
+    robots->set_item(0, 0, '+');
+    robots->set_item(0, 1, '+');
+    robots->set_item(0, 2, '+');
+
+    robots->controller('w');
+    EXPECT_TRUE(robots->check_winner() != 0) << "The controller did not work correctly";
+
+}
+
+
+TEST_F(RobotsTest, TEST_CONTROLLER_CMD_Y){
+    robots->set_item(2, 2, '@');
+    robots->set_current_position(2, 2);
+    robots->set_item(4, 4, '+');
+
+    robots->controller('y');
+    EXPECT_TRUE(robots->get_current_position().first == 1 && robots->get_current_position().second == 1) << "The controller did not work correctly";
+
+}
+
+TEST_F(RobotsTest, TEST_CONTROLLER_CMD_U){
+    robots->set_item(2, 2, '@');
+    robots->set_current_position(2, 2);
+    robots->set_item(4, 4, '+');
+
+    robots->controller('u');
+    EXPECT_TRUE(robots->get_current_position().first == 1 && robots->get_current_position().second == 3) << "The controller did not work correctly";
+
+}
+
+TEST_F(RobotsTest, TEST_CONTROLLER_CMD_H){
+    robots->set_item(2, 2, '@');
+    robots->set_current_position(2, 2);
+    robots->set_item(4, 4, '+');
+
+    robots->controller('h');
+    EXPECT_TRUE(robots->get_current_position().first == 2 && robots->get_current_position().second == 1) << "The controller did not work correctly";
+
+}
+
+TEST_F(RobotsTest, TEST_CONTROLLER_CMD_J){
+    robots->set_item(2, 2, '@');
+    robots->set_current_position(2, 2);
+    robots->set_item(0, 0, '+');
+
+    robots->controller('j');
+    EXPECT_TRUE(robots->get_current_position().first == 3 && robots->get_current_position().second == 2) << "The controller did not work correctly"
+                                                                                                         << robots->get_current_position().first
+                                                                                                         << robots->get_current_position().second;
+
+}
+
+TEST_F(RobotsTest, TEST_CONTROLLER_CMD_K){
+    robots->set_item(2, 2, '@');
+    robots->set_current_position(2, 2);
+    robots->set_item(0, 0, '+');
+
+    robots->controller('k');
+    EXPECT_TRUE(robots->get_current_position().first == 1 && robots->get_current_position().second == 2) << "The controller did not work correctly";
+
+}
+
+TEST_F(RobotsTest, TEST_CONTROLLER_CMD_L){
+    robots->set_item(2, 2, '@');
+    robots->set_current_position(2, 2);
+    robots->set_item(4, 4, '+');
+
+    robots->controller('l');
+    EXPECT_TRUE(robots->get_current_position().first == 2 && robots->get_current_position().second == 3) << "The controller did not work correctly";
+
+}
+
+TEST_F(RobotsTest, TEST_CONTROLLER_CMD_B){
+    robots->set_item(2, 2, '@');
+    robots->set_current_position(2, 2);
+    robots->set_item(4, 4, '+');
+
+    robots->controller('b');
+    EXPECT_TRUE(robots->get_current_position().first == 3 && robots->get_current_position().second == 1) << "The controller did not work correctly "
+                                                                                                         << robots->get_current_position().first
+                                                                                                         << robots->get_current_position().second;
+
+}
+
+TEST_F(RobotsTest, TEST_CONTROLLER_CMD_N){
+    robots->set_item(2, 2, '@');
+    robots->set_current_position(2, 2);
+    robots->set_item(0, 0, '+');
+
+    robots->controller('n');
+    EXPECT_TRUE(robots->get_current_position().first == 3 && robots->get_current_position().second == 3) << "The controller did not work correctly "
+                                                                                                         << robots->get_current_position().first
+                                                                                                         << robots->get_current_position().second;
+
 }

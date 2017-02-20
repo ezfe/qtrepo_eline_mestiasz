@@ -19,6 +19,7 @@ Robots::Robots(int rows, int cols, int robots): Engine(rows, cols) {
 }
 
 Robots::~Robots(){
+    delete this->movedObjects;
     std::cout << "Robots destructed" << std::endl;
 }
 
@@ -119,13 +120,14 @@ bool Robots::is_alive(){
 
 /*!
  * \brief Find if player can move to that cell
- * \return Alive - bool
+ * \return bool
  */
 
 bool Robots::check_cell(int i, int j){
     std::pair<int, int> current_position = this->get_current_position();
     this->set_current_position(i, j);
 
+    // Check if any robot can move to that cell in this unit of time
     for(int k = 0; k < ROWS; k++){
         for(int z = 0; z < COLS; z++){
            if(this->get_item(k, z) == '+'){
@@ -139,6 +141,7 @@ bool Robots::check_cell(int i, int j){
         }
     }
 
+    // restore the location of the robot
     this->set_current_position(current_position.first,
                                current_position.second);
     return true;
