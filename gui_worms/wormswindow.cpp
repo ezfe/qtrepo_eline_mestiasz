@@ -23,8 +23,11 @@ void WormsWindow::refresh_gameboard() {
     // clear the board
     ui->gameView->clear();
 
-    // load the QString into the label
-    ui->gameView->setText(temp_board);
+    if (this->engine->is_game_finished()) {
+        ui->gameView->setText("You died. Your final score is " + QString::number(this->engine->get_score()) + ".\nPress \"Reset\" to play again.");
+    } else {
+        ui->gameView->setText(temp_board);
+    }
 
     ui->scoreLabel->setText(QString::number(engine->get_score()));
 }
