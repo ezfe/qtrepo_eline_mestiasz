@@ -74,6 +74,39 @@ std::string Worms::controller(char cmd){
         this->press_down();
         break;
 
+    case 'W':
+        for(int i = 0; i < 5; i++) {
+            if (interruptQueuedPresses) {
+                break;
+            }
+            this->press_up();
+        }
+        break;
+    case 'A':
+        for(int i = 0; i < 9; i++) {
+            if (interruptQueuedPresses) {
+                break;
+            }
+            this->press_left();
+        }
+        break;
+    case 'D':
+        for(int i = 0; i < 9; i++) {
+            if (interruptQueuedPresses) {
+                break;
+            }
+            this->press_right();
+        }
+        break;
+    case 'S':
+        for(int i = 0; i < 5; i++) {
+            if (interruptQueuedPresses) {
+                break;
+            }
+            this->press_down();
+        }
+        break;
+
     case 'j':
         this->press_up();
         break;
@@ -175,12 +208,19 @@ void Worms::move(int dx, int dy) {
     /* If the new location is out of game board, or part of the worm, exit */
     if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS || get_xy(nx, ny) == 'o') {
         gameOver = true;
-        scorePermanence = score();
+        scorePermanence = get_score();
         for(int i = 0; i < path.size(); i++) {
             set_xy(path[i][0], path[i][1], EMPTY_CELL);
         }
         path.clear();
-        std::cout << "Collision, die" << std::endl;
+        set_xy(1, 1, 'G');
+        set_xy(2, 1, 'a');
+        set_xy(3, 1, 'm');
+        set_xy(4, 1, 'e');
+        set_xy(1, 2, 'o');
+        set_xy(2, 2, 'v');
+        set_xy(3, 2, 'e');
+        set_xy(4, 2, 'r');
     } else {
         /* Check for points */
         if (get_xy(nx, ny) == '1') {
@@ -312,7 +352,7 @@ bool Worms::is_lost() {
  * \brief Query the score
  * \return score
  */
-int Worms::score() {
+int Worms::get_score() {
     if (scorePermanence != -1) {
         return scorePermanence;
     }

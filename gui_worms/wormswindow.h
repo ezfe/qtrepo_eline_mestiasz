@@ -1,22 +1,25 @@
-#ifndef ENGINEWINDOW_H
-#define ENGINEWINDOW_H
+#ifndef WORMSWINDOW_H
+#define WORMSWINDOW_H
 
 #include <QWidget>
 #include "../engines/engine.h"
 #include "../engines/worms.h"
 
 namespace Ui {
-class EngineWindow;
+class WormsWindow;
 }
 
-class EngineWindow: public QWidget {
+class WormsWindow : public QWidget
+{
     Q_OBJECT
 
 public:
-    explicit EngineWindow(QWidget *parent = 0);
-    ~EngineWindow();
+    explicit WormsWindow(QWidget *parent = 0);
+    ~WormsWindow();
 
 private slots:
+    void on_resetGame_clicked();
+
     void on_upButton_clicked();
 
     void on_downButton_clicked();
@@ -25,14 +28,12 @@ private slots:
 
     void on_leftButton_clicked();
 
-    void on_resetGameboard_clicked();
-
 private:
-    Ui::EngineWindow *ui;
+    Ui::WormsWindow *ui;
 
     Engine * engine;
 
     void refresh_gameboard();
 };
 
-#endif // ENGINEWINDOW_H
+#endif // WORMSWINDOW_H

@@ -23,6 +23,7 @@ public:
 
     virtual bool is_game_finished() = 0;
     virtual void reset_game() = 0;
+    virtual int get_score() = 0;
 protected:
     int ROWS = 4;
     int COLS = 4;

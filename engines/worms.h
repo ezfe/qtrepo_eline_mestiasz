@@ -29,7 +29,7 @@ public:
     std::vector<int> query_worm(int i);
 
     bool is_lost();
-    int score();
+    int get_score();
 
     bool is_game_finished();
     void reset_game();

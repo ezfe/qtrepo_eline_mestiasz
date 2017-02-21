@@ -23,7 +23,7 @@ void WormsTest::TearDown() {
  ****************/
 
 TEST_F(WormsTest, TESTINITIAL) {
-    EXPECT_EQ(3, worms->score()) << "Score should be 3"; //SCORE
+    EXPECT_EQ(3, worms->get_score()) << "Score should be 3"; //SCORE
     EXPECT_EQ('o', worms->get_xy(1, 1)) << "Tail should be here"; //TAIL
     EXPECT_EQ('o', worms->get_xy(2, 1)) << "Middle should be here"; //MIDDLE
     EXPECT_EQ('@', worms->get_xy(3, 1)) << "Head should be here"; //HEAD
@@ -32,7 +32,7 @@ TEST_F(WormsTest, TESTINITIAL) {
 TEST_F(WormsTest, TESTDOWN) {
     worms->set_xy(3, 2, 'x');
     worms->press_down();
-    EXPECT_EQ(3, worms->score()) << "Score should be 3"; //SCORE
+    EXPECT_EQ(3, worms->get_score()) << "Score should be 3"; //SCORE
     EXPECT_FALSE('o' == worms->get_xy(1, 1)) << "Tail should no longer be here"; //OLD TAIL
     EXPECT_EQ('o', worms->get_xy(2, 1)) << "Tail should be here"; //NEW TAIL
     EXPECT_EQ('o', worms->get_xy(3, 1)) << "Middle should be here"; //NEW MIDDLE
@@ -42,7 +42,7 @@ TEST_F(WormsTest, TESTDOWN) {
 TEST_F(WormsTest, TESTRIGHT) {
     worms->set_xy(4, 1, 'x');
     worms->press_right();
-    EXPECT_EQ(3, worms->score()) << "Score should be 3"; //SCORE
+    EXPECT_EQ(3, worms->get_score()) << "Score should be 3"; //SCORE
     EXPECT_FALSE('o' == worms->get_xy(1, 1)) << "Tail should no longer be here"; //OLD TAIL
     EXPECT_EQ('o', worms->get_xy(2, 1)) << "Tail should be here"; //NEW TAIL
     EXPECT_EQ('o', worms->get_xy(3, 1)) << "Middle should be here"; //NEW MIDDLE
@@ -52,7 +52,7 @@ TEST_F(WormsTest, TESTRIGHT) {
 TEST_F(WormsTest, TESTUP) {
     worms->set_xy(3, 0, 'x');
     worms->press_up();
-    EXPECT_EQ(3, worms->score()) << "Score should be 3"; //SCORE
+    EXPECT_EQ(3, worms->get_score()) << "Score should be 3"; //SCORE
     EXPECT_FALSE('o' == worms->get_xy(1, 1)) << "Tail should no longer be here"; //OLD TAIL
     EXPECT_EQ('o', worms->get_xy(2, 1)) << "Tail should be here"; //NEW TAIL
     EXPECT_EQ('o', worms->get_xy(3, 1)) << "Middle should be here"; //NEW MIDDLE
@@ -61,15 +61,15 @@ TEST_F(WormsTest, TESTUP) {
 
 TEST_F(WormsTest, TESTLEFT) {
     worms->press_left();
-    EXPECT_EQ(3, worms->score()) << "Score should be 3"; //SCOREd
+    EXPECT_EQ(3, worms->get_score()) << "Score should be 3"; //SCOREd
     EXPECT_EQ(true, worms->is_lost()) << "Game should be lost";
 }
 
 TEST_F(WormsTest, TESTEGG) {
-    EXPECT_EQ(3, worms->score()) << "Score should be 3"; //SCORE
+    EXPECT_EQ(3, worms->get_score()) << "Score should be 3"; //SCORE
     worms->set_xy(4, 1, '2');
     worms->press_right();
-    EXPECT_EQ(5, worms->score()) << "Score should be 5"; //SCORE
+    EXPECT_EQ(5, worms->get_score()) << "Score should be 5"; //SCORE
     worms->set_xy(4, 2, 'x');
     worms->press_down();
     worms->set_xy(3, 2, 'x');
@@ -81,7 +81,7 @@ TEST_F(WormsTest, TESTEGG) {
     EXPECT_EQ('o', worms->get_xy(4, 2)) << "Middle should be here"; //NEW MIDDLE
     EXPECT_EQ('@', worms->get_xy(3, 2)) << "Head should be here"; //NEW MIDDLE
 
-    EXPECT_EQ(5, worms->score()) << "Score should be 5 (still)"; //SCORE
+    EXPECT_EQ(5, worms->get_score()) << "Score should be 5 (still)"; //SCORE
 }
 
 TEST_F(WormsTest, TESTget_head) {

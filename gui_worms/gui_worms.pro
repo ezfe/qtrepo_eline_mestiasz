@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-02-20T09:49:29
+# Project created by QtCreator 2017-02-20T22:44:00
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = gui
+TARGET = gui_worms
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -24,14 +24,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        enginewindow.cpp \
+        wormswindow.cpp \
         ../engines/engine.cpp \
         ../engines/robots.cpp \
         ../engines/worms.cpp
 
-HEADERS  += enginewindow.h \
+HEADERS  += wormswindow.h \
         ../engines/engine.h \
         ../engines/robots.h \
         ../engines/worms.h
 
-FORMS    += enginewindow.ui
+FORMS    += wormswindow.ui
