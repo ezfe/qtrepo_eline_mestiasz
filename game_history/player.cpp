@@ -12,7 +12,7 @@ Player::Player() {
     this->address = "";
 }
 
-void Player::add_game(Game* g) {
-    this->games->add_game(this->most_recent_game);
-    this->most_recent_game = g;
-}
+//void Player::add_game(Game* g) {
+//    this->games->add_game(this->most_recent_game);
+//    this->most_recent_game = g;
+//}
