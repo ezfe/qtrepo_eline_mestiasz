@@ -1,23 +1,23 @@
 #ifndef ROBOTSWINDOW_H
 #define ROBOTSWINDOW_H
 
-#include <QWidget>
+#include <QMainWindow>
 #include "../engines/engine.h"
-#include "../engines/worms.h"
+#include "../engines/robots.h"
 
 namespace Ui {
 class RobotsWindow;
 }
 
-class RobotsWindow : public QWidget
+class RobotsWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit RobotsWindow(QWidget *parent = 0);
+    explicit RobotsWindow(QMainWindow *parent = 0);
     ~RobotsWindow();
 
-    void handle_event();
+    void handle_event(char cmd);
 
 private slots:
     void on_yButton_clicked();
