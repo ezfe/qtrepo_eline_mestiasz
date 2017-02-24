@@ -5,7 +5,7 @@
  * \param name of the game
  * \param score of the game
  */
-Game::Game(std::string name, int score) {
+Game::Game(Player player, std::string name, int score) {
     this->name = name;
     this->score = score;
 }

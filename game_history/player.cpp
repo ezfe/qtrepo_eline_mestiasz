@@ -7,9 +7,9 @@ Player::Player(std::string first_name, std::string last_name, std::string addres
 }
 
 Player::Player() {
-    this->first_name = "John";
-    this->last_name = "Appleseed";
-    this->address = "111 Quad Dr";
+    this->first_name = "";
+    this->last_name = "";
+    this->address = "";
 }
 
 void Player::add_game(Game* g) {
