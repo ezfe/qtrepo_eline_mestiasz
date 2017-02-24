@@ -27,3 +27,7 @@ int PlayerGameHistory::avg_game_score() {
 int PlayerGameHistory::avg_game_score_player(Player p) {
     return 0;
 }
+
+void PlayerGameHistory::add_game(Player p, Game g, int score) {
+
+}
