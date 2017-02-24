@@ -11,3 +11,8 @@ Player::Player() {
     this->last_name = "Appleseed";
     this->address = "111 Quad Dr";
 }
+
+void Player::add_game(Game* g) {
+    this->games->add_game(this->most_recent_game);
+    this->most_recent_game = g;
+}
