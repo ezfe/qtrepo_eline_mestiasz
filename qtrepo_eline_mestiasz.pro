@@ -7,4 +7,5 @@ SUBDIRS += \
     engines \
     engine_tests \
     tui \
-    gui_worms
+    gui_worms \
+    gui_robots
