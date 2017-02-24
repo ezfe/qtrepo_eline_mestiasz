@@ -29,7 +29,7 @@ SOURCES += main.cpp \
         ../engines/robots.cpp
 
 HEADERS  += robotswindow.h \
-            ../engines/engine.h \
-            ../engines/robots.h
+        ../engines/engine.h \
+        ../engines/robots.h
 
 FORMS    += robotswindow.ui

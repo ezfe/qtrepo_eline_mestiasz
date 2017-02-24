@@ -1,7 +1,7 @@
 #ifndef ROBOTSWINDOW_H
 #define ROBOTSWINDOW_H
 
-#include <QMainWindow>
+#include <QWidget>
 #include "../engines/engine.h"
 #include "../engines/robots.h"
 
@@ -9,12 +9,12 @@ namespace Ui {
 class RobotsWindow;
 }
 
-class RobotsWindow : public QMainWindow
+class RobotsWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit RobotsWindow(QMainWindow *parent = 0);
+    explicit RobotsWindow(QWidget *parent = 0);
     ~RobotsWindow();
 
     void handle_event(char cmd);

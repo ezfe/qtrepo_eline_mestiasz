@@ -1,8 +1,8 @@
 #include "robotswindow.h"
 #include "ui_robotswindow.h"
 
-RobotsWindow::RobotsWindow(QMainWindow *parent) :
-    QMainWindow(parent),
+RobotsWindow::RobotsWindow(QWidget *parent) :
+    QWidget(parent),
     ui(new Ui::RobotsWindow)
 {
     ui->setupUi(this);
