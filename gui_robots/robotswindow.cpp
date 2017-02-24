@@ -7,7 +7,8 @@ RobotsWindow::RobotsWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->engine = new Robots(20, 20, 7);
+    this->engine = new Robots(20, 40, 7);
+    this->refresh_gameboard();
 }
 
 RobotsWindow::~RobotsWindow()
@@ -17,9 +18,11 @@ RobotsWindow::~RobotsWindow()
 }
 
 void RobotsWindow::refresh_gameboard(){
-    QString new_board = QString::fromStdString(engine->print_gameboard());
+    QString new_board = QString::fromStdString(this->engine->print_gameboard());
+
     ui->gameBoard->clear();
     ui->gameBoard->setText(new_board);
+    ui->score->setText(QString::number(this->engine->get_score()));
 }
 
 void RobotsWindow::handle_event(char cmd){
@@ -67,3 +70,24 @@ void RobotsWindow::on_nButton_clicked()
 {
     this->handle_event('n');
 }
+
+void RobotsWindow::on_wButton_clicked()
+{
+    this->handle_event('w');
+}
+
+void RobotsWindow::on_tButton_clicked()
+{
+    this->handle_event('t');
+}
+
+void RobotsWindow::on_qButton_clicked()
+{
+    this->handle_event('q');
+}
+
+void RobotsWindow::on_rButton_clicked()
+{
+    this->handle_event('r');
+}
+

@@ -10,5 +10,4 @@ SUBDIRS += \
     gui_worms \
     gui_robots \
     game_history \
-    ../../QtApps:/gui_robots \
     gui_robots

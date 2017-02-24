@@ -36,6 +36,14 @@ private slots:
 
     void on_nButton_clicked();
 
+    void on_wButton_clicked();
+
+    void on_tButton_clicked();
+
+    void on_qButton_clicked();
+
+    void on_rButton_clicked();
+
 private:
     Ui::RobotsWindow *ui;
     Engine * engine;
