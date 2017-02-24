@@ -8,4 +8,5 @@ SUBDIRS += \
     engine_tests \
     tui \
     gui_worms \
-    gui_robots
+    gui_robots \
+    game_history
