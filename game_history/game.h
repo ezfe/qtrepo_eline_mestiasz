@@ -5,6 +5,10 @@
 class Game {
 public:
     Game();
+
+private:
+    std::string name;
+    std::string score;
 };
 
 #endif // GAME_H
