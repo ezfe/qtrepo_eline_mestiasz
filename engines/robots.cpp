@@ -1,7 +1,7 @@
 #include "robots.h"
 
 Robots::Robots(int rows, int cols, int robots): Engine(rows, cols) {
-
+    this->ROBOTS = robots;
     movedObjects = new bool*[rows];
     for(int i = 0; i < rows; i++) {
         movedObjects[i] = new bool[cols];
@@ -15,7 +15,6 @@ Robots::Robots(int rows, int cols, int robots): Engine(rows, cols) {
 
     this->redraw();
     this->add_player_and_robots();
-    this->ROBOTS = robots;
 }
 
 Robots::~Robots(){
@@ -245,7 +244,7 @@ void Robots::set_score(int score){
  */
 void Robots::add_player_and_robots(){
     std::pair<int, int> empty_cell;
-    for(int i = 0; i < ROWS; i++){
+    for(int i = 0; i < this->ROBOTS; i++){
         empty_cell = find_empty_cell();
         this->set_item(empty_cell.first, empty_cell.second, '+');
     }

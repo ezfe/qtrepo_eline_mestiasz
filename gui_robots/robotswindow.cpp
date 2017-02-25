@@ -7,7 +7,7 @@ RobotsWindow::RobotsWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->engine = new Robots(20, 40, 7);
+    this->engine = new Robots(26, 44, 7);
     this->refresh_gameboard();
 }
 
@@ -83,7 +83,7 @@ void RobotsWindow::on_tButton_clicked()
 
 void RobotsWindow::on_qButton_clicked()
 {
-    this->handle_event('q');
+    this->close();
 }
 
 void RobotsWindow::on_rButton_clicked()
