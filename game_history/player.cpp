@@ -1,18 +1,38 @@
-//#include "player.h"
+#include "player.h"
 
-//Player::Player(std::string first_name, std::string last_name, std::string address) {
-//    this->first_name = first_name;
-//    this->last_name = last_name;
-//    this->address = address;
-//}
+Player::Player(std::string firstName, std::string lastName, std::string address) {
+    this->firstName = firstName;
+    this->lastName = lastName;
+    this->address = address;
+}
 
-//Player::Player() {
-//    this->first_name = "";
-//    this->last_name = "";
-//    this->address = "";
-//}
+Player::Player() {
+    this->firstName = "";
+    this->lastName = "";
+    this->address = "";
+}
 
-//void Player::add_game(Game* g) {
-//    this->games->add_game(this->most_recent_game);
-//    this->most_recent_game = g;
-//}
+void Player::add_game(Game* g) {
+    this->games->add_game(g);
+    this->recentGame = g;
+}
+
+std::string Player::get_first_name(){
+    return this->firstName;
+}
+
+std::string Player::get_last_name(){
+    return this->lastName;
+}
+
+std::string Player::get_address(){
+    return this->address;
+}
+
+Game* Player::get_recent_game(){
+    return this->recentGame;
+}
+
+GameHistory* Player::get_games(){
+    return this->games;
+}

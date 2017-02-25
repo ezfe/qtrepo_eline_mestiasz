@@ -9,5 +9,4 @@ SUBDIRS += \
     tui \
     gui_worms \
     gui_robots \
-    game_history \
-    gui_robots
+    game_history
