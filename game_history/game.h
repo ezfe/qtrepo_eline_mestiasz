@@ -11,6 +11,7 @@ class Game {
 public:
     Game();
     Game(Player* player, std::string name, int score);
+    ~Game();
 
     int get_score();
     std::string get_name();

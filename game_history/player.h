@@ -13,6 +13,7 @@ class Player {
 public:
     Player();
     Player(std::string first_name, std::string last_name, std::string address);
+    ~Player();
 
     void add_game(Game* game);
 

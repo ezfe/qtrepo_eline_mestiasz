@@ -9,6 +9,7 @@ class Game;
 class GameHistory {
 public:
     GameHistory();
+    ~GameHistory();
 
     void add_game(Game* game);
 

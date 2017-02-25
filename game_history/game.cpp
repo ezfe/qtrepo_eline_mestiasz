@@ -18,6 +18,10 @@ Game::Game() {
     this->score = 0;
 }
 
+Game::~Game(){
+    delete player;
+}
+
 /*!
  * \brief Get the name of the game
  * \return game name

@@ -4,6 +4,10 @@ PlayerGameHistory::PlayerGameHistory() {
 
 }
 
+PlayerGameHistory::~PlayerGameHistory() {
+
+}
+
 int PlayerGameHistory::number_games_played() {
     return 0;
 }

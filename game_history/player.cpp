@@ -12,6 +12,11 @@ Player::Player() {
     this->address = "";
 }
 
+Player::~Player() {
+    delete games;
+    delete recentGame;
+}
+
 void Player::add_game(Game* g) {
     this->games->add_game(g);
     this->recentGame = g;

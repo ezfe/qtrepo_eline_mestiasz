@@ -9,6 +9,7 @@
 class PlayerGameHistory {
 public:
     PlayerGameHistory();
+    ~PlayerGameHistory();
 
     int number_games_played();
     int number_players_played();
