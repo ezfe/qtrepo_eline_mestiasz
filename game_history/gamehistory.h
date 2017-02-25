@@ -2,6 +2,7 @@
 #define GAMEHISTORY_H
 
 #include <vector>
+#include <iostream>
 
 #include "game.h"
 class Game;

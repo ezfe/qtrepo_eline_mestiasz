@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <string>
+#include <iostream>
 
 #include "game.h"
 #include "gamehistory.h"

@@ -4,12 +4,18 @@ Player::Player(std::string firstName, std::string lastName, std::string address)
     this->firstName = firstName;
     this->lastName = lastName;
     this->address = address;
+
+    this->games = new GameHistory();
+    this->recentGame = nullptr;
 }
 
 Player::Player() {
     this->firstName = "";
     this->lastName = "";
     this->address = "";
+
+    this->games = new GameHistory();
+    this->recentGame = nullptr;
 }
 
 Player::~Player() {

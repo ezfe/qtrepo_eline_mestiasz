@@ -5,7 +5,7 @@ RobotsTest::RobotsTest() {
 }
 
 RobotsTest::~RobotsTest() {
-
+    delete robots;
 }
 
 void RobotsTest::SetUp() {
