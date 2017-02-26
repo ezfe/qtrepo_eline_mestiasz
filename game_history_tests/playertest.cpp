@@ -37,7 +37,7 @@ TEST_F(PlayerTest, TEST_GET_TOTAL_SCORE){
     player->add_game(new Game(player, "robots", 31));
     player->add_game(new Game(player, "robots", 51));
 
-    EXPECT_EQ(player->get_total_score(), 42)
+    EXPECT_EQ(player->get_total_score(), 93)
             << "Did not add game Correctly";
 
 }

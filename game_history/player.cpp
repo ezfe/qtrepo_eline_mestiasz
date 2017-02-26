@@ -33,7 +33,8 @@ int Player::get_total_score(){
     for(auto game : games->get_games()){
         totalScore += game->get_score();
     }
-    return totalScore;
+    if(recentGame == nullptr) return 0;
+    return totalScore + recentGame->get_score();
 }
 
 std::string Player::get_first_name(){

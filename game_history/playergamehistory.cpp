@@ -30,15 +30,7 @@ int PlayerGameHistory::top_game_score() {
 }
 
 double PlayerGameHistory::avg_score_per_player(Player* player) {
-    int scoreCounter = 0;
-    int gameCounter = 0;
-    for(auto game : games){
-        if(game->get_player() == player){
-            gameCounter++;
-            scoreCounter += game->get_score();
-        }
-    }
-    return scoreCounter / gameCounter;
+    return player->get_total_score() / (player->get_games()->get_games().size() + 1);
 }
 
 double PlayerGameHistory::avg_game_score() {
@@ -59,14 +51,15 @@ std::vector<Game*> PlayerGameHistory::get_games(){
 
 void PlayerGameHistory::add_game(Player* p, Game* g) {
     games.push_back(g);
-    bool t = true;
+    bool exists = false;
     for(auto player : players){
         if(player == p){
-            t = false;
+            exists = true;
             break;
         }
     }
 
-    if(t) players.push_back(p);
+    if(!exists) players.push_back(p);
+    p->add_game(g);
 
 }

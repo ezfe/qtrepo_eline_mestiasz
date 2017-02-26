@@ -112,6 +112,7 @@ TEST_F(PlayerGameHistoryTest, TEST_AVG_SCORE_PER_PLAYER){
     game = new Game(player, "robots", 1);
     playerGameHistory->add_game(player, game);
 
+
     EXPECT_EQ(playerGameHistory->avg_score_per_player(player), 6)
             << "Could not find correct average";
 

@@ -13,6 +13,5 @@ void GameHistory::add_game(Game* game) {
 }
 
 std::vector<Game*> GameHistory::get_games(){
-    std::cout << "Size == " << this->games.size() << std::endl;
     return this->games;
 }
