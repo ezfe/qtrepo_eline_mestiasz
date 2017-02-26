@@ -6,6 +6,8 @@
 #include "gtest/gtest.h"
 #include "../game_history/playergamehistory.h"
 #include "../game_history/player.h"
+#include "../game_history/game.h"
+
 
 class PlayerGameHistoryTest : public :: testing::Test{
 protected:

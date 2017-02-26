@@ -17,6 +17,8 @@ public:
     double avg_games_per_player();
     double avg_score_per_player(Player* player);
     double avg_game_score();
+    std::vector<Player*> get_players();
+    std::vector<Game*> get_games();
 
     void add_game(Player* player, Game* game);
 
