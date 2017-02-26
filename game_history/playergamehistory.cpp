@@ -30,15 +30,15 @@ int PlayerGameHistory::top_game_score() {
 }
 
 double PlayerGameHistory::avg_score_per_player(Player* player) {
-    int score_counter = 0;
-    int game_counter = 0;
+    int scoreCounter = 0;
+    int gameCounter = 0;
     for(auto game : games){
         if(game->get_player() == player){
-            game_counter++;
-            score_counter += game->get_score();
+            gameCounter++;
+            scoreCounter += game->get_score();
         }
     }
-    return score_counter / game_counter;
+    return scoreCounter / gameCounter;
 }
 
 double PlayerGameHistory::avg_game_score() {

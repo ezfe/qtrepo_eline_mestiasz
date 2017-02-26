@@ -18,9 +18,11 @@ public:
 
     void add_game(Game* game);
 
+    int get_total_score();
     std::string get_first_name();
     std::string get_last_name();
     std::string get_address();
+
     Game* get_recent_game();
     GameHistory* get_games();
 
