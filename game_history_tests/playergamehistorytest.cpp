@@ -24,8 +24,8 @@ TEST_F(PlayerGameHistoryTest, TEST_NUMBER_GAMES_PLAYED){
     game = new Game(player, "robots", 1);
     playerGameHistory->add_game(player, game);
 
-    game = new Game(player, "worms", 31);
     player = new Player("Miss", "Rogbeer", "17");
+    game = new Game(player, "worms", 31);
     playerGameHistory->add_game(player, game);
 
     game = new Game(player, "robots", 1);
@@ -49,8 +49,8 @@ TEST_F(PlayerGameHistoryTest, TEST_NUMBER_PLAYERS_PLAYED){
     game = new Game(player, "robots", 1);
     playerGameHistory->add_game(player, game);
 
-    game = new Game(player, "worms", 31);
     player = new Player("Miss", "Rogbeer", "17");
+    game = new Game(player, "worms", 31);
     playerGameHistory->add_game(player, game);
 
     game = new Game(player, "robots", 1);
@@ -68,8 +68,8 @@ TEST_F(PlayerGameHistoryTest, TEST_TOP_GAME_SCORE){
     game = new Game(player, "robots", 1);
     playerGameHistory->add_game(player, game);
 
-    game = new Game(player, "worms", 31);
     player = new Player("Miss", "Rogbeer", "17");
+    game = new Game(player, "worms", 31);
     playerGameHistory->add_game(player, game);
 
     game = new Game(player, "robots", 1);
@@ -93,8 +93,8 @@ TEST_F(PlayerGameHistoryTest, TEST_AVG_GAMES_PER_PLAYER){
     game = new Game(player, "robots", 1);
     playerGameHistory->add_game(player, game);
 
-    game = new Game(player, "worms", 11);
     player = new Player("Miss", "Rogbeer", "17");
+    game = new Game(player, "worms", 11);
     playerGameHistory->add_game(player, game);
 
     game = new Game(player, "robots", 1);
@@ -115,8 +115,8 @@ TEST_F(PlayerGameHistoryTest, TEST_AVG_SCORE_PER_PLAYER){
     EXPECT_EQ(playerGameHistory->avg_score_per_player(player), 6)
             << "Could not find correct average";
 
-    game = new Game(player, "worms", 11);
     player = new Player("Miss", "Rogbeer", "17");
+    game = new Game(player, "worms", 11);
     playerGameHistory->add_game(player, game);
 
     game = new Game(player, "robots", 1);
@@ -134,8 +134,8 @@ TEST_F(PlayerGameHistoryTest, TEST_AVG_GAME_SCORE){
     game = new Game(player, "robots", 1);
     playerGameHistory->add_game(player, game);
 
-    game = new Game(player, "worms", 11);
     player = new Player("Miss", "Rogbeer", "17");
+    game = new Game(player, "worms", 11);
     playerGameHistory->add_game(player, game);
 
     game = new Game(player, "robots", 1);

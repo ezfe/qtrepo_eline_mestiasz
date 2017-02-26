@@ -38,7 +38,6 @@ double PlayerGameHistory::avg_score_per_player(Player* player) {
             score_counter += game->get_score();
         }
     }
-
     return score_counter / game_counter;
 }
 
