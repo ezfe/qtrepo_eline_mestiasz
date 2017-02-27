@@ -1,14 +1,14 @@
-#include "screen.h"
+#include "gamescreen.h"
 
-Screen::Screen(){
-
-}
-
-Screen::~Screen(){
+GameScreen::GameScreen(){
 
 }
 
-void Screen::init(){
+GameScreen::~GameScreen(){
+    delete engine;
+}
+
+void GameScreen::init(){
     initscr();
     curs_set(0);
 
@@ -17,17 +17,18 @@ void Screen::init(){
     keypad(stdscr, TRUE);
 
     continue_looping = true;
-    draw_screen();
+    draw_screen(this->engine->print_gameboard());
 
     do {
         refresh();
         int cmd = getch();
-
         if(cmd == 'q') {
+            this->engine->reset_game();
             break;
         }
 
-        draw_screen();
+        std::string str = this->engine->controller(cmd);
+        draw_screen(str);
 
     } while(continue_looping);
 
@@ -36,7 +37,7 @@ void Screen::init(){
     std::cout << "exiting main\n";
 }
 
-void Screen::draw_screen(){
+void GameScreen::draw_screen(std::string str){
     clear();
     mvprintw(0, 0, "Welcome to the game! \n Enjoy your time :)");
 }

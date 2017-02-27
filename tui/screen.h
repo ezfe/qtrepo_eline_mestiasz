@@ -5,20 +5,16 @@
 #include <string>
 #include <curses.h>
 
-#include "../engines/engine.h"
-
 class Screen {
 public:
     Screen();
     ~Screen();
 
     void init();
-    virtual void draw_screen(std::string str);
+    virtual void draw_screen();
 
     bool continue_looping;
 
-protected:
-    Engine * engine;
 };
 
 #endif // SCREEN_H

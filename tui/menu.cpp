@@ -1,0 +1,23 @@
+#include "menu.h"
+
+Menu::Menu() : Screen(){
+
+}
+
+Menu::~Menu(){
+
+}
+
+void Menu::draw_screen(){
+    clear();
+
+    mvprintw(0, 1, "Current Player: No player selected" );
+    mvprintw(2, 1, "a. Create a New Player");
+    mvprintw(3, 1, "b. Select an Existing Player");
+    mvprintw(5, 1, "c. Display Top Three Players");
+    mvprintw(6, 1, "d. Display Top Three Games Played");
+    mvprintw(7, 1, "e. Display Calculated Statistics");
+    mvprintw(9, 1, "f. Play Robots");
+    mvprintw(10, 1, "g. Play Worm");
+    mvprintw(12, 1, "q. Exit Program");
+}

@@ -5,9 +5,9 @@
 #include <string>
 
 #include "../engines/worms.h"
-#include "screen.h"
+#include "gamescreen.h"
 
-class WormsScreen : public Screen{
+class WormsScreen : public GameScreen{
 public:
     WormsScreen();
 

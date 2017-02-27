@@ -1,6 +1,6 @@
 #include "robotsscreen.h"
 
-RobotsScreen::RobotsScreen(): Screen(){
+RobotsScreen::RobotsScreen(): GameScreen(){
     this->engine = new Robots(20, 50, 10);
 }
 

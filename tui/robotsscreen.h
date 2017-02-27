@@ -5,9 +5,9 @@
 #include <string>
 
 #include "../engines/robots.h"
-#include "screen.h"
+#include "gamescreen.h"
 
-class RobotsScreen : public Screen{
+class RobotsScreen : public GameScreen{
 public:
     RobotsScreen();
 

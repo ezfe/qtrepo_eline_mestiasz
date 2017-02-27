@@ -1,6 +1,6 @@
 #include "wormsscreen.h"
 
-WormsScreen::WormsScreen() : Screen(){
+WormsScreen::WormsScreen() : GameScreen(){
     this->engine = new Worms(20, 20);
 }
 
