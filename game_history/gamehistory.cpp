@@ -1,11 +1,11 @@
 #include "gamehistory.h"
 
 GameHistory::GameHistory() {
-
+    this->games.clear();
 }
 
 GameHistory::~GameHistory(){
-
+    this->games.clear();
 }
 
 void GameHistory::add_game(Game* game) {

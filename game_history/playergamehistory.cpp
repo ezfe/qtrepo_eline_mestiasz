@@ -1,11 +1,13 @@
 #include "playergamehistory.h"
 
 PlayerGameHistory::PlayerGameHistory() {
-
+    this->players.clear();
+    this->games.clear();
 }
 
 PlayerGameHistory::~PlayerGameHistory() {
-
+    this->players.clear();
+    this->games.clear();
 }
 
 int PlayerGameHistory::number_games_played() {
@@ -30,7 +32,7 @@ int PlayerGameHistory::top_game_score() {
 }
 
 double PlayerGameHistory::avg_score_per_player(Player* player) {
-    return player->get_total_score() / (player->get_games()->get_games().size() + 1);
+    return player->get_total_score() / (player->get_game_history()->get_games().size() + 1);
 }
 
 double PlayerGameHistory::avg_game_score() {
@@ -61,5 +63,4 @@ void PlayerGameHistory::add_game(Player* p, Game* g) {
 
     if(!exists) players.push_back(p);
     p->add_game(g);
-
 }

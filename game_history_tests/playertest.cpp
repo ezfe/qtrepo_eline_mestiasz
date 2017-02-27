@@ -28,7 +28,7 @@ TEST_F(PlayerTest, TEST_ADD_GAME){
             << "Did not add game Correctly";
     EXPECT_TRUE(player->get_recent_game()->get_score() == 21)
             << "Did not add game Correctly";
-    EXPECT_TRUE(player->get_games()->get_games().size() == 1)
+    EXPECT_TRUE(player->get_game_history()->get_games().size() == 1)
             << "Did not add game Correctly";
 }
 

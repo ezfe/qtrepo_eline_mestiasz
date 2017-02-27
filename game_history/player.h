@@ -24,7 +24,7 @@ public:
     std::string get_address();
 
     Game* get_recent_game();
-    GameHistory* get_games();
+    GameHistory* get_game_history();
 
 private:
     std::string firstName;

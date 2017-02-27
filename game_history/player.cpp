@@ -53,6 +53,6 @@ Game* Player::get_recent_game(){
     return this->recentGame;
 }
 
-GameHistory* Player::get_games(){
+GameHistory* Player::get_game_history(){
     return this->games;
 }

@@ -17,6 +17,7 @@ Game::Game(Player* player, std::string name, int score) {
 Game::Game() {
     this->name = "";
     this->score = 0;
+    this->player = nullptr;
 }
 
 Game::~Game(){
