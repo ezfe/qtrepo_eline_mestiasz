@@ -18,7 +18,7 @@ public:
     Database(std::string location);
 
     int open();
-    bool isOpen() { return current ? true : false; }
+    bool is_open() { return current ? true : false; }
     sqlite3* db() { return current; }
 
 private:
