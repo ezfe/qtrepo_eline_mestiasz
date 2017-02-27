@@ -5,6 +5,7 @@
 #include <string>
 
 #include "screen.h"
+#include "newplayer.h"
 
 class Menu : public Screen{
 public:
@@ -12,6 +13,7 @@ public:
     ~Menu();
 
     void draw_screen();
+    void controller(char cmd);
 };
 
 #endif // MENU_H

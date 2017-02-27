@@ -21,3 +21,13 @@ void Menu::draw_screen(){
     mvprintw(10, 1, "g. Play Worm");
     mvprintw(12, 1, "q. Exit Program");
 }
+
+void Menu::controller(char cmd){
+    switch(cmd){
+    case 'a':
+        NewPlayer* player = new NewPlayer();
+        player->init();
+        delete player;
+        break;
+    }
+}

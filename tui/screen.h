@@ -11,6 +11,7 @@ public:
     ~Screen();
 
     void init();
+    virtual void controller(char cmd) = 0;
     virtual void draw_screen();
 
     bool continue_looping;

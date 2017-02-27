@@ -1,14 +1,14 @@
-#include "screen.h"
+#include "menuitemscreen.h"
 
-Screen::Screen(){
-
-}
-
-Screen::~Screen(){
+MenuItemScreen::MenuItemScreen(){
 
 }
 
-void Screen::init(){
+MenuItemScreen::~MenuItemScreen(){
+
+}
+
+void MenuItemScreen::init(){
     initscr();
     curs_set(0);
 
@@ -27,7 +27,6 @@ void Screen::init(){
             break;
         }
 
-        this->controller(cmd);
         draw_screen();
 
     } while(continue_looping);
@@ -37,7 +36,7 @@ void Screen::init(){
     std::cout << "exiting main\n";
 }
 
-void Screen::draw_screen(){
+void MenuItemScreen::draw_screen(){
     clear();
     mvprintw(0, 0, "Welcome to the game! \n Enjoy your time :)");
 }

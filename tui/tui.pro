@@ -12,7 +12,9 @@ SOURCES += \
     wormsscreen.cpp \
     main.cpp \
     menu.cpp \
-    gamescreen.cpp
+    gamescreen.cpp \
+    menuitemscreen.cpp \
+    newplayer.cpp
 
 LIBS += -lncurses -lform
 
@@ -23,6 +25,8 @@ HEADERS += screen.h \
     robotsscreen.h \
     wormsscreen.h \
     menu.h \
-    gamescreen.h
+    gamescreen.h \
+    menuitemscreen.h \
+    newplayer.h
 
 
