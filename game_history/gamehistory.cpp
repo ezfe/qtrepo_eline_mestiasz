@@ -15,3 +15,11 @@ void GameHistory::add_game(Game* game) {
 std::vector<Game*> GameHistory::get_games(){
     return this->games;
 }
+
+int GameHistory::get_total_score(){
+    int totalScore = 0;
+    for(auto game : games){
+        totalScore += game->get_score();
+    }
+    return totalScore;
+}

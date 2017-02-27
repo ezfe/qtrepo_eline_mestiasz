@@ -29,12 +29,8 @@ void Player::add_game(Game* g) {
 }
 
 int Player::get_total_score(){
-    int totalScore = 0;
-    for(auto game : games->get_games()){
-        totalScore += game->get_score();
-    }
     if(recentGame == nullptr) return 0;
-    return totalScore + recentGame->get_score();
+    return games->get_total_score() + recentGame->get_score();
 }
 
 std::string Player::get_first_name(){
