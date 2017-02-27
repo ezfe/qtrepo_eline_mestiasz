@@ -20,10 +20,7 @@ Game::Game() {
 }
 
 Game::~Game(){
-    // delete player;
-    // as player has this, and this has player, one of them is
-    // destructied earlier and calls destructor of the other one while
-    // that one is already destructed
+
 }
 
 /*!
