@@ -40,6 +40,10 @@ int Game::get_score() {
     return this->score;
 }
 
+/*!
+ * \brief Get the player
+ * \return Player* game
+ */
 Player* Game::get_player(){
     return this->player;
 }
