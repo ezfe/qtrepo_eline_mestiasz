@@ -10,11 +10,6 @@ MenuItemScreen::~MenuItemScreen(){
 
 void MenuItemScreen::init(){
     initscr();
-    curs_set(0);
-
-    cbreak();
-    noecho();
-    keypad(stdscr, TRUE);
 
     continue_looping = true;
     draw_screen();

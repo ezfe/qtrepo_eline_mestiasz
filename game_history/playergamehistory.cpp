@@ -6,8 +6,9 @@ PlayerGameHistory::PlayerGameHistory() {
 }
 
 PlayerGameHistory::~PlayerGameHistory() {
-    this->players.clear();
-    this->games.clear();
+    for(auto player : this->players){
+        delete player;
+    }
 }
 
 /*!

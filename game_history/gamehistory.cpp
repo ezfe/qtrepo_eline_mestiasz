@@ -5,7 +5,9 @@ GameHistory::GameHistory() {
 }
 
 GameHistory::~GameHistory(){
-    this->games.clear();
+    for(auto game : this->games){
+        delete game;
+    }
 }
 
 /*!
