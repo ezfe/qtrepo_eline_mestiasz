@@ -15,6 +15,7 @@ public:
     void add_game(Game* game);
 
     std::vector<Game*> get_games();
+    int get_total_score();
 
 private:
     std::vector<Game*> games;
