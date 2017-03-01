@@ -5,7 +5,8 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     dbtool.cpp \
-    dbtable.cpp
+    dbtable.cpp \
+    dbtableex.cpp
 
 HEADERS += \
     dbtool.h \
