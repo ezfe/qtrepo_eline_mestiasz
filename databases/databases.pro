@@ -6,12 +6,11 @@ CONFIG -= qt
 SOURCES += main.cpp \
     dbtool.cpp \
     dbtable.cpp \
-    dbtableex.cpp
+    dbtableplayers.cpp
 
 HEADERS += \
     dbtool.h \
-    dbtableex.h \
     dbtable.h \
-    dbtableplayers
+    dbtableplayers.h
 
 LIBS += -l sqlite3

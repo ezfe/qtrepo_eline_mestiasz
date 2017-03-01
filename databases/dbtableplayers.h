@@ -17,8 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 *********************************************************************/
 
-#ifndef DBTABLEEX_H
-#define DBTABLEEX_H
+#ifndef DBTABLEPLAYERS_H
+#define DBTABLEPLAYERS_H
 
 
 #include <iostream>
@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "dbtable.h"
 
 /**
- * @brief The DBTableEx class
+ * @brief The DBTablePlayers class
  *
  * This is an example table class that extends the create
  * and add_row SQL definition method calls.  It also adds
@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Two call backs are also provided to facilitate the new
  * method calls.
  */
-class DBTableEx : public DBTable {
+class DBTablePlayers : public DBTable {
 
 protected:
 
@@ -51,11 +51,10 @@ protected:
 
 public:
 
-    DBTableEx();
-    DBTableEx(DBTool     *db,
-              std::string name);
+    DBTablePlayers();
+    DBTablePlayers(DBTool *db, std::string name);
 
-    ~DBTableEx();
+    ~DBTablePlayers();
 
     // An overloaded method to generate a new
     // create command for your child class.
@@ -65,9 +64,7 @@ public:
     // insert command for your child class.
     virtual void store_add_row_sql();
 
-    bool add_row(int id,
-                 std::string item0, int   item1,
-                 std::string item2, float item3 );
+    bool add_row(int id, std::string firstName, std::string lastName, std::string address);
 
     bool select_all();
 };
@@ -88,4 +85,4 @@ int cb_select_all(void  *data,
                   char **argv,
                   char **azColName);
 
-#endif // DBTABLEEX_H
+#endif // DBTABLEPLAYERS_H

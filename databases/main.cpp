@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "dbtool.h"
-#include "dbtableex.h"
+#include "dbtableplayers.h"
 
 int main() {
 
@@ -31,13 +31,11 @@ int main() {
     dbtool->print(std::cout);
 
     // generate a new table
-    DBTableEx *ext = new DBTableEx(dbtool, "TestTable");
+    DBTablePlayers *ext = new DBTablePlayers(dbtool, "PlayerList");
 
     // add information to the new table
-    ext->add_row(0, "hi", 2, "bye", 3.4);
-    ext->add_row(1, "hi", 2, "bye", 3.4);
-    ext->add_row(2, "hi", 2, "bye", 3.4);
-    ext->add_row(3, "hi", 2, "bye", 3.4);
+    ext->add_row(0, "Ezekiel", "Elin", "South College");
+    ext->add_row(1, "Sydney", "Schock", "Marquis");
 
     ext->select_all();
 
