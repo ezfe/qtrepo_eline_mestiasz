@@ -4,11 +4,13 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    database.cpp \
-    table.cpp
+    dbtool.cpp \
+    dbtable.cpp
 
 HEADERS += \
-    database.h \
-    table.h
+    dbtool.h \
+    dbtableex.h \
+    dbtable.h \
+    dbtableplayers
 
-LIBS += -lsqlite3
+LIBS += -l sqlite3
