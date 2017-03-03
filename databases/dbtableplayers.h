@@ -42,13 +42,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * method calls.
  */
 class DBTablePlayers : public DBTable {
-
-protected:
-
-    std::string sql_create;
-    std::string sql_add_row;
-    std::string sql_select_all;
-
 public:
 
     DBTablePlayers();

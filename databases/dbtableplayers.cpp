@@ -41,28 +41,25 @@ DBTablePlayers::~DBTablePlayers() {
 
 void DBTablePlayers::store_add_row_sql() {
 
-    sql_template =  "SELECT name ";
-    sql_template += "FROM   sqlite_master ";
-    sql_template += "WHERE";
-    sql_template += "    type = \"table\"";
-    sql_template += ";";
+    sql_template =  "SELECT name FROM sqlite_master WHERE type = \"table\";";
 
 }
 
 
 void DBTablePlayers::store_create_sql() {
 
-    //std::cerr << "calling store_create_sql from DBTableEx\n";
+    std::cout << "Created SQL CREATE command" << std::endl;
 
     sql_create =  "CREATE TABLE ";
     sql_create += table_name;
-    sql_create += " ( ";
-    sql_create += "  id INT PRIMARY KEY NOT NULL, ";
-    sql_create += "  firstName TEXT,";
-    sql_create += "  lastName TEXT, ";
-    sql_create += "  address TEXT";
-    sql_create += " );";
+    sql_create += " (";
+    sql_create += "id INT PRIMARY KEY NOT NULL, ";
+    sql_create += "firstName TEXT, ";
+    sql_create += "lastName TEXT, ";
+    sql_create += "address TEXT";
+    sql_create += ");";
 
+    std::cout << sql_create << std::endl;
 }
 
 
@@ -101,14 +98,8 @@ bool DBTablePlayers::add_row(int id, std::string firstName, std::string lastName
                            this,
                            &zErrMsg          );
 
-    if( retCode != SQLITE_OK ){
-
-        std::cerr << table_name
-                  << " template ::"
-                  << std::endl
-                  << "SQL error: "
-                  << zErrMsg;
-
+    if(retCode != SQLITE_OK){
+        std::cerr << table_name << ": " << sql_add_row << std::endl << "SQL error: " << zErrMsg << std::endl;
         sqlite3_free(zErrMsg);
     }
 
@@ -121,9 +112,7 @@ bool DBTablePlayers::select_all() {
     int   retCode = 0;
     char *zErrMsg = 0;
 
-    sql_select_all  = "SELECT * FROM ";
-    sql_select_all += table_name;
-    sql_select_all += ";";
+    sql_select_all  = "SELECT * FROM " + table_name + ";";
 
     retCode = sqlite3_exec(curr_db->db_ref(),
                            sql_select_all.c_str(),
@@ -131,14 +120,8 @@ bool DBTablePlayers::select_all() {
                            this,
                            &zErrMsg          );
 
-    if( retCode != SQLITE_OK ){
-
-        std::cerr << table_name
-                  << " template ::"
-                  << std::endl
-                  << "SQL error: "
-                  << zErrMsg;
-
+    if(retCode != SQLITE_OK){
+        std::cerr << table_name << ": " << sql_select_all << std::endl << "SQL error: " << zErrMsg << std::endl;
         sqlite3_free(zErrMsg);
     }
 

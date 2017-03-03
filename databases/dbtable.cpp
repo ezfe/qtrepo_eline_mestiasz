@@ -98,19 +98,18 @@ void DBTable::store_exist_sql() {
 // code provided here is just an example and should
 // be specified in child database.
 void DBTable::store_create_sql() {
-
     // std::cerr << "store_create_sql DBTable\n"
     // 	    << &sql_create << "\n";
 
-    sql_create =  "CREATE TABLE ";
-    sql_create += table_name;
-    sql_create += " ( ";
-    sql_create += "  id INT PRIMARY KEY NOT NULL, ";
-    sql_create += "  item0 TEXT NOT NULL,";
-    sql_create += "  item1 INT  NOT NULL, ";
-    sql_create += "  item2 CHAR(50),";
-    sql_create += "  item3 REAL";
-    sql_create += " );";
+//    sql_create =  "CREATE TABLE ";
+//    sql_create += table_name;
+//    sql_create += " ( ";
+//    sql_create += "  id INT PRIMARY KEY NOT NULL, ";
+//    sql_create += "  item0 TEXT NOT NULL,";
+//    sql_create += "  item1 INT  NOT NULL, ";
+//    sql_create += "  item2 CHAR(50),";
+//    sql_create += "  item3 REAL";
+//    sql_create += " );";
 
 }
 
@@ -261,16 +260,12 @@ bool DBTable::create() {
                            this,
                            &zErrMsg          );
 
+    std::cout << sql_create << std::endl;
+
     // Process a failed call.
     if( retCode != SQLITE_OK ){
-
-        std::cerr << sql_create
-                  << std::endl;
-
-        std::cerr << "SQL error: "
-                  << zErrMsg
-                  << std::endl;
-
+        std::cerr << sql_create << std::endl;
+        std::cerr << "SQL error: " << zErrMsg << std::endl;
         sqlite3_free(zErrMsg);
     }
 
