@@ -1,7 +1,13 @@
 #include "menu.h"
 
 Menu::Menu() : Screen(){
-
+    player = new NewPlayer();
+    selectPlayer = new SelectPlayer();
+    topPlayers = new TopPlayers();
+    topGames = new TopGames();
+    statistics = new Statistics();
+    robots = new RobotsScreen();
+    worms = new WormsScreen();
 }
 
 Menu::~Menu(){
@@ -25,23 +31,25 @@ void Menu::draw_screen(){
 void Menu::controller(char cmd){
     switch(cmd){
     case 'a':
-        NewPlayer* player = new NewPlayer();
         player->init();
-        delete player;
         break;
     case 'b':
+        selectPlayer->init();
         break;
     case 'c':
+        topPlayers->init();
         break;
     case 'd':
+        topGames->init();
         break;
     case 'e':
+        statistics->init();
         break;
     case 'f':
+        robots->init();
         break;
     case 'g':
-        break;
-    case 'q':
+        worms->init();
         break;
     }
 }

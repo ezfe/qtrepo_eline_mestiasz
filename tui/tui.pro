@@ -14,7 +14,11 @@ SOURCES += \
     menu.cpp \
     gamescreen.cpp \
     menuitemscreen.cpp \
-    newplayer.cpp
+    newplayer.cpp \
+    selectplayer.cpp \
+    topplayers.cpp \
+    topgames.cpp \
+    statistics.cpp
 
 LIBS += -lncurses -lform
 
@@ -27,6 +31,10 @@ HEADERS += screen.h \
     menu.h \
     gamescreen.h \
     menuitemscreen.h \
-    newplayer.h
+    newplayer.h \
+    selectplayer.h \
+    topplayers.h \
+    topgames.h \
+    statistics.h
 
 
