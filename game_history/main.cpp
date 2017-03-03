@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "dbtool.h"
-#include "dbtableplayers.h"
 #include "playergamehistory.h"
 #include "player.h"
 #include "game.h"

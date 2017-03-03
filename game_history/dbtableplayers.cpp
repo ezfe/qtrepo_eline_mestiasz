@@ -94,7 +94,7 @@ bool DBTablePlayers::add_row(int id, std::string firstName, std::string lastName
 
     retCode = sqlite3_exec(curr_db->db_ref(),
                            sql_add_row.c_str(),
-                           cb_add_row,
+                           DBTablePlayers::cb_add_row,
                            this,
                            &zErrMsg          );
 
@@ -116,7 +116,7 @@ bool DBTablePlayers::select_all() {
 
     retCode = sqlite3_exec(curr_db->db_ref(),
                            sql_select_all.c_str(),
-                           cb_select_all,
+                           DBTablePlayers::cb_select_all,
                            this,
                            &zErrMsg          );
 
@@ -129,7 +129,7 @@ bool DBTablePlayers::select_all() {
 }
 
 
-int cb_add_row(void  *data,
+int DBTablePlayers::cb_add_row(void  *data,
                int    argc,
                char **argv,
                char **azColName)
@@ -163,7 +163,7 @@ int cb_add_row(void  *data,
     return 0;
 }
 
-int cb_select_all(void  *data,
+int DBTablePlayers::cb_select_all(void  *data,
                   int    argc,
                   char **argv,
                   char **azColName)

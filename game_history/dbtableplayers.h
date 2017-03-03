@@ -58,12 +58,12 @@ public:
 
     bool add_row(int id, std::string firstName, std::string lastName, std::string address);
     bool select_all();
-};
+
 
 
 // This is a callback function that is sent to the library and used
 // to parse the sql request being sent to the database.
-int cb_add_row(void  *data,
+static int cb_add_row(void  *data,
                int    argc,
                char **argv,
                char **azColName);
@@ -71,9 +71,11 @@ int cb_add_row(void  *data,
 
 // This is a callback function that is sent to the library and used
 // to parse the sql request being sent to the database.
-int cb_select_all(void  *data,
+static int cb_select_all(void  *data,
                   int    argc,
                   char **argv,
                   char **azColName);
+
+};
 
 #endif // DBTABLEPLAYERS_H

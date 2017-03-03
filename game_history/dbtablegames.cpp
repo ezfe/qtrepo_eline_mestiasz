@@ -71,7 +71,7 @@ bool DBTableGames::add_row(int id, int score, std::string name, int player) {
 
     sql_add_row  = "INSERT INTO ";
     sql_add_row += table_name;
-    sql_add_row += " ( id, firstName, lastName, address ) ";
+    sql_add_row += " ( id, score, name, player ) ";
     sql_add_row += "VALUES (";
 
     sprintf (tempval, "%d", id);
@@ -94,7 +94,7 @@ bool DBTableGames::add_row(int id, int score, std::string name, int player) {
 
     retCode = sqlite3_exec(curr_db->db_ref(),
                            sql_add_row.c_str(),
-                           cb_add_row,
+                           DBTableGames::cb_add_row,
                            this,
                            &zErrMsg          );
 
@@ -116,7 +116,7 @@ bool DBTableGames::select_all() {
 
     retCode = sqlite3_exec(curr_db->db_ref(),
                            sql_select_all.c_str(),
-                           cb_select_all,
+                           DBTableGames::cb_select_all,
                            this,
                            &zErrMsg          );
 
@@ -129,7 +129,7 @@ bool DBTableGames::select_all() {
 }
 
 
-int cb_add_row(void  *data,
+int DBTableGames::cb_add_row(void  *data,
                int    argc,
                char **argv,
                char **azColName)
@@ -163,7 +163,7 @@ int cb_add_row(void  *data,
     return 0;
 }
 
-int cb_select_all(void  *data,
+int DBTableGames::cb_select_all(void  *data,
                   int    argc,
                   char **argv,
                   char **azColName)
