@@ -29,5 +29,19 @@ void Menu::controller(char cmd){
         player->init();
         delete player;
         break;
+    case 'b':
+        break;
+    case 'c':
+        break;
+    case 'd':
+        break;
+    case 'e':
+        break;
+    case 'f':
+        break;
+    case 'g':
+        break;
+    case 'q':
+        break;
     }
 }
