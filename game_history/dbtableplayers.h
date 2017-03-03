@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class DBTablePlayers : public DBTable {
 public:
     DBTablePlayers();
-    DBTablePlayers(DBTool *db, std::string name);
+    DBTablePlayers(DBTool *database, std::string name);
 
     ~DBTablePlayers();
 

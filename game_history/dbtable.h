@@ -53,25 +53,25 @@ class DBTable {
 protected:
 
     // name of the table where data will be stored
-    std::string table_name;
+    std::string name;
 
     // reference to the global database tool
-    DBTool *curr_db;
+    DBTool* database;
 
     // sql for retrieving table names from the database
     std::string sql_template;
 
     // default sql for determining if table exists
-    std::string sql_exist;
+    virtual std::string exists_sql();
 
     // default sql for creating associated table
     std::string sql_create;
 
     // default sql for dropping the associated table
-    std::string sql_drop;
+    virtual std::string drop_sql();
 
     // default sql for determining number of rows in the table
-    std::string sql_size;
+    virtual std::string size_sql();
     std::string sql_add_row;
 
     // internal flag for storing the result of the last exists request
@@ -84,7 +84,7 @@ public:
 
     // constructors
     DBTable();
-    DBTable(DBTool *db, std::string name);
+    DBTable(DBTool *database, std::string name);
 
     // destructor
     virtual ~DBTable();
@@ -98,10 +98,7 @@ public:
     // child class inheriting from this parent class.
     virtual void store_template_sql();
 
-    virtual void store_exist_sql();
     virtual void store_create_sql();
-    virtual void store_drop_sql();
-    virtual void store_size_sql();
 
     int dbtemplate();
 
@@ -113,8 +110,7 @@ public:
 
     std::string get_name();
 
-    void set_exists()      {table_exists = true; }
-    void unset_exists()    {table_exists = false;}
+    void set_exists(bool exists) { table_exists = exists; }
     void set_size(int cnt) {row_cnt      = cnt;  }
 
 };

@@ -51,7 +51,7 @@ void DBTableGames::store_create_sql() {
     std::cout << "Created SQL CREATE command" << std::endl;
 
     sql_create =  "CREATE TABLE ";
-    sql_create += table_name;
+    sql_create += this->name;
     sql_create += " (";
     sql_create += "id INT PRIMARY KEY NOT NULL, ";
     sql_create += "score INTEGER, ";
@@ -70,7 +70,7 @@ bool DBTableGames::add_row(int id, int score, std::string name, int player) {
     char  tempval[128];
 
     sql_add_row  = "INSERT INTO ";
-    sql_add_row += table_name;
+    sql_add_row += this->name;
     sql_add_row += " ( id, score, name, player ) ";
     sql_add_row += "VALUES (";
 
@@ -92,14 +92,14 @@ bool DBTableGames::add_row(int id, int score, std::string name, int player) {
 
     //std::cout << sql_add_row << std::endl;
 
-    retCode = sqlite3_exec(curr_db->db_ref(),
+    retCode = sqlite3_exec(this->database->db(),
                            sql_add_row.c_str(),
                            DBTableGames::cb_add_row,
                            this,
                            &zErrMsg          );
 
     if(retCode != SQLITE_OK){
-        std::cerr << table_name << ": " << sql_add_row << std::endl << "SQL error: " << zErrMsg << std::endl;
+        std::cerr << name << ": " << sql_add_row << std::endl << "SQL error: " << zErrMsg << std::endl;
         sqlite3_free(zErrMsg);
     }
 
@@ -112,16 +112,16 @@ bool DBTableGames::select_all() {
     int   retCode = 0;
     char *zErrMsg = 0;
 
-    std::string sql_select_all  = "SELECT * FROM " + table_name + ";";
+    std::string sql_select_all  = "SELECT * FROM " + name + ";";
 
-    retCode = sqlite3_exec(curr_db->db_ref(),
+    retCode = sqlite3_exec(this->database->db(),
                            sql_select_all.c_str(),
                            DBTableGames::cb_select_all,
                            this,
                            &zErrMsg          );
 
     if(retCode != SQLITE_OK){
-        std::cerr << table_name << ": " << sql_select_all << std::endl << "SQL error: " << zErrMsg << std::endl;
+        std::cerr << name << ": " << sql_select_all << std::endl << "SQL error: " << zErrMsg << std::endl;
         sqlite3_free(zErrMsg);
     }
 

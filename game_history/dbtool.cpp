@@ -21,75 +21,67 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 DBTool::DBTool() {
     std::cerr << "Name must be provided to DBTool Class "
-              << "during creation.\n";
+              << "during creation." << std::endl;
     exit(-1);
 }
 
 DBTool::DBTool(std::string name) {
-    //std::cerr << "constructing object 1\n";
-
     this->name = name;
     this->location = ".";
 
-    open_db();
+    open();
 }
 
-
 DBTool::DBTool(const char* name) {
-    //std::cerr << "constructing object 2\n";
-
     this->name = name;
     this->location = ".";
 
-    open_db();
+    open();
 }
 
 DBTool::DBTool(const char* location, const char* name) {
-    //std::cerr << "constructing object 3\n";
-
     this->name = name;
     this->location = location;
 
-    open_db();
+    open();
 }
 
 
 DBTool::DBTool(std::string location, std::string name) {
-    //std::cerr << "constructing object 4\n";
-
     this->name = name;
     this->location = location;
 
-    open_db();
+    open();
 }
 
 
 DBTool::~DBTool() {
-
-    //std::cerr << "closing object\n";
-
     sqlite3_close(this->current);
-    this->current = NULL;
+    this->current = nullptr;
 }
 
-
-/** Method that will open the provided database.
+/**
+ * @brief Get the complete file path
+ * @return complete filepath
  */
-int DBTool::open_db() {
+std::string DBTool::get_filepath() {
+    return this->location + "/" + this->name;
+}
 
-    int retCode = 0;
-
-    std::string full_name = this->location + "/" + this->name;
-
+/**
+ * @brief Method that will open the provided database.
+ * @return sqlite3 response code
+ */
+int DBTool::open() {
     // open the database --------------------
 
-    retCode = sqlite3_open(full_name.c_str(), &this->current);
+    int retCode = sqlite3_open(get_filepath().c_str(), &this->current);
 
-    if( retCode ){
-        std::cerr << "Database does not open: " << sqlite3_errmsg(current) << std::endl;
-        std::cerr << "File: " << full_name << std::endl;
+    if (retCode != SQLITE_OK) {
+        std::cerr << "Database error: " << sqlite3_errmsg(current) << std::endl;
+        std::cerr << "File: " << get_filepath() << std::endl;
         exit(0);
-    }else{
+    } else {
         std::cerr << "Opened database successfully\n";
     }
 
@@ -98,11 +90,10 @@ int DBTool::open_db() {
 
 
 void DBTool::print(std::ostream &sout) {
+    sout << " DB Name: " << name     << std::endl;
+    sout << "Location: " << location << std::endl;
 
-    sout << "DB Name : " << name     << std::endl;
-    sout << "DB Loc  : " << location << std::endl;
-
-    sout << "Status  : "
-         << ( db_open() ? "open" : "closed" )
+    sout << "Status: "
+         << ( isOpen() ? "open" : "closed" )
          << std::endl;
 }

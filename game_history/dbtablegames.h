@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class DBTableGames : public DBTable {
 public:
     DBTableGames();
-    DBTableGames(DBTool *db, std::string name);
+    DBTableGames(DBTool *database, std::string name);
 
     ~DBTableGames();
 

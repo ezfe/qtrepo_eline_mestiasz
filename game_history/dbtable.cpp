@@ -31,19 +31,14 @@ DBTable::DBTable() {
 
 // Constructor taking a pointer to the DB tool and name
 // of the table that will be represented by this class.
-DBTable::DBTable(DBTool      *db,
-                 std::string  name    ) {
-
+DBTable::DBTable(DBTool* db, std::string name) {
     // Store table name and reference to db.
-    curr_db     = db;
-    table_name  = name;
+    this->database = db;
+    this->name  = name;
 
     // Register the different sql calls for the
     // parent class.
-    store_exist_sql();
     store_create_sql();
-    store_drop_sql();
-    store_size_sql();
 
     sql_add_row = "";
 }
@@ -65,9 +60,7 @@ void DBTable::build_table() {
 
 // Deconstructor
 DBTable::~DBTable() {
-    // std::cerr << "Deconstructing table object "
-    // 	    << table_name
-    // 	    << std::endl;
+
 }
 
 // SQL used to get a list of all tables in the DB tool.
@@ -83,15 +76,11 @@ void DBTable::store_template_sql() {
 
 // SQL used to determine if a specific table exists
 // in the database.
-void DBTable::store_exist_sql() {
-
-    sql_exist  = "SELECT count(*) ";
-    sql_exist += "FROM   sqlite_master ";
-    sql_exist += "WHERE";
-    sql_exist += "    type = \"table\" ";
-    sql_exist += "and name = \"" + table_name + "\"";
-    sql_exist += ";";
-
+std::string DBTable::exists_sql() {
+    std::string temp  = "SELECT count(*) FROM sqlite_master ";
+                temp += "WHERE type = \"table\" ";
+                temp += "and name = \"" + this->name + "\";";
+    return temp;
 }
 
 // SQL used to create the table in the database.  The
@@ -114,22 +103,13 @@ void DBTable::store_create_sql() {
 }
 
 // SQL for removing the table from the database.
-void DBTable::store_drop_sql() {
-
-    sql_drop =  "DROP TABLE ";
-    sql_drop += table_name;
-    sql_drop += ";";
-
+std::string DBTable::drop_sql() {
+    return "DROP TABLE " + this->name + ";";
 }
 
 // SQL to determine number of records in the database.
-void DBTable::store_size_sql() {
-
-    sql_size =  "SELECT count(*) ";
-    sql_size += "FROM ";
-    sql_size += table_name;
-    sql_size += ";";
-
+std::string DBTable::size_sql() {
+    return "SELECT count(*) FROM " + this->name + ";";
 }
 
 // Method for calling the template DB SQL above.
@@ -141,11 +121,11 @@ int DBTable::dbtemplate() {
 
     // Call sqlite to run the SQL call using the
     // callback to store any results.
-    retCode = sqlite3_exec(curr_db->db_ref(),
+    retCode = sqlite3_exec(database->db(),
                            sql_template.c_str(),
                            cb_template,
                            this,
-                           &zErrMsg          );
+                           &zErrMsg);
 
     if( retCode != SQLITE_OK ){
 
@@ -191,8 +171,8 @@ bool DBTable::exist() {
     // 3. Provide pointer to callback function coded below.
     // 4. Pointer to the DBTable object.
     // 5. Pointer to varible where sqlite will place error code.
-    retCode = sqlite3_exec(curr_db->db_ref(),
-                           sql_exist.c_str(),
+    retCode = sqlite3_exec(this->database->db(),
+                           exists_sql().c_str(),
                            cb_exist,
                            this,
                            &zErrMsg          );
@@ -200,7 +180,7 @@ bool DBTable::exist() {
     // Process return code.
     if( retCode != SQLITE_OK ){
 
-        std::cerr << sql_exist
+        std::cerr << exists_sql()
                   << std::endl;
 
         std::cerr << "SQL error: "
@@ -234,10 +214,10 @@ int cb_exist(void  *data,        // pointer to the DBTable object.
 
         if (atoi(argv[0])) {
             //std::cerr << "setting exists\n";
-            obj->set_exists();
+            obj->set_exists(true);
         } else {
             //std::cerr << "unsetting exists\n";
-            obj->unset_exists();
+            obj->set_exists(false);
         }
     }
 
@@ -254,7 +234,7 @@ bool DBTable::create() {
 
     // Call sqlite to run the SQL call using the
     // callback to store any results.
-    retCode = sqlite3_exec(curr_db->db_ref(),
+    retCode = sqlite3_exec(this->database->db(),
                            sql_create.c_str(),
                            cb_create,
                            this,
@@ -316,8 +296,8 @@ bool DBTable::drop() {
 
     // Call sqlite to run the SQL call using the
     // callback to store any results.
-    retCode = sqlite3_exec(curr_db->db_ref(),
-                           sql_drop.c_str(),
+    retCode = sqlite3_exec(this->database->db(),
+                           drop_sql().c_str(),
                            cb_drop,
                            this,
                            &zErrMsg          );
@@ -325,7 +305,7 @@ bool DBTable::drop() {
     // Process a failed call.
     if( retCode != SQLITE_OK ){
 
-        std::cerr << sql_drop
+        std::cerr << drop_sql()
                   << std::endl;
 
         std::cerr << "SQL error: "
@@ -379,8 +359,8 @@ int DBTable::size() {
 
     // Call sqlite to run the SQL call using the
     // callback to store any results.
-    retCode = sqlite3_exec(curr_db->db_ref(),
-                           sql_size.c_str(),
+    retCode = sqlite3_exec(this->database->db(),
+                           this->size_sql().c_str(),
                            cb_size,
                            this,
                            &zErrMsg          );
@@ -388,7 +368,7 @@ int DBTable::size() {
     // Process a failed call.
     if( retCode != SQLITE_OK ){
 
-        std::cerr << sql_size
+        std::cerr << size_sql()
                   << std::endl;
 
         std::cerr << "SQL error: "
@@ -426,5 +406,5 @@ int cb_size(void  *data,
 }
 
 std::string DBTable::get_name() {
-    return table_name;
+    return name;
 }

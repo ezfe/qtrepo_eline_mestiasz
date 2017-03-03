@@ -44,7 +44,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 class DBTool {
-
 private:
 
     /// Name of the database.
@@ -75,19 +74,21 @@ public:
     // the updated contents of the sqlite file.
     ~DBTool();
 
+    std::string get_filepath();
+
     // Used to manually open the file, and called by each of the
     // constructors.
-    int open_db();
+    int open();
 
     // prints state of database
     void print(std::ostream &sout);
 
     // provides a state check to determine if database is available
-    bool db_open() { return current ? true : false; }
+    bool isOpen() { return current ? true : false; }
 
     // Returns a pointer to the current database, only
     // used when absolutely necessary!
-    sqlite3* db_ref()  { return current; }
+    sqlite3* db() { return current; }
 };
 
 #endif // DBTOOL_H
