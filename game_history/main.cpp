@@ -1,22 +1,29 @@
 #include <iostream>
 
+#include "dbtool.h"
+#include "dbtableplayers.h"
+#include "playergamehistory.h"
+#include "player.h"
+#include "game.h"
+
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    // generate database object
-    DBTool *dbtool = new DBTool("TestTableDB");
+    PlayerGameHistory* playerGameHistory = new PlayerGameHistory();
 
-    // print its state
-    dbtool->print(std::cout);
+    Player* player = new Player("Mr", "Anderson", "Matrix");
+    Game* game = new Game(player, "robots", 11);
+    playerGameHistory->add_game(player, game);
 
-    // generate a new table
-    DBTablePlayers *ext = new DBTablePlayers(dbtool, "PlayerList");
+    game = new Game(player, "robots", 1);
+    playerGameHistory->add_game(player, game);
 
-    // add information to the new table
-    ext->add_row(0, "Ezekiel", "Elin", "South College");
-    ext->add_row(1, "Sydney", "Schock", "Marquis");
+    player = new Player("Miss", "Rogbeer", "17");
+    game = new Game(player, "worms", 11);
+    playerGameHistory->add_game(player, game);
 
-    ext->select_all();
+    game = new Game(player, "robots", 1);
+    playerGameHistory->add_game(player, game);
 
-    delete ext;
+    delete playerGameHistory;
 }

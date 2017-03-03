@@ -17,15 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 *********************************************************************/
 
-#include "dbtableplayers.h"
+#include "dbtablegames.h"
 
 // Default constructor.
-DBTablePlayers::DBTablePlayers() {
+DBTableGames::DBTableGames() {
 
 }
 
 // Constructor for identying the dbtool and table name.
-DBTablePlayers::DBTablePlayers(DBTool *db, std::string name): DBTable (db, name) {
+DBTableGames::DBTableGames(DBTool *db, std::string name): DBTable (db, name) {
     // Load SQL specific to child class.
     store_add_row_sql();
     store_create_sql();
@@ -35,18 +35,18 @@ DBTablePlayers::DBTablePlayers(DBTool *db, std::string name): DBTable (db, name)
     build_table();
 }
 
-DBTablePlayers::~DBTablePlayers() {
+DBTableGames::~DBTableGames() {
 
 }
 
-void DBTablePlayers::store_add_row_sql() {
+void DBTableGames::store_add_row_sql() {
 
     sql_template =  "SELECT name FROM sqlite_master WHERE type = \"table\";";
 
 }
 
 
-void DBTablePlayers::store_create_sql() {
+void DBTableGames::store_create_sql() {
 
     std::cout << "Created SQL CREATE command" << std::endl;
 
@@ -54,16 +54,16 @@ void DBTablePlayers::store_create_sql() {
     sql_create += table_name;
     sql_create += " (";
     sql_create += "id INT PRIMARY KEY NOT NULL, ";
-    sql_create += "firstName TEXT, ";
-    sql_create += "lastName TEXT, ";
-    sql_create += "address TEXT";
+    sql_create += "score INTEGER, ";
+    sql_create += "name TEXT, ";
+    sql_create += "player INTEGER";
     sql_create += ");";
 
     std::cout << sql_create << std::endl;
 }
 
 
-bool DBTablePlayers::add_row(int id, std::string firstName, std::string lastName, std::string address) {
+bool DBTableGames::add_row(int id, int score, std::string name, int player) {
     int   retCode = 0;
     char *zErrMsg = 0;
 
@@ -78,17 +78,17 @@ bool DBTablePlayers::add_row(int id, std::string firstName, std::string lastName
     sql_add_row += tempval;
     sql_add_row += ", ";
 
-    sql_add_row += "\"";
-    sql_add_row += std::string(firstName);
-    sql_add_row += "\", ";
+    sprintf (tempval, "%d", score);
+    sql_add_row += tempval;
+    sql_add_row += ", ";
 
     sql_add_row += "\"";
-    sql_add_row += std::string(lastName);
+    sql_add_row += name;
     sql_add_row += "\", ";
 
-    sql_add_row += "\"";
-    sql_add_row += std::string(address);
-    sql_add_row += "\" )";
+    sprintf (tempval, "%d", player);
+    sql_add_row += tempval;
+    sql_add_row += ")";
 
     //std::cout << sql_add_row << std::endl;
 
@@ -107,7 +107,7 @@ bool DBTablePlayers::add_row(int id, std::string firstName, std::string lastName
 }
 
 
-bool DBTablePlayers::select_all() {
+bool DBTableGames::select_all() {
 
     int   retCode = 0;
     char *zErrMsg = 0;
@@ -147,7 +147,7 @@ int cb_add_row(void  *data,
 
     int i;
 
-    DBTablePlayers *obj = (DBTablePlayers *) data;
+    DBTableGames *obj = (DBTableGames *) data;
 
     std::cout << "------------------------------\n";
     std::cout << obj->get_name()
@@ -181,7 +181,7 @@ int cb_select_all(void  *data,
 
     int i;
 
-    DBTablePlayers *obj = (DBTablePlayers *) data;
+    DBTableGames *obj = (DBTableGames *) data;
 
     std::cout << "------------------------------\n";
     std::cout << obj->get_name()

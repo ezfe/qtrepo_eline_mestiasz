@@ -5,6 +5,9 @@
 
 #include "game.h"
 #include "player.h"
+#include "dbtool.h"
+#include "dbtableplayers.h"
+#include "dbtablegames.h"
 
 class PlayerGameHistory {
 public:

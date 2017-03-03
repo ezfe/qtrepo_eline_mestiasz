@@ -6,8 +6,37 @@ PlayerGameHistory::PlayerGameHistory() {
 }
 
 PlayerGameHistory::~PlayerGameHistory() {
+    DBTool* dbtool = new DBTool("Users/ezekielelin/Desktop", "TestTableDB");
+
+    int playerid = 0;
+    DBTablePlayers* playerTable = new DBTablePlayers(dbtool, "PlayerList");
+
+    playerTable->drop();
+    playerTable->create();
+    for (Player* player: this->players) {
+        player->set_table_id(playerid);
+        playerTable->add_row(player->get_table_id(), player->get_first_name(), player->get_last_name(), player->get_address());
+
+        playerid++;
+    }
+
+    int gameid = 0;
+    DBTableGames* gameTable = new DBTableGames(dbtool, "GameList");
+
+    gameTable->drop();
+    gameTable->create();
+    for (Game* game: this->games) {
+        game->set_table_id(gameid);
+        gameTable->add_row(game->get_table_id(), game->get_score(), game->get_name(), game->get_player()->get_table_id());
+
+        gameid++;
+    }
+
     this->players.clear();
     this->games.clear();
+
+    delete playerTable;
+    delete gameTable;
 }
 
 /*!

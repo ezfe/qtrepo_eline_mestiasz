@@ -17,8 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 *********************************************************************/
 
-#ifndef DBTABLEPLAYERS_H
-#define DBTABLEPLAYERS_H
+#ifndef DBTABLEGAMES_H
+#define DBTABLEGAMES_H
 
 
 #include <iostream>
@@ -41,12 +41,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Two call backs are also provided to facilitate the new
  * method calls.
  */
-class DBTablePlayers : public DBTable {
+class DBTableGames : public DBTable {
 public:
-    DBTablePlayers();
-    DBTablePlayers(DBTool *db, std::string name);
+    DBTableGames();
+    DBTableGames(DBTool *db, std::string name);
 
-    ~DBTablePlayers();
+    ~DBTableGames();
 
     // An overloaded method to generate a new
     // create command for your child class.
@@ -56,7 +56,7 @@ public:
     // insert command for your child class.
     virtual void store_add_row_sql();
 
-    bool add_row(int id, std::string firstName, std::string lastName, std::string address);
+    bool add_row(int id, int score, std::string name, int player);
     bool select_all();
 };
 
@@ -76,4 +76,4 @@ int cb_select_all(void  *data,
                   char **argv,
                   char **azColName);
 
-#endif // DBTABLEPLAYERS_H
+#endif // DBTABLEGAMES_H
