@@ -80,3 +80,4 @@ tui/tui
 game_history/game_history
 game_history_tests/game_history_tests
 databases/databases
+TestTableDB
