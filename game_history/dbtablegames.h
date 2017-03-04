@@ -50,7 +50,7 @@ public:
 
     // An overloaded method to generate a new
     // create command for your child class.
-    void store_create_sql();
+    virtual std::string create_sql();
 
     // An overloaded method to generate a new
     // insert command for your child class.

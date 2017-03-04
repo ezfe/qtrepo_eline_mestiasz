@@ -65,16 +65,13 @@ protected:
     virtual std::string exists_sql();
 
     // default sql for creating associated table
-    std::string sql_create;
+    virtual std::string create_sql() = 0;
 
     // default sql for dropping the associated table
     virtual std::string drop_sql();
 
     // default sql for determining number of rows in the table
     virtual std::string size_sql();
-
-    // internal flag for storing the result of the last exists request
-    bool table_exists;
 
     // internal value for storing the result of the last size request
     int  row_cnt;
@@ -96,20 +93,17 @@ public:
     // be used as examples for enhancing the functionality of a
     // child class inheriting from this parent class.
 
-    virtual void store_create_sql();
-
     int dbtemplate();
 
     // methods for performing the activities
-    bool exist(); // used
+    bool exists();
     bool create(); // used
     bool drop();
     int  size();
 
     std::string get_name();
 
-    void set_exists(bool exists) { table_exists = exists; }
-    void set_size(int cnt) {row_cnt      = cnt;  }
+    void set_size(int cnt) { row_cnt = cnt; }
 
 };
 
@@ -118,8 +112,6 @@ public:
 // for details about parameters.
 int cb_template(void *data, int argc, char **argv, char **azColName);
 int cb_exist   (void *data, int argc, char **argv, char **azColName);
-int cb_create  (void *data, int argc, char **argv, char **azColName);
-int cb_drop    (void *data, int argc, char **argv, char **azColName);
 int cb_load    (void *data, int argc, char **argv, char **azColName);
 int cb_store   (void *data, int argc, char **argv, char **azColName);
 int cb_size    (void *data, int argc, char **argv, char **azColName);

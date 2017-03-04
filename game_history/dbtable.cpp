@@ -34,25 +34,15 @@ DBTable::DBTable() {
 DBTable::DBTable(DBTool* db, std::string name) {
     // Store table name and reference to db.
     this->database = db;
-    this->name  = name;
-
-    // Register the different sql calls for the
-    // parent class.
-    store_create_sql();
+    this->name = name;
 }
 
 // This should be called by the child constructor but
 // is used to build a table in the database if the table
 // does not exist.
 void DBTable::build_table() {
-
-    // determine if table exists
-    exist();
-
-    if (!table_exists) {
-
-        // if it does not exist create table
-        create();
+    if (!this->exists()) {
+        this->create();
     }
 }
 
@@ -70,25 +60,6 @@ std::string DBTable::exists_sql() {
     return temp;
 }
 
-// SQL used to create the table in the database.  The
-// code provided here is just an example and should
-// be specified in child database.
-void DBTable::store_create_sql() {
-    // std::cerr << "store_create_sql DBTable\n"
-    // 	    << &sql_create << "\n";
-
-//    sql_create =  "CREATE TABLE ";
-//    sql_create += table_name;
-//    sql_create += " ( ";
-//    sql_create += "  id INT PRIMARY KEY NOT NULL, ";
-//    sql_create += "  item0 TEXT NOT NULL,";
-//    sql_create += "  item1 INT  NOT NULL, ";
-//    sql_create += "  item2 CHAR(50),";
-//    sql_create += "  item3 REAL";
-//    sql_create += " );";
-
-}
-
 // SQL for removing the table from the database.
 std::string DBTable::drop_sql() {
     return "DROP TABLE " + this->name + ";";
@@ -100,72 +71,26 @@ std::string DBTable::size_sql() {
 }
 
 // Determine if table exists.
-bool DBTable::exist() {
-
+bool DBTable::exists() {
     // Initialize local variables.
-    int   retCode = 0;
-    char *zErrMsg = 0;
+    int   retCode = SQLITE_ERROR;
 
-    // Call sqlite to run the SQL call using the
-    // callback to store any results.  The parameters
-    // are identified as follows:
-    // 1. Provide reference to sqlite object in dbtool.
-    // 2. Provide the SQL command as a C string.
-    // 3. Provide pointer to callback function coded below.
-    // 4. Pointer to the DBTable object.
-    // 5. Pointer to varible where sqlite will place error code.
-    retCode = sqlite3_exec(this->database->db(),
-                           exists_sql().c_str(),
-                           cb_exist,
-                           this,
-                           &zErrMsg          );
-
-    // Process return code.
-    if( retCode != SQLITE_OK ){
-
-        std::cerr << exists_sql()
-                  << std::endl;
-
-        std::cerr << "SQL error: "
-                  << zErrMsg
-                  << std::endl;
-
-        sqlite3_free(zErrMsg);
-    }
-
-    return retCode;
-}
-
-// callback to determine if table exists.  SQLite
-// will pass the results of the call and this function
-// will manipulate and make changes to the DBTable object.
-int cb_exist(void  *data,        // pointer to the DBTable object.
-             int    argc,        // number of data columns
-             char **argv,        // the actual data columns
-             char **azColName){  // the data column names
-
-
-    if(argc != 1) {
-
-        // If call fails, generate error message.
-        std::cerr << "More than one item returned "
-                  << "argc = " << argc
-                  << std::endl;
-    } else {
-
-        DBTable *obj = (DBTable *) data;
-
-        if (atoi(argv[0])) {
-            //std::cerr << "setting exists\n";
-            obj->set_exists(true);
+    sqlite3_stmt* sqlstatement = nullptr;
+    retCode = sqlite3_prepare(this->database->db(), this->exists_sql().c_str(), -1, &sqlstatement, 0);
+    if (retCode == SQLITE_OK && sqlstatement != nullptr) {
+        retCode = sqlite3_step(sqlstatement);
+        sqlite3_finalize(sqlstatement);
+        if (retCode == SQLITE_ROW) {
+            return true;
         } else {
-            //std::cerr << "unsetting exists\n";
-            obj->set_exists(false);
+            return false;
         }
+    } else {
+        std::cerr << exists_sql() << std::endl;
+        std::cerr << "SQL error: " << sqlite3_errmsg(this->database->db()) << std::endl;
+        sqlite3_finalize(sqlstatement);
+        return false;
     }
-
-
-    return 0;
 }
 
 // Create the db table.
@@ -177,57 +102,17 @@ bool DBTable::create() {
 
     // Call sqlite to run the SQL call using the
     // callback to store any results.
-    retCode = sqlite3_exec(this->database->db(),
-                           sql_create.c_str(),
-                           cb_create,
-                           this,
-                           &zErrMsg          );
-
-    std::cout << sql_create << std::endl;
+    retCode = sqlite3_exec(this->database->db(), this->create_sql().c_str(), 0, 0, &zErrMsg);
 
     // Process a failed call.
-    if( retCode != SQLITE_OK ){
-        std::cerr << sql_create << std::endl;
+    if(retCode != SQLITE_OK){
+        std::cerr << this->create_sql() << std::endl;
         std::cerr << "SQL error: " << zErrMsg << std::endl;
         sqlite3_free(zErrMsg);
+        return false;
+    } else {
+        return true;
     }
-
-    // Return the code.
-    return retCode;
-}
-
-// The callback after the table is created.   SQLite
-// will pass the results of the call and this function
-// will manipulate and make changes to the DBTable object.
-int cb_create(void  *data,
-              int    argc,
-              char **argv,
-              char **azColName){
-
-    // Create failed, generate error message.
-    if(argc < 1) {
-        std::cerr << "No data presented to callback "
-                  << "argc = " << argc
-                  << std::endl;
-    }
-
-    // Commented code prints information returned by
-    // sqlite.
-
-    // std::cout << "------------------------------\n";
-    // std::cout << obj->get_name()
-    // 	    << std::endl;
-
-    // int i;
-    // for(i = 0; i < argc; i++){
-    //   std::cout << azColName[i]
-    // 	      << " = "
-    // 	      <<  (argv[i] ? argv[i] : "NULL")
-    // 	      << std::endl;
-    // }
-
-    // Return the code.
-    return 0;
 }
 
 // Removes the db table from the database.
@@ -237,60 +122,17 @@ bool DBTable::drop() {
     int   retCode = 0;
     char *zErrMsg = 0;
 
-    // Call sqlite to run the SQL call using the
-    // callback to store any results.
-    retCode = sqlite3_exec(this->database->db(),
-                           drop_sql().c_str(),
-                           cb_drop,
-                           this,
-                           &zErrMsg          );
+    retCode = sqlite3_exec(this->database->db(), drop_sql().c_str(), 0, 0, &zErrMsg);
 
     // Process a failed call.
-    if( retCode != SQLITE_OK ){
-
-        std::cerr << drop_sql()
-                  << std::endl;
-
-        std::cerr << "SQL error: "
-                  << zErrMsg
-                  << std::endl;
-
+    if(retCode != SQLITE_OK){
+        std::cerr << drop_sql() << std::endl;
+        std::cerr << "SQL error: " << zErrMsg << std::endl;
         sqlite3_free(zErrMsg);
+        return false;
+    } else {
+        return true;
     }
-
-    //
-    return retCode;
-}
-
-// The callback after the table is droped.   SQLite
-// will pass the results of the call and this function
-// will manipulate and make changes to the DBTable object.
-int cb_drop(void  *data,
-            int    argc,
-            char **argv,
-            char **azColName){
-
-
-    // Table not dropped, generate error message.
-    if(argc < 1) {
-        std::cerr << "No data presented to callback "
-                  << "argc = " << argc
-                  << std::endl;
-    }
-
-    // std::cout << "------------------------------\n";
-    // std::cout << obj->get_name()
-    // 	    << std::endl;
-
-    // int i;
-    // for(i = 0; i < argc; i++){
-    //   std::cout << azColName[i]
-    // 	      << " = "
-    // 	      <<  (argv[i] ? argv[i] : "NULL")
-    // 	      << std::endl;
-    // }
-
-    return 0;
 }
 
 // Determines the number of rows in the table.

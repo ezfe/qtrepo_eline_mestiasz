@@ -28,8 +28,6 @@ DBTablePlayers::DBTablePlayers() {
 DBTablePlayers::DBTablePlayers(DBTool *db, std::string name): DBTable (db, name) {
     // Load SQL specific to child class.
     store_add_row_sql();
-    store_create_sql();
-
     // must build table sepparately so new
     // sql can be properly registered
     build_table();
@@ -46,20 +44,23 @@ void DBTablePlayers::store_add_row_sql() {
 }
 
 
-void DBTablePlayers::store_create_sql() {
+std::string DBTablePlayers::create_sql() {
 
     std::cout << "Created SQL CREATE command" << std::endl;
 
-    sql_create =  "CREATE TABLE ";
-    sql_create += name;
-    sql_create += " (";
-    sql_create += "id INT PRIMARY KEY NOT NULL, ";
-    sql_create += "firstName TEXT, ";
-    sql_create += "lastName TEXT, ";
-    sql_create += "address TEXT";
-    sql_create += ");";
+    std::string temp = "";
+    temp += "CREATE TABLE ";
+    temp += name;
+    temp += " (";
+    temp += "id INT PRIMARY KEY NOT NULL, ";
+    temp += "firstName TEXT, ";
+    temp += "lastName TEXT, ";
+    temp += "address TEXT";
+    temp += ");";
 
-    std::cout << sql_create << std::endl;
+    std::cout << temp << std::endl;
+
+    return temp;
 }
 
 
@@ -130,9 +131,9 @@ bool DBTablePlayers::select_all() {
 
 
 int DBTablePlayers::cb_add_row(void  *data,
-               int    argc,
-               char **argv,
-               char **azColName)
+                               int    argc,
+                               char **argv,
+                               char **azColName)
 {
 
 
@@ -155,18 +156,18 @@ int DBTablePlayers::cb_add_row(void  *data,
 
     for(i = 0; i < argc; i++){
         std::cout << azColName[i]
-                  << " = "
-                  <<  (argv[i] ? argv[i] : "NULL")
-                  << std::endl;
+                     << " = "
+                     <<  (argv[i] ? argv[i] : "NULL")
+                      << std::endl;
     }
 
     return 0;
 }
 
 int DBTablePlayers::cb_select_all(void  *data,
-                  int    argc,
-                  char **argv,
-                  char **azColName)
+                                  int    argc,
+                                  char **argv,
+                                  char **azColName)
 {
 
 
@@ -189,9 +190,9 @@ int DBTablePlayers::cb_select_all(void  *data,
 
     for(i = 0; i < argc; i++){
         std::cout << azColName[i]
-                  << " = "
-                  <<  (argv[i] ? std::string(argv[i]) : "NULL")
-                  << std::endl;
+                     << " = "
+                     <<  (argv[i] ? std::string(argv[i]) : "NULL")
+                      << std::endl;
     }
 
     return 0;

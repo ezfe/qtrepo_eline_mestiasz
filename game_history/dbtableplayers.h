@@ -48,9 +48,7 @@ public:
 
     ~DBTablePlayers();
 
-    // An overloaded method to generate a new
-    // create command for your child class.
-    void store_create_sql();
+    virtual std::string create_sql();
 
     // An overloaded method to generate a new
     // insert command for your child class.
@@ -59,22 +57,20 @@ public:
     bool add_row(int id, std::string firstName, std::string lastName, std::string address);
     bool select_all();
 
+    // This is a callback function that is sent to the library and used
+    // to parse the sql request being sent to the database.
+    static int cb_add_row(void  *data,
+                          int    argc,
+                          char **argv,
+                          char **azColName);
 
 
-// This is a callback function that is sent to the library and used
-// to parse the sql request being sent to the database.
-static int cb_add_row(void  *data,
-               int    argc,
-               char **argv,
-               char **azColName);
-
-
-// This is a callback function that is sent to the library and used
-// to parse the sql request being sent to the database.
-static int cb_select_all(void  *data,
-                  int    argc,
-                  char **argv,
-                  char **azColName);
+    // This is a callback function that is sent to the library and used
+    // to parse the sql request being sent to the database.
+    static int cb_select_all(void  *data,
+                             int    argc,
+                             char **argv,
+                             char **azColName);
 
 };
 

@@ -28,8 +28,6 @@ DBTableGames::DBTableGames() {
 DBTableGames::DBTableGames(DBTool *db, std::string name): DBTable (db, name) {
     // Load SQL specific to child class.
     store_add_row_sql();
-    store_create_sql();
-
     // must build table sepparately so new
     // sql can be properly registered
     build_table();
@@ -46,20 +44,23 @@ void DBTableGames::store_add_row_sql() {
 }
 
 
-void DBTableGames::store_create_sql() {
+std::string DBTableGames::create_sql() {
 
     std::cout << "Created SQL CREATE command" << std::endl;
 
-    sql_create =  "CREATE TABLE ";
-    sql_create += this->name;
-    sql_create += " (";
-    sql_create += "id INT PRIMARY KEY NOT NULL, ";
-    sql_create += "score INTEGER, ";
-    sql_create += "name TEXT, ";
-    sql_create += "player INTEGER";
-    sql_create += ");";
+    std::string temp = "";
+    temp =  "CREATE TABLE ";
+    temp += this->name;
+    temp += " (";
+    temp += "id INT PRIMARY KEY NOT NULL, ";
+    temp += "score INTEGER, ";
+    temp += "name TEXT, ";
+    temp += "player INTEGER";
+    temp += ");";
 
-    std::cout << sql_create << std::endl;
+    std::cout << temp << std::endl;
+
+    return temp;
 }
 
 
