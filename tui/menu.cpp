@@ -3,9 +3,9 @@
 Menu::Menu() : Screen(){
     newPlayer = new NewPlayer();
     selectPlayer = new SelectPlayer();
-    topPlayers = new TopPlayers();
-    topGames = new TopGames();
-    statistics = new Statistics();
+//    topPlayers = new TopPlayers();
+//    topGames = new TopGames();
+//    statistics = new Statistics();
     robots = new RobotsScreen();
     worms = new WormsScreen();
 }
@@ -13,9 +13,9 @@ Menu::Menu() : Screen(){
 Menu::~Menu(){
     delete newPlayer;
     delete selectPlayer;
-    delete topPlayers;
-    delete topGames;
-    delete statistics;
+//    delete topPlayers;
+//    delete topGames;
+//    delete statistics;
     delete robots;
     delete worms;
 }
@@ -43,15 +43,15 @@ void Menu::controller(char cmd){
     case 'b':
         selectPlayer->init();
         break;
-    case 'c':
-        topPlayers->init();
-        break;
-    case 'd':
-        topGames->init();
-        break;
-    case 'e':
-        statistics->init();
-        break;
+//    case 'c':
+//        topPlayers->init();
+//        break;
+//    case 'd':
+//        topGames->init();
+//        break;
+//    case 'e':
+//        statistics->init();
+//        break;
     case 'f':
         robots->init();
         break;

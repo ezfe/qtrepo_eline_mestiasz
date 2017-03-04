@@ -7,6 +7,7 @@ class Statistics : public MenuItemScreen {
 public:
     Statistics();
     ~Statistics();
+
 };
 
 #endif // STATISTICS_H
