@@ -11,9 +11,9 @@ NewPlayer::~NewPlayer(){
 }
 
 void NewPlayer::init_form(){
-    field[0] = new_field(1, 10, 4, 18, 0, 0);
-    field[1] = new_field(1, 10, 6, 18, 0, 0);
-    field[2] = new_field(1, 10, 8, 18, 0, 0);
+    field[0] = new_field(1, 10, 4, 22, 0, 0);
+    field[1] = new_field(1, 10, 6, 22, 0, 0);
+    field[2] = new_field(1, 10, 8, 22, 0, 0);
     field[3] = NULL;
 
     set_field_back(field[0], A_UNDERLINE);
@@ -48,6 +48,6 @@ void NewPlayer::submit_form(){
     free_field(field[1]);
     free_field(field[2]);
 
-    //pgh->add_player(firstname, lastname, address);
+    pgh->add_player(firstname, lastname, address);
 
 }
