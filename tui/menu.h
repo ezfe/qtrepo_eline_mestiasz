@@ -22,7 +22,7 @@ public:
     void controller(char cmd);
 
 private:
-    NewPlayer* player;
+    NewPlayer* newPlayer;
     SelectPlayer* selectPlayer;
     TopPlayers* topPlayers;
     TopGames* topGames;

@@ -1,7 +1,7 @@
 #include "menu.h"
 
 Menu::Menu() : Screen(){
-    player = new NewPlayer();
+    newPlayer = new NewPlayer();
     selectPlayer = new SelectPlayer();
     topPlayers = new TopPlayers();
     topGames = new TopGames();
@@ -11,10 +11,17 @@ Menu::Menu() : Screen(){
 }
 
 Menu::~Menu(){
-
+    delete newPlayer;
+    delete selectPlayer;
+    delete topPlayers;
+    delete topGames;
+    delete statistics;
+    delete robots;
+    delete worms;
 }
 
 void Menu::draw_screen(){
+    std::cout << "yeap" << std::endl;
     clear();
 
     mvprintw(0, 1, "Current Player: No player selected" );
@@ -31,7 +38,7 @@ void Menu::draw_screen(){
 void Menu::controller(char cmd){
     switch(cmd){
     case 'a':
-        player->init();
+        newPlayer->init();
         break;
     case 'b':
         selectPlayer->init();

@@ -11,9 +11,12 @@ public:
     ~MenuItemScreen();
 
     void init();
-    virtual void draw_screen();
+    virtual void init_form() = 0;
 
     bool continue_looping;
+
+protected:
+    FORM  *my_form;
 };
 
 #endif // MENUITEMSCREEN_H

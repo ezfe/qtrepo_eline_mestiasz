@@ -8,12 +8,11 @@ public:
     NewPlayer();
     ~NewPlayer();
 
-    void draw_screen();
+    void init_form();
 
 private:
     FIELD *field[3];
-    FORM  *myForm;
-    int ch;
+
 };
 
 #endif // NEWPLAYER_H
