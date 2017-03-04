@@ -69,37 +69,35 @@ bool DBTableGames::add_row(int id, int score, std::string name, int player) {
 
     char  tempval[128];
 
-    sql_add_row  = "INSERT INTO ";
-    sql_add_row += this->name;
-    sql_add_row += " ( id, score, name, player ) ";
-    sql_add_row += "VALUES (";
+    std::string temp = "INSERT INTO " + this->name;
+                temp += " ( id, score, name, player ) ";
+                temp += "VALUES (";
 
     sprintf (tempval, "%d", id);
-    sql_add_row += tempval;
-    sql_add_row += ", ";
+    temp += tempval;
+    temp += ", ";
 
     sprintf (tempval, "%d", score);
-    sql_add_row += tempval;
-    sql_add_row += ", ";
+    temp += tempval;
+    temp += ", ";
 
-    sql_add_row += "\"";
-    sql_add_row += name;
-    sql_add_row += "\", ";
+    temp += "\"" + name + "\"";
+    temp += ", ";
 
     sprintf (tempval, "%d", player);
-    sql_add_row += tempval;
-    sql_add_row += ")";
+    temp += tempval;
 
-    //std::cout << sql_add_row << std::endl;
+    temp += ");";
+
 
     retCode = sqlite3_exec(this->database->db(),
-                           sql_add_row.c_str(),
+                           temp.c_str(),
                            DBTableGames::cb_add_row,
                            this,
                            &zErrMsg          );
 
-    if(retCode != SQLITE_OK){
-        std::cerr << name << ": " << sql_add_row << std::endl << "SQL error: " << zErrMsg << std::endl;
+    if (retCode != SQLITE_OK) {
+        std::cerr << name << ": " << temp << std::endl << "SQL error: " << zErrMsg << std::endl;
         sqlite3_free(zErrMsg);
     }
 

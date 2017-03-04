@@ -39,8 +39,6 @@ DBTable::DBTable(DBTool* db, std::string name) {
     // Register the different sql calls for the
     // parent class.
     store_create_sql();
-
-    sql_add_row = "";
 }
 
 // This should be called by the child constructor but
@@ -60,17 +58,6 @@ void DBTable::build_table() {
 
 // Deconstructor
 DBTable::~DBTable() {
-
-}
-
-// SQL used to get a list of all tables in the DB tool.
-void DBTable::store_template_sql() {
-
-    sql_template =  "SELECT name ";
-    sql_template += "FROM   sqlite_master ";
-    sql_template += "WHERE";
-    sql_template += "    type = \"table\"";
-    sql_template += ";";
 
 }
 
@@ -110,50 +97,6 @@ std::string DBTable::drop_sql() {
 // SQL to determine number of records in the database.
 std::string DBTable::size_sql() {
     return "SELECT count(*) FROM " + this->name + ";";
-}
-
-// Method for calling the template DB SQL above.
-int DBTable::dbtemplate() {
-
-    // Initialize local variables.
-    int   retCode = 0;
-    char *zErrMsg = 0;
-
-    // Call sqlite to run the SQL call using the
-    // callback to store any results.
-    retCode = sqlite3_exec(database->db(),
-                           sql_template.c_str(),
-                           cb_template,
-                           this,
-                           &zErrMsg);
-
-    if( retCode != SQLITE_OK ){
-
-        std::cerr << sql_template
-                  << std::endl;
-
-        std::cerr << "SQL error: "
-                  << zErrMsg
-                  << std::endl;
-
-        sqlite3_free(zErrMsg);
-    }
-
-    return retCode;
-}
-
-int cb_template(void  *data,
-                int    argc,
-                char **argv,
-                char **azColName){
-
-    if(argc < 1) {
-        std::cerr << "No data presented to callback "
-                  << "argc = " << argc
-                  << std::endl;
-    }
-
-    return 0;
 }
 
 // Determine if table exists.

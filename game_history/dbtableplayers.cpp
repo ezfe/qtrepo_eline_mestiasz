@@ -69,7 +69,7 @@ bool DBTablePlayers::add_row(int id, std::string firstName, std::string lastName
 
     char  tempval[128];
 
-    sql_add_row  = "INSERT INTO ";
+    std::string sql_add_row = "INSERT INTO ";
     sql_add_row += this->name;
     sql_add_row += " ( id, firstName, lastName, address ) ";
     sql_add_row += "VALUES (";

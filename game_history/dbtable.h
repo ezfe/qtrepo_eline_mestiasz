@@ -72,7 +72,6 @@ protected:
 
     // default sql for determining number of rows in the table
     virtual std::string size_sql();
-    std::string sql_add_row;
 
     // internal flag for storing the result of the last exists request
     bool table_exists;
@@ -96,7 +95,6 @@ public:
     // can be overloaded for storing your own sql command and should
     // be used as examples for enhancing the functionality of a
     // child class inheriting from this parent class.
-    virtual void store_template_sql();
 
     virtual void store_create_sql();
 
