@@ -3,8 +3,18 @@
 PlayerGameHistory::PlayerGameHistory() {
     this->players.clear();
     this->games.clear();
+}
 
-    DBTool* dbtool = new DBTool("Users/ezekielelin/Desktop", "TestTableDB");
+PlayerGameHistory::PlayerGameHistory(DBTool* dbtool) {
+    this->players.clear();
+    this->games.clear();
+
+    if (dbtool == nullptr) {
+        /* Just won't load anything */
+        return;
+    }
+
+    this->db = dbtool;
 
     DBTablePlayers* playerTable = new DBTablePlayers(dbtool, "PlayerList");
     DBTableGames* gameTable = new DBTableGames(dbtool, "GameList");
@@ -57,37 +67,43 @@ PlayerGameHistory::PlayerGameHistory() {
 
     delete playerTable;
     delete gameTable;
-    delete dbtool;
+    dbtool->close();
 }
 
 PlayerGameHistory::~PlayerGameHistory() {
-    DBTool* dbtool = new DBTool("TestTableDB");
-    DBTablePlayers* playerTable = new DBTablePlayers(dbtool, "PlayerList");
-    DBTableGames* gameTable = new DBTableGames(dbtool, "GameList");
+    if (this->db != nullptr) {
+        if (!db->isOpen()) db->open();
 
-    playerTable->drop();
-    playerTable->create();
-    for (Player* player: this->players) {
-        playerTable->add_row(player->get_table_id(), player->get_first_name(), player->get_last_name(), player->get_address());
+        DBTablePlayers* playerTable = new DBTablePlayers(this->db, "PlayerList");
+        DBTableGames* gameTable = new DBTableGames(this->db, "GameList");
+
+        int playerid = 0;
+
+        playerTable->drop();
+        playerTable->create();
+        for (Player* player: this->players) {
+            player->set_table_id(playerid++);
+            playerTable->add_row(player->get_table_id(), player->get_first_name(), player->get_last_name(), player->get_address());
+        }
+
+        int gameid = 0;
+
+        gameTable->drop();
+        gameTable->create();
+        for (Game* game: this->games) {
+            game->set_table_id(gameid);
+            gameTable->add_row(game->get_table_id(), game->get_score(), game->get_name(), game->get_player()->get_table_id());
+
+            gameid++;
+        }
+
+        delete playerTable;
+        delete gameTable;
+        delete this->db;
     }
-
-    int gameid = 0;
-
-    gameTable->drop();
-    gameTable->create();
-    for (Game* game: this->games) {
-        game->set_table_id(gameid);
-        gameTable->add_row(game->get_table_id(), game->get_score(), game->get_name(), game->get_player()->get_table_id());
-
-        gameid++;
-    }
-
     this->players.clear();
     this->games.clear();
 
-    delete playerTable;
-    delete gameTable;
-    delete dbtool;
 }
 
 /*!
@@ -141,11 +157,11 @@ double PlayerGameHistory::avg_score_per_player(Player* player) {
  * \return double average score
  */
 double PlayerGameHistory::avg_game_score() {
-   int sum = 0;
-   for(auto game : games){
+    int sum = 0;
+    for(auto game : games){
         sum += game->get_score();
-   }
-   return sum / games.size();
+    }
+    return sum / games.size();
 }
 
 /*!
@@ -172,13 +188,9 @@ std::vector<Game*> PlayerGameHistory::get_games(){
 void PlayerGameHistory::add_game(Player* p, Game* g) {
     games.push_back(g);
 
-    if (p->get_table_id() < 0) {
-        p->set_table_id(this->get_valid_table_id());
-    }
-
     bool exists = false;
     for(Player* player : players){
-        if (player == p || player->get_table_id() == p->get_table_id()){
+        if (player == p || (player->get_table_id() >= 0 && player->get_table_id() == p->get_table_id())){
             exists = true;
             break;
         }

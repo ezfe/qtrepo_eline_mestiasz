@@ -46,11 +46,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class DBTool {
 private:
 
-    /// Name of the database.
-    std::string name;
-
-    /// Location of the database in the file structure.
-    std::string location;
+    /// Database location
+    std::string path;
 
     sqlite3 *current;
 
@@ -60,15 +57,9 @@ public:
     // indicating that more information should be provided.
     DBTool();
 
-    // Constructors for loading a database file in the current
-    // working directory.
-    DBTool(std::string name);
-    DBTool(const char* name);
-
-    // Constructors for loading a database file in a specified
-    // directory location.
-    DBTool(std::string location, std::string name);
-    DBTool(const char* location, const char* name);
+    // Constructors for loading a database file
+    DBTool(std::string path);
+    DBTool(const char* path);
 
     // Destructor that will cause the database to be closed storing
     // the updated contents of the sqlite file.
@@ -79,6 +70,9 @@ public:
     // Used to manually open the file, and called by each of the
     // constructors.
     int open();
+
+    // Used to manually close the file
+    int close();
 
     // prints state of database
     void print(std::ostream &sout);

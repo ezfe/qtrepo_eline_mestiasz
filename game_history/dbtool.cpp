@@ -25,35 +25,15 @@ DBTool::DBTool() {
     exit(-1);
 }
 
-DBTool::DBTool(std::string name) {
-    this->name = name;
-    this->location = ".";
-
+DBTool::DBTool(std::string path) {
+    this->path = path;
     open();
 }
 
-DBTool::DBTool(const char* name) {
-    this->name = name;
-    this->location = ".";
-
+DBTool::DBTool(const char* path) {
+    this->path = path;
     open();
 }
-
-DBTool::DBTool(const char* location, const char* name) {
-    this->name = name;
-    this->location = location;
-
-    open();
-}
-
-
-DBTool::DBTool(std::string location, std::string name) {
-    this->name = name;
-    this->location = location;
-
-    open();
-}
-
 
 DBTool::~DBTool() {
     sqlite3_close(this->current);
@@ -65,7 +45,7 @@ DBTool::~DBTool() {
  * @return complete filepath
  */
 std::string DBTool::get_filepath() {
-    return this->location + "/" + this->name;
+    return this->path;
 }
 
 /**
@@ -88,10 +68,29 @@ int DBTool::open() {
     return retCode;
 }
 
+/**
+ * @brief Method that will close the provided database.
+ * @return sqlite3 response code
+ */
+int DBTool::close() {
+    // close the database --------------------
+
+    int retCode = sqlite3_close(this->current);
+
+    if (retCode != SQLITE_OK) {
+        std::cerr << "Database error: " << sqlite3_errmsg(current) << std::endl;
+        std::cerr << "File: " << get_filepath() << std::endl;
+        exit(0);
+    } else {
+        std::cerr << "Closed database successfully\n";
+    }
+
+    return retCode;
+}
+
 
 void DBTool::print(std::ostream &sout) {
-    sout << " DB Name: " << name     << std::endl;
-    sout << "Location: " << location << std::endl;
+    sout << " DB: " << path << std::endl;
 
     sout << "Status: "
          << ( isOpen() ? "open" : "closed" )
