@@ -5,10 +5,14 @@
 
 #include "game.h"
 #include "player.h"
+#include "dbtool.h"
+#include "dbtableplayers.h"
+#include "dbtablegames.h"
 
 class PlayerGameHistory {
 public:
     PlayerGameHistory();
+    PlayerGameHistory(DBTool* dbtool);
     ~PlayerGameHistory();
 
     int number_games_played();
@@ -21,11 +25,13 @@ public:
     std::vector<Game*> get_games();
 
     void add_game(Player* player, Game* game);
-
 private:
     std::vector<Player*> players;
     std::vector<Game*> games;
 
+    int get_valid_table_id();
+
+    DBTool* db = nullptr;
 };
 
 #endif // PLAYERGAMEHISTORY_H

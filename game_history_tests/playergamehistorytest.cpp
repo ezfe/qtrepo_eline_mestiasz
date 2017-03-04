@@ -56,8 +56,7 @@ TEST_F(PlayerGameHistoryTest, TEST_NUMBER_PLAYERS_PLAYED){
     game = new Game(player, "robots", 1);
     playerGameHistory->add_game(player, game);
 
-    EXPECT_EQ(playerGameHistory->number_players_played(), 2)
-            << "Could not find correct number";
+    EXPECT_EQ(playerGameHistory->number_players_played(), 2) << "Could not find correct number";
 }
 
 TEST_F(PlayerGameHistoryTest, TEST_TOP_GAME_SCORE){

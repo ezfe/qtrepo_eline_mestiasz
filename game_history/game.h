@@ -17,12 +17,15 @@ public:
     std::string get_name();
     Player* get_player();
 
-
+    int get_table_id() { return this->tableID; }
+    int set_table_id(int id) { this->tableID = id; }
 private:
     int score;
     std::string name;
 
     Player* player;
+
+    int tableID;
 };
 
 #endif // GAME_H

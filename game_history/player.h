@@ -26,6 +26,8 @@ public:
     Game* get_recent_game();
     GameHistory* get_game_history();
 
+    int get_table_id() { return this->tableID; }
+    int set_table_id(int id) { this->tableID = id; }
 private:
     std::string firstName;
     std::string lastName;
@@ -34,6 +36,7 @@ private:
     Game* recentGame;
     GameHistory* games;
 
+    int tableID = -1;
 };
 
 #endif // PLAYER_H
