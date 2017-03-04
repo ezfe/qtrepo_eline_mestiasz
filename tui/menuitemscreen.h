@@ -1,8 +1,9 @@
 #ifndef MENUITEMSCREEN_H
 #define MENUITEMSCREEN_H
 
-#include <curses.h>
+#include <form.h>
 #include <iostream>
+#include <string>
 
 class MenuItemScreen {
 public:

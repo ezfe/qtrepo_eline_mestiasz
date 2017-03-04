@@ -9,7 +9,6 @@ MenuItemScreen::~MenuItemScreen(){
 }
 
 void MenuItemScreen::init(){
-    initscr();
 
     continue_looping = true;
     draw_screen();
@@ -25,8 +24,6 @@ void MenuItemScreen::init(){
         draw_screen();
 
     } while(continue_looping);
-
-    endwin();
 
     std::cout << "exiting main\n";
 }

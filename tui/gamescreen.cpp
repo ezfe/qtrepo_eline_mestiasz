@@ -9,12 +9,6 @@ GameScreen::~GameScreen(){
 }
 
 void GameScreen::init(){
-    initscr();
-    curs_set(0);
-
-    cbreak();
-    noecho();
-    keypad(stdscr, TRUE);
 
     continue_looping = true;
     draw_screen(this->engine->print_gameboard());
@@ -31,8 +25,6 @@ void GameScreen::init(){
         draw_screen(str);
 
     } while(continue_looping);
-
-    endwin();
 
     std::cout << "exiting main\n";
 }
