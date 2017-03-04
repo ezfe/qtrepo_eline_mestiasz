@@ -61,18 +61,6 @@ protected:
     // sql for retrieving table names from the database
     std::string sql_template;
 
-    // default sql for determining if table exists
-    virtual std::string exists_sql();
-
-    // default sql for creating associated table
-    virtual std::string create_sql() = 0;
-
-    // default sql for dropping the associated table
-    virtual std::string drop_sql();
-
-    // default sql for determining number of rows in the table
-    virtual std::string size_sql();
-
     // internal value for storing the result of the last size request
     int  row_cnt;
 
@@ -88,10 +76,20 @@ public:
     // method for rebuilding the table regardless of existance
     void build_table();
 
-    // These methods are for storing the base sql commands, these methods
-    // can be overloaded for storing your own sql command and should
-    // be used as examples for enhancing the functionality of a
-    // child class inheriting from this parent class.
+    // default sql for determining if table exists
+    virtual std::string exists_sql();
+
+    // default sql for creating associated table
+    virtual std::string create_sql() = 0;
+
+    // default sql for dropping the associated table
+    virtual std::string drop_sql();
+
+    // default sql for determining number of rows in the table
+    virtual std::string size_sql();
+
+    // default sql for selecting all rows
+    virtual std::string select_all_sql();
 
     int dbtemplate();
 

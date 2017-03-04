@@ -62,7 +62,7 @@ std::string DBTable::exists_sql() {
 
 // SQL for removing the table from the database.
 std::string DBTable::drop_sql() {
-    return "DROP TABLE " + this->name + ";";
+    return "DROP TABLE IF EXISTS " + this->name + ";";
 }
 
 // SQL to determine number of records in the database.
@@ -75,11 +75,11 @@ bool DBTable::exists() {
     // Initialize local variables.
     int   retCode = SQLITE_ERROR;
 
-    sqlite3_stmt* sqlstatement = nullptr;
-    retCode = sqlite3_prepare(this->database->db(), this->exists_sql().c_str(), -1, &sqlstatement, 0);
-    if (retCode == SQLITE_OK && sqlstatement != nullptr) {
-        retCode = sqlite3_step(sqlstatement);
-        sqlite3_finalize(sqlstatement);
+    sqlite3_stmt* sqlStatement = nullptr;
+    retCode = sqlite3_prepare_v2(this->database->db(), this->exists_sql().c_str(), -1, &sqlStatement, nullptr);
+    if (retCode == SQLITE_OK && sqlStatement != nullptr) {
+        retCode = sqlite3_step(sqlStatement);
+        sqlite3_finalize(sqlStatement);
         if (retCode == SQLITE_ROW) {
             return true;
         } else {
@@ -88,7 +88,7 @@ bool DBTable::exists() {
     } else {
         std::cerr << exists_sql() << std::endl;
         std::cerr << "SQL error: " << sqlite3_errmsg(this->database->db()) << std::endl;
-        sqlite3_finalize(sqlstatement);
+        sqlite3_finalize(sqlStatement);
         return false;
     }
 }
@@ -111,6 +111,7 @@ bool DBTable::create() {
         sqlite3_free(zErrMsg);
         return false;
     } else {
+        std::cout << "Created table " << this->name << std::endl;
         return true;
     }
 }
@@ -192,4 +193,8 @@ int cb_size(void  *data,
 
 std::string DBTable::get_name() {
     return name;
+}
+
+std::string DBTable::select_all_sql() {
+    return "SELECT * FROM " + this->name + ";";
 }

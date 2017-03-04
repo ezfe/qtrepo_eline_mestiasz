@@ -36,7 +36,7 @@ private:
     Game* recentGame;
     GameHistory* games;
 
-    int tableID;
+    int tableID = -1;
 };
 
 #endif // PLAYER_H

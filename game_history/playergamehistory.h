@@ -29,6 +29,7 @@ private:
     std::vector<Player*> players;
     std::vector<Game*> games;
 
+    int get_valid_table_id();
 };
 
 #endif // PLAYERGAMEHISTORY_H

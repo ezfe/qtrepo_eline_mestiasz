@@ -26,23 +26,12 @@ DBTableGames::DBTableGames() {
 
 // Constructor for identying the dbtool and table name.
 DBTableGames::DBTableGames(DBTool *db, std::string name): DBTable (db, name) {
-    // Load SQL specific to child class.
-    store_add_row_sql();
-    // must build table sepparately so new
-    // sql can be properly registered
     build_table();
 }
 
 DBTableGames::~DBTableGames() {
 
 }
-
-void DBTableGames::store_add_row_sql() {
-
-    sql_template =  "SELECT name FROM sqlite_master WHERE type = \"table\";";
-
-}
-
 
 std::string DBTableGames::create_sql() {
 
@@ -105,29 +94,6 @@ bool DBTableGames::add_row(int id, int score, std::string name, int player) {
     return retCode;
 }
 
-
-bool DBTableGames::select_all() {
-
-    int   retCode = 0;
-    char *zErrMsg = 0;
-
-    std::string sql_select_all  = "SELECT * FROM " + name + ";";
-
-    retCode = sqlite3_exec(this->database->db(),
-                           sql_select_all.c_str(),
-                           DBTableGames::cb_select_all,
-                           this,
-                           &zErrMsg          );
-
-    if(retCode != SQLITE_OK){
-        std::cerr << name << ": " << sql_select_all << std::endl << "SQL error: " << zErrMsg << std::endl;
-        sqlite3_free(zErrMsg);
-    }
-
-    return retCode;
-}
-
-
 int DBTableGames::cb_add_row(void  *data,
                int    argc,
                char **argv,
@@ -156,40 +122,6 @@ int DBTableGames::cb_add_row(void  *data,
         std::cout << azColName[i]
                   << " = "
                   <<  (argv[i] ? argv[i] : "NULL")
-                  << std::endl;
-    }
-
-    return 0;
-}
-
-int DBTableGames::cb_select_all(void  *data,
-                  int    argc,
-                  char **argv,
-                  char **azColName)
-{
-
-
-
-    std::cerr << "cb_select_all being called\n";
-
-    if(argc < 1) {
-        std::cerr << "No data presented to callback "
-                  << "argc = " << argc
-                  << std::endl;
-    }
-
-    int i;
-
-    DBTableGames *obj = (DBTableGames *) data;
-
-    std::cout << "------------------------------\n";
-    std::cout << obj->get_name()
-              << std::endl;
-
-    for(i = 0; i < argc; i++){
-        std::cout << azColName[i]
-                  << " = "
-                  <<  (argv[i] ? std::string(argv[i]) : "NULL")
                   << std::endl;
     }
 
