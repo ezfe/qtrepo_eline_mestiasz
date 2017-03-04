@@ -32,6 +32,9 @@ private:
     int get_valid_table_id();
 
     DBTool* db = nullptr;
+
+    const std::string PLAYER_TABLE_NAME = "PlayerList";
+    const std::string GAME_TABLE_NAME = "GameList";
 };
 
 #endif // PLAYERGAMEHISTORY_H
