@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+#include "../game_history/playergamehistory.h"
 #include "screen.h"
 #include "newplayer.h"
 #include "selectplayer.h"
@@ -23,12 +24,13 @@ public:
 
 private:
     NewPlayer* newPlayer;
-    SelectPlayer* selectPlayer;
+//    SelectPlayer* selectPlayer;
 //    TopPlayers* topPlayers;
 //    TopGames* topGames;
 //    Statistics* statistics;
     RobotsScreen* robots;
     WormsScreen* worms;
+    PlayerGameHistory* pgh;
 };
 
 #endif // MENU_H

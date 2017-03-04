@@ -25,6 +25,8 @@ public:
     std::vector<Game*> get_games();
 
     void add_game(Player* player, Game* game);
+    void add_player(std::string f, std::string l, std::string a);
+
 private:
     std::vector<Player*> players;
     std::vector<Game*> games;

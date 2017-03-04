@@ -5,13 +5,15 @@
 
 class NewPlayer : public MenuItemScreen{
 public:
-    NewPlayer();
+    NewPlayer(PlayerGameHistory* pgh);
     ~NewPlayer();
 
     void init_form();
+    void submit_form();
 
 private:
-    FIELD *field[3];
+    FIELD *field[4];
+    PlayerGameHistory* pgh;
 
 };
 

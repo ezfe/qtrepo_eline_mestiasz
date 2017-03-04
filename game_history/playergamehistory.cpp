@@ -203,6 +203,21 @@ void PlayerGameHistory::add_game(Player* p, Game* g) {
 }
 
 /*!
+ * \brief Add a
+ * \param f the name of the player
+ * \param l the lastname of the player
+ * \param a player's address
+ */
+void PlayerGameHistory::add_player(std::string f, std::string l, std::string a) {
+    for(Player* player : players){
+        if(player->get_first_name() == f && player->get_last_name() == l &&
+                player->get_address() == a) return;
+    }
+    Player* player = new Player(f, l, a);
+    this->players.push_back(player);
+}
+
+/*!
  * \brief Simple Unique ID Finder
  * \return valid table ID
  */

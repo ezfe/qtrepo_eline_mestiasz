@@ -1,27 +1,29 @@
 #include "menu.h"
 
 Menu::Menu() : Screen(){
-    newPlayer = new NewPlayer();
-    selectPlayer = new SelectPlayer();
+    pgh = new PlayerGameHistory();
+    newPlayer = new NewPlayer(pgh);
+//    selectPlayer = new SelectPlayer();
 //    topPlayers = new TopPlayers();
 //    topGames = new TopGames();
 //    statistics = new Statistics();
     robots = new RobotsScreen();
     worms = new WormsScreen();
+
 }
 
 Menu::~Menu(){
     delete newPlayer;
-    delete selectPlayer;
+//    delete selectPlayer;
 //    delete topPlayers;
 //    delete topGames;
 //    delete statistics;
     delete robots;
     delete worms;
+    delete pgh;
 }
 
 void Menu::draw_screen(){
-    std::cout << "yeap" << std::endl;
     clear();
 
     mvprintw(0, 1, "Current Player: No player selected" );
@@ -33,6 +35,10 @@ void Menu::draw_screen(){
     mvprintw(9, 1, "f. Play Robots");
     mvprintw(10, 1, "g. Play Worm");
     mvprintw(12, 1, "q. Exit Program");
+
+    if(pgh->get_players().size() != 0){
+        mvprintw(14, 1, pgh->get_players().at(0)->get_first_name().c_str());
+    }
 }
 
 void Menu::controller(char cmd){
@@ -40,9 +46,9 @@ void Menu::controller(char cmd){
     case 'a':
         newPlayer->init();
         break;
-    case 'b':
-        selectPlayer->init();
-        break;
+//    case 'b':
+//        selectPlayer->init();
+//        break;
 //    case 'c':
 //        topPlayers->init();
 //        break;

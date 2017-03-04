@@ -27,6 +27,7 @@ void MenuItemScreen::init(){
        case KEY_LEFT:
            continue_looping = false;
            form_driver(my_form, REQ_END_LINE);
+           submit_form();
            break;
        default:
            form_driver(my_form, ch);

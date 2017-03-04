@@ -18,7 +18,8 @@ SOURCES += \
     selectplayer.cpp \
     topplayers.cpp \
     topgames.cpp \
-    statistics.cpp
+    statistics.cpp \
+    ../game_history/playergamehistory.cpp
 
 LIBS += -lncurses -lform
 
@@ -35,6 +36,7 @@ HEADERS += screen.h \
     selectplayer.h \
     topplayers.h \
     topgames.h \
-    statistics.h
+    statistics.h \
+    ../game_history/playergamehistory.h
 
 
