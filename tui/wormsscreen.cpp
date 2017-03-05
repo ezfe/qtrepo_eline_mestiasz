@@ -1,7 +1,11 @@
 #include "wormsscreen.h"
 
-WormsScreen::WormsScreen() : GameScreen(){
+WormsScreen::WormsScreen(PlayerGameHistory* pgh) : GameScreen(pgh){
     this->engine = new Worms(20, 20);
+}
+
+WormsScreen::~WormsScreen(){
+
 }
 
 void WormsScreen::draw_screen(std::string str){

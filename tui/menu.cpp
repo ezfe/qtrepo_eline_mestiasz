@@ -7,8 +7,8 @@ Menu::Menu() : Screen(){
     topPlayers = new TopPlayers(pgh);
     topGames = new TopGames(pgh);
     statistics = new Statistics(pgh);
-    robots = new RobotsScreen();
-    worms = new WormsScreen();
+    robots = new RobotsScreen(pgh);
+    worms = new WormsScreen(pgh);
 
 }
 
@@ -30,19 +30,19 @@ void Menu::draw_screen(){
 
     mvprintw(0, 1, "Current Player: " );
     if(current_player == nullptr){
-        mvprintw(0, 20, "No player selected" );
+        mvprintw(0, 20, "No player selected / Select a player to start a game!" );
     } else {
-        mvprintw(14, 1, current_player->get_first_name().c_str());
-        mvprintw(15, 1, current_player->get_last_name().c_str());
+        mvprintw(0, 20, current_player->get_first_name().c_str());
+        mvprintw(1, 20, current_player->get_last_name().c_str());
     }
-    mvprintw(2, 1, "a. Create a New Player");
-    mvprintw(3, 1, "b. Select an Existing Player");
-    mvprintw(5, 1, "c. Display Top Three Players");
-    mvprintw(6, 1, "d. Display Top Three Games Played");
-    mvprintw(7, 1, "e. Display Calculated Statistics");
-    mvprintw(9, 1, "f. Play Robots");
-    mvprintw(10, 1, "g. Play Worm");
-    mvprintw(12, 1, "q. Exit Program");
+    mvprintw(3, 1, "a. Create a New Player");
+    mvprintw(4, 1, "b. Select an Existing Player");
+    mvprintw(6, 1, "c. Display Top Three Players");
+    mvprintw(7, 1, "d. Display Top Three Games Played");
+    mvprintw(8, 1, "e. Display Calculated Statistics");
+    mvprintw(10, 1, "f. Play Robots");
+    mvprintw(11, 1, "g. Play Worm");
+    mvprintw(13, 1, "q. Exit Program");
 
 }
 
@@ -65,10 +65,12 @@ void Menu::controller(char cmd){
         statistics->init();
         break;
     case 'f':
-        robots->init();
+        if(this->current_player != nullptr)
+            robots->init(this->current_player);
         break;
     case 'g':
-        worms->init();
+        if(this->current_player != nullptr)
+            worms->init(this->current_player);
         break;
     }
 }

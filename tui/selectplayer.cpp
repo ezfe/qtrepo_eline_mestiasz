@@ -20,7 +20,7 @@ void SelectPlayer::controller(){
 
     int i = 4;
     for(Player* player : pgh->get_players()){
-        std::string num = std::to_string(i-3);
+        std::string num = std::to_string(i - 4);
         mvprintw(i, 0,  "#");
         mvprintw(i, 1,  num.c_str());
         mvprintw(i, 5,  player->get_first_name().c_str());
@@ -29,8 +29,8 @@ void SelectPlayer::controller(){
         i++;
     }
     int cmd = getch();
-    if(cmd > 0 && cmd <= pgh->get_players().size()){
-        player = pgh->get_players().at(cmd - 1);
+    if(cmd >= 48 && cmd <= 57){
+        player = pgh->get_players().at(cmd - 48);
     }
 }
 
