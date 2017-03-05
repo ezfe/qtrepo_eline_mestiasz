@@ -22,7 +22,8 @@ void TopPlayers::controller(){
     mvprintw(3, 35, "------");
 
     int i = 4;
-    for(Player* player : pgh->get_players()){
+    for(Player* player : top_players()){
+        if(i > 6) break;
         std::string num = std::to_string(i - 4);
         mvprintw(i, 0,  "#");
         mvprintw(i, 1,  num.c_str());
@@ -37,4 +38,16 @@ void TopPlayers::controller(){
     do{
         cmd = getch();
     } while (cmd != 'q');
+}
+
+std::vector<Player*> TopPlayers::top_players(){
+    std::vector<Player*> top = pgh->get_players();
+    struct {
+       bool operator()(Player* a, Player* b){
+           return (a->get_total_score()/a->get_game_history()->get_games().size()) >
+                  (b->get_total_score()/b->get_game_history()->get_games().size());
+       }
+    } playerComparator;
+    std::sort(top.begin(), top.end(), playerComparator);
+    return top;
 }

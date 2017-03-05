@@ -9,6 +9,7 @@ public:
     ~TopPlayers();
 
     void controller();
+    std::vector<Player*> top_players();
 
 };
 
