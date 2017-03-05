@@ -9,7 +9,8 @@
 
 class WormsScreen : public GameScreen{
 public:
-    WormsScreen();
+    WormsScreen(PlayerGameHistory* pgh);
+    ~WormsScreen();
 
     void draw_screen(std::string str);
 

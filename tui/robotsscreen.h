@@ -9,7 +9,8 @@
 
 class RobotsScreen : public GameScreen{
 public:
-    RobotsScreen();
+    RobotsScreen(PlayerGameHistory* pgh);
+    ~RobotsScreen();
 
     void draw_screen(std::string str);
 

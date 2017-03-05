@@ -1,7 +1,12 @@
 #include "robotsscreen.h"
 
-RobotsScreen::RobotsScreen(): GameScreen(){
+RobotsScreen::RobotsScreen(PlayerGameHistory* pgh): GameScreen(pgh){
     this->engine = new Robots(20, 50, 10);
+    this->name = "Robots";
+}
+
+RobotsScreen::~RobotsScreen(){
+
 }
 
 void RobotsScreen::draw_screen(std::string str){

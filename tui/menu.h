@@ -24,13 +24,15 @@ public:
 
 private:
     NewPlayer* newPlayer;
-//    SelectPlayer* selectPlayer;
-//    TopPlayers* topPlayers;
-//    TopGames* topGames;
-//    Statistics* statistics;
+    SelectPlayer* selectPlayer;
+    TopPlayers* topPlayers;
+    TopGames* topGames;
+    Statistics* statistics;
     RobotsScreen* robots;
     WormsScreen* worms;
     PlayerGameHistory* pgh;
+
+    Player* current_player;
 };
 
 #endif // MENU_H
