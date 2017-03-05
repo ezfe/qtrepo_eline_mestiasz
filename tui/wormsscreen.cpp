@@ -2,6 +2,7 @@
 
 WormsScreen::WormsScreen(PlayerGameHistory* pgh) : GameScreen(pgh){
     this->engine = new Worms(20, 20);
+    this->name = "Worms";
 }
 
 WormsScreen::~WormsScreen(){

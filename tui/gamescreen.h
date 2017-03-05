@@ -23,6 +23,7 @@ protected:
     Engine * engine;
     PlayerGameHistory* pgh;
     Player* player;
+    std::string name;
 };
 
 #endif // SCREEN_H

@@ -2,6 +2,7 @@
 
 GameScreen::GameScreen(PlayerGameHistory* pgh){
     this->pgh = pgh;
+    name = "Game";
 }
 
 GameScreen::~GameScreen(){
@@ -36,7 +37,7 @@ void GameScreen::init(Player* player){
 }
 
 void GameScreen::save_game(){
-    Game* game = new Game(this->player, "Robots", this->engine->get_score());
+    Game* game = new Game(this->player, this->name, this->engine->get_score());
     pgh->add_game(this->player, game);
 }
 

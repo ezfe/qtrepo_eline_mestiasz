@@ -127,7 +127,9 @@ int PlayerGameHistory::number_players_played() {
  * \return double average games per player
  */
 double PlayerGameHistory::avg_games_per_player() {
-    return games.size() / players.size();
+    if(players.size() != 0)
+        return 1.0 * games.size() / players.size();
+    return 0;
 }
 
 /*!
@@ -149,7 +151,7 @@ int PlayerGameHistory::top_game_score() {
  * \return double average score
  */
 double PlayerGameHistory::avg_score_per_player(Player* player) {
-    return player->get_total_score() / (player->get_game_history()->get_games().size() + 1);
+    return 1.0 * player->get_total_score() / (player->get_game_history()->get_games().size() + 1);
 }
 
 /*!
@@ -157,11 +159,13 @@ double PlayerGameHistory::avg_score_per_player(Player* player) {
  * \return double average score
  */
 double PlayerGameHistory::avg_game_score() {
-    int sum = 0;
+    double sum = 0;
     for(auto game : games){
         sum += game->get_score();
     }
-    return sum / games.size();
+    if(games.size() != 0)
+        return sum / games.size();
+    return 0;
 }
 
 /*!
