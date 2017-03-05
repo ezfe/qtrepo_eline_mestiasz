@@ -91,6 +91,8 @@ bool DBTablePlayers::add_row(int id, std::string firstName, std::string lastName
     if(retCode != SQLITE_OK){
         std::cerr << name << ": " << sql_add_row << std::endl << "SQL error: " << zErrMsg << std::endl;
         sqlite3_free(zErrMsg);
+    } else {
+        std::cout << "Saved record to " << this->name << std::endl;
     }
 
     return retCode;

@@ -36,8 +36,11 @@ DBTool::DBTool(const char* path) {
 }
 
 DBTool::~DBTool() {
+    std::cout << "~DBTool" << std::endl;
+    std::cout << "Closing database" << std::endl;
     sqlite3_close(this->current);
     this->current = nullptr;
+    std::cout << "~DBTool" << std::endl;
 }
 
 /**

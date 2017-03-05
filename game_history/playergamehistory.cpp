@@ -67,7 +67,7 @@ PlayerGameHistory::PlayerGameHistory(DBTool* dbtool) {
 
     delete playerTable;
     delete gameTable;
-    dbtool->close();
+//    dbtool->close();
 }
 
 PlayerGameHistory::~PlayerGameHistory() {
@@ -98,7 +98,7 @@ PlayerGameHistory::~PlayerGameHistory() {
         }
 
         delete playerTable;
-        delete gameTable;
+        delete gameTable;        
         delete this->db;
     }
     for(auto player : this->players){
