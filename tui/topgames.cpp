@@ -25,7 +25,8 @@ void TopGames::controller(){
 
 
     int i = 4;
-    for(Game* game : pgh->get_games()){
+    for(Game* game : top_games()){
+        if(i > 6) break;
         std::string num = std::to_string(i - 4);
         mvprintw(i, 0,  "#");
         mvprintw(i, 1,  num.c_str());
@@ -42,4 +43,15 @@ void TopGames::controller(){
         cmd = getch();
     } while (cmd != 'q');
 
+}
+
+std::vector<Game*> TopGames::top_games(){
+    std::vector<Game*> top = pgh->get_games();
+    struct {
+       bool operator()(Game* a, Game* b){
+           return a->get_score() > b->get_score();
+       }
+    } gameComparator;
+    std::sort(top.begin(), top.end(), gameComparator);
+    return top;
 }
