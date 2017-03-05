@@ -8,6 +8,7 @@ public:
     SelectPlayer();
     ~SelectPlayer();
 
+    void controller();
 
 private:
 

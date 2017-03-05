@@ -7,6 +7,8 @@ class TopGames : public MenuItemScreen{
 public:
     TopGames();
     ~TopGames();
+
+    void controller();
 };
 
 #endif // TOPGAMES_H

@@ -9,10 +9,12 @@ public:
     ~NewPlayer();
 
     void init_form();
+    void controller();
     void submit_form();
 
 private:
-    FIELD *field[4];
+    FORM* my_form;
+    FIELD* field[4];
     PlayerGameHistory* pgh;
 
 };

@@ -8,6 +8,7 @@ public:
     Statistics();
     ~Statistics();
 
+    void controller();
 };
 
 #endif // STATISTICS_H

@@ -13,13 +13,10 @@ public:
     virtual ~MenuItemScreen();
 
     void init();
-    virtual void init_form() = 0;
-    virtual void submit_form() = 0;
+    virtual void controller() = 0;
 
     bool continue_looping;
 
-protected:
-    FORM  *my_form;
 };
 
 #endif // MENUITEMSCREEN_H

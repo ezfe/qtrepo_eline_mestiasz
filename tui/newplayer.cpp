@@ -8,12 +8,13 @@ NewPlayer::~NewPlayer(){
     for(auto f : field){
         delete f;
     }
+    delete my_form;
 }
 
 void NewPlayer::init_form(){
-    field[0] = new_field(1, 10, 4, 22, 0, 0);
-    field[1] = new_field(1, 10, 6, 22, 0, 0);
-    field[2] = new_field(1, 10, 8, 22, 0, 0);
+    field[0] = new_field(1, 17, 4, 22, 0, 0);
+    field[1] = new_field(1, 17, 6, 22, 0, 0);
+    field[2] = new_field(1, 17, 8, 22, 0, 0);
     field[3] = NULL;
 
     set_field_back(field[0], A_UNDERLINE);
@@ -35,6 +36,33 @@ void NewPlayer::init_form(){
     mvprintw(8, 10, "Address: ");
 
     refresh();
+}
+
+void NewPlayer::controller(){
+    init_form();
+    continue_looping = true;
+
+    do {
+       int ch = getch();
+       switch(ch){
+       case KEY_DOWN:
+           form_driver(my_form, REQ_NEXT_FIELD);
+           form_driver(my_form, REQ_END_LINE);
+           break;
+       case KEY_UP:
+           form_driver(my_form, REQ_PREV_FIELD);
+           form_driver(my_form, REQ_END_LINE);
+           break;
+       case KEY_LEFT:
+           continue_looping = false;
+           form_driver(my_form, REQ_END_LINE);
+           submit_form();
+           break;
+       default:
+           form_driver(my_form, ch);
+           break;
+       }
+    } while (continue_looping);
 }
 
 void NewPlayer::submit_form(){

@@ -3,24 +3,26 @@
 Menu::Menu() : Screen(){
     pgh = new PlayerGameHistory();
     newPlayer = new NewPlayer(pgh);
-//    selectPlayer = new SelectPlayer();
-//    topPlayers = new TopPlayers();
-//    topGames = new TopGames();
-//    statistics = new Statistics();
+    selectPlayer = new SelectPlayer();
+    topPlayers = new TopPlayers();
+    topGames = new TopGames();
+    statistics = new Statistics();
     robots = new RobotsScreen();
     worms = new WormsScreen();
 
 }
 
 Menu::~Menu(){
+    std::cout << "~Menu" << std::endl;
     delete newPlayer;
-//    delete selectPlayer;
-//    delete topPlayers;
-//    delete topGames;
-//    delete statistics;
+    delete selectPlayer;
+    delete topPlayers;
+    delete topGames;
+    delete statistics;
     delete robots;
     delete worms;
     delete pgh;
+    std::cout << "~Menu" << std::endl;
 }
 
 void Menu::draw_screen(){
@@ -38,6 +40,8 @@ void Menu::draw_screen(){
 
     if(pgh->get_players().size() != 0){
         mvprintw(14, 1, pgh->get_players().at(0)->get_first_name().c_str());
+        mvprintw(15, 1, pgh->get_players().at(0)->get_last_name().c_str());
+        mvprintw(16, 1, pgh->get_players().at(0)->get_address().c_str());
     }
 }
 
@@ -46,18 +50,18 @@ void Menu::controller(char cmd){
     case 'a':
         newPlayer->init();
         break;
-//    case 'b':
-//        selectPlayer->init();
-//        break;
-//    case 'c':
-//        topPlayers->init();
-//        break;
-//    case 'd':
-//        topGames->init();
-//        break;
-//    case 'e':
-//        statistics->init();
-//        break;
+    case 'b':
+        selectPlayer->init();
+        break;
+    case 'c':
+        topPlayers->init();
+        break;
+    case 'd':
+        topGames->init();
+        break;
+    case 'e':
+        statistics->init();
+        break;
     case 'f':
         robots->init();
         break;
