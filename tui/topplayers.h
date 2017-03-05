@@ -10,8 +10,6 @@ public:
 
     void controller();
 
-private:
-    PlayerGameHistory* pgh;
 };
 
 #endif // TOPPLAYERS_H

@@ -9,9 +9,10 @@ public:
     ~SelectPlayer();
 
     void controller();
+    Player* get_player();
 
 private:
-    PlayerGameHistory* pgh;
+    Player* player;
 
 };
 

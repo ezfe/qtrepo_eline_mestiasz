@@ -9,8 +9,7 @@ public:
     ~Statistics();
 
     void controller();
-private:
-    PlayerGameHistory* pgh;
+
 };
 
 #endif // STATISTICS_H

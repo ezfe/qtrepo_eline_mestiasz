@@ -31,6 +31,8 @@ private:
     RobotsScreen* robots;
     WormsScreen* worms;
     PlayerGameHistory* pgh;
+
+    Player* current_player;
 };
 
 #endif // MENU_H

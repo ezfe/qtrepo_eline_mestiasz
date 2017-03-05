@@ -28,7 +28,13 @@ Menu::~Menu(){
 void Menu::draw_screen(){
     clear();
 
-    mvprintw(0, 1, "Current Player: No player selected" );
+    mvprintw(0, 1, "Current Player: " );
+    if(current_player == nullptr){
+        mvprintw(0, 20, "No player selected" );
+    } else {
+        mvprintw(14, 1, current_player->get_first_name().c_str());
+        mvprintw(15, 1, current_player->get_last_name().c_str());
+    }
     mvprintw(2, 1, "a. Create a New Player");
     mvprintw(3, 1, "b. Select an Existing Player");
     mvprintw(5, 1, "c. Display Top Three Players");
@@ -38,11 +44,6 @@ void Menu::draw_screen(){
     mvprintw(10, 1, "g. Play Worm");
     mvprintw(12, 1, "q. Exit Program");
 
-    if(pgh->get_players().size() != 0){
-        mvprintw(14, 1, pgh->get_players().at(0)->get_first_name().c_str());
-        mvprintw(15, 1, pgh->get_players().at(0)->get_last_name().c_str());
-        mvprintw(16, 1, pgh->get_players().at(0)->get_address().c_str());
-    }
 }
 
 void Menu::controller(char cmd){
@@ -52,6 +53,7 @@ void Menu::controller(char cmd){
         break;
     case 'b':
         selectPlayer->init();
+        this->current_player = selectPlayer->get_player();
         break;
     case 'c':
         topPlayers->init();
