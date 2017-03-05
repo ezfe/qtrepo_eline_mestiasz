@@ -5,10 +5,13 @@
 
 class TopGames : public MenuItemScreen{
 public:
-    TopGames();
+    TopGames(PlayerGameHistory* pgh);
     ~TopGames();
 
     void controller();
+
+private:
+    PlayerGameHistory* pgh;
 };
 
 #endif // TOPGAMES_H

@@ -1,7 +1,7 @@
 #include "newplayer.h"
 
-NewPlayer::NewPlayer(PlayerGameHistory* pgh) : MenuItemScreen(){
-    this->pgh = pgh;
+NewPlayer::NewPlayer(PlayerGameHistory* pgh) : MenuItemScreen(pgh){
+
 }
 
 NewPlayer::~NewPlayer(){

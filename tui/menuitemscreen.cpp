@@ -1,7 +1,7 @@
 #include "menuitemscreen.h"
 
-MenuItemScreen::MenuItemScreen(){
-
+MenuItemScreen::MenuItemScreen(PlayerGameHistory* pgh){
+    this->pgh = pgh;
 }
 
 MenuItemScreen::~MenuItemScreen(){

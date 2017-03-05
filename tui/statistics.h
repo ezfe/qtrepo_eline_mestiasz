@@ -5,10 +5,12 @@
 
 class Statistics : public MenuItemScreen {
 public:
-    Statistics();
+    Statistics(PlayerGameHistory* pgh);
     ~Statistics();
 
     void controller();
+private:
+    PlayerGameHistory* pgh;
 };
 
 #endif // STATISTICS_H

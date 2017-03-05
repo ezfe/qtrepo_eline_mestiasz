@@ -9,7 +9,7 @@
 
 class MenuItemScreen {
 public:
-    MenuItemScreen();
+    MenuItemScreen(PlayerGameHistory* pgh);
     virtual ~MenuItemScreen();
 
     void init();
@@ -17,6 +17,8 @@ public:
 
     bool continue_looping;
 
+protected:
+    PlayerGameHistory* pgh;
 };
 
 #endif // MENUITEMSCREEN_H

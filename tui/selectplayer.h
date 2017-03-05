@@ -5,12 +5,13 @@
 
 class SelectPlayer : public MenuItemScreen{
 public:
-    SelectPlayer();
+    SelectPlayer(PlayerGameHistory* pgh);
     ~SelectPlayer();
 
     void controller();
 
 private:
+    PlayerGameHistory* pgh;
 
 };
 

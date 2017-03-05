@@ -3,10 +3,10 @@
 Menu::Menu() : Screen(){
     pgh = new PlayerGameHistory();
     newPlayer = new NewPlayer(pgh);
-    selectPlayer = new SelectPlayer();
-    topPlayers = new TopPlayers();
-    topGames = new TopGames();
-    statistics = new Statistics();
+    selectPlayer = new SelectPlayer(pgh);
+    topPlayers = new TopPlayers(pgh);
+    topGames = new TopGames(pgh);
+    statistics = new Statistics(pgh);
     robots = new RobotsScreen();
     worms = new WormsScreen();
 
