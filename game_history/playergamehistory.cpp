@@ -16,8 +16,8 @@ PlayerGameHistory::PlayerGameHistory(DBTool* dbtool) {
 
     this->db = dbtool;
 
-    DBTablePlayers* playerTable = new DBTablePlayers(dbtool, "PlayerList");
-    DBTableGames* gameTable = new DBTableGames(dbtool, "GameList");
+    DBTablePlayers* playerTable = new DBTablePlayers(dbtool, PLAYER_TABLE_NAME);
+    DBTableGames* gameTable = new DBTableGames(dbtool, GAME_TABLE_NAME);
 
     int playerCode = SQLITE_ERROR;
     sqlite3_stmt* playerSelectStatement = nullptr;
@@ -74,8 +74,8 @@ PlayerGameHistory::~PlayerGameHistory() {
     if (this->db != nullptr) {
         if (!db->isOpen()) db->open();
 
-        DBTablePlayers* playerTable = new DBTablePlayers(this->db, "PlayerList");
-        DBTableGames* gameTable = new DBTableGames(this->db, "GameList");
+        DBTablePlayers* playerTable = new DBTablePlayers(this->db, PLAYER_TABLE_NAME);
+        DBTableGames* gameTable = new DBTableGames(this->db, GAME_TABLE_NAME);
 
         int playerid = 0;
 
