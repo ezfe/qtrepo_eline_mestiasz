@@ -29,7 +29,7 @@ void SelectPlayer::controller(){
         i++;
     }
     int cmd = getch();
-    if(cmd >= 48 && cmd <= 57){
+    if(cmd >= 48 && cmd < (48 + pgh->get_players().size())){
         player = pgh->get_players().at(cmd - 48);
     }
 }
