@@ -23,6 +23,7 @@ void TopGames::controller(){
     mvprintw(3, 35, "---------");
     mvprintw(3, 50, "------");
 
+
     int i = 4;
     for(Game* game : pgh->get_games()){
         std::string num = std::to_string(i - 4);
