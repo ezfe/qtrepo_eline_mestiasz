@@ -6,12 +6,6 @@ NewPlayer::NewPlayer(PlayerGameHistory* pgh) : MenuItemScreen(pgh){
 
 NewPlayer::~NewPlayer(){
 
-    //    for(auto f : field){
-    //        if(f != nullptr)
-    //        delete f;
-    //    }
-
-    //    if(my_form != nullptr) delete my_form;
 }
 
 /*!
