@@ -36,7 +36,8 @@ PlayerGameHistory::PlayerGameHistory(DBTool* dbtool) {
             const char* addressTemp = reinterpret_cast<const char*>(sqlite3_column_text(playerSelectStatement, 3));
             std::string address = addressTemp == NULL ? "null" : std::string(addressTemp);
 
-            Player* p = new Player(firstName, lastName, address);
+            this->add_player(firstName, lastName, address);
+            Player* p = this->players.back();
             p->set_table_id(sqlite3_column_int(playerSelectStatement, 0));
 
             /* Fetch games */
@@ -45,6 +46,8 @@ PlayerGameHistory::PlayerGameHistory(DBTool* dbtool) {
             std::string gameQueryText("SELECT * FROM GameList WHERE player = " + std::to_string(p->get_table_id()) + ";");
             gameCode = sqlite3_prepare_v2(dbtool->db(), gameQueryText.c_str(), -1, &gameSelectStatement, nullptr);
 
+
+            int gameCount = 0;
             /* Loop through results */
             if (gameCode == SQLITE_OK && gameSelectStatement != nullptr) {
                 while (sqlite3_step(gameSelectStatement) == SQLITE_ROW) {
@@ -53,6 +56,7 @@ PlayerGameHistory::PlayerGameHistory(DBTool* dbtool) {
 
                     Game* g = new Game(p, name, sqlite3_column_int(gameSelectStatement, 1));
 
+                    gameCount++;
                     this->add_game(p, g);
                 }
             }

@@ -81,7 +81,7 @@ std::string DBTable::size_sql() {
 // Determine if table exists.
 bool DBTable::exists() {
     // Initialize local variables.
-    int   retCode = SQLITE_ERROR;
+    int retCode = SQLITE_ERROR;
 
     sqlite3_stmt* sqlStatement = nullptr;
     retCode = sqlite3_prepare_v2(this->database->db(), this->exists_sql().c_str(), -1, &sqlStatement, nullptr);
