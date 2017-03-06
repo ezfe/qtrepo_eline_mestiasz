@@ -6,12 +6,12 @@ NewPlayer::NewPlayer(PlayerGameHistory* pgh) : MenuItemScreen(pgh){
 
 NewPlayer::~NewPlayer(){
 
-//    for(auto f : field){
-//        if(f != nullptr)
-//        delete f;
-//    }
+    //    for(auto f : field){
+    //        if(f != nullptr)
+    //        delete f;
+    //    }
 
-//    if(my_form != nullptr) delete my_form;
+    //    if(my_form != nullptr) delete my_form;
 }
 
 /*!
@@ -52,28 +52,28 @@ void NewPlayer::controller(){
     continue_looping = true;
 
     do {
-       int ch = getch();
-       switch(ch){
-       case KEY_DOWN:
-           // Move to next text field
-           form_driver(my_form, REQ_NEXT_FIELD);
-           form_driver(my_form, REQ_END_LINE);
-           break;
-       case KEY_UP:
-           // Move to previous field
-           form_driver(my_form, REQ_PREV_FIELD);
-           form_driver(my_form, REQ_END_LINE);
-           break;
-       case KEY_LEFT:
-           // Quit
-           continue_looping = false;
-           form_driver(my_form, REQ_END_LINE);
-           submit_form();
-           break;
-       default:
-           form_driver(my_form, ch);
-           break;
-       }
+        int ch = getch();
+        switch(ch){
+        case KEY_DOWN:
+            // Move to next text field
+            form_driver(my_form, REQ_NEXT_FIELD);
+            form_driver(my_form, REQ_END_LINE);
+            break;
+        case KEY_UP:
+            // Move to previous field
+            form_driver(my_form, REQ_PREV_FIELD);
+            form_driver(my_form, REQ_END_LINE);
+            break;
+        case KEY_LEFT:
+            // Quit
+            continue_looping = false;
+            form_driver(my_form, REQ_END_LINE);
+            submit_form();
+            break;
+        default:
+            form_driver(my_form, ch);
+            break;
+        }
     } while (continue_looping);
 }
 

@@ -35,8 +35,6 @@ DBTablePlayers::~DBTablePlayers() {
 
 std::string DBTablePlayers::create_sql() {
 
-    std::cout << "Created SQL CREATE command" << std::endl;
-
     std::string temp = "";
     temp += "CREATE TABLE ";
     temp += name;
@@ -47,7 +45,10 @@ std::string DBTablePlayers::create_sql() {
     temp += "address TEXT";
     temp += ");";
 
-    std::cout << temp << std::endl;
+    if (this->database->verbose) {
+        std::cout << this->name << "::create_sql()" << std::endl;
+        std::cout << temp << std::endl;
+    }
 
     return temp;
 }

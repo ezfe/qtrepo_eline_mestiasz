@@ -135,7 +135,9 @@ bool DBTable::create() {
 
         return false;
     } else {
-        std::cout << "Created table " << this->name << std::endl;
+        if (this->database->verbose) {
+            std::cout << this->name << "::create() -> true" << std::endl;
+        }
         return true;
     }
 }
