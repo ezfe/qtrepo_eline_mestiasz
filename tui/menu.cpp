@@ -2,7 +2,7 @@
 
 Menu::Menu() : Screen(){
 //    pgh = new PlayerGameHistory();
-    pgh = new PlayerGameHistory(new DBTool("/Users/ezekielelin/Desktop/TestTableDB"));
+    pgh = new PlayerGameHistory(new DBTool("./TestTableDB"));
     newPlayer = new NewPlayer(pgh);
     selectPlayer = new SelectPlayer(pgh);
     topPlayers = new TopPlayers(pgh);
