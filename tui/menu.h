@@ -13,7 +13,6 @@
 #include "statistics.h"
 #include "robotsscreen.h"
 #include "wormsscreen.h"
-
 #include "../game_history/dbtool.h"
 
 class Menu : public Screen{

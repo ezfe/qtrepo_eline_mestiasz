@@ -14,6 +14,9 @@ NewPlayer::~NewPlayer(){
 //    if(my_form != nullptr) delete my_form;
 }
 
+/*!
+ * \brief Draw the form
+ */
 void NewPlayer::init_form(){
     field[0] = new_field(1, 17, 4, 22, 0, 0);
     field[1] = new_field(1, 17, 6, 22, 0, 0);
@@ -41,6 +44,9 @@ void NewPlayer::init_form(){
     refresh();
 }
 
+/*!
+ * \brief Setup controller for the form
+ */
 void NewPlayer::controller(){
     init_form();
     continue_looping = true;
@@ -49,14 +55,17 @@ void NewPlayer::controller(){
        int ch = getch();
        switch(ch){
        case KEY_DOWN:
+           // Move to next text field
            form_driver(my_form, REQ_NEXT_FIELD);
            form_driver(my_form, REQ_END_LINE);
            break;
        case KEY_UP:
+           // Move to previous field
            form_driver(my_form, REQ_PREV_FIELD);
            form_driver(my_form, REQ_END_LINE);
            break;
        case KEY_LEFT:
+           // Quit
            continue_looping = false;
            form_driver(my_form, REQ_END_LINE);
            submit_form();
@@ -68,6 +77,10 @@ void NewPlayer::controller(){
     } while (continue_looping);
 }
 
+/*!
+ * \brief Submit the form and store information in
+ * PlayerGameHistory object
+ */
 void NewPlayer::submit_form(){
     unpost_form(my_form);
     free_form(my_form);

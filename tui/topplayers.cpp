@@ -8,6 +8,9 @@ TopPlayers::~TopPlayers(){
 
 }
 
+/*!
+ * \brief Setup controller for TopPlayers
+ */
 void TopPlayers::controller(){
     clear();
 
@@ -40,6 +43,10 @@ void TopPlayers::controller(){
     } while (cmd != 'q');
 }
 
+/*!
+ * \brief Sort the players container
+ * \return top vector of sorted players
+ */
 std::vector<Player*> TopPlayers::top_players(){
     std::vector<Player*> top = pgh->get_players();
     struct {

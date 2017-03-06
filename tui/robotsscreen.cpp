@@ -9,6 +9,10 @@ RobotsScreen::~RobotsScreen(){
 
 }
 
+/*!
+ * \brief Draw the gameboard for Robots
+ * \param str String representation of the gameboard
+ */
 void RobotsScreen::draw_screen(std::string str){
     clear();
     int starting_point = this->engine->get_width() + 10;
