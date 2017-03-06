@@ -8,6 +8,9 @@ TopGames::~TopGames(){
 
 }
 
+/*!
+ * \brief Setup controller for TopGames
+ */
 void TopGames::controller(){
     clear();
 
@@ -25,6 +28,7 @@ void TopGames::controller(){
 
 
     int i = 4;
+    // print out top games
     for(Game* game : top_games()){
         if(i > 6) break;
         std::string num = std::to_string(i - 4);
@@ -45,6 +49,10 @@ void TopGames::controller(){
 
 }
 
+/*!
+ * \brief Sort the games container
+ * \return top vector of sorted games
+ */
 std::vector<Game*> TopGames::top_games(){
     std::vector<Game*> top = pgh->get_games();
     struct {

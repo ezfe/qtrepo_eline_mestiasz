@@ -15,10 +15,10 @@ public:
     void init();
     virtual void controller() = 0;
 
-    bool continue_looping;
 
 protected:
     PlayerGameHistory* pgh;
+    bool continue_looping;
 };
 
 #endif // MENUITEMSCREEN_H

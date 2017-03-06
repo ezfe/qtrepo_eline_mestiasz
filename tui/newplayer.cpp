@@ -6,14 +6,17 @@ NewPlayer::NewPlayer(PlayerGameHistory* pgh) : MenuItemScreen(pgh){
 
 NewPlayer::~NewPlayer(){
 
-//    for(auto f : field){
-//        if(f != nullptr)
-//        delete f;
-//    }
+    //    for(auto f : field){
+    //        if(f != nullptr)
+    //        delete f;
+    //    }
 
-//    if(my_form != nullptr) delete my_form;
+    //    if(my_form != nullptr) delete my_form;
 }
 
+/*!
+ * \brief Draw the form
+ */
 void NewPlayer::init_form(){
     field[0] = new_field(1, 17, 4, 22, 0, 0);
     field[1] = new_field(1, 17, 6, 22, 0, 0);
@@ -41,33 +44,43 @@ void NewPlayer::init_form(){
     refresh();
 }
 
+/*!
+ * \brief Setup controller for the form
+ */
 void NewPlayer::controller(){
     init_form();
     continue_looping = true;
 
     do {
-       int ch = getch();
-       switch(ch){
-       case KEY_DOWN:
-           form_driver(my_form, REQ_NEXT_FIELD);
-           form_driver(my_form, REQ_END_LINE);
-           break;
-       case KEY_UP:
-           form_driver(my_form, REQ_PREV_FIELD);
-           form_driver(my_form, REQ_END_LINE);
-           break;
-       case KEY_LEFT:
-           continue_looping = false;
-           form_driver(my_form, REQ_END_LINE);
-           submit_form();
-           break;
-       default:
-           form_driver(my_form, ch);
-           break;
-       }
+        int ch = getch();
+        switch(ch){
+        case KEY_DOWN:
+            // Move to next text field
+            form_driver(my_form, REQ_NEXT_FIELD);
+            form_driver(my_form, REQ_END_LINE);
+            break;
+        case KEY_UP:
+            // Move to previous field
+            form_driver(my_form, REQ_PREV_FIELD);
+            form_driver(my_form, REQ_END_LINE);
+            break;
+        case KEY_LEFT:
+            // Quit
+            continue_looping = false;
+            form_driver(my_form, REQ_END_LINE);
+            submit_form();
+            break;
+        default:
+            form_driver(my_form, ch);
+            break;
+        }
     } while (continue_looping);
 }
 
+/*!
+ * \brief Submit the form and store information in
+ * PlayerGameHistory object
+ */
 void NewPlayer::submit_form(){
     unpost_form(my_form);
     free_form(my_form);

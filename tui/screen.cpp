@@ -8,6 +8,9 @@ Screen::~Screen(){
 
 }
 
+/*!
+ * \brief Initialize ncurses
+ */
 void Screen::init(){
     initscr();
     curs_set(0);
@@ -26,7 +29,7 @@ void Screen::init(){
         if(cmd == 'q') {
             break;
         }
-
+        // execute the command
         this->controller(cmd);
         draw_screen();
 

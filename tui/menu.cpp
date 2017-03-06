@@ -1,8 +1,10 @@
 #include "menu.h"
 
 Menu::Menu() : Screen(){
-    pgh = new PlayerGameHistory();
-//    pgh = new PlayerGameHistory(new DBTool("/Users/ezekielelin/Desktop/TestTableDB"));
+//    pgh = new PlayerGameHistory();
+    DBTool* dbtool = new DBTool("./TestTableDB");
+    dbtool->verbose = false;
+    pgh = new PlayerGameHistory(dbtool);
     newPlayer = new NewPlayer(pgh);
     selectPlayer = new SelectPlayer(pgh);
     topPlayers = new TopPlayers(pgh);
@@ -26,6 +28,9 @@ Menu::~Menu(){
     std::cout << "~Menu" << std::endl;
 }
 
+/*!
+ * \brief Redraw the screen
+ */
 void Menu::draw_screen(){
     clear();
 
@@ -47,6 +52,10 @@ void Menu::draw_screen(){
 
 }
 
+/*!
+ * \brief Controller for menu, that executer specific commands
+ * \param cmd command to be executed
+ */
 void Menu::controller(char cmd){
     switch(cmd){
     case 'a':

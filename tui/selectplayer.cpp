@@ -8,6 +8,9 @@ SelectPlayer::~SelectPlayer(){
 
 }
 
+/*!
+ * \brief Setup controller for SelectPlayer
+ */
 void SelectPlayer::controller(){
     clear();
     mvprintw(2, 5, "Firstname:");
@@ -19,6 +22,7 @@ void SelectPlayer::controller(){
     mvprintw(3, 35, "--------");
 
     int i = 4;
+    // Print out all the players
     for(Player* player : pgh->get_players()){
         std::string num = std::to_string(i - 4);
         mvprintw(i, 0,  "#");
@@ -29,7 +33,7 @@ void SelectPlayer::controller(){
         i++;
     }
     int cmd = getch();
-    //z/ check once more
+    // Check if the chosen player exists
     if(cmd >= 48 && cmd < (48 + pgh->get_players().size())){
         player = pgh->get_players().at(cmd - 48);
     }

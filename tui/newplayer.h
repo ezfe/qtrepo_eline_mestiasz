@@ -15,7 +15,6 @@ public:
 private:
     FORM* my_form;
     FIELD* field[4];
-
 };
 
 #endif // NEWPLAYER_H

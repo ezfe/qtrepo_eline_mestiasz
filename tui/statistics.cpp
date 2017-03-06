@@ -8,6 +8,9 @@ Statistics::~Statistics(){
 
 }
 
+/*!
+ * \brief Setup controller for statistics
+ */
 void Statistics::controller(){
     clear();
     std::stringstream ss;
@@ -15,7 +18,7 @@ void Statistics::controller(){
     mvprintw(1, 0, "Press q to exit!");
     mvprintw(3, 2, "Statistics:");
     mvprintw(4, 2, "-----------");
-
+    // display all the statistics from PlayerGameHistory
     ss << "  Number of games: "
        << this->pgh->number_games_played() << '\n'
        << "  Number of players: "
