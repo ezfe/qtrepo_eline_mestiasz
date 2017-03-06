@@ -1,0 +1,15 @@
+Assignment                : lab 2
+Group                     : elin_zurabi
+
+-- Activity Score out of 3 (based on rubric)
+Program compile           : 3
+Create tools sub-project. : 3
+Logging tool              : 3
+Config tool               : 3
+Comments                  : 2
+Error Handling            : 2
+
+Lab Score (out of 10)     : 9.3
+
+-- Comments ------------------
+  - Detailed code need comments to indicate major steps.

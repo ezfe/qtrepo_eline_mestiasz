@@ -1,0 +1,14 @@
+-- toplevel directory
+qtrepo_eline_mestiasz.git
+repo_eline_mestiasz.git
+
+-- authorized_keys file
+ssh-rsa [clip] ezekielelin@me.com
+ssh-rsa [clip] prosperrriii@gmail.com
+ssh-rsa [clip] eline@localhost.localdomain
+ssh-rsa [clip] pfaffmaj@Jeffreys-MacBook-Pro.local
+ssh-rsa [clip] pfaffmaj@fleetfoot.localhost
+
+-- Score: 9/10
+-- Assignment comments -----------------------------------
+  - Multiple entries for Peter account. (-1)
