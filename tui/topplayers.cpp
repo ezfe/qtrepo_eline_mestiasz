@@ -51,8 +51,12 @@ std::vector<Player*> TopPlayers::top_players(){
     std::vector<Player*> top = pgh->get_players();
     struct {
        bool operator()(Player* a, Player* b){
-           return (a->get_total_score()/a->get_game_history()->get_games().size()) >
-                  (b->get_total_score()/b->get_game_history()->get_games().size());
+           int tmpA = a->get_game_history()->get_games().size();
+           if(tmpA == 0) return 0;
+           int tmpB = b->get_game_history()->get_games().size();
+           if(tmpB == 0) return 1;
+           return (a->get_total_score()/tmpA) >
+                  (b->get_total_score()/tmpB);
        }
     } playerComparator;
     std::sort(top.begin(), top.end(), playerComparator);
