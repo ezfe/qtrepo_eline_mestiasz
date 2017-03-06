@@ -9,6 +9,6 @@ ssh-rsa [clip] eline@localhost.localdomain
 ssh-rsa [clip] pfaffmaj@Jeffreys-MacBook-Pro.local
 ssh-rsa [clip] pfaffmaj@fleetfoot.localhost
 
--- Score: 9/10
+-- Score: 10/10
 -- Assignment comments -----------------------------------
-  - Multiple entries for Peter account. (-1)
+  - great
