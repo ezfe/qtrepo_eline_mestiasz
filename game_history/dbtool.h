@@ -53,6 +53,8 @@ private:
 
 public:
 
+    bool verbose = true;
+
     // Constructor that if called will cause the program to exit
     // indicating that more information should be provided.
     DBTool();

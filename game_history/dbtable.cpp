@@ -32,6 +32,9 @@ DBTable::DBTable() {
 // Constructor taking a pointer to the DB tool and name
 // of the table that will be represented by this class.
 DBTable::DBTable(DBTool* db, std::string name) {
+    if (db->verbose) {
+        std::cout << name << "::DBTable()" << std::endl;
+    }
     // Store table name and reference to db.
     this->database = db;
     this->name = name;
@@ -41,6 +44,9 @@ DBTable::DBTable(DBTool* db, std::string name) {
 // is used to build a table in the database if the table
 // does not exist.
 void DBTable::build_table() {
+    if (this->database->verbose) {
+        std::cout << this->name << "::build_table()" << std::endl;
+    }
     if (!this->exists()) {
         this->create();
     }
@@ -48,7 +54,9 @@ void DBTable::build_table() {
 
 // Deconstructor
 DBTable::~DBTable() {
-
+    if (this->database->verbose) {
+        std::cout << this->name << "::~DBTable()" << std::endl;
+    }
 }
 
 // SQL used to determine if a specific table exists
@@ -81,14 +89,27 @@ bool DBTable::exists() {
         retCode = sqlite3_step(sqlStatement);
         sqlite3_finalize(sqlStatement);
         if (retCode == SQLITE_ROW) {
+            if (this->database->verbose) {
+                std::cout << this->name << "::exists() -> true" << std::endl;
+            }
+
             return true;
         } else {
+            if (this->database->verbose) {
+                std::cout << this->name << "::exists() -> false" << std::endl;
+            }
+
             return false;
         }
     } else {
-        std::cerr << exists_sql() << std::endl;
-        std::cerr << "SQL error: " << sqlite3_errmsg(this->database->db()) << std::endl;
+        if (this->database->verbose) {
+            std::cerr << this->name << "::exists() -> false (error)" << std::endl;
+            std::cerr << exists_sql() << std::endl;
+            std::cerr << "SQL error: " << sqlite3_errmsg(this->database->db()) << std::endl;
+        }
+
         sqlite3_finalize(sqlStatement);
+
         return false;
     }
 }
@@ -97,18 +118,21 @@ bool DBTable::exists() {
 bool DBTable::create() {
 
     // Initialize local variables.
-    int   retCode = 0;
-    char *zErrMsg = 0;
+    int retCode = SQLITE_ERROR;
 
     // Call sqlite to run the SQL call using the
     // callback to store any results.
-    retCode = sqlite3_exec(this->database->db(), this->create_sql().c_str(), 0, 0, &zErrMsg);
+    retCode = sqlite3_exec(this->database->db(), this->create_sql().c_str(), 0, 0, nullptr);
 
     // Process a failed call.
     if(retCode != SQLITE_OK){
-        std::cerr << this->create_sql() << std::endl;
-        std::cerr << "SQL error: " << zErrMsg << std::endl;
-        sqlite3_free(zErrMsg);
+        if (this->database->verbose) {
+            std::cerr << this->name << "::create() -> false (error)" << std::endl;
+            std::cerr << this->create_sql() << std::endl;
+            std::cerr << "SQL error: " << sqlite3_errmsg(this->database->db()) << std::endl;
+
+        }
+
         return false;
     } else {
         std::cout << "Created table " << this->name << std::endl;
@@ -120,18 +144,20 @@ bool DBTable::create() {
 bool DBTable::drop() {
 
     // Initialize local variables.
-    int   retCode = 0;
-    char *zErrMsg = 0;
+    int retCode = SQLITE_ERROR;
 
-    retCode = sqlite3_exec(this->database->db(), drop_sql().c_str(), 0, 0, &zErrMsg);
+    retCode = sqlite3_exec(this->database->db(), drop_sql().c_str(), 0, 0, nullptr);
 
     // Process a failed call.
     if(retCode != SQLITE_OK){
-        std::cerr << drop_sql() << std::endl;
-        std::cerr << "SQL error: " << zErrMsg << std::endl;
-        sqlite3_free(zErrMsg);
+        if (this->database->verbose) {
+            std::cerr << this->name << "::create() -> false (error)" << std::endl;
+            std::cerr << drop_sql() << std::endl;
+            std::cerr << "SQL error: " << sqlite3_errmsg(this->database->db()) << std::endl;
+        }
         return false;
     } else {
+        if (this->database->verbose) std::cout << this->name << "::create() -> true" << std::endl;
         return true;
     }
 }
