@@ -3,7 +3,7 @@
 Menu::Menu() : Screen(){
 //    pgh = new PlayerGameHistory();
     DBTool* dbtool = new DBTool("./TestTableDB");
-    dbtool->verbose = false;
+//    dbtool->verbose = false;
     pgh = new PlayerGameHistory(dbtool);
     newPlayer = new NewPlayer(pgh);
     selectPlayer = new SelectPlayer(pgh);
