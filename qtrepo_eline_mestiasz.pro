@@ -11,4 +11,6 @@ SUBDIRS += \
     gui_robots \
     game_history \
     game_history_tests \
-    gui
+    gui \
+    templates \
+    template_tests
