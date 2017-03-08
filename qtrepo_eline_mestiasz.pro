@@ -10,4 +10,5 @@ SUBDIRS += \
     gui_worms \
     gui_robots \
     game_history \
-    game_history_tests
+    game_history_tests \
+    gui
