@@ -178,7 +178,7 @@ void BST<T>::remove_from_parent(Node<T>* node, Node<T>* current){
     }
 
     if(current != nullptr){
-        if(current != head)
+        if(current->get_parent() != nullptr)
             current->get_parent()->set_left_node(current->get_right_node());
         current->set_parent(node->get_parent());
         if(node->get_right_node() != current)
