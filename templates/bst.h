@@ -12,9 +12,11 @@ public:
     T get_value();
     Node* get_left_node();
     Node* get_right_node();
+    Node* get_parent();
 
     void set_left_node(Node* node);
     void set_right_node(Node* node);
+    void set_parent(Node* node);
     void traverse();
 
 private:
@@ -69,10 +71,20 @@ void Node<T>::set_right_node(Node* node){
 }
 
 template <class T>
+void Node<T>::set_parent(Node* node){
+    parent = node;
+}
+
+template <class T>
 void Node<T>::traverse(){
     if (left != nullptr) left->traverse();
     std::cout << " " << value << " ";
     if (right != nullptr) right->traverse();
+}
+
+template <class T>
+T Node<T>::get_value(){
+    return value;
 }
 
 template <class T>
@@ -83,6 +95,11 @@ Node<T>* Node<T>::get_left_node(){
 template <class T>
 Node<T>* Node<T>::get_right_node(){
     return right;
+}
+
+template <class T>
+Node<T>* Node<T>::get_parent(){
+    return parent;
 }
 
 // BST
@@ -135,7 +152,7 @@ bool BST<T>::remove_node(T value){
     if(node == nullptr) return true;
 
     if(node->get_right_node() == nullptr){
-        remove_from_parent(node, nullptr);
+        remove_from_parent(node, node->get_left_node());
         return true;
     }
 
@@ -150,10 +167,26 @@ bool BST<T>::remove_node(T value){
 
 template <class T>
 void BST<T>::remove_from_parent(Node<T>* node, Node<T>* current){
-    if(node->parent->get_left_node() == node)
-        node->parent->set_left_node(current);
-    else
-        node->parent->set_right_node(current);
+    if(node->get_parent() == nullptr){
+        head = current;
+    } else {
+        if(node->get_parent()->get_value() > node->get_value()){
+            node->get_parent()->set_left_node(current);
+        } else {
+            node->get_parent()->set_right_node(current);
+        }
+    }
+
+    if(current != nullptr){
+        current->get_parent()->set_left_node(current->get_right_node());
+        current->set_parent(node->get_parent());
+        current->set_right_node(node->get_right_node());
+        current->set_left_node(node->get_left_node());
+    }
+    node->set_left_node(nullptr);
+    node->set_right_node(nullptr);
+
+    size--;
     delete node;
 }
 
@@ -186,6 +219,7 @@ int BST<T>::get_size(){
 template <class T>
 void BST<T>::traverse(){
     head->traverse();
+    std::cout << std::endl;
 }
 
 
