@@ -18,3 +18,18 @@ void MainWindow::on_playWormsButton_clicked() {
     WormsWindow* worms = new WormsWindow();
     worms->show();
 }
+
+void MainWindow::on_exit_triggered()
+{
+
+}
+
+void MainWindow::on_topPlayers_triggered()
+{
+
+}
+
+void MainWindow::on_topGames_triggered()
+{
+
+}

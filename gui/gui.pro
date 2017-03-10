@@ -25,20 +25,38 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-        wormswindow.cpp \
         ../engines/engine.cpp \
         ../engines/worms.cpp \
         ../engines/robots.cpp \
-        ../gui_robots/robotswindow.cpp
+        ../gui_robots/robotswindow.cpp \
+        ../gui_worms/wormswindow.cpp \
+        ../game_history/playergamehistory.cpp \
+        ../game_history/game.cpp \
+        ../game_history/player.cpp \
+        ../game_history/gamehistory.cpp \
+        ../game_history/dbtable.cpp \
+        ../game_history/dbtablegames.cpp \
+        ../game_history/dbtableplayers.cpp \
+        ../game_history/dbtool.cpp
+
+LIBS +=  -l sqlite3
 
 HEADERS  += mainwindow.h \
-        wormswindow.h \
         ../engines/engine.h \
         ../engines/worms.h \
         ../engines/robots.h \
-        ../gui_robots/robotswindow.h
+        ../gui_robots/robotswindow.h \
+        ../gui_worms/wormswindow.h \
+        ../game_history/playergamehistory.h \
+        ../game_history/game.h \
+        ../game_history/player.h \
+        ../game_history/gamehistory.h \
+        ../game_history/dbtable.h \
+        ../game_history/dbtablegames.h \
+        ../game_history/dbtableplayers.h \
+        ../game_history/dbtool.h
+
 
 FORMS    += mainwindow.ui \
-            wormswindow.ui \
         ../gui_robots/robotswindow.ui
 
