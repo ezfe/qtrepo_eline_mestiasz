@@ -1,6 +1,7 @@
 #ifndef TOPGAMES_H
 #define TOPGAMES_H
 
+#include <algorithm>
 #include <vector>
 
 #include "menuitemscreen.h"

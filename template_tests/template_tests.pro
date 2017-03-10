@@ -19,3 +19,4 @@ INCLUDEPATH +=  ../gtest                                    \
                 ../gtest/googletest/include/gtest
 
 HEADERS += ../templates/stack.h
+LIBS += -lpthread

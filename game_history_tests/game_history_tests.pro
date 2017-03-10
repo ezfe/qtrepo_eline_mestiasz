@@ -8,7 +8,7 @@ SOURCES += main.cpp \
     gamehistorytest.cpp \
     playertest.cpp \
     playergamehistorytest.cpp
-
+LIBS += -lpthread
 HEADERS += \
     gametest.h \
     gamehistorytest.h \

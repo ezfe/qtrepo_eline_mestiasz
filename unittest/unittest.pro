@@ -26,3 +26,4 @@ HEADERS += ../tools/macros.h
 DISTFILES += \
     test.txt \
     random.txt
+LIBS += -lpthread

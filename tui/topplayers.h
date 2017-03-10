@@ -1,6 +1,7 @@
 #ifndef TOPPLAYERS_H
 #define TOPPLAYERS_H
 
+#include "algorithm"
 #include "menuitemscreen.h"
 
 class TopPlayers : public MenuItemScreen{

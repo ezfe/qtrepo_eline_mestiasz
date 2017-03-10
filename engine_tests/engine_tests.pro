@@ -25,3 +25,4 @@ HEADERS +=  ../engines/robots.h \
 SOURCES +=  ../engines/robots.cpp \
             ../engines/worms.cpp \
             ../engines/engine.cpp
+LIBS += -lpthread
