@@ -30,7 +30,6 @@ TEST_F(BSTTest, TEST_REMOVAL) {
     bst->traverse();
     std::cout << "Size: " << bst->get_size() << std::endl;
 
-    bst->remove_node(4);
     bst->traverse();
     std::cout << "Size: " << bst->get_size() << std::endl;
 

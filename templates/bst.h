@@ -14,6 +14,7 @@ public:
     Node* get_right_node();
     Node* get_parent();
 
+    void set_value(T value);
     void set_left_node(Node* node);
     void set_right_node(Node* node);
     void set_parent(Node* node);
@@ -58,6 +59,11 @@ bool Node<T>::add_node(T value){
     }
 
     return true;
+}
+
+template <class T>
+void Node<T>::set_value(T value){
+    this->value = value;
 }
 
 template <class T>
@@ -110,12 +116,13 @@ public:
     BST();
     ~BST();
     Node<T>* find(T value);
-    bool remove_node(T value);
+    Node<T>* find_min(Node<T>* node);
+    Node<T>* remove_min(Node<T>* node);
+    Node<T>* remove(T value, Node<T>* node);
     bool is_empty();
     int get_size();
 
     void add_node(T value);
-    void remove_from_parent(Node<T>* node, Node<T>* current);
     void traverse();
 
 private:
@@ -146,50 +153,41 @@ void BST<T>::add_node(T value){
 }
 
 template <class T>
-bool BST<T>::remove_node(T value){
-    Node<T>* node = find(value);
-
-    if(node == nullptr) return true;
-
-    if(node->get_right_node() == nullptr){
-        remove_from_parent(node, node->get_left_node());
-        return true;
+Node<T>* BST<T>::remove_min(Node<T>* node){
+    if(node == nullptr){
+        throw;
+    } else if(node->get_left_node() != nullptr){
+        node->set_left_node(remove_min(node->get_left_node()));
+    } else {
+        return node->get_right_node();
     }
-
-    Node<T>* current = node->get_right_node();
-    while(current->get_left_node() != nullptr){
-        current = current->get_left_node();
-    }
-
-    remove_from_parent(node, current);
-    return true;
 }
 
 template <class T>
-void BST<T>::remove_from_parent(Node<T>* node, Node<T>* current){
-    if(node->get_parent() == nullptr){
-        head = current;
+Node<T>* BST<T>::find_min(Node<T>* node){
+
+}
+
+template <class T>
+Node<T>* BST<T>::remove(T value, Node<T>* node){
+    if(value < node->get_value())
+        node->set_left_node(remove(value, node->get_left_node()));
+    else if(value > node->get_value())
+        node->set_right_node(remove(value, node->get_right_node()));
+    else if(node->get_left_node() != nullptr && node->get_right_node() != nullptr){
+        node->set_value(find_min(node->get_right_node())->get_value());
+        node->set_right_node(remove_min(node->get_right_node()));
     } else {
-        if(node->get_parent()->get_value() > node->get_value()){
-            node->get_parent()->set_left_node(current);
-        } else {
-            node->get_parent()->set_right_node(current);
-        }
+        if(node->get_left_node() != nullptr)
+            node = node->get_left_node();
+        else
+            node = node->get_right_node();
     }
 
-    if(current != nullptr){
-        if(current->get_parent() != nullptr)
-            current->get_parent()->set_left_node(current->get_right_node());
-        current->set_parent(node->get_parent());
-        if(node->get_right_node() != current)
-            current->set_right_node(node->get_right_node());
-        current->set_left_node(node->get_left_node());
-    }
-    node->set_left_node(nullptr);
-    node->set_right_node(nullptr);
-    size--;
-    delete node;
+    return node;
+
 }
+
 
 template <class T>
 Node<T>* BST<T>::find(T value){
