@@ -3,6 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
+    ui->addPlayerFields->hide();
 }
 
 MainWindow::~MainWindow() {
@@ -17,4 +18,20 @@ void MainWindow::on_playRobotsButton_clicked() {
 void MainWindow::on_playWormsButton_clicked() {
     WormsWindow* worms = new WormsWindow();
     worms->show();
+}
+
+void MainWindow::on_newPlayer_triggered() {
+    ui->addPlayerFields->show();
+}
+
+void MainWindow::on_exit_triggered() {
+
+}
+
+void MainWindow::on_addPlayerButton_clicked() {
+    std::string firstName = ui->addPlayerFirstName->text().toStdString();
+    std::string lastName = ui->addPlayerFirstName->text().toStdString();
+    std::string address = ui->addPlayerFirstName->text().toStdString();
+
+    std::cout << "Made player " << firstName << " " << lastName << " @ " << address << std::endl;
 }

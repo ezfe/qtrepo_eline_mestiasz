@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="playWormsButton">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>50</y>
+      <x>150</x>
+      <y>160</y>
       <width>113</width>
       <height>32</height>
      </rect>
@@ -30,8 +30,8 @@
    <widget class="QPushButton" name="playRobotsButton">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>110</y>
+      <x>150</x>
+      <y>200</y>
       <width>113</width>
       <height>32</height>
      </rect>
@@ -39,6 +39,67 @@
     <property name="text">
      <string>Play Robots</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="addPlayerFields" native="true">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>10</y>
+      <width>207</width>
+      <height>132</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>First Name:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Last Name:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_2"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Address:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_3"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Add...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

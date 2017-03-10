@@ -6,11 +6,10 @@
 #include "../gui_robots/robotswindow.h"
 
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+class MainWindow: public QMainWindow {
     Q_OBJECT
 
 public:
@@ -27,6 +26,7 @@ private:
 
 private slots:
     void on_exit_triggered();
+    void on_newPlayer_triggered();
 };
 
 #endif // MAINWINDOW_H
