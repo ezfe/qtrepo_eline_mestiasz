@@ -3,11 +3,8 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-<<<<<<< HEAD
-    pgh = new PlayerGameHistory();
-=======
     ui->addPlayerFields->hide();
->>>>>>> origin/master
+    pgh = new PlayerGameHistory();
 }
 
 MainWindow::~MainWindow() {
