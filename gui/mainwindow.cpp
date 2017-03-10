@@ -3,7 +3,11 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
+<<<<<<< HEAD
     pgh = new PlayerGameHistory();
+=======
+    ui->addPlayerFields->hide();
+>>>>>>> origin/master
 }
 
 MainWindow::~MainWindow() {
@@ -21,8 +25,7 @@ void MainWindow::on_playWormsButton_clicked() {
     worms->show();
 }
 
-void MainWindow::on_exit_triggered()
-{
+void MainWindow::on_exit_triggered() {
 
 }
 
@@ -34,4 +37,17 @@ void MainWindow::on_topPlayers_triggered()
 void MainWindow::on_topGames_triggered()
 {
 
+
+}
+
+void MainWindow::on_newPlayer_triggered() {
+    ui->addPlayerFields->show();
+}
+
+void MainWindow::on_addPlayerButton_clicked() {
+    std::string firstName = ui->addPlayerFirstName->text().toStdString();
+    std::string lastName = ui->addPlayerFirstName->text().toStdString();
+    std::string address = ui->addPlayerFirstName->text().toStdString();
+
+    std::cout << "Made player " << firstName << " " << lastName << " @ " << address << std::endl;
 }
