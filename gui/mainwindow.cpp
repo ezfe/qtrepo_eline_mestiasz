@@ -48,5 +48,22 @@ void MainWindow::on_addPlayerButton_clicked() {
 
     ui->addPlayerFields->hide();
 
+    pgh->add_player(firstName, lastName, address);
     std::cout << "Made player " << firstName << " " << lastName << " @ " << address << std::endl;
+}
+
+std::vector<Player*> MainWindow::top_players(){
+    std::vector<Player*> top = pgh->get_players();
+    struct {
+       bool operator()(Player* a, Player* b){
+           int tmpA = a->get_game_history()->get_games().size();
+           if(tmpA == 0) return 0;
+           int tmpB = b->get_game_history()->get_games().size();
+           if(tmpB == 0) return 1;
+           return (a->get_total_score()/tmpA) >
+                  (b->get_total_score()/tmpB);
+       }
+    } playerComparator;
+    std::sort(top.begin(), top.end(), playerComparator);
+    return top;
 }
