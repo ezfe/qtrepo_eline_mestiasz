@@ -25,6 +25,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+private slots:
+    void on_exit_triggered();
 };
 
 #endif // MAINWINDOW_H
