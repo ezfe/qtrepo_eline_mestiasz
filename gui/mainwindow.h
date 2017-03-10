@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+class QAction;
+
 namespace Ui {
 class MainWindow;
 }
@@ -18,6 +20,8 @@ public:
 private:
     Ui::MainWindow *ui;
 
+private slots:
+    void on_exit_triggered();
 };
 
 #endif // MAINWINDOW_H
