@@ -5,9 +5,12 @@ AddPlayerWindow::AddPlayerWindow(QWidget *parent): QWidget(parent), ui(new Ui::A
     ui->setupUi(this);
 }
 
-AddPlayerWindow::~AddPlayerWindow()
-{
+AddPlayerWindow::~AddPlayerWindow() {
     delete ui;
+}
+
+void AddPlayerWindow::setPGH(PlayerGameHistory* pgh) {
+    this->pgh = pgh;
 }
 
 void AddPlayerWindow::clearFields() {
@@ -21,8 +24,13 @@ void AddPlayerWindow::on_addPlayerButton_clicked() {
     std::string lastName = ui->addPlayerLastName->text().toStdString();
     std::string address = ui->addPlayerAddress->text().toStdString();
 
-//    pgh->add_player(firstName, lastName, address);
     std::cout << "Made player " << firstName << " " << lastName << " @ " << address << std::endl;
+    if (this->pgh != nullptr) {
+        this->pgh->add_player(firstName, lastName, address);
+        std::cout << "Saved to PGH object" << std::endl;
+    } else {
+        std::cerr << "No PlayerGameHistory object" << std::endl;
+    }
 
     this->close();
 }

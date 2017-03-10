@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
 MainWindow::~MainWindow() {
     delete ui;
-    if(pgh != nullptr) delete pgh;
+    if (pgh != nullptr) delete pgh;
 }
 
 void MainWindow::on_playRobotsButton_clicked() {
@@ -25,8 +25,7 @@ void MainWindow::on_exit_triggered() {
 
 }
 
-void MainWindow::on_topPlayers_triggered()
-{
+void MainWindow::on_topPlayers_triggered() {
 
 }
 
@@ -40,6 +39,7 @@ void MainWindow::on_newPlayer_triggered() {
         addWindow = new AddPlayerWindow();
         std::cout << "Created window" << std::endl;
     }
+    addWindow->clearFields();
     addWindow->show();
 }
 

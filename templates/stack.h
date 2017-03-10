@@ -5,6 +5,8 @@
  * StackItem *
  *************/
 
+#include <iostream>
+
 template <class T>
 class StackItem {
 public:
@@ -22,7 +24,7 @@ private:
 
 template <class T>
 StackItem<T>::StackItem() {
-//    std::cerr << "No value stored, empty slot in stack present." << std::endl;
+    std::cerr << "No value stored, empty slot in stack present." << std::endl;
 }
 
 template <class T>
@@ -70,7 +72,7 @@ T Stack<T>::pop() {
         delete return_item;
         return val;
     } else {
-//        std::cerr << "No elements" << std::endl;
+        std::cerr << "No elements" << std::endl;
         return 0;
     }
 }
@@ -87,7 +89,7 @@ T Stack<T>::top() {
     if (head != nullptr) {
         return head->get_value();
     } else {
-//        std::cerr << "No elements" << std::endl;
+        std::cerr << "No elements" << std::endl;
         return 0;
     }
 }
