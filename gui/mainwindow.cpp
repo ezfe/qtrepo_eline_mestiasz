@@ -30,8 +30,8 @@ void MainWindow::on_exit_triggered() {
 
 void MainWindow::on_addPlayerButton_clicked() {
     std::string firstName = ui->addPlayerFirstName->text().toStdString();
-    std::string lastName = ui->addPlayerFirstName->text().toStdString();
-    std::string address = ui->addPlayerFirstName->text().toStdString();
+    std::string lastName = ui->addPlayerLastName->text().toStdString();
+    std::string address = ui->addPlayerAddress->text().toStdString();
 
     std::cout << "Made player " << firstName << " " << lastName << " @ " << address << std::endl;
 }

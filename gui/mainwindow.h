@@ -27,6 +27,7 @@ private:
 private slots:
     void on_exit_triggered();
     void on_newPlayer_triggered();
+    void on_addPlayerButton_clicked();
 };
 
 #endif // MAINWINDOW_H

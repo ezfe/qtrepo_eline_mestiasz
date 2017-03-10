@@ -60,7 +60,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLineEdit" name="addPlayerFirstName"/>
        </item>
       </layout>
      </item>
@@ -74,7 +74,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_2"/>
+        <widget class="QLineEdit" name="addPlayerLastName"/>
        </item>
       </layout>
      </item>
@@ -88,12 +88,12 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_3"/>
+        <widget class="QLineEdit" name="addPlayerAddress"/>
        </item>
       </layout>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="addPlayerButton">
        <property name="text">
         <string>Add...</string>
        </property>
