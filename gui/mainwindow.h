@@ -5,7 +5,7 @@
 #include "../gui_robots/robotswindow.h"
 #include "../gui_worms/wormswindow.h"
 #include "../game_history/playergamehistory.h"
-
+#include "addplayerwindow.h"
 
 namespace Ui {
     class MainWindow;
@@ -28,13 +28,13 @@ private slots:
 private:
     Ui::MainWindow *ui;
     PlayerGameHistory* pgh;
+    AddPlayerWindow* addWindow = nullptr;
 
 private slots:
     void on_exit_triggered();
     void on_topPlayers_triggered();
     void on_topGames_triggered();
     void on_newPlayer_triggered();
-    void on_addPlayerButton_clicked();
 };
 
 #endif // MAINWINDOW_H

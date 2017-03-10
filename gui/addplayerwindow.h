@@ -2,6 +2,7 @@
 #define ADDPLAYERWINDOW_H
 
 #include <QWidget>
+#include <iostream>
 
 namespace Ui {
 class AddPlayerWindow;
@@ -14,6 +15,10 @@ class AddPlayerWindow : public QWidget
 public:
     explicit AddPlayerWindow(QWidget *parent = 0);
     ~AddPlayerWindow();
+
+    void clearFields();
+private slots:
+    void on_addPlayerButton_clicked();
 
 private:
     Ui::AddPlayerWindow *ui;

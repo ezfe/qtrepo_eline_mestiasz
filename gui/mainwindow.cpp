@@ -3,7 +3,6 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    ui->addPlayerFields->hide();
     pgh = new PlayerGameHistory();
 }
 
@@ -31,25 +30,17 @@ void MainWindow::on_topPlayers_triggered()
 
 }
 
-void MainWindow::on_topGames_triggered()
-{
+void MainWindow::on_topGames_triggered() {
 
 
 }
 
 void MainWindow::on_newPlayer_triggered() {
-    ui->addPlayerFields->show();
-}
-
-void MainWindow::on_addPlayerButton_clicked() {
-    std::string firstName = ui->addPlayerFirstName->text().toStdString();
-    std::string lastName = ui->addPlayerLastName->text().toStdString();
-    std::string address = ui->addPlayerAddress->text().toStdString();
-
-    ui->addPlayerFields->hide();
-
-    pgh->add_player(firstName, lastName, address);
-    std::cout << "Made player " << firstName << " " << lastName << " @ " << address << std::endl;
+    if (addWindow == nullptr) {
+        addWindow = new AddPlayerWindow();
+        std::cout << "Created window" << std::endl;
+    }
+    addWindow->show();
 }
 
 std::vector<Player*> MainWindow::top_players(){
