@@ -46,5 +46,7 @@ void MainWindow::on_addPlayerButton_clicked() {
     std::string lastName = ui->addPlayerLastName->text().toStdString();
     std::string address = ui->addPlayerAddress->text().toStdString();
 
+    ui->addPlayerFields->hide();
+
     std::cout << "Made player " << firstName << " " << lastName << " @ " << address << std::endl;
 }
