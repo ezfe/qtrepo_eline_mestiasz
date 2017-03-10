@@ -3,10 +3,12 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
+    pgh = new PlayerGameHistory();
 }
 
 MainWindow::~MainWindow() {
     delete ui;
+    if(pgh != nullptr) delete pgh;
 }
 
 void MainWindow::on_playRobotsButton_clicked() {

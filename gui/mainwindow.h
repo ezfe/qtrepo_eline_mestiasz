@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "../gui_robots/robotswindow.h"
 #include "../gui_worms/wormswindow.h"
+#include "../game_history/playergamehistory.h"
 
 
 class QAction;
@@ -27,7 +28,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
+    PlayerGameHistory* pgh;
 
 private slots:
     void on_exit_triggered();
