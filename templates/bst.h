@@ -119,6 +119,7 @@ public:
     Node<T>* find_min(Node<T>* node);
     Node<T>* remove_min(Node<T>* node);
     Node<T>* remove(T value, Node<T>* node);
+    Node<T>* get_head();
     bool is_empty();
     int get_size();
 
@@ -142,6 +143,7 @@ BST<T>::~BST(){
     if(head != nullptr) delete head;
 }
 
+
 template <class T>
 void BST<T>::add_node(T value){
     if (head == nullptr) {
@@ -153,20 +155,25 @@ void BST<T>::add_node(T value){
 }
 
 template <class T>
+Node<T>* BST<T>::find_min(Node<T>* node){
+    if(node != nullptr)
+        while(node->get_left_node() != nullptr)
+            node = node->get_left_node();
+    return node;
+}
+
+template <class T>
 Node<T>* BST<T>::remove_min(Node<T>* node){
     if(node == nullptr){
         throw;
     } else if(node->get_left_node() != nullptr){
         node->set_left_node(remove_min(node->get_left_node()));
+        return node;
     } else {
         return node->get_right_node();
     }
 }
 
-template <class T>
-Node<T>* BST<T>::find_min(Node<T>* node){
-
-}
 
 template <class T>
 Node<T>* BST<T>::remove(T value, Node<T>* node){
@@ -213,6 +220,11 @@ bool BST<T>::is_empty(){
 template <class T>
 int BST<T>::get_size(){
     return size;
+}
+
+template <class T>
+Node<T>* BST<T>::get_head(){
+    return head;
 }
 
 template <class T>
