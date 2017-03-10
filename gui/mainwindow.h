@@ -18,6 +18,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    std::vector<Player*> top_players();
+
 private slots:
     void on_playRobotsButton_clicked();
 
