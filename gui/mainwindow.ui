@@ -30,7 +30,7 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionExit"/>
+    <addaction name="exit"/>
    </widget>
    <widget class="QMenu" name="menuStatistics">
     <property name="title">
@@ -82,7 +82,7 @@
     <string>Calculated Statistics...</string>
    </property>
   </action>
-  <action name="actionExit">
+  <action name="exit">
    <property name="text">
     <string>Exit...</string>
    </property>

@@ -2,6 +2,7 @@
 #include <QApplication>
 
 #include "wormswindow.h"
+#include "../gui_robots/robotswindow.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,6 +12,9 @@ int main(int argc, char *argv[])
 
     WormsWindow w2;
     w2.show();
+
+    RobotsWindow w3;
+    w3.show();
 
 
     return a.exec();

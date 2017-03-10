@@ -27,12 +27,18 @@ SOURCES += main.cpp\
         mainwindow.cpp \
         wormswindow.cpp \
         ../engines/engine.cpp \
-        ../engines/worms.cpp
+        ../engines/worms.cpp \
+        ../engines/robots.cpp \
+        ../gui_robots/robotswindow.cpp
 
 HEADERS  += mainwindow.h \
         wormswindow.h \
         ../engines/engine.h \
-        ../engines/worms.h
+        ../engines/worms.h \
+        ../engines/robots.h \
+        ../gui_robots/robotswindow.h
 
 FORMS    += mainwindow.ui \
-            wormswindow.ui
+            wormswindow.ui \
+        ../gui_robots/robotswindow.ui
+
