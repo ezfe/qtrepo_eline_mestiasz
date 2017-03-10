@@ -5,9 +5,11 @@ CONFIG -= qt
 
 SOURCES += \
     main.cpp \
-    stacktest.cpp
+    stacktest.cpp \
+    bsttest.cpp
 
-HEADERS +=  stacktest.h
+HEADERS +=  stacktest.h \
+    bsttest.h
 
 SOURCES += ../gtest/googletest/src/gtest-all.cc
 

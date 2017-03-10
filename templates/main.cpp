@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "stack.h"
+#include "bst.h"
 
 using namespace std;
 
@@ -20,6 +21,26 @@ int main(int argc, char *argv[])
     std::cout << test->pop() << std::endl;
 
     delete test;
+
+    BST<int>* bst = new BST<int>();
+    bst->add_node(4);
+    bst->add_node(2);
+    bst->add_node(6);
+    bst->add_node(1);
+    bst->add_node(3);
+    bst->add_node(5);
+    bst->add_node(8);
+    bst->add_node(7);
+    bst->add_node(9);
+
+    bst->traverse();
+    std::cout << "Size: " << bst->get_size() << std::endl;
+
+    bst->remove(6, bst->get_head());
+    bst->traverse();
+    std::cout << "Size: " << bst->get_size() << std::endl;
+
+    delete bst;
 
     return 0;
 }

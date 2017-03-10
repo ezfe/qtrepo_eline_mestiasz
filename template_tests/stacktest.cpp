@@ -18,10 +18,6 @@ void StackTest::TearDown() {
 }
 
 
-/****************
- * Worms Tests *
- ****************/
-
 TEST_F(StackTest, TESTINITIAL) {
     EXPECT_TRUE(intStack->is_empty()) << "Stack should be empty";
     EXPECT_EQ(0, intStack->size()) << "Stack should be empty";

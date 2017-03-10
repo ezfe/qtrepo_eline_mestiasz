@@ -17,6 +17,12 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+protected:
+    void contextMenuEvent(QContextMenuEvent *event);
+
+private slots:
+    void exit();
 };
 
 #endif // MAINWINDOW_H

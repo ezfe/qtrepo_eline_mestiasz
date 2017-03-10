@@ -1,0 +1,22 @@
+Assignment                : lab 3
+Group                     : elin_zurabi
+
+-- Activity Score out of 3 (based on rubric)
+Compiles and Errors  : 3
+Comments             : 3
+Style                : 3
+Macro / Proj Org     : 2
+Gtest install        : 3
+Robot Design/test    : 3
+Worm Design/test     : 2
+
+Lab Score (out of 10)     : 8.8
+
+-- Comments ------------------
+- Un-needed robots.cpp file at project level.
+
+- Robot head is overly commented and Worms needs more.  CPP files are fine.
+
+- Good organization to unit tests.
+
+- Worm needs tests for eating and score keeping.
