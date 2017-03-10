@@ -178,14 +178,15 @@ void BST<T>::remove_from_parent(Node<T>* node, Node<T>* current){
     }
 
     if(current != nullptr){
-        current->get_parent()->set_left_node(current->get_right_node());
+        if(current != head)
+            current->get_parent()->set_left_node(current->get_right_node());
         current->set_parent(node->get_parent());
-        current->set_right_node(node->get_right_node());
+        if(node->get_right_node() != current)
+            current->set_right_node(node->get_right_node());
         current->set_left_node(node->get_left_node());
     }
     node->set_left_node(nullptr);
     node->set_right_node(nullptr);
-
     size--;
     delete node;
 }
@@ -218,8 +219,13 @@ int BST<T>::get_size(){
 
 template <class T>
 void BST<T>::traverse(){
-    head->traverse();
-    std::cout << std::endl;
+    if(head == nullptr){
+        std::cout << "There are no elements" << std::endl;
+    }else{
+        head->traverse();
+        std::cout << std::endl;
+    }
+
 }
 
 
