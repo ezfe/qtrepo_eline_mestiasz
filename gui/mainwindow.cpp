@@ -3,10 +3,12 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
+    pgh = new PlayerGameHistory();
 }
 
 MainWindow::~MainWindow() {
     delete ui;
+    if(pgh != nullptr) delete pgh;
 }
 
 void MainWindow::on_playRobotsButton_clicked() {
@@ -17,4 +19,19 @@ void MainWindow::on_playRobotsButton_clicked() {
 void MainWindow::on_playWormsButton_clicked() {
     WormsWindow* worms = new WormsWindow();
     worms->show();
+}
+
+void MainWindow::on_exit_triggered()
+{
+
+}
+
+void MainWindow::on_topPlayers_triggered()
+{
+
+}
+
+void MainWindow::on_topGames_triggered()
+{
+
 }

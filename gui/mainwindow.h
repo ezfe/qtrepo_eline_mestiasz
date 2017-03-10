@@ -2,8 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "wormswindow.h"
 #include "../gui_robots/robotswindow.h"
+#include "../gui_worms/wormswindow.h"
+#include "../game_history/playergamehistory.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -24,9 +26,12 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    PlayerGameHistory* pgh;
 
 private slots:
     void on_exit_triggered();
+    void on_topPlayers_triggered();
+    void on_topGames_triggered();
 };
 
 #endif // MAINWINDOW_H
