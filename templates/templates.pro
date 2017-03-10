@@ -6,4 +6,5 @@ CONFIG -= qt
 SOURCES += main.cpp
 
 HEADERS += \
-    stack.h
+    stack.h \
+    bst.h
