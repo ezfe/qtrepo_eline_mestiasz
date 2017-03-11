@@ -1,12 +1,14 @@
 #include "robotswindow.h"
 #include "ui_robotswindow.h"
 
-RobotsWindow::RobotsWindow(QWidget *parent, PlayerGameHistory* pgh, MainWindow* menu) :
+RobotsWindow::RobotsWindow(QWidget *parent, PlayerGameHistory* pgh,
+                           Player* player, MainWindow* menu) :
     QWidget(parent),
     ui(new Ui::RobotsWindow)
 {
     ui->setupUi(this);
     this->pgh = pgh;
+    this->player = player;
     this->menu = menu;
     this->engine = new Robots(26, 44, 7);
     this->refresh_gameboard();
@@ -34,6 +36,14 @@ void RobotsWindow::handle_event(char cmd){
 void RobotsWindow::closeEvent(QCloseEvent *event){
     this->menu->show();
     event->accept();
+}
+
+/*!
+ * \brief Store the game in PlayerGameHistory
+ */
+void RobotsWindow::save_game(){
+    Game* game = new Game(player, name, engine->get_score());
+    pgh->add_game(player, game);
 }
 
 void RobotsWindow::on_yButton_clicked()

@@ -35,6 +35,8 @@ private:
     //WormsWindow* wormsWindow;
     AddPlayerWindow* addWindow = nullptr;
 
+    Player* currentPlayer;
+
 private slots:
     void on_exit_triggered();
     void on_topPlayers_triggered();

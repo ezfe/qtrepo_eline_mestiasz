@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->setupUi(this);
     pgh = new PlayerGameHistory();
     addWindow = new AddPlayerWindow(0, pgh, this);
+    currentPlayer = nullptr;
 }
 
 MainWindow::~MainWindow() {
@@ -13,8 +14,13 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_playRobotsButton_clicked() {
+    if(currentPlayer == nullptr){
+        // set label to choose player
+        return;
+    }
+
     if(robots != nullptr) delete robots;
-    robots = new RobotsWindow(0, pgh, this);
+    robots = new RobotsWindow(0, pgh, currentPlayer, this);
     robots->show();
     this->hide();
 }

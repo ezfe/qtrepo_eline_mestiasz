@@ -20,10 +20,11 @@ class RobotsWindow : public QWidget
 
 public:
     explicit RobotsWindow(QWidget *parent = 0, PlayerGameHistory* pgh = 0,
-                          MainWindow* menu = 0);
+                          Player* player = 0, MainWindow* menu = 0);
     ~RobotsWindow();
 
     void handle_event(char cmd);
+    void save_game();
 
 private slots:
     void on_yButton_clicked();
@@ -58,6 +59,8 @@ private:
 protected:
     MainWindow* menu;
     PlayerGameHistory* pgh;
+    Player* player;
+    std::string name;
 
     void closeEvent(QCloseEvent* event);
 };
