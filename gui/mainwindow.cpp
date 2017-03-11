@@ -4,6 +4,8 @@
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     pgh = new PlayerGameHistory();
+    addWindow = new AddPlayerWindow(0, pgh, this);
+
 }
 
 MainWindow::~MainWindow() {

@@ -30,6 +30,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     PlayerGameHistory* pgh;
+    RobotsWindow* robotsWindow;
+    WormsWindow* wormsWindow;
     AddPlayerWindow* addWindow = nullptr;
 
 private slots:

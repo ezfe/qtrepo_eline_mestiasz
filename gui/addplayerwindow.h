@@ -17,7 +17,7 @@ class AddPlayerWindow : public QWidget {
     Q_OBJECT
 
 public:
-    explicit AddPlayerWindow(QWidget *parent = 0);
+    explicit AddPlayerWindow(QWidget *parent = 0, PlayerGameHistory* pgh = 0, MainWindow* menu = 0);
     ~AddPlayerWindow();
 
     void clear_fields();
@@ -29,9 +29,9 @@ private slots:
 
 private:
     Ui::AddPlayerWindow *ui;
-    PlayerGameHistory* pgh;
 protected:
     MainWindow* menu;
+    PlayerGameHistory* pgh;
 };
 
 #endif // ADDPLAYERWINDOW_H

@@ -38,7 +38,8 @@ SOURCES += main.cpp\
         ../game_history/dbtablegames.cpp \
         ../game_history/dbtableplayers.cpp \
         ../game_history/dbtool.cpp \
-    addplayerwindow.cpp
+    addplayerwindow.cpp \
+    topplayerswindow.cpp
 
 LIBS +=  -l sqlite3
 
@@ -56,10 +57,12 @@ HEADERS  += mainwindow.h \
         ../game_history/dbtablegames.h \
         ../game_history/dbtableplayers.h \
         ../game_history/dbtool.h \
-    addplayerwindow.h
+    addplayerwindow.h \
+    topplayerswindow.h
 
 
 FORMS    += mainwindow.ui \
         ../gui_robots/robotswindow.ui \
-    addplayerwindow.ui
+    addplayerwindow.ui \
+    topplayerswindow.ui
 

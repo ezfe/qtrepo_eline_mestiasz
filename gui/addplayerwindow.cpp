@@ -1,8 +1,12 @@
 #include "addplayerwindow.h"
 #include "ui_addplayerwindow.h"
 
-AddPlayerWindow::AddPlayerWindow(QWidget *parent): QWidget(parent), ui(new Ui::AddPlayerWindow) {
+AddPlayerWindow::AddPlayerWindow(QWidget *parent, PlayerGameHistory* pgh, MainWindow* menu):
+    QWidget(parent), ui(new Ui::AddPlayerWindow) {
     ui->setupUi(this);
+
+    this->pgh = pgh;
+    this->menu = menu;
 }
 
 AddPlayerWindow::~AddPlayerWindow() {
