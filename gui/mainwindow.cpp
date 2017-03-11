@@ -37,6 +37,7 @@ void MainWindow::on_topGames_triggered() {
 void MainWindow::on_newPlayer_triggered() {
     if (addWindow == nullptr) {
         addWindow = new AddPlayerWindow();
+        addWindow->setPGH(pgh);
         std::cout << "Created window" << std::endl;
     }
     addWindow->clearFields();
