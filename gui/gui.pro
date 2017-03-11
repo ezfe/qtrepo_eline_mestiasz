@@ -28,8 +28,6 @@ SOURCES += main.cpp\
         ../engines/engine.cpp \
         ../engines/worms.cpp \
         ../engines/robots.cpp \
-        ../gui_robots/robotswindow.cpp \
-        ../gui_worms/wormswindow.cpp \
         ../game_history/playergamehistory.cpp \
         ../game_history/game.cpp \
         ../game_history/player.cpp \
@@ -39,7 +37,8 @@ SOURCES += main.cpp\
         ../game_history/dbtableplayers.cpp \
         ../game_history/dbtool.cpp \
     addplayerwindow.cpp \
-    topplayerswindow.cpp
+    topplayerswindow.cpp \
+    robotswindow.cpp
 
 LIBS +=  -l sqlite3
 
@@ -47,8 +46,6 @@ HEADERS  += mainwindow.h \
         ../engines/engine.h \
         ../engines/worms.h \
         ../engines/robots.h \
-        ../gui_robots/robotswindow.h \
-        ../gui_worms/wormswindow.h \
         ../game_history/playergamehistory.h \
         ../game_history/game.h \
         ../game_history/player.h \
@@ -58,11 +55,12 @@ HEADERS  += mainwindow.h \
         ../game_history/dbtableplayers.h \
         ../game_history/dbtool.h \
     addplayerwindow.h \
-    topplayerswindow.h
+    topplayerswindow.h \
+    robotswindow.h
 
 
 FORMS    += mainwindow.ui \
-        ../gui_robots/robotswindow.ui \
     addplayerwindow.ui \
-    topplayerswindow.ui
+    topplayerswindow.ui \
+    robotswindow.ui
 

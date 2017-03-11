@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->setupUi(this);
     pgh = new PlayerGameHistory();
     addWindow = new AddPlayerWindow(0, pgh, this);
+    robots = new RobotsWindow();
 
 }
 
@@ -14,13 +15,13 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_playRobotsButton_clicked() {
-    RobotsWindow* robots = new RobotsWindow();
     robots->show();
+    this->hide();
 }
 
 void MainWindow::on_playWormsButton_clicked() {
-    WormsWindow* worms = new WormsWindow();
-    worms->show();
+//    WormsWindow* worms = new WormsWindow();
+//    worms->show();
 }
 
 void MainWindow::on_exit_triggered() {
@@ -37,12 +38,6 @@ void MainWindow::on_topGames_triggered() {
 }
 
 void MainWindow::on_newPlayer_triggered() {
-    if (addWindow == nullptr) {
-        addWindow = new AddPlayerWindow();
-        addWindow->set_pgh(pgh);
-        std::cout << "Created window" << std::endl;
-    }
-    addWindow->set_menu(this);
     addWindow->clear_fields();
     addWindow->show();
     this->hide();

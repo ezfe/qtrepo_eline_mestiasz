@@ -2,12 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "../gui_robots/robotswindow.h"
-#include "../gui_worms/wormswindow.h"
+
 #include "../game_history/playergamehistory.h"
 #include "addplayerwindow.h"
+#include "robotswindow.h"
 
 class AddPlayerWindow;
+class RobotsWindow;
 
 namespace Ui {
     class MainWindow;
@@ -30,8 +31,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     PlayerGameHistory* pgh;
-    RobotsWindow* robotsWindow;
-    WormsWindow* wormsWindow;
+    RobotsWindow* robots;
+    //WormsWindow* wormsWindow;
     AddPlayerWindow* addWindow = nullptr;
 
 private slots:
