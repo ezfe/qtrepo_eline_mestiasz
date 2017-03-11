@@ -23,7 +23,7 @@ void SelectPlayerWindow::init_list(){
     QRadioButton* firstPlayer = nullptr;
     int i = 0;
     for(Player* player : pgh->get_players()){
-        std::string fullName = player->get_first_name() + player->get_last_name();
+        std::string fullName = player->get_first_name() + " " + player->get_last_name();
         playerButton = new QRadioButton(tr(fullName.c_str()));
         if(i == 0) firstPlayer = playerButton;
         vbox->addWidget(playerButton);
