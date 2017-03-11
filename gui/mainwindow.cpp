@@ -72,4 +72,11 @@ std::vector<Player*> MainWindow::top_players(){
     return top;
 }
 
+void MainWindow::showEvent(QShowEvent *event){
+    if(currentPlayer != nullptr){
+        std::string fullName = currentPlayer->get_first_name() + " " + currentPlayer->get_last_name();
+        this->ui->playerName->setText(QString::fromStdString(fullName));
+    }
 
+    event->accept();
+}

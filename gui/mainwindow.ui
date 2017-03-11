@@ -18,6 +18,16 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_6">
       <item>
+       <widget class="QLabel" name="playerName">
+        <property name="text">
+         <string>No Player Selected!</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="playWormsButton">
         <property name="text">
          <string>Play Worms</string>

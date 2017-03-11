@@ -27,7 +27,8 @@ public:
     void init_list();
 
 private slots:
-    void on_SelectPlayerWindowButton_clicked();
+
+    void on_select_clicked();
 
 private:
     Ui::SelectPlayerWindow *ui;
@@ -35,6 +36,7 @@ private:
 protected:
     MainWindow* menu;
     PlayerGameHistory* pgh;
+    QButtonGroup* bgroup;
 
     void closeEvent(QCloseEvent* event);
 };

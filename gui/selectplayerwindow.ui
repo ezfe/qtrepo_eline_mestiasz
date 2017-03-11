@@ -42,7 +42,7 @@
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QPushButton" name="selectPlayerButton">
+    <widget class="QPushButton" name="select">
      <property name="text">
       <string>Select Player</string>
      </property>

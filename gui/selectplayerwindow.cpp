@@ -17,7 +17,9 @@ SelectPlayerWindow::~SelectPlayerWindow()
 
 void SelectPlayerWindow::init_list(){
     QGroupBox* groupBox = new QGroupBox(tr("Players:"));
-    QVBoxLayout* vbox = new QVBoxLayout;
+    QVBoxLayout* vbox = new QVBoxLayout();
+    bgroup = new QButtonGroup(groupBox);
+    bgroup->setExclusive(true);
 
     QRadioButton* playerButton = nullptr;
     QRadioButton* firstPlayer = nullptr;
@@ -27,6 +29,7 @@ void SelectPlayerWindow::init_list(){
         playerButton = new QRadioButton(tr(fullName.c_str()));
         if(i == 0) firstPlayer = playerButton;
         vbox->addWidget(playerButton);
+        bgroup->addButton(playerButton, i);
         i++;
     }
 
@@ -41,11 +44,13 @@ void SelectPlayerWindow::init_list(){
 }
 
 void SelectPlayerWindow::closeEvent(QCloseEvent *event){
+    if(pgh->get_players().size() > 0){
+        menu->currentPlayer = pgh->get_players().at(bgroup->checkedId());
+    }
     this->menu->show();
     event->accept();
 }
 
-void SelectPlayerWindow::on_SelectPlayerWindowButton_clicked()
-{
-
+void SelectPlayerWindow::on_select_clicked() {
+    this->close();
 }
