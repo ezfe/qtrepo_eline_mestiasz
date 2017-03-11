@@ -37,11 +37,13 @@ void MainWindow::on_topGames_triggered() {
 void MainWindow::on_newPlayer_triggered() {
     if (addWindow == nullptr) {
         addWindow = new AddPlayerWindow();
-        addWindow->setPGH(pgh);
+        addWindow->set_pgh(pgh);
         std::cout << "Created window" << std::endl;
     }
-    addWindow->clearFields();
+    addWindow->set_menu(this);
+    addWindow->clear_fields();
     addWindow->show();
+    this->hide();
 }
 
 std::vector<Player*> MainWindow::top_players(){

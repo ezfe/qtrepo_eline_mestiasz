@@ -9,11 +9,15 @@ AddPlayerWindow::~AddPlayerWindow() {
     delete ui;
 }
 
-void AddPlayerWindow::setPGH(PlayerGameHistory* pgh) {
+void AddPlayerWindow::set_pgh(PlayerGameHistory* pgh) {
     this->pgh = pgh;
 }
 
-void AddPlayerWindow::clearFields() {
+void AddPlayerWindow::set_menu(MainWindow* menu) {
+    this->menu = menu;
+}
+
+void AddPlayerWindow::clear_fields() {
     ui->addPlayerFirstName->clear();
     ui->addPlayerLastName->clear();
     ui->addPlayerAddress->clear();
@@ -32,5 +36,6 @@ void AddPlayerWindow::on_addPlayerButton_clicked() {
         std::cerr << "No PlayerGameHistory object" << std::endl;
     }
 
+    this->menu->show();
     this->close();
 }

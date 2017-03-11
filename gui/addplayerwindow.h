@@ -3,7 +3,11 @@
 
 #include <QWidget>
 #include <iostream>
+
+#include "mainwindow.h"
 #include "../game_history/playergamehistory.h"
+
+class MainWindow;
 
 namespace Ui {
     class AddPlayerWindow;
@@ -16,14 +20,18 @@ public:
     explicit AddPlayerWindow(QWidget *parent = 0);
     ~AddPlayerWindow();
 
-    void clearFields();
-    void setPGH(PlayerGameHistory* pgh);
+    void clear_fields();
+    void set_pgh(PlayerGameHistory* pgh);
+    void set_menu(MainWindow* menu);
+
 private slots:
     void on_addPlayerButton_clicked();
 
 private:
     Ui::AddPlayerWindow *ui;
     PlayerGameHistory* pgh;
+protected:
+    MainWindow* menu;
 };
 
 #endif // ADDPLAYERWINDOW_H

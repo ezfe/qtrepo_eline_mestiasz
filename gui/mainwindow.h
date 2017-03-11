@@ -7,6 +7,8 @@
 #include "../game_history/playergamehistory.h"
 #include "addplayerwindow.h"
 
+class AddPlayerWindow;
+
 namespace Ui {
     class MainWindow;
 }
