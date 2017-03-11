@@ -7,10 +7,12 @@
 #include "../game_history/playergamehistory.h"
 #include "addplayerwindow.h"
 #include "selectplayerwindow.h"
+#include "topplayerswindow.h"
 #include "robotswindow.h"
 
 class AddPlayerWindow;
 class SelectPlayerWindow;
+class TopPlayersWindow;
 class RobotsWindow;
 
 namespace Ui {
@@ -24,7 +26,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    std::vector<Player*> top_players();
     Player* currentPlayer;
 
 private slots:
@@ -33,12 +34,13 @@ private slots:
     void on_playWormsButton_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
     PlayerGameHistory* pgh;
+    AddPlayerWindow* addWindow;
+    SelectPlayerWindow* selectPlayerWindow;
+    TopPlayersWindow* topPlayersWindow;
     RobotsWindow* robots;
     //WormsWindow* wormsWindow;
-    AddPlayerWindow* addWindow = nullptr;
-    SelectPlayerWindow* selectPlayerWindow = nullptr;
 
 private slots:
     void on_exit_triggered();

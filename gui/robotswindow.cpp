@@ -2,8 +2,7 @@
 #include "ui_robotswindow.h"
 
 RobotsWindow::RobotsWindow(QWidget *parent, PlayerGameHistory* pgh,
-                           Player* player, MainWindow* menu) :
-    QWidget(parent),
+                           Player* player, MainWindow* menu) : QWidget(parent),
     ui(new Ui::RobotsWindow)
 {
     ui->setupUi(this);
@@ -12,6 +11,7 @@ RobotsWindow::RobotsWindow(QWidget *parent, PlayerGameHistory* pgh,
     this->menu = menu;
     this->engine = new Robots(26, 44, 7);
     this->refresh_gameboard();
+    this->name = "Robots";
 }
 
 RobotsWindow::~RobotsWindow()
@@ -34,6 +34,7 @@ void RobotsWindow::handle_event(char cmd){
 }
 
 void RobotsWindow::closeEvent(QCloseEvent *event){
+    save_game();
     this->menu->show();
     event->accept();
 }
@@ -103,6 +104,7 @@ void RobotsWindow::on_qButton_clicked()
 
 void RobotsWindow::on_rButton_clicked()
 {
+    this->save_game();
     this->handle_event('r');
 }
 
