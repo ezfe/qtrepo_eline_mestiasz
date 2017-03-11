@@ -38,7 +38,8 @@ SOURCES += main.cpp\
         ../game_history/dbtool.cpp \
     addplayerwindow.cpp \
     topplayerswindow.cpp \
-    robotswindow.cpp
+    robotswindow.cpp \
+    selectplayerwindow.cpp
 
 LIBS +=  -l sqlite3
 
@@ -56,11 +57,13 @@ HEADERS  += mainwindow.h \
         ../game_history/dbtool.h \
     addplayerwindow.h \
     topplayerswindow.h \
-    robotswindow.h
+    robotswindow.h \
+    selectplayerwindow.h
 
 
 FORMS    += mainwindow.ui \
     addplayerwindow.ui \
     topplayerswindow.ui \
-    robotswindow.ui
+    robotswindow.ui \
+    selectplayerwindow.ui
 

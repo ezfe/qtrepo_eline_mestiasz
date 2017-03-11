@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->setupUi(this);
     pgh = new PlayerGameHistory();
     addWindow = new AddPlayerWindow(0, pgh, this);
+    selectPlayerWindow = new SelectPlayerWindow(0, pgh, this);
     currentPlayer = nullptr;
 }
 
@@ -49,6 +50,12 @@ void MainWindow::on_newPlayer_triggered() {
     this->hide();
 }
 
+void MainWindow::on_selectPlayer_triggered() {
+    selectPlayerWindow->show();
+    selectPlayerWindow->init_list();
+    this->hide();
+}
+
 std::vector<Player*> MainWindow::top_players(){
     std::vector<Player*> top = pgh->get_players();
     struct {
@@ -64,3 +71,5 @@ std::vector<Player*> MainWindow::top_players(){
     std::sort(top.begin(), top.end(), playerComparator);
     return top;
 }
+
+

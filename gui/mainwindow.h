@@ -5,9 +5,11 @@
 
 #include "../game_history/playergamehistory.h"
 #include "addplayerwindow.h"
+#include "selectplayerwindow.h"
 #include "robotswindow.h"
 
 class AddPlayerWindow;
+class SelectPlayerWindow;
 class RobotsWindow;
 
 namespace Ui {
@@ -34,6 +36,8 @@ private:
     RobotsWindow* robots;
     //WormsWindow* wormsWindow;
     AddPlayerWindow* addWindow = nullptr;
+    SelectPlayerWindow* selectPlayerWindow = nullptr;
+
 
     Player* currentPlayer;
 
@@ -42,6 +46,7 @@ private slots:
     void on_topPlayers_triggered();
     void on_topGames_triggered();
     void on_newPlayer_triggered();
+    void on_selectPlayer_triggered();
 };
 
 #endif // MAINWINDOW_H
