@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     topGamesWindow = new TopGamesWindow(0, pgh, this);
     statisticsWindow = new StatisticsWindow(0, pgh, this);
     robots = nullptr;
+    worms = nullptr;
     currentPlayer = nullptr;
 }
 
@@ -25,6 +26,7 @@ MainWindow::~MainWindow() {
     if (topGamesWindow != nullptr) delete topGamesWindow;
     if (statisticsWindow != nullptr) delete statisticsWindow;
     if (robots != nullptr) delete robots;
+    if (worms != nullptr) delete robots;
 }
 
 void MainWindow::on_playRobotsButton_clicked() {
@@ -41,8 +43,16 @@ void MainWindow::on_playRobotsButton_clicked() {
 }
 
 void MainWindow::on_playWormsButton_clicked() {
-//    WormsWindow* worms = new WormsWindow();
-//    worms->show();
+    if(currentPlayer == nullptr){
+        // set label to choose player
+        this->ui->playerName->setText("Select a player!");
+        return;
+    }
+
+    if(worms != nullptr) delete worms;
+    worms = new WormsWindow(0, pgh, currentPlayer, this);
+    worms->show();
+    this->hide();
 }
 
 void MainWindow::on_exit_triggered() {

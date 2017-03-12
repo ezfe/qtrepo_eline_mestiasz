@@ -3,8 +3,7 @@
 
 RobotsWindow::RobotsWindow(QWidget *parent, PlayerGameHistory* pgh,
                            Player* player, MainWindow* menu) : QWidget(parent),
-    ui(new Ui::RobotsWindow)
-{
+    ui(new Ui::RobotsWindow) {
     ui->setupUi(this);
     this->pgh = pgh;
     this->player = player;

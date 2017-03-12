@@ -41,7 +41,8 @@ SOURCES += main.cpp\
     robotswindow.cpp \
     selectplayerwindow.cpp \
     topgameswindow.cpp \
-    statisticswindow.cpp
+    statisticswindow.cpp \
+    wormswindow.cpp
 
 LIBS +=  -l sqlite3
 
@@ -62,7 +63,8 @@ HEADERS  += mainwindow.h \
     robotswindow.h \
     selectplayerwindow.h \
     topgameswindow.h \
-    statisticswindow.h
+    statisticswindow.h \
+    wormswindow.h
 
 
 FORMS    += mainwindow.ui \
@@ -71,5 +73,6 @@ FORMS    += mainwindow.ui \
     robotswindow.ui \
     selectplayerwindow.ui \
     topgameswindow.ui \
-    statisticswindow.ui
+    statisticswindow.ui \
+    wormswindow.ui
 
