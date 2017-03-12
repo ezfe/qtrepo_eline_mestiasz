@@ -1,7 +1,7 @@
 #include "topplayerswindow.h"
 #include "ui_topplayerswindow.h"
 
-TopPlayersWindow::TopPlayersWindow(QWidget *parent,  PlayerGameHistory* pgh,
+TopPlayersWindow::TopPlayersWindow(QWidget *parent, PlayerGameHistory* pgh,
                                    MainWindow* menu) : QWidget(parent),
     ui(new Ui::TopPlayersWindow){
     ui->setupUi(this);

@@ -8,11 +8,15 @@
 #include "addplayerwindow.h"
 #include "selectplayerwindow.h"
 #include "topplayerswindow.h"
+#include "topgameswindow.h"
+#include "statisticswindow.h"
 #include "robotswindow.h"
 
 class AddPlayerWindow;
 class SelectPlayerWindow;
 class TopPlayersWindow;
+class TopGamesWindow;
+class StatisticsWindow;
 class RobotsWindow;
 
 namespace Ui {
@@ -39,6 +43,8 @@ private:
     AddPlayerWindow* addWindow;
     SelectPlayerWindow* selectPlayerWindow;
     TopPlayersWindow* topPlayersWindow;
+    TopGamesWindow* topGamesWindow;
+    StatisticsWindow* statisticsWindow;
     RobotsWindow* robots;
     //WormsWindow* wormsWindow;
 
@@ -48,6 +54,8 @@ private slots:
     void on_topGames_triggered();
     void on_newPlayer_triggered();
     void on_selectPlayer_triggered();
+
+    void on_statistics_triggered();
 
 protected:
     void showEvent(QShowEvent* event);

@@ -4,12 +4,14 @@
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
-    DBTool* dbtool = new DBTool("./TestTableDB");
-    dbtool->verbose = false;
-    pgh = new PlayerGameHistory(dbtool);
+//    DBTool* dbtool = new DBTool("./TestTableDB");
+//    dbtool->verbose = false;
+    pgh = new PlayerGameHistory();
     addWindow = new AddPlayerWindow(0, pgh, this);
     selectPlayerWindow = new SelectPlayerWindow(0, pgh, this);
     topPlayersWindow = new TopPlayersWindow(0, pgh, this);
+    topGamesWindow = new TopGamesWindow(0, pgh, this);
+    statisticsWindow = new StatisticsWindow(0, pgh, this);
     robots = nullptr;
     currentPlayer = nullptr;
 }
@@ -20,6 +22,8 @@ MainWindow::~MainWindow() {
     if (addWindow != nullptr) delete addWindow;
     if (selectPlayerWindow != nullptr) delete selectPlayerWindow;
     if (topPlayersWindow != nullptr) delete topPlayersWindow;
+    if (topGamesWindow != nullptr) delete topGamesWindow;
+    if (statisticsWindow != nullptr) delete statisticsWindow;
     if (robots != nullptr) delete robots;
 }
 
@@ -48,12 +52,13 @@ void MainWindow::on_exit_triggered() {
 void MainWindow::on_topPlayers_triggered() {
     topPlayersWindow->refresh();
     topPlayersWindow->show();
-    this->close();
+    this->hide();
 }
 
 void MainWindow::on_topGames_triggered() {
-
-
+    topGamesWindow->refresh();
+    topGamesWindow->show();
+    this->hide();
 }
 
 void MainWindow::on_newPlayer_triggered() {
@@ -63,12 +68,16 @@ void MainWindow::on_newPlayer_triggered() {
 }
 
 void MainWindow::on_selectPlayer_triggered() {
-    selectPlayerWindow->show();
     selectPlayerWindow->init_list();
+    selectPlayerWindow->show();
     this->hide();
 }
 
-
+void MainWindow::on_statistics_triggered() {
+    statisticsWindow->refresh();
+    statisticsWindow->show();
+    this->hide();
+}
 
 void MainWindow::showEvent(QShowEvent *event){
     if(currentPlayer != nullptr){
@@ -79,3 +88,5 @@ void MainWindow::showEvent(QShowEvent *event){
 
     event->accept();
 }
+
+
