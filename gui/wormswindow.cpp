@@ -8,7 +8,7 @@ WormsWindow::WormsWindow(QWidget *parent, PlayerGameHistory* pgh,
     this->pgh = pgh;
     this->player = player;
     this->menu = menu;
-    this->engine = new Worms(40, 40);
+    this->engine = new Worms(30, 44);
     this->refresh_gameboard();
     this->name = "Worms";
 }

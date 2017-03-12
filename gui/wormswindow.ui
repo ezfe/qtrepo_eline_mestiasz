@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>620</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>440</x>
      <y>10</y>
      <width>159</width>
      <height>271</height>
@@ -125,10 +125,10 @@
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>20</x>
      <y>10</y>
-     <width>180</width>
-     <height>276</height>
+     <width>401</width>
+     <height>461</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -145,6 +145,9 @@
         <family>Courier</family>
        </font>
       </property>
+      <property name="lineWidth">
+       <number>2</number>
+      </property>
       <property name="text">
        <string>GameboardLabel</string>
       </property>
@@ -152,9 +155,6 @@
     </item>
    </layout>
   </widget>
-  <zorder>layoutWidget</zorder>
-  <zorder>frame</zorder>
-  <zorder>gameView</zorder>
  </widget>
  <resources/>
  <connections/>
