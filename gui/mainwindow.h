@@ -11,6 +11,7 @@
 #include "topgameswindow.h"
 #include "statisticswindow.h"
 #include "robotswindow.h"
+#include "../game_history/dbtool.h"
 
 class AddPlayerWindow;
 class SelectPlayerWindow;
