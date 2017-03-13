@@ -44,10 +44,15 @@ Node<T>::~Node(){
     if(right != nullptr) delete right;
 }
 
+/*!
+ * \brief Add new node to binary tree
+ * \param T value - value for new node
+ * \return bool - true if susccessfully added new node
+ */
 template <class T>
 bool Node<T>::add_node(T value){
     if (value == this->value) return false;
-
+    // add node at the correct branch
     if (value > this->value) {
         if(right == nullptr)
             right = new Node(value, this);
@@ -63,26 +68,47 @@ bool Node<T>::add_node(T value){
     return true;
 }
 
+/*!
+ * \brief set value for node
+ * \param T value
+ */
 template <class T>
 void Node<T>::set_value(T value){
     this->value = value;
 }
 
+/*!
+ * \brief set left node
+ * \param Node* node
+ */
 template <class T>
 void Node<T>::set_left_node(Node* node){
     left = node;
 }
 
+/*!
+ * \brief set right node
+ * \param Node* node
+ */
 template <class T>
 void Node<T>::set_right_node(Node* node){
     right = node;
 }
 
+/*!
+ * \brief set parent for node
+ * \param Node* node
+ */
 template <class T>
 void Node<T>::set_parent(Node* node){
     parent = node;
 }
 
+/*!
+ * \brief Traverse from this node (In-order)
+ * \param std::stringstream& str - container for
+ * keeping the string representation
+ */
 template <class T>
 void Node<T>::traverse(std::stringstream& str){
     if (left != nullptr) left->traverse(str);
@@ -91,21 +117,37 @@ void Node<T>::traverse(std::stringstream& str){
     if (right != nullptr) right->traverse(str);
 }
 
+/*!
+ * \brief get the node's value
+ * \return T value
+ */
 template <class T>
 T Node<T>::get_value(){
     return value;
 }
 
+/*!
+ * \brief get the left child
+ * \param Node* node
+ */
 template <class T>
 Node<T>* Node<T>::get_left_node(){
     return left;
 }
 
+/*!
+ * \brief get the right child
+ * \param Node* node
+ */
 template <class T>
 Node<T>* Node<T>::get_right_node(){
     return right;
 }
 
+/*!
+ * \brief get the parent node
+ * \param Node* node
+ */
 template <class T>
 Node<T>* Node<T>::get_parent(){
     return parent;
@@ -147,7 +189,10 @@ BST<T>::~BST(){
     if(head != nullptr) delete head;
 }
 
-
+/*!
+ * \brief Create and add new node
+ * \param T value
+ */
 template <class T>
 void BST<T>::add_node(T value){
     if (head == nullptr) {
@@ -158,6 +203,11 @@ void BST<T>::add_node(T value){
     }
 }
 
+/*!
+ * \brief find min value for the node
+ * \param Node* node
+ * \return Node* node
+ */
 template <class T>
 Node<T>* BST<T>::find_min(Node<T>* node){
     if(node != nullptr)
@@ -166,6 +216,11 @@ Node<T>* BST<T>::find_min(Node<T>* node){
     return node;
 }
 
+/*!
+ * \brief remove min node (helper for remove() method)
+ * \param Node* node
+ * \return Node* node
+ */
 template <class T>
 Node<T>* BST<T>::remove_min(Node<T>* node){
     if(node == nullptr){
@@ -178,7 +233,12 @@ Node<T>* BST<T>::remove_min(Node<T>* node){
     }
 }
 
-
+/*!
+ * \brief remove node
+ * \param Node* node
+ * \param T value
+ * \return Node* node
+ */
 template <class T>
 Node<T>* BST<T>::remove(T value, Node<T>* node){
     if(value < node->get_value())
@@ -198,7 +258,11 @@ Node<T>* BST<T>::remove(T value, Node<T>* node){
     return node;
 
 }
-
+/*!
+ * \brief Wrapper for remove(), providing base case
+ * \param T value
+ * \return Node* node
+ */
 template <class T>
 Node<T>* BST<T>::remove_node(T value){
     if(find(value) == nullptr) return head;
@@ -206,9 +270,15 @@ Node<T>* BST<T>::remove_node(T value){
     return remove(value, head);
 }
 
+/*!
+ * \brief find the value
+ * \param T value
+ * \return Node* node
+ */
 template <class T>
 Node<T>* BST<T>::find(T value){
     Node<T>* current = head;
+    // binary search
     while(current != nullptr){
         if(value == current->get_value())
             return current;
@@ -222,21 +292,37 @@ Node<T>* BST<T>::find(T value){
     return nullptr;
 }
 
+/*!
+ * \brief Find if tree does not have any nodes
+ * \return bool
+ */
 template <class T>
 bool BST<T>::is_empty(){
     return head == nullptr;
 }
 
+/*!
+ * \brief find size of the tree
+ * \return int
+ */
 template <class T>
 int BST<T>::get_size(){
     return size;
 }
 
+/*!
+ * \brief get the head
+ * \return Node* node
+ */
 template <class T>
 Node<T>* BST<T>::get_head(){
     return head;
 }
 
+/*!
+ * \brief traverse through the tree(In-order)
+ * \param std::string - string representation of traversal
+ */
 template <class T>
 std::string BST<T>::traverse(){
     std::stringstream str;

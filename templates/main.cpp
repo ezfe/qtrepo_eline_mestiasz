@@ -33,13 +33,11 @@ int main(int argc, char *argv[])
     bst->add_node(7);
     bst->add_node(9);
 
-    bst->traverse();
     std::cout << "Size: " << bst->get_size() << std::endl;
 
     Node<int>* node = bst->remove_node(6);
     std::cout << "value: " << node->get_value() << std::endl;
 
-    bst->traverse();
     std::cout << "Size: " << bst->get_size() << std::endl;
 
     delete bst;
