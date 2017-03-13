@@ -42,6 +42,7 @@ std::string Robots::controller(char cmd){
             break;
         case 't':
             this->teleport();
+            if (this->moved) this->move_each_robot();
             break;
         case 'r':
             this->redraw();
