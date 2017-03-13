@@ -1,0 +1,26 @@
+Assignment                : lab 4
+Group                     : elin_zurabi
+
+-- Activity Score out of 3 (based on rubric)
+Compilation and Errors     : 3
+Commenting/ Style          : 3
+Engine Parent Design       : 2
+Engine Class UnitTesting   : 0
+Screen Parent Design       : 1
+Robot TUI Functionality    : 3
+Worm TUI Functionality     : 3
+
+Lab Score (out of 10)     : 7.3
+
+-- Comments ------------------
+
+- Robot does not increase in level and robots do not move when hero teleports.
+
+- No unit-testing for the new Engine Class.
+
+- Gameboard needs to be deleted in the opposite order it is created.
+
+- When a method is named init that would suggest it is initializing, but your
+  init method: Initializes, runs main functionality, and closes up the program.
+  The constructor and destructor should be used, the rename the init method to
+  something that matches functionality.
