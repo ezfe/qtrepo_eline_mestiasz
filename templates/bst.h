@@ -2,6 +2,8 @@
 #define BST_H
 
 #include <iostream>
+#include <sstream>
+
 template <class T>
 class Node {
 public:
@@ -18,7 +20,7 @@ public:
     void set_left_node(Node* node);
     void set_right_node(Node* node);
     void set_parent(Node* node);
-    void traverse();
+    void traverse(std::stringstream& str);
 
 private:
     T value;
@@ -82,10 +84,11 @@ void Node<T>::set_parent(Node* node){
 }
 
 template <class T>
-void Node<T>::traverse(){
-    if (left != nullptr) left->traverse();
+void Node<T>::traverse(std::stringstream& str){
+    if (left != nullptr) left->traverse(str);
     std::cout << " " << value << " ";
-    if (right != nullptr) right->traverse();
+    str << " " << value << " ";
+    if (right != nullptr) right->traverse(str);
 }
 
 template <class T>
@@ -119,12 +122,13 @@ public:
     Node<T>* find_min(Node<T>* node);
     Node<T>* remove_min(Node<T>* node);
     Node<T>* remove(T value, Node<T>* node);
+    Node<T>* remove_node(T value);
     Node<T>* get_head();
+    std::string traverse();
     bool is_empty();
     int get_size();
 
     void add_node(T value);
-    void traverse();
 
 private:
     Node<T>* head;
@@ -195,6 +199,12 @@ Node<T>* BST<T>::remove(T value, Node<T>* node){
 
 }
 
+template <class T>
+Node<T>* BST<T>::remove_node(T value){
+    if(find(value) == nullptr) return head;
+    size--;
+    return remove(value, head);
+}
 
 template <class T>
 Node<T>* BST<T>::find(T value){
@@ -228,14 +238,15 @@ Node<T>* BST<T>::get_head(){
 }
 
 template <class T>
-void BST<T>::traverse(){
+std::string BST<T>::traverse(){
+    std::stringstream str;
     if(head == nullptr){
         std::cout << "There are no elements" << std::endl;
     }else{
-        head->traverse();
+        head->traverse(str);
         std::cout << std::endl;
     }
-
+    return str.str();
 }
 
 

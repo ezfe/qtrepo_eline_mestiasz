@@ -72,7 +72,7 @@ T Stack<T>::pop() {
         delete return_item;
         return val;
     } else {
-        std::cerr << "No elements" << std::endl;
+        // std::cerr << "No elements" << std::endl;
         return 0;
     }
 }
@@ -89,7 +89,7 @@ T Stack<T>::top() {
     if (head != nullptr) {
         return head->get_value();
     } else {
-        std::cerr << "No elements" << std::endl;
+        // std::cerr << "No elements" << std::endl;
         return 0;
     }
 }

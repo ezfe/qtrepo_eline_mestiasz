@@ -36,7 +36,9 @@ int main(int argc, char *argv[])
     bst->traverse();
     std::cout << "Size: " << bst->get_size() << std::endl;
 
-    bst->remove(6, bst->get_head());
+    Node<int>* node = bst->remove_node(6);
+    std::cout << "value: " << node->get_value() << std::endl;
+
     bst->traverse();
     std::cout << "Size: " << bst->get_size() << std::endl;
 

@@ -2,7 +2,7 @@
 
 
 StackTest::StackTest() {
-    intStack = new Stack<int>();
+
 }
 
 StackTest::~StackTest() {
@@ -10,11 +10,11 @@ StackTest::~StackTest() {
 }
 
 void StackTest::SetUp() {
-
+    intStack = new Stack<int>();
 }
 
 void StackTest::TearDown() {
-
+    delete intStack;
 }
 
 
