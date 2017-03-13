@@ -10,11 +10,13 @@ SelectPlayerWindow::SelectPlayerWindow(QWidget *parent, PlayerGameHistory* pgh,
     this->menu = menu;
 }
 
-SelectPlayerWindow::~SelectPlayerWindow()
-{
+SelectPlayerWindow::~SelectPlayerWindow() {
     delete ui;
 }
 
+/*!
+ * \brief Initialize the player list
+ */
 void SelectPlayerWindow::init_list(){
     QGroupBox* groupBox = new QGroupBox(tr("Players:"));
     QVBoxLayout* vbox = new QVBoxLayout();
@@ -24,6 +26,7 @@ void SelectPlayerWindow::init_list(){
     QRadioButton* playerButton = nullptr;
     QRadioButton* firstPlayer = nullptr;
     int i = 0;
+    // Draw radio buttons with player names
     for(Player* player : pgh->get_players()){
         std::string fullName = player->get_first_name() + " " + player->get_last_name();
         playerButton = new QRadioButton(tr(fullName.c_str()));
@@ -32,17 +35,20 @@ void SelectPlayerWindow::init_list(){
         bgroup->addButton(playerButton, i);
         i++;
     }
-
+    // select the first player if there is one
     if(pgh->get_players().size() > 0){
         vbox->addStretch(1);
         groupBox->setLayout(vbox);
         firstPlayer->setChecked(true);
     }
-
+    // add to the ui
     ui->playerList->setWidget(groupBox);
 
 }
 
+/*!
+ * \brief Override close event
+ */
 void SelectPlayerWindow::closeEvent(QCloseEvent *event){
     if(pgh->get_players().size() > 0){
         menu->currentPlayer = pgh->get_players().at(bgroup->checkedId());
@@ -51,6 +57,9 @@ void SelectPlayerWindow::closeEvent(QCloseEvent *event){
     event->accept();
 }
 
+/*!
+ * \brief Handle select button
+ */
 void SelectPlayerWindow::on_select_clicked() {
     this->close();
 }

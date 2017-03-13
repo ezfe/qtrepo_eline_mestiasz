@@ -13,12 +13,14 @@ RobotsWindow::RobotsWindow(QWidget *parent, PlayerGameHistory* pgh,
     this->name = "Robots";
 }
 
-RobotsWindow::~RobotsWindow()
-{
+RobotsWindow::~RobotsWindow() {
     delete ui;
     delete engine;
 }
 
+/*!
+ * \brief Refresh gameboard and display new state
+ */
 void RobotsWindow::refresh_gameboard(){
     QString new_board = QString::fromStdString(this->engine->print_gameboard());
 
@@ -27,11 +29,17 @@ void RobotsWindow::refresh_gameboard(){
     ui->score->setText(QString::number(this->engine->get_score()));
 }
 
+/*!
+ * \brief Pass the command to engine controller
+ */
 void RobotsWindow::handle_event(char cmd){
     this->engine->controller(cmd);
     this->refresh_gameboard();
 }
 
+/*!
+ * \brief Override close event
+ */
 void RobotsWindow::closeEvent(QCloseEvent *event){
     save_game();
     this->menu->show();

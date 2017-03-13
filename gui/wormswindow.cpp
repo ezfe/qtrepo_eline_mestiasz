@@ -18,6 +18,9 @@ WormsWindow::~WormsWindow() {
     delete engine;
 }
 
+/*!
+ * \brief refresh gameboard and display new state
+ */
 void WormsWindow::refresh_gameboard() {
     // create an empty string
     QString temp_board = QString::fromStdString(engine->print_gameboard());
@@ -87,6 +90,9 @@ void WormsWindow::save_game(){
     pgh->add_game(player, game);
 }
 
+/*!
+ * \brief Override close event
+ */
 void WormsWindow::closeEvent(QCloseEvent *event){
     save_game();
     this->menu->show();

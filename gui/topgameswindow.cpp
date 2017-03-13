@@ -15,12 +15,17 @@ TopGamesWindow::~TopGamesWindow() {
     delete ui;
 }
 
+/*!
+ * \brief Override close event
+ */
 void TopGamesWindow::closeEvent(QCloseEvent *event){
     menu->show();
     event->accept();
 }
 
-//z/ Move to constructor
+/*!
+ * \brief Refresh the top games list and display on the screen
+ */
 void TopGamesWindow::refresh(){
     std::vector<QLabel*> labels{this->ui->player_01,
                 this->ui->player_02, this->ui->player_03};
@@ -36,6 +41,7 @@ void TopGamesWindow::refresh(){
     }
 
     int i = 0;
+    // display top 3 games
     for(Game* game : top_games()){
         if(i > 2) break;
         labels[i]->setText(QString::fromStdString("# " + game->get_player()->get_first_name() +

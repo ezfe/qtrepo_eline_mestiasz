@@ -14,11 +14,17 @@ StatisticsWindow::~StatisticsWindow() {
     delete ui;
 }
 
+/*!
+ * \brief Override close event
+ */
 void StatisticsWindow::closeEvent(QCloseEvent *event){
     menu->show();
     event->accept();
 }
 
+/*!
+ * \brief Refresh the statistics and display
+ */
 void StatisticsWindow::refresh(){
     ui->label_01->setText(QString::fromStdString(
                              std::to_string(pgh->number_games_played())));

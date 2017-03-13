@@ -60,6 +60,7 @@ protected:
     MainWindow* menu;
     PlayerGameHistory* pgh;
     Player* player;
+    // name of the game - Robots
     std::string name;
 
     void closeEvent(QCloseEvent* event);

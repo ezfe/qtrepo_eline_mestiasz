@@ -29,67 +29,96 @@ MainWindow::~MainWindow() {
     if (worms != nullptr) delete robots;
 }
 
+/*!
+ * \brief Open Robots Window
+ */
 void MainWindow::on_playRobotsButton_clicked() {
     if(currentPlayer == nullptr){
-        // set label to choose player
+        // The user should choose a player
         this->ui->playerName->setText("Select a player!");
         return;
     }
-
+    // delete previous robots window container
     if(robots != nullptr) delete robots;
     robots = new RobotsWindow(0, pgh, currentPlayer, this);
     robots->show();
     this->hide();
 }
 
+/*!
+ * \brief Open Worms Window
+ * \param MainWindow* menu
+ */
 void MainWindow::on_playWormsButton_clicked() {
     if(currentPlayer == nullptr){
-        // set label to choose player
+        // The user should choose a player
         this->ui->playerName->setText("Select a player!");
         return;
     }
-
+    // delete previous worms window container
     if(worms != nullptr) delete worms;
     worms = new WormsWindow(0, pgh, currentPlayer, this);
     worms->show();
     this->hide();
 }
 
+/*!
+ * \brief Close the application
+ */
 void MainWindow::on_exit_triggered() {
     this->close();
 }
 
+/*!
+ * \brief Open top players window
+ */
 void MainWindow::on_topPlayers_triggered() {
     topPlayersWindow->refresh();
     topPlayersWindow->show();
     this->hide();
 }
 
+/*!
+ * \brief Open top games window
+ */
 void MainWindow::on_topGames_triggered() {
     topGamesWindow->refresh();
     topGamesWindow->show();
     this->hide();
 }
 
+/*!
+ * \brief Open new players window
+ */
 void MainWindow::on_newPlayer_triggered() {
     addWindow->clear_fields();
     addWindow->show();
     this->hide();
 }
 
+/*!
+ * \brief Open select players window
+ */
 void MainWindow::on_selectPlayer_triggered() {
     selectPlayerWindow->init_list();
     selectPlayerWindow->show();
     this->hide();
 }
 
+/*!
+ * \brief Open statistics window
+ */
 void MainWindow::on_statistics_triggered() {
     statisticsWindow->refresh();
     statisticsWindow->show();
     this->hide();
 }
 
-void MainWindow::showEvent(QShowEvent *event){
+/*!
+ * \brief Override show event
+ * \param QShowEvent* event
+ */
+void MainWindow::showEvent(QShowEvent* event){
     if(currentPlayer != nullptr){
         std::string fullName = "Hello " + currentPlayer->get_first_name() + " "
                 + currentPlayer->get_last_name() + " :)";

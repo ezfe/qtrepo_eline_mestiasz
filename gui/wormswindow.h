@@ -46,6 +46,7 @@ protected:
     MainWindow* menu;
     PlayerGameHistory* pgh;
     Player* player;
+    // name of the game - Worms
     std::string name;
 
     void closeEvent(QCloseEvent* event);

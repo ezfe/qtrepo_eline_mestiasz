@@ -9,16 +9,21 @@ TopPlayersWindow::TopPlayersWindow(QWidget *parent, PlayerGameHistory* pgh,
     this->menu = menu;
 }
 
-TopPlayersWindow::~TopPlayersWindow()
-{
+TopPlayersWindow::~TopPlayersWindow() {
     delete ui;
 }
 
+/*!
+ * \brief Override close event
+ */
 void TopPlayersWindow::closeEvent(QCloseEvent *event){
     menu->show();
     event->accept();
 }
 
+/*!
+ * \brief refresh top players list and display on the screen
+ */
 void TopPlayersWindow::refresh(){
     std::vector<QLabel*> labels{this->ui->player_01,
                 this->ui->player_02, this->ui->player_03};
@@ -31,6 +36,7 @@ void TopPlayersWindow::refresh(){
     }
 
     int i = 0;
+    // display only top 3 players
     for(Player* player : top_players()){
         if(i > 2) break;
         labels[i]->setText(QString::fromStdString("# " + player->get_first_name() +
@@ -43,6 +49,10 @@ void TopPlayersWindow::refresh(){
     }
 }
 
+/*!
+ * \brief sort players container
+ * \return std::vector<Player*> sorted players' container
+ */
 std::vector<Player*> TopPlayersWindow::top_players(){
     std::vector<Player*> top = pgh->get_players();
     struct {
