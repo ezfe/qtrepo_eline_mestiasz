@@ -1,0 +1,21 @@
+Assignment                : lab 5
+Group                     : elin_zurabi
+
+-- Activity Score out of 3 (based on rubric)
+Compilation and Errors                  : 3
+Robot GUI Functionality                 : 3
+Worm GUI Functionality                  : 3
+Commenting/Style of Reference Code      : 2
+Pointer Code UnitTesting                : 3
+Pointer Code Construction/ Destruction  : 2
+
+Lab Score (out of 10)     : 8.8
+
+-- Comments ------------------
+
+- GUIs are fine.
+
+- Headers have no comments, this is where the overview comments should be.
+
+- You are just clearing the vectors, this is not freeing the memory and will
+  produce memory leaks. You need to delete each generated pointer once.
