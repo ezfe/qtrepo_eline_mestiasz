@@ -1,0 +1,14 @@
+Assignment                : lab 6
+Group                     : elin_zurabi
+
+-- Activity Score out of 3 (based on rubric)
+Compilation and Errors of TUI windows.             : 3
+Implementation and functionality of TUI.           : 3
+Compilation and Errors of DB Extension.            : 3
+Implementation and functionality of DB extension.  : 3
+
+Lab Score (out of 10)     : 10.0
+
+-- Comments ------------------
+
+- Awesome!!!
