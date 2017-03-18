@@ -4,7 +4,7 @@
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
-    DBTool* dbtool = new DBTool("/Users/prosperi/Development/CS205/qtrepo_eline_mestiasz/gui/TestTableDB");
+    DBTool* dbtool = new DBTool("./TestTableDB");
     dbtool->verbose = false;
     pgh = new PlayerGameHistory(dbtool);
     addWindow = new AddPlayerWindow(0, pgh, this);
