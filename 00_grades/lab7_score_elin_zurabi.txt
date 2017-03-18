@@ -1,0 +1,23 @@
+>>> will accept a re-submission <<<
+
+Assignment                : lab 7
+Group                     : elin_zurabi
+
+-- Activity Score out of 3 (based on rubric)
+Compilation and Errors of GUI windows.          : 3
+Implementation and functionality of GUI         : 0
+Compilation and Errors of DB templates.         : 3
+Implementation and functionality of templates.  : 3
+
+Lab Score (out of 10)     : 7.0
+
+
+-- Comments ------------------
+
+- GUI Console has Database issues.
+- Stack template is failing one test, but bst passes all its tests.
+
+Starting /home/pfaffmaj/s17/cs205/repos/elin/elin_zurabi/gui/gui...
+Database error: unable to open database file
+File: /Users/prosperi/Development/CS205/qtrepo_eline_mestiasz/gui/TestTableDB
+/home/pfaffmaj/s17/cs205/repos/elin/elin_zurabi/gui/gui exited with code 0
